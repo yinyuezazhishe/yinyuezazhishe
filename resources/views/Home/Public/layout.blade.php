@@ -1,0 +1,1675 @@
+﻿<!DOCTYPE html>
+<!-- HTML 5 -->
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <title> @yield('title') </title>
+        <meta name="keywords" content="小众音乐,小清新,民谣,最好听的歌" />
+        <meta name="description" content="用音乐和文字温暖生活，微信公众号“麦音乐”。小众音乐、有声电台、独立音乐、民谣、摇滚、爵士、欧美音乐、轻音乐。推荐最好的音乐，不管它是什么类型。"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="applicable-device" content="pc,mobile">
+        <!-- <link rel="profile" href="http://gmpg.org/xfn/11" /> -->
+        <!-- <link rel="pingback" href="https://www.mtyyw.com/xmlrpc.php" /> -->
+        <link type="text/css" media="all" href="/homes/css/autoptimize_92080519133b963b934f14202138607c.css" rel="stylesheet" />
+        <!-- <link type="text/css" media="all" href="https://www.mtyyw.com/wp-content/cache/autoptimize/css/autoptimize_c3a9191adf57ce3ae0ac3a8b3f70a892.css" rel="stylesheet"> -->
+        <link type="text/css" media="screen" href="/homes/css/autoptimize_2ec1ff9a1d403cbc0b7b30c4780eade8.css" rel="stylesheet" />        
+        <!-- <link rel="stylesheet" href="http://yinyue.com/admins/js/plugins/layer/skin/layer.css" id="layui_layer_skinlayercss" style=""> -->
+
+        <link rel="shortcut icon" href="/admins/img/logo.ico">
+
+        <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+        <script src="/homes/js/sweetalert.min.js"></script>
+        
+        <link rel='dns-prefetch' href='//s.w.org' />
+        <script type='text/javascript'>
+            var hermit = {
+                "url": "https:\/\/www.mtyyw.com\/wp-content\/plugins\/hermit\/assets\/swf\/",
+                "ajax_url": "https:\/\/www.mtyyw.com\/wp-admin\/admin-ajax.php",
+                "text_tips": "\u5355\u51fb\u9f20\u6807\u5de6\u952e\u64ad\u653e\u6216\u6682\u505c\u3002",
+                "remain_time": "10",
+                "debug": "0",
+                "version": "3.1.6",
+                "album_source": "0"
+            };
+        </script>
+        <!-- <script type='text/javascript' src='homes/js/hermit.js'>
+        </script> -->
+        <!--[if lt IE 9]>
+            <script src="https://www.mtyyw.com/wp-content/themes/dynamic-news-lite/js/html5shiv.min.js"
+            type="text/javascript">
+            </script>
+        <![endif]-->
+        <!-- <script>
+            var _hmt = _hmt || []; (function() {
+                var hm = document.createElement("script");
+                hm.src = "https://hm.baidu.com/hm.js?cf90d3025434cd8f3c4626671aab3a68";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+            })();
+        </script> -->
+        <script src="/homes/js/c.js"></script>
+        
+        <link href="/homes/public/templates/default/style/css.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/css.css" rel="stylesheet" type="text/css" />
+
+        <link href="/homes/public/templates/default/style/div.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/div.css" rel="stylesheet" type="text/css" />
+        <!-- 公用样式代码 结束 -->
+        <link href="/homes/public/templates/default/style/font-awesome.min.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- 公用样式代码 结束 -->
+        <script type="text/javascript" src="/homes/public/templates/default/js/jQuery v1.7 .js" tppabs="http://www.mfdemo.cn/public/templates/default/js/jQuery v1.7 .js"></script>
+        <!-- 公用js库链接代码 结束 -->
+
+        <!-- 动画代码 开始 -->
+        <link  href="/homes/public/templates/default/style/animate.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/animate.css" rel="stylesheet" type="text/css" />
+
+        <!-- 动画代码 结束 -->
+
+        <link href="/homes/public/templates/default/style/Validform.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/Validform.css" rel="stylesheet" type="text/css" /><!-- Validform表单验证代码 结束 -->
+        <link href="/homes/public/templates/default/style/fankui.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/fankui.css" rel="stylesheet" type="text/css" /><!-- 反馈样式代码 结束 -->
+        <link href="/homes/public/templates/default/style/anniutexiao.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/anniutexiao.css" rel="stylesheet" type="text/css" /><!-- 按钮特效代码 结束 -->
+
+        <link  href="/homes/public/templates/default/style/logintan.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/logintan.css" rel="stylesheet" type="text/css" /><!-- 登录代码 结束 -->    
+        
+        <style type="text/css">
+            .chazhao1 {
+                background-color: #e5e5e5 ; 
+            }
+            .thumbnail{
+                    display: block;
+                    padding: 4px;
+                    margin-bottom: 20px;
+                    line-height: 1.42857143;
+                    background-color: #fff;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    -webkit-transition: border .2s ease-in-out;
+                    -o-transition: border .2s ease-in-out;
+                    transition: border .2s ease-in-out;
+            }
+        </style>
+    </head>    
+<body class="home blog">        
+        @if(session('error'))  
+        <script type="text/javascript">
+            swal("对不起!", "{{session('error')}}", "error");
+        </script>
+        @endif
+        
+        @if(session('success'))
+        <script type="text/javascript">
+            swal("恭喜你!", "{{session('success')}}", "success");
+        </script>
+        @endif
+
+        <div id="wrapper" class="hfeed">
+            <div id="header-wrap">
+                <header id="header" class="container clearfix" role="banner">
+                    <div id="logo" class="clearfix">
+                        <a href="/" title="音悦杂志社" rel="home">
+                            <img class="site-logo" src="/homes/images/TB2l2EWdHZnBKNjSZFKXXcGOVXa_!!13533312.jpg"
+                            alt="音悦杂志社" />
+                        </a>
+                    </div>
+                    <div id="header-content" class="clearfix">
+                    </div>
+                </header>
+            </div>
+            <div id="navi-wrap" >
+                <nav id="mainnav" class="container clearfix" role="navigation">
+                    <h4 id="mainnav-icon">
+                        Menu
+                    </h4>
+                    <ul id="mainnav-menu" class="menu">
+                        <li id="menu-item-10887" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-10887">
+                            <a href="https://www.mtyyw.com/">
+                                首页
+                            </a>
+                        </li>
+                        <li id="menu-item-10889" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10889">
+                            <a href="https://www.mtyyw.com/gedan/">
+                                歌单
+                            </a>
+                        </li>
+                        <li id="menu-item-10890" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10890">
+                            <a href="https://www.mtyyw.com/fm/">
+                                电台
+                            </a>
+                        </li>
+                        <li id="menu-item-13211" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13211">
+                            <a href="https://www.mtyyw.com/tag/indie-pop/">
+                                独立
+                            </a>
+                        </li>
+                        <li id="menu-item-11037" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11037">
+                            <a href="https://www.mtyyw.com/tag/minyao/">
+                                民谣
+                            </a>
+                        </li>
+                        <li id="menu-item-11038" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11038">
+                            <a href="https://www.mtyyw.com/tag/rock/">
+                                摇滚
+                            </a>
+                        </li>
+                        <li id="menu-item-17496" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-17496">
+                            <a href="https://www.mtyyw.com/tag/jueshi/">
+                                爵士
+                            </a>
+                        </li>
+                        <li id="menu-item-11035" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11035">
+                            <a href="https://www.mtyyw.com/qingyinyue/">
+                                轻音乐
+                            </a>
+                        </li>
+                        <li id="menu-item-13210" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-13210">
+                            <a href="https://www.mtyyw.com/video/">
+                                影像
+                            </a>
+                        </li>
+                        <li id="menu-item-11027" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11027">
+                            <a href="https://www.mtyyw.com/tag/maiyouji/">
+                                麦游记
+                            </a>
+                        </li>
+                        <li id="menu-item-13229" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13229">
+                            <a href="https://www.mtyyw.com/index.php?random=1">
+                                随机
+                            </a>
+                        </li>
+                        <li id="menu-item-10888" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10888">
+                            <a href="https://www.mtyyw.com/guestbook/">
+                                留言本
+                            </a>
+                        </li>
+                        <li id="menu-item-11036" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11036">
+                            <a href="https://mtyyw.taobao.com">
+                                淘宝店
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <style type="text/css">
+                #content {
+                    border: none;
+                }
+
+                .button--wayra:hover {
+                    text-decoration: none;
+                }
+                
+                .shenyinclick a {
+                    text-decoration: none;
+                    font-size: 14px;
+                }
+
+            </style>
+            @section('content')
+            <div id="wrap" class="container clearfix">
+                <section id="content" class="primary" role="main">
+                    <article id="post-13827" class="content-excerpt post-13827 post type-post status-publish format-standard has-post-thumbnail sticky hentry category-nomusic tag-t">
+                        <h2 class="post-title entry-title">
+                            <a href="https://www.mtyyw.com/13827/" rel="bookmark">
+                                2018年T恤上新：我真的喜欢做一些让人喜欢的东西
+                            </a>
+                        </h2>
+                        <div class="postmeta">
+                            2016-3-10
+                        </div>
+                        <div class="entry clearfix">
+                            <p>
+                                <img class="" src="/homes/images/TB2uFTbg7OWBuNjSsppXXXPgpXa_!!13533312.jpg"
+                                align="absmiddle" />
+                                <br />
+                                2018年麦田T恤上新中。
+                            </p>
+                            <a href="https://www.mtyyw.com/13827/" class="more-link">
+                                查看全部
+                            </a>
+                        </div>
+                        <div class="postinfo clearfix">
+                            <span class="meta-category">
+                                <ul class="post-categories">
+                                    <li>
+                                        <a href="https://www.mtyyw.com/nomusic/" rel="category tag">
+                                            无关音乐
+                                        </a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                    </article>
+                    <article id="post-19564" class="content-excerpt post-19564 post type-post status-publish format-standard hentry category-feizhuliuyinyue category-wenzi tag-minyao tag-1933">
+                        <h2 class="post-title entry-title">
+                            <a href="https://www.mtyyw.com/19564/" rel="bookmark">
+                                只要现在欢乐，赵照《舍不得过》唱到你心里
+                            </a>
+                        </h2>
+                        <div class="postmeta">
+                            2018-9-26
+                        </div>
+                        <div class="entry clearfix">
+                            <blockquote>
+                                <p>
+                                    与人交往要守住态度，值得的我一定真心相待不辜负，不值得的一笑而过不再多说。没有必要也没有可能与所有人成为好朋友，要做一个有原则的人，不亏待每一份热情，也绝不讨好任何的冷漠。——苑子文
+                                </p>
+                            </blockquote>
+                            <p>
+                                <img class="alignnone size-full wp-image-19565" src="/homes/images/shebudeguo.jpg"
+                                alt="舍不得过 - 赵照" width="400" height="400" />
+                                <br />
+                                曲名：舍不得过
+                                <br />
+                                歌手：赵照
+                                <br />
+                                发行年代：2015
+                                <br />
+                                风格：民谣
+                                <br />
+                                介绍：舍不得过这首歌创作于2013年夏末，这是一个简洁的弹唱版本，气质慵懒，风格老旧。因为制作上的反反复复，一直拖到今天才勉强发表。赵照表示如果说《当你老了》对于我是一个问题，那《舍不得过》像一个答案。然而答案是引发另外一个问题的开始……
+                            </p>
+                            <a href="https://www.mtyyw.com/19564/" class="more-link">
+                                查看全部
+                            </a>
+                        </div>
+                        <div class="postinfo clearfix">
+                            <span class="meta-category">
+                                <ul class="post-categories">
+                                    <li>
+                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
+                                            小众音乐
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.mtyyw.com/wenzi/" rel="category tag">
+                                            文字
+                                        </a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                    </article>
+                    <article id="post-19561" class="content-excerpt post-19561 post type-post status-publish format-standard has-post-thumbnail hentry category-feizhuliuyinyue category-wenzi tag-2146 tag-minyao tag-2851 tag-2831">
+                        <h2 class="post-title entry-title">
+                            <a href="https://www.mtyyw.com/19561/" rel="bookmark">
+                                我沉迷于秋日 &#8211; 纣王老胡
+                            </a>
+                        </h2>
+                        <div class="postmeta">
+                            2018-9-25
+                        </div>
+                        <div class="entry clearfix">
+                            <blockquote>
+                                <p>
+                                    我的生命不过是温柔的疯狂。眼里一片海，我却不肯蓝。——兰波
+                                </p>
+                            </blockquote>
+                            <p>
+                                <img src="/homes/images/qiuri-mtyyw.jpg"
+                                alt="我沉迷于秋日" width="500" height="333" class="alignnone size-full wp-image-19563"
+                                />
+                                <br />
+                                曲名：我沉迷于秋日
+                                <br />
+                                歌手：纣王老胡
+                                <br />
+                                作曲：纣王老胡
+                                <br />
+                                作词：林清
+                                <br />
+                                所属专辑：沉迷于秋日
+                                <br />
+                                发行时间：2018-09-01
+                                <br />
+                                风格：民谣
+                                <br />
+                                介绍：我沉迷于秋日 / 沉迷于你目光所致 / 我沉迷于放肆 / 沉迷于你眼神所视 / 这世界花花的也不过如此。
+                            </p>
+                            <a href="https://www.mtyyw.com/19561/" class="more-link">
+                                查看全部
+                            </a>
+                        </div>
+                        <div class="postinfo clearfix">
+                            <span class="meta-category">
+                                <ul class="post-categories">
+                                    <li>
+                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
+                                            小众音乐
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.mtyyw.com/wenzi/" rel="category tag">
+                                            文字
+                                        </a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                    </article>
+                    <article id="post-19558" class="content-excerpt post-19558 post type-post status-publish format-standard has-post-thumbnail hentry category-feizhuliuyinyue category-wenzi tag-3448 tag-rock tag-1336 tag-minyao">
+                        <h2 class="post-title entry-title">
+                            <a href="https://www.mtyyw.com/19558/" rel="bookmark">
+                                秋天的老狼 | 李志
+                            </a>
+                        </h2>
+                        <div class="postmeta">
+                            2018-9-23
+                        </div>
+                        <div class="entry clearfix">
+                            <blockquote>
+                                <p>
+                                    你需要的伴侣，最好是那能够和你并肩立在船头，浅斟低唱两岸风光，同时更能在惊涛骇浪中紧紧握住你的手不放的人。换句话说，最好她本身不是你必须应付的惊涛骇浪。——龙应台
+                                </p>
+                            </blockquote>
+                            <p>
+                                <img src="/homes/images/lizhibb.jpg"
+                                alt="李志《你好，郑州》" width="400" height="400" class="alignnone size-full wp-image-19559"
+                                />
+                                <br />
+                                曲名：秋天的老狼
+                                <br />
+                                歌手：李志
+                                <br />
+                                所属专辑：你好，郑州
+                                <br />
+                                发行年代：2010
+                                <br />
+                                风格：摇滚，民谣
+                            </p>
+                            <a href="https://www.mtyyw.com/19558/" class="more-link">
+                                查看全部
+                            </a>
+                        </div>
+                        <div class="postinfo clearfix">
+                            <span class="meta-category">
+                                <ul class="post-categories">
+                                    <li>
+                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
+                                            小众音乐
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.mtyyw.com/wenzi/" rel="category tag">
+                                            文字
+                                        </a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                    </article>
+                    <article id="post-19556" class="content-excerpt post-19556 post type-post status-publish format-standard has-post-thumbnail hentry category-feizhuliuyinyue tag-3447 tag-3446 tag-jita tag-chunyinyue tag-3138">
+                        <h2 class="post-title entry-title">
+                            <a href="https://www.mtyyw.com/19556/" rel="bookmark">
+                                吉他发烧曲《那些花儿》
+                            </a>
+                        </h2>
+                        <div class="postmeta">
+                            2018-9-21
+                        </div>
+                        <div class="entry clearfix">
+                            <blockquote>
+                                <p>
+                                    我想和你在一起，几天也好。在某个地方，某个时候。——电影《广岛之恋》
+                                </p>
+                            </blockquote>
+                            <p>
+                                <img src="/homes/images/post-432298-1145330675.jpg"
+                                alt="彻夜未眠" width="357" height="328" class="alignnone size-full wp-image-18050"
+                                />
+                                <br />
+                                曲名：那些花儿
+                                <br />
+                                歌手：陈小平
+                                <br />
+                                所属专辑：彻夜未眠
+                                <br />
+                                发行年代：2005
+                                <br />
+                                风格：纯音乐，发烧音乐，吉他
+                                <br />
+                                介绍：这是一套在网上广为流传的吉他发烧碟，首张发行于2005年。无可挑剔的技术、出神入化的演奏、华丽亲切的音乐气氛、清晰明亮的音色、以及层次感丰富的配器，无不令人耳目一新，是一张不折不扣的原声吉他发烧录音，而专辑中所选曲目，多为我们所熟悉，这更增加了我们聆听时的亲切感。
+                            </p>
+                            <a href="https://www.mtyyw.com/19556/" class="more-link">
+                                查看全部
+                            </a>
+                        </div>
+                        <div class="postinfo clearfix">
+                            <span class="meta-category">
+                                <ul class="post-categories">
+                                    <li>
+                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
+                                            小众音乐
+                                        </a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                    </article>
+                    <article id="post-19553" class="content-excerpt post-19553 post type-post status-publish format-standard has-post-thumbnail hentry category-feizhuliuyinyue category-wenzi tag-bob-dylan tag-minyao tag-2225">
+                        <h2 class="post-title entry-title">
+                            <a href="https://www.mtyyw.com/19553/" rel="bookmark">
+                                天色未暗 夜已不远 Not Dark Yet &#8211; Bob Dylan
+                            </a>
+                        </h2>
+                        <div class="postmeta">
+                            2018-9-20
+                        </div>
+                        <div class="entry clearfix">
+                            <blockquote>
+                                <p>
+                                    我的名字并不能提供任何有关我这个人的线索，我的生活也不能暗示我的本质。——安吉拉·卡特
+                                </p>
+                            </blockquote>
+                            <p>
+                                <img src="/homes/images/The-Best-of-Bob-Dylan.jpg"
+                                alt="The Best of Bob Dylan" width="400" height="400" class="alignnone size-full wp-image-19554"
+                                />
+                                <br />
+                                曲名：Not Dark Yet
+                                <br />
+                                歌手：Bob Dylan
+                                <br />
+                                所属专辑：The Best of Bob Dylan
+                                <br />
+                                发行年代：2005
+                                <br />
+                                风格：民谣
+                            </p>
+                            <a href="https://www.mtyyw.com/19553/" class="more-link">
+                                查看全部
+                            </a>
+                        </div>
+                        <div class="postinfo clearfix">
+                            <span class="meta-category">
+                                <ul class="post-categories">
+                                    <li>
+                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
+                                            小众音乐
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.mtyyw.com/wenzi/" rel="category tag">
+                                            文字
+                                        </a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                    </article>
+                    <article id="post-19547" class="content-excerpt post-19547 post type-post status-publish format-standard hentry category-feizhuliuyinyue category-wenzi tag-tiny-harvest tag-3444 tag-3445 tag-3443 tag-2010">
+                        <h2 class="post-title entry-title">
+                            <a href="https://www.mtyyw.com/19547/" rel="bookmark">
+                                美好的一天 Beautiful Day &#8211; Tiny Harvest
+                            </a>
+                        </h2>
+                        <div class="postmeta">
+                            2018-9-19
+                        </div>
+                        <div class="entry clearfix">
+                            <blockquote>
+                                <p>
+                                    看清楚这个世界，并不能让这个世界变更好。但可能让你在看清楚这个世界是个怎样的世界后，把自己变得比较好。——朱德庸
+                                </p>
+                            </blockquote>
+                            <p>
+                                <img class="alignnone size-full wp-image-19548" src="/homes/images/TAS-The-Absolute-Sound-2006.jpg"
+                                alt="TAS- The Absolute Sound 2006" width="400" height="400" />
+                            </p>
+                            <p>
+                                曲名：Beautiful Day
+                                <br />
+                                歌手：Tiny Harvest
+                                <br />
+                                所属专辑：TAS：The Absolute Sound 2006
+                                <br />
+                                专辑中文名：绝对的声音 2006
+                            </p>
+                            <a href="https://www.mtyyw.com/19547/" class="more-link">
+                                查看全部
+                            </a>
+                        </div>
+                        <div class="postinfo clearfix">
+                            <span class="meta-category">
+                                <ul class="post-categories">
+                                    <li>
+                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
+                                            小众音乐
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.mtyyw.com/wenzi/" rel="category tag">
+                                            文字
+                                        </a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                    </article>
+                    <div class="post-pagination clearfix">
+                        <span aria-current='page' class='page-numbers current'>
+                            1
+                        </span>
+                        <a class='page-numbers' href='https://www.mtyyw.com/page/2/'>
+                            2
+                        </a>
+                        <a class='page-numbers' href='https://www.mtyyw.com/page/3/'>
+                            3
+                        </a>
+                        <span class="page-numbers dots">
+                            &hellip;
+                        </span>
+                        <a class='page-numbers' href='https://www.mtyyw.com/page/530/'>
+                            530
+                        </a>
+                        <a class="next page-numbers" href="https://www.mtyyw.com/page/2/">
+                            &raquo;
+                        </a>
+                    </div>
+                </section>
+                <section id="sidebar" class="secondary clearfix" role="complementary">
+                    <aside id="search-8" class="widget widget_search clearfix">
+                        <h3 class="widgettitle">
+                            <span>
+                                搜索
+                            </span>
+                        </h3>
+                        <form role="search" method="get" class="search-form" action="https://www.mtyyw.com/">
+                            <label>
+                                <span class="screen-reader-text">
+                                    Search for:
+                                </span>
+                                <input type="search" class="search-field" placeholder="Search &hellip;"
+                                value="" name="s">
+                            </label>
+                            <button type="submit" class="search-submit">
+                                <span class="fa fa-search" style="color: #aaa;">
+                                </span>
+                            </button>
+                        </form>
+                    </aside>
+                    <aside id="dynamicnews_tabbed_content-6" class="widget dynamicnews_tabbed_content clearfix">
+                        <div class="widget-tabbed">
+                            <div class="widget-tabnavi">
+                                <ul class="widget-tabnav">
+                                    <li>
+                                        <a href="#dynamicnews_tabbed_content-6-tabbed-1">
+                                            最新主题
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dynamicnews_tabbed_content-6-tabbed-2">
+                                            最新评论
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dynamicnews_tabbed_content-6-tabbed-3">
+                                            热门主题
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="dynamicnews_tabbed_content-6-tabbed-1" class="tabdiv">
+                                <ul>
+                                    <li class="widget-thumb">
+                                        <a href="https://www.mtyyw.com/19564/" title="只要现在欢乐，赵照《舍不得过》唱到你心里">
+                                        </a>
+                                        <a href="https://www.mtyyw.com/19564/" title="只要现在欢乐，赵照《舍不得过》唱到你心里">
+                                            只要现在欢乐，赵照《舍不得过》唱到你心里
+                                        </a>
+                                        <div class="widget-postmeta">
+                                            <span class="widget-date">
+                                                2018-09-26
+                                            </span>
+                                        </div>
+                                    </li>
+                                    <li class="widget-thumb">
+                                        <a href="https://www.mtyyw.com/19561/" title="我沉迷于秋日 &#8211; 纣王老胡">
+                                            <img width="75" height="75" src="/homes/images/fengshou-fangao-75x75.jpg"
+                                            class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
+                                            alt="丰收©️文森特·梵高"
+                                            sizes="(max-width: 75px) 100vw, 75px" />
+                                        </a>
+                                        <a href="https://www.mtyyw.com/19561/" title="我沉迷于秋日 &#8211; 纣王老胡">
+                                            我沉迷于秋日 &#8211; 纣王老胡
+                                        </a>
+                                        <div class="widget-postmeta">
+                                            <span class="widget-date">
+                                                2018-09-25
+                                            </span>
+                                        </div>
+                                    </li>
+                                    <li class="widget-thumb">
+                                        <a href="https://www.mtyyw.com/19558/" title="秋天的老狼 | 李志">
+                                            <img width="75" height="75" src="homes/images/A-token-of-friendship©️Arthur-Collingridge-75x75.jpg"
+                                            class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
+                                            alt="A token of friendship©️Arthur Collingridge" 
+                                            sizes="(max-width: 75px) 100vw, 75px" />
+                                        </a>
+                                        <a href="https://www.mtyyw.com/19558/" title="秋天的老狼 | 李志">
+                                            秋天的老狼 | 李志
+                                        </a>
+                                        <div class="widget-postmeta">
+                                            <span class="widget-date">
+                                                2018-09-23
+                                            </span>
+                                        </div>
+                                    </li>
+                                    <li class="widget-thumb">
+                                        <a href="https://www.mtyyw.com/19556/" title="吉他发烧曲《那些花儿》">
+                                            <img width="75" height="75" src="/homes/images/Undergrowth-with-Two-Figures-75x75.jpg"
+                                            class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
+                                            alt="Undergrowth with Two Figures©️梵高"
+                                            sizes="(max-width: 75px) 100vw, 75px" />
+                                        </a>
+                                        <a href="https://www.mtyyw.com/19556/" title="吉他发烧曲《那些花儿》">
+                                            吉他发烧曲《那些花儿》
+                                        </a>
+                                        <div class="widget-postmeta">
+                                            <span class="widget-date">
+                                                2018-09-21
+                                            </span>
+                                        </div>
+                                    </li>
+                                    <li class="widget-thumb">
+                                        <a href="https://www.mtyyw.com/19553/" title="天色未暗 夜已不远 Not Dark Yet &#8211; Bob Dylan">
+                                            <img width="75" height="75" src="/homes/images/The-Passing-of-the-Train-700px-75x75.jpg"
+                                            class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
+                                            alt="The Passing of the Train©️Darío de Regoyos" 
+                                            sizes="(max-width: 75px) 100vw, 75px" />
+                                        </a>
+                                        <a href="https://www.mtyyw.com/19553/" title="天色未暗 夜已不远 Not Dark Yet &#8211; Bob Dylan">
+                                            天色未暗 夜已不远 Not Dark Yet &#8211; Bob Dylan
+                                        </a>
+                                        <div class="widget-postmeta">
+                                            <span class="widget-date">
+                                                2018-09-20
+                                            </span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="dynamicnews_tabbed_content-6-tabbed-2" class="tabdiv">
+                                <ul class="widget-tabbed-comments">
+                                    <li class="widget-avatar">
+                                        <a href="https://www.mtyyw.com/guestbook/comment-page-74/#comment-88587">
+                                            <img alt='' src='/homes/images/f39d6848fa2f97b4944f99f1f9ad70f4.jpg' class='avatar avatar-55 photo' height='55' width='55' />
+                                        </a>
+                                        袁辉 on
+                                        <a href="https://www.mtyyw.com/guestbook/comment-page-74/#comment-88587">
+                                            留言本
+                                        </a>
+                                    </li>
+                                    <li class="widget-avatar">
+                                        <a href="https://www.mtyyw.com/19350/comment-page-1/#comment-88586">
+                                            <img alt='' src='https://secure.gravatar.com/avatar/0631110401f17c6af712c2728b93dfd6?s=55&#038;d=monsterid&#038;r=g'
+                                            srcset='https://secure.gravatar.com/avatar/0631110401f17c6af712c2728b93dfd6?s=110&#038;d=monsterid&#038;r=g 2x'
+                                            class='avatar avatar-55 photo' height='55' width='55' />
+                                        </a>
+                                        可可 on
+                                        <a href="https://www.mtyyw.com/19350/comment-page-1/#comment-88586">
+                                            2018北京麦田音乐节地点、门票、时间表、阵容(薛之谦、吴青峰、陈粒等)
+                                        </a>
+                                    </li>
+                                    <li class="widget-avatar">
+                                        <a href="https://www.mtyyw.com/19350/comment-page-1/#comment-88585">
+                                            <img alt='' src='https://secure.gravatar.com/avatar/385583e3bfbb16aeaf6cf5fad92ad31c?s=55&#038;d=monsterid&#038;r=g'
+                                            srcset='https://secure.gravatar.com/avatar/385583e3bfbb16aeaf6cf5fad92ad31c?s=110&#038;d=monsterid&#038;r=g 2x'
+                                            class='avatar avatar-55 photo' height='55' width='55' />
+                                        </a>
+                                        杨超 on
+                                        <a href="https://www.mtyyw.com/19350/comment-page-1/#comment-88585">
+                                            2018北京麦田音乐节地点、门票、时间表、阵容(薛之谦、吴青峰、陈粒等)
+                                        </a>
+                                    </li>
+                                    <li class="widget-avatar">
+                                        <a href="https://www.mtyyw.com/guestbook/comment-page-74/#comment-88584">
+                                            <img alt='' src='https://secure.gravatar.com/avatar/c5336b1d01ff9475e5ae1c42ba002361?s=55&#038;d=monsterid&#038;r=g'
+                                            srcset='https://secure.gravatar.com/avatar/c5336b1d01ff9475e5ae1c42ba002361?s=110&#038;d=monsterid&#038;r=g 2x'
+                                            class='avatar avatar-55 photo' height='55' width='55' />
+                                        </a>
+                                        张张 on
+                                        <a href="https://www.mtyyw.com/guestbook/comment-page-74/#comment-88584">
+                                            留言本
+                                        </a>
+                                    </li>
+                                    <li class="widget-avatar">
+                                        <a href="https://www.mtyyw.com/19350/comment-page-1/#comment-88583">
+                                            <img alt='' src='https://secure.gravatar.com/avatar/ae8fba67f144c3687a1ace91f4b1c0b1?s=55&#038;d=monsterid&#038;r=g'
+                                            srcset='https://secure.gravatar.com/avatar/ae8fba67f144c3687a1ace91f4b1c0b1?s=110&#038;d=monsterid&#038;r=g 2x'
+                                            class='avatar avatar-55 photo' height='55' width='55' />
+                                        </a>
+                                        高明月 on
+                                        <a href="https://www.mtyyw.com/19350/comment-page-1/#comment-88583">
+                                            2018北京麦田音乐节地点、门票、时间表、阵容(薛之谦、吴青峰、陈粒等)
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="dynamicnews_tabbed_content-6-tabbed-3" class="tabdiv">
+                                <ul>
+                                    <li class="widget-thumb">
+                                        <a href="https://www.mtyyw.com/8911/" title="十大气势背景音乐，小心脏颤抖了！">
+                                            <img width="75" height="75" src="/homes/images/Of_Fire_by_FallingToPieces_500-75x75.jpg"
+                                            class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
+                                            alt="" 
+                                            sizes="(max-width: 75px) 100vw, 75px" />
+                                        </a>
+                                        <a href="https://www.mtyyw.com/8911/" title="十大气势背景音乐，小心脏颤抖了！">
+                                            十大气势背景音乐，小心脏颤抖了！
+                                        </a>
+                                        <div class="widget-postmeta">
+                                            <span class="widget-date">
+                                                2014-09-19
+                                            </span>
+                                        </div>
+                                    </li>
+                                    <li class="widget-thumb">
+                                        <a href="https://www.mtyyw.com/6694/" title="麦田的T恤，你会买账吗 (“拖延症”趣味T恤上架)">
+                                            <img width="75" height="47" src="/homes/images/yinbi.jpg"
+                                            class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
+                                            sizes="(max-width: 75px) 100vw, 75px" />
+                                        </a>
+                                        <a href="https://www.mtyyw.com/6694/" title="麦田的T恤，你会买账吗 (“拖延症”趣味T恤上架)">
+                                            麦田的T恤，你会买账吗 (“拖延症”趣味T恤上架)
+                                        </a>
+                                        <div class="widget-postmeta">
+                                            <span class="widget-date">
+                                                2013-03-21
+                                            </span>
+                                        </div>
+                                    </li>
+                                    <li class="widget-thumb">
+                                        <a href="https://www.mtyyw.com/353/" title="世界三大禁曲之《黑色星期天》">
+                                            <img width="75" height="54" src="/homes/images/Gloomy-Sunday_2.jpg"
+                                            class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
+                                            alt="黑色星期天原版"
+                                            sizes="(max-width: 75px) 100vw, 75px" />
+                                        </a>
+                                        <a href="https://www.mtyyw.com/353/" title="世界三大禁曲之《黑色星期天》">
+                                            世界三大禁曲之《黑色星期天》
+                                        </a>
+                                        <div class="widget-postmeta">
+                                            <span class="widget-date">
+                                                2008-01-25
+                                            </span>
+                                        </div>
+                                    </li>
+                                    <li class="widget-thumb">
+                                        <a href="https://www.mtyyw.com/7013/" title="寒门再难出贵子">
+                                            <img width="60" height="75" src="/homes/images/12-91616-0.png"
+                                            class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
+                                            alt="寒门再难出贵子"
+                                            sizes="(max-width: 60px) 100vw, 60px" />
+                                        </a>
+                                        <a href="https://www.mtyyw.com/7013/" title="寒门再难出贵子">
+                                            寒门再难出贵子
+                                        </a>
+                                        <div class="widget-postmeta">
+                                            <span class="widget-date">
+                                                2013-07-11
+                                            </span>
+                                        </div>
+                                    </li>
+                                    <li class="widget-thumb">
+                                        <a href="https://www.mtyyw.com/615/" title="大话西游片尾曲-一生所爱">
+                                            <img width="75" height="75" src="/homes/images/dhxy22-75x75.jpg"
+                                            class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
+                                            sizes="(max-width: 75px) 100vw, 75px" />
+                                        </a>
+                                        <a href="https://www.mtyyw.com/615/" title="大话西游片尾曲-一生所爱">
+                                            大话西游片尾曲-一生所爱
+                                        </a>
+                                        <div class="widget-postmeta">
+                                            <span class="widget-date">
+                                                2008-07-01
+                                            </span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </aside>
+                    <aside id="text-8" class="widget widget_text clearfix">
+                        <h3 class="widgettitle">
+                            <span>
+                                麦田车载CD
+                            </span>
+                        </h3>
+                        <div class="textwidget">
+                            <a href="https://www.mtyyw.com/18639/" rel="nofollow" target="_blank">
+                                <img src="https://ww1.sinaimg.cn/bmiddle/625a192fgw1evzlexxwgjj209q09dt98.jpg"
+                                alt="麦田音乐CD" width="350" height="337" class="alignnone size-full wp-image-11045"
+                                />
+                            </a>
+                        </div>
+                    </aside>
+                </section>
+            </div>
+            @show
+            <div id="footer-widgets-bg">
+                <div id="footer-widgets-wrap" class="container">
+                    <div id="footer-widgets" class="clearfix">
+                        <div class="footer-widgets-left">
+                            <div class="footer-widget-column">
+                                <aside id="text-5" class="widget widget_text">
+                                    <h3 class="widgettitle">
+                                        <span>
+                                            关于本站
+                                        </span>
+                                    </h3>
+                                    <div class="textwidget">
+                                        <p>
+                                            音悦杂志社建于2018年，是一个简单纯粹的文字音乐、图片分享、综艺时尚网站。
+                                            <br />
+                                            在浮躁、喧嚣的互联网中，希望你能在这里静下来。
+                                            <br />
+                                            站长QQ群:906524423 微信:保密
+                                            <br />
+                                            <a href="https://www.weibo.com/" tar>
+                                                新浪微博
+                                            </a>
+                                        </p>
+                                    </div>
+                                </aside>
+                            </div>
+                            <div class="footer-widget-column">
+                                <aside id="text-6" class="widget widget_text">
+                                    <h3 class="widgettitle">
+                                        <span>
+                                            微信群“音悦杂志社”
+                                        </span>
+                                    </h3>
+                                    <div class="textwidget">
+                                        <p>
+                                            <img src="https://ww2.sinaimg.cn/bmiddle/625a192fgw1evyqx1cu8ej2076076mxm.jpg"
+                                            alt="音悦杂志社微信群" width="220" height="220" class="alignnone size-full wp-image-11032"
+                                            />
+                                        </p>
+                                    </div>
+                                </aside>
+                            </div>
+                        </div>
+                        <div class="footer-widgets-left">
+                            <div class="footer-widget-column">
+                                <aside id="text-7" class="widget widget_text">
+                                    <h3 class="widgettitle">
+                                        <span>
+                                            网友活动
+                                        </span>
+                                    </h3>
+                                    <div class="textwidget">
+                                        <p>
+                                            “悦生活”是一个漂流本活动，国内外的网友在笔记本上记录自己的生活和心情，然后传递给下一个人 。
+                                            <br />
+                                            除了碎片化的微博和朋友圈，也许你需要给无处安放的心情和文字找一个地方。
+                                            <a href="/Home/Message">
+                                                点击查看
+                                            </a>
+                                        </p>
+                                    </div>
+                                </aside>
+                            </div>
+                            <div class="footer-widget-column">
+                                <aside id="nav_menu-4" class="widget widget_nav_menu">
+                                    <h3 class="widgettitle">
+                                        <span>
+                                            热门主题
+                                        </span>
+                                    </h3>
+                                    <div class="menu-%e7%83%ad%e9%97%a8%e4%b8%bb%e9%a2%98-container">
+                                        <ul id="menu-%e7%83%ad%e9%97%a8%e4%b8%bb%e9%a2%98" class="menu">
+                                            <li id="menu-item-13839" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13839">
+                                                <a href="https://www.mtyyw.com/13600/">
+                                                    《Faded》当神电音遇上空灵女声
+                                                </a>
+                                            </li>
+                                            <li id="menu-item-11094" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11094">
+                                                <a href="https://www.mtyyw.com/8911/">
+                                                    十大气势背景音乐
+                                                </a>
+                                            </li>
+                                            <li id="menu-item-13256" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13256">
+                                                <a href="https://www.mtyyw.com/13248/">
+                                                    抖腿神曲，停不下来的节奏
+                                                </a>
+                                            </li>
+                                            <li id="menu-item-11095" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11095">
+                                                <a href="https://www.mtyyw.com/353/">
+                                                    魔曲《黑色星期天》
+                                                </a>
+                                            </li>
+                                            <li id="menu-item-11352" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11352">
+                                                <a href="https://www.mtyyw.com/12949/">
+                                                    世界上最动听的歌-新世纪音乐
+                                                </a>
+                                            </li>
+                                            <li id="menu-item-13212" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13212">
+                                                <a href="https://www.mtyyw.com/tag/music-stroy/">
+                                                    有故事的歌
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="footer-wrap">
+                <footer id="footer" class="container clearfix" role="contentinfo">
+                    <nav id="footernav" class="clearfix" role="navigation">
+                        <ul id="footernav-menu" class="menu">
+                            <li id="menu-item-11063" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-11063">
+                                <a href="/Home/Blogroll">
+                                    友情链接
+                                </a>
+                            </li>
+                            <li id="menu-item-18946" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-18946">
+                                <a href="javascript:void(0)">
+                                    音悦节
+                                </a>
+                            </li>
+                        </ul>
+                        <h4 id="footernav-icon">
+                        </h4>
+                    </nav>
+                    <div id="footer-text">
+                        Made With Love By 音悦杂志社
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <!-- end #wrapper -->
+        <script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] ||
+                function() { (i[r].q = i[r].q || []).push(arguments)
+                },
+                i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '/homes/js/analytics.js', 'ga');
+
+            ga('create', 'UA-64091319-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+        <!-- 7 queries in 0.088 seconds. -->
+             
+<!-- 右边展开代码开始 -->
+
+<div class="chazhao chazhaohua">
+    @if(empty(session('homeuser')))
+    <div class="chazhao1">
+        <div class="chazhao1-1">
+
+            <!-- 未登陆代码开始 -->
+                <div class="weidengru">
+                    <div  class="weidengru1 lgtanchu shenyinclick"><a href="Javascript:;" rel="nofollow">登录</a></div>
+                    <div class="weidengru2 mf_zhucetan shenyinclick"><a href="Javascript:;" rel="nofollow">注册</a></div>
+                </div>
+                <!-- 未登陆代码结束 -->
+                    </div>
+
+        <div class="chazhao1-3">
+            
+            <div class="chazhao1-3-1 shenyinclick fankuidakai" ><a href="Javascript:;" rel="nofollow">反馈</a></div>
+            <div class="chazhao1-3-2 fanhui shenyinclick"></div>
+        </div>
+    </div>
+    @else
+    <div class="chazhao1">
+        
+        <style type="text/css">
+            .dengru2 a, .dengru3 a{
+                text-decoration: none;
+            }
+        </style>
+
+        <div class="chazhao1-1">
+
+            <!-- 登陆代码开始 -->
+                <div class="dengru">
+                    <div class="dengru1"><a href="/templet/center/index" target="_blank">
+                        <img id="head_img" src="{{session('homeuser')->face}}" width="280" height="210">
+                    </a></div>
+                    <div class="dengru2"><a href="/home/center" id="center" rel="nofollow">个<br>人<br>中<br>心</a></div>
+                    <div class="dengru3"><a href="/home/logout" class="logout" rel="nofollow">退<br>出</a></div>
+                    <script type="text/javascript">
+                        $('.logout').click(function(){
+                            $.ajax({
+                                url:'/user/index/logout',
+                                type:'POST',
+                                dataType:'json',
+                                success:function(data){
+                                    if (data.res==1) {
+                                        location.reload();
+                                    }
+                                }
+                            })
+                        });
+                    </script>
+                </div>
+                <!-- 登陆代码结束 -->        
+            </div>
+
+
+        <div class="chazhao1-3">
+            
+            <div class="chazhao1-3-1 shenyinclick fankuidakai"><a href="Javascript:;" rel="nofollow">反馈</a></div>
+            <div class="chazhao1-3-2 fanhui shenyinclick"></div>
+        </div>
+    </div>
+    @endif
+
+<script src="/homes/public/templates/default/js/JCheck.js" tppabs="http://www.mfdemo.cn/public/templates/default/js/JCheck.js"></script>
+<script>
+    $(function () {
+        $('.u-checkbox').jCheckbox();
+
+        if ($('#is_remember').val() == '') {
+            $('#remember').attr('checked', 'checked');
+            $('#remember').val('1');
+        }
+
+        $('#remember').click(function () {
+
+            if ($(this).attr('checked')) {
+                $(this).val('1');
+            } else {
+                $(this).val('2');
+            }
+        });
+
+    });
+</script>
+
+<!-- 右边展开代码结束 -->
+
+<!-- 左边模板展示代码 结束 -->
+
+<!--登录代码开始 -->
+<div class="mf_dengluzhezhao"></div>
+
+<div class="mf_denglu">
+
+    <div class="mf_dengluhuo"></div>
+
+    <div class="mf_dengluguan shenyinclick">
+        <svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23px" height="23px" viewBox="175.364 -61.823 23 23" enable-background="new 175.364 -61.823 23 23" tppabs="http://www.mfdemo.cn/new 175.364 -61.823 23 23" xml:space="preserve"><path fill="#846045" d="M186.88-49.493l-3.995,3.995l-0.407,0.407l-0.813-0.813l0.406-0.407l3.995-3.997l-3.995-3.997l-0.406-0.406 l0.813-0.813l0.407,0.406l3.995,3.996l3.996-3.996l0.407-0.406l0.813,0.813l-0.407,0.406l-3.995,3.997l3.995,3.997l0.407,0.407 l-0.813,0.813l-0.407-0.407L186.88-49.493z M186.864-38.823c6.351,0,11.5-5.149,11.5-11.5s-5.149-11.5-11.5-11.5 s-11.5,5.149-11.5,11.5S180.514-38.823,186.864-38.823z"/></svg>
+    </div>
+
+    <div class="mf_denglu1">
+        <div class="mf_denglu1-1" style="margin-top: 26px">
+            <a href="#"><img src="/admins/img/yinyuelogo.png" tppabs="" width="48"/></a>
+        </div>
+        <div class="mf_denglu1-2">音悦杂志社</div>
+
+        <div class="mf_denglu1-3">
+
+            <form id="form1" name="form1" action="/home/dologin"  class="denglufrom" method="post">
+                {{csrf_field()}}
+
+                <div class="zhuce1-3-1">
+                    <label> </label>
+                    <input type="text" name="username" class="tel form-put" nullmsg="请输入您的用户名!" errormsg="中文、数字、字母,且不能少三多十!" datatype="u3" placeholder="输入您的用户名">
+                    <div class="Validform_checktip"></div>
+                </div>
+
+                <div class="zhuce1-3-2">
+                    <label></label>
+                    <input type="password" name="password" class="mima form-put" placeholder="输入您的登录密码"
+                           datatype="z6" nullmsg="请填写登录密码！" errormsg="必须有数字字母,且不能少六多十六！"/>
+                    <div class="Validform_checktip"></div>
+                </div>
+
+                <div class="mf_chongzhi1-3-3">
+
+                    <div class="mf_chongzhi1-3-3-1"><label></label>
+                        <input type="text" id="cz_yzm" name="code" class="yzm form-put" placeholder="输入验证码" datatype="*" nullmsg="请填写验证码！" errormsg="验证码错误">
+                        <img data-src="/code" style="border-radius:8px; position:fixed; left:280px; top:291px;" onclick="this.src='/code?rand='+Math.random();">
+                        <div class="Validform_checktip"></div>
+                    </div>
+
+
+                </div>
+
+                <div class="from-an">
+                    <p><button type="submit" class="button--wayra mf_denglutijiao shenyinclick lgtanchu" id="denglutijiao">登录</button></p>
+                </div>
+
+                <!-- <div class="mf_denglu1-3-4">
+                    <p><label class="u-checkbox z-checked">
+
+                        <input id="remember" name="mf_login_remember" type="checkbox" value="1" checked="checked">
+                        
+                        <input type="hidden" id="is_remember" value="">
+                        <i class="icon shenyinclick"></i>
+
+                    </label></p>
+                    <span style="margin-top: 7px;">在此计算机上记住密码</span>
+                </div> -->
+            </form>
+
+        </div>
+
+        <div class="mf_denglu1-4 shenyinclick"><a href="Javascript:;">忘记密码</a></div>
+    </div>
+
+    <div class="mf_denglu2">
+        <div class="mf_denglu2-1">
+
+            <p><a class=" fa fa-qq" href="javascript:if(confirm(%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/qq/callback/"  target="_blank"></a></p>
+            <span><a class="fa fa-wechat" href="javascript:if(confirm(%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/weixin/callback/"></a></span>
+
+        </div>
+
+        <div class="mf_denglu2-2 shenyinclick"><a href="Javascript:;">注册</a></div>
+
+    </div>
+</div>
+<!--登录代码结束 -->
+
+
+<!--注册代码开始 -->
+<div class="zhuce">
+
+    <div class="mf_dengluhuo"></div>
+
+    <div class="mf_zhuceguan mf_zhuceguan1 shenyinclick">
+        <svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23px" height="23px" viewBox="175.364 -61.823 23 23" enable-background="new 175.364 -61.823 23 23" tppabs="http://www.mfdemo.cn/new 175.364 -61.823 23 23" xml:space="preserve"><path fill="#846045" d="M186.88-49.493l-3.995,3.995l-0.407,0.407l-0.813-0.813l0.406-0.407l3.995-3.997l-3.995-3.997l-0.406-0.406 l0.813-0.813l0.407,0.406l3.995,3.996l3.996-3.996l0.407-0.406l0.813,0.813l-0.407,0.406l-3.995,3.997l3.995,3.997l0.407,0.407 l-0.813,0.813l-0.407-0.407L186.88-49.493z M186.864-38.823c6.351,0,11.5-5.149,11.5-11.5s-5.149-11.5-11.5-11.5 s-11.5,5.149-11.5,11.5S180.514-38.823,186.864-38.823z"/></svg>
+    </div>
+
+    <div class="zhuce1">
+        <div class="mf_denglu1-1" style="margin-top: 26px">
+            <a href="#"><img src="/admins/img/yinyuelogo.png" tppabs="" width="48"/></a>
+        </div>
+        <div class="mf_denglu1-2">音悦杂志社</div>
+
+        <div class="zhuce1-3">
+            <form class="zhucezhanghu" method="post" action="/home/doregister">
+                {{csrf_field()}}
+
+                <div class="zhuce1-3-1">
+                    <label> </label>
+                    <input id="reg_tel" type="text" name="username" class="tel form-put" nullmsg="请输入您的用户名!" errormsg="中文、数字、字母,且不能少三多十!" datatype="u3" placeholder="输入您的用户名">
+                    <div class="Validform_checktip"></div>
+                </div>
+
+                <div class="zhuce1-3-1">
+                    <label> </label>
+                    <input type="tex" id="reg_yzm" name="email" class="tel form-put" errormsg="邮箱格式不正确!" placeholder="输入邮箱" datatype="e" nullmsg="请填写邮箱！"/>
+                        <div class="Validform_checktip"></div>
+                </div>
+
+                <div class="zhuce1-3-2">
+                    <label></label>
+                    <input type="password" id="reg_mima" name="password" class="mima form-put" placeholder="输入您的登录密码"
+                           datatype="z6" nullmsg="请填写登录密码！" errormsg="必须有数字字母,且不能少六多十六！"/>
+                    <div class="Validform_checktip"></div>
+                </div>
+
+                <div class="zhuce1-3-2"><label></label>
+                    <input type="password" id="reg_mima2" name="repassword" class="mima2 form-put" placeholder="重复登录密码"
+                           datatype="*" recheck="password" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！"/>
+                    <div class="Validform_checktip"></div>
+                </div>
+
+                <div class="from-an">
+                    <p><button type="submit" class="button--wayra mf_zhucetijiao shenyinclick ">注册</button></p>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="zhuce2">
+
+        <div class="mf_denglu2-1">
+
+            <p><a class=" fa fa-qq" href="javascript:if(confirm(%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/qq/callback/"  target="_blank"></a></p>
+            <span><a class="fa fa-wechat" href="javascript:if(confirm(%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/weixin/callback/"></a></span> 
+
+        </div>
+
+        <div class="zhuce2-2">
+            <p class="shenyinclick"><a href="Javascript:;">已有账号</a></p><span class="mf_zhuceguan1 shenyinclick"><a
+                href="Javascript:;">我是游客>></a></span>
+        </div>
+    </div>
+
+</div>
+
+<div class="zhucechenggong">
+    <div class="zhucechenggong1">
+        <img src="/homes/public/templates/default/images/gou.png" width="30" height="29"/>
+    </div>
+
+    <div class="zhucechenggong2">注册成功</div>
+
+    <div class="zhucechenggong3"><p>3</p><span>s后返回登录</span></div>
+</div>
+
+<!--注册代码结束 -->
+
+<!-- 重置密码代码 开始 -->
+
+<div class="mf_chongzhi">
+    <div class="mf_chongzhihuo"></div>
+
+    <div class="mf_chongzhiguan shenyinclick">
+        <svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23px" height="23px" viewBox="175.364 -61.823 23 23" enable-background="new 175.364 -61.823 23 23" tppabs="http://www.mfdemo.cn/new 175.364 -61.823 23 23" xml:space="preserve"><path fill="#846045" d="M186.88-49.493l-3.995,3.995l-0.407,0.407l-0.813-0.813l0.406-0.407l3.995-3.997l-3.995-3.997l-0.406-0.406 l0.813-0.813l0.407,0.406l3.995,3.996l3.996-3.996l0.407-0.406l0.813,0.813l-0.407,0.406l-3.995,3.997l3.995,3.997l0.407,0.407 l-0.813,0.813l-0.407-0.407L186.88-49.493z M186.864-38.823c6.351,0,11.5-5.149,11.5-11.5s-5.149-11.5-11.5-11.5 s-11.5,5.149-11.5,11.5S180.514-38.823,186.864-38.823z"></path></svg>
+    </div>
+
+    <div class="mf_chongzhi1">
+
+        <div class="mf_denglu1-1" style="margin-top: 26px">
+            <a href="#"><img src="/admins/img/yinyuelogo.png" tppabs="" width="48"/></a>
+        </div>
+        <div class="mf_denglu1-2">音悦杂志社</div>
+
+        <div class="mf_chongzhi1-3">
+            <form class="chongzhimima" method="post" action="/home/forgetpass">
+                {{csrf_field()}}
+
+                <div class="zhuce1-3-1">
+                    <label> </label>
+                    <input type="tex" id="reg_yzm" name="email" class="tel form-put" errormsg="邮箱格式不正确!" placeholder="输入邮箱" datatype="e" nullmsg="请填写邮箱！"/>
+                    <div class="Validform_checktip"></div>
+                </div>
+
+                <div class="mf_chongzhi1-3-3 yy_chongzhi">
+                   <div class="mf_chongzhi1-3-3-1"><label></label>
+                        <input type="text" id="cz_yzm" name="code" class="yzm form-put" placeholder="输入验证码" datatype="*" nullmsg="请填写验证码！" errormsg="验证码错误">
+                        <div class="Validform_checktip"></div>
+                    </div>
+                    <i class="button--wayra">获取</i>
+                </div>
+
+                <div class="mf_chongzhi1-3-2">
+                    <label></label>
+                    <input type="password" name="password" class="mima form-put" placeholder="输入您的新密码" datatype="z6" nullmsg="请填写新密码！" errormsg="必须有数字字母,且不能少六多十六！"/>
+                    <div class="Validform_checktip"></div>
+                </div>
+
+                <div class="mf_chongzhi1-3-2">
+                    <label></label>
+                    <input type="password" name="repassword" class="mima2 form-put" placeholder="重复新密码" datatype="*" recheck="password" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！"/>
+                    <div class="Validform_checktip"></div>
+                </div>
+
+                <div class="from-an">
+                    <p><button type="submit" class="button--wayra mf_chongzhitijiao shenyinclick ">重置密码</button></p>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="mf_chongzhi2"></div>
+</div>
+
+<div class="chongzhichenggong">
+    <div class="chongzhichenggong1"><img src="/homes/public/templates/default/images/gou.png" tppabs="http://www.mfdemo.cn/public/templates/default/images/gou.png" width="30" height="29"/>
+    </div>
+
+    <div class="chongzhichenggong2">重置成功</div>
+
+    <div class="chongzhichenggong3"><p>3</p><span>s后返回登录</span></div>
+
+</div>
+
+<script type="text/javascript">
+    $(function () {
+
+        var reg = /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|18[0-9]{9}|17[0-9]{9}$/;
+
+        var denglu_ajax = $(".denglufrom").Validform({
+            tiptype: function (msg, o, cssctl) {
+                //msg：提示信息;
+                //o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
+                //cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
+                if (!o.obj.is("form")) {
+                    var objtip = o.obj.siblings(".Validform_checktip");
+                    cssctl(objtip, o.type);
+                    objtip.text(msg);
+
+                    var infoObj = o.obj.parents("label").next();
+                    if (o.type == 2) {
+                        infoObj.fadeOut(200);
+                    } else {
+
+                        if (infoObj.is(":visible")) {
+                            return;
+                        }
+                        var left = 0,
+                                top = 0;
+
+                        infoObj.css({
+                            left: left + 0,
+                            top: top - 50
+                        }).show().animate({
+                            top: top - 33
+                        }, 200);
+
+                    }
+
+                }
+            },
+        });
+        $.extend($.Datatype, {
+            // 含有汉字、数字、字母、下划线
+            "u3": /^[a-zA-Z0-9\u4e00-\u9fa5]{3,10}$/,
+            // 不少于六位且必须有数字和字母！
+            "z6": /^(?![0-9]+$)(?![a-zA-Z]+$)[\S]{6,16}$/,
+            // "z8": /^(?![^a-zA-Z]+$)(?!\D+$).{8}/,
+            // "m": /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|18[0-9]{9}|17[0-9]{9}$/,
+        });
+
+        var zhuce_ajax = $(".zhucezhanghu").Validform({
+            tiptype: function (msg, o, cssctl) {
+                if (!o.obj.is("form")) {
+                    var objtip = o.obj.siblings(".Validform_checktip");
+                    cssctl(objtip, o.type);
+                    objtip.text(msg);
+
+                    var infoObj = o.obj.parents("label").next();
+                    if (o.type == 2) {
+                        infoObj.fadeOut(200);
+                    } else {
+                        if (infoObj.is(":visible")) {
+                            return;
+                        }
+                        var left = 0,
+                                top = 0;
+
+                        infoObj.css({
+                            left: left + 0,
+                            top: top - 50
+                        }).show().animate({
+                            top: top - 33
+                        }, 200);
+                    }
+
+                }
+            },
+        });
+        $.extend($.Datatype, {
+            // 含有汉字、数字、字母、下划线
+            "u3": /^[a-zA-Z0-9\u4e00-\u9fa5]{3,10}$/,
+            // 不少于六位且必须有数字和字母！
+            "z6": /^(?![0-9]+$)(?![a-zA-Z]+$)[\S]{6,16}$/,
+            // "m": /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|18[0-9]{9}|17[0-9]{9}$|18[0-9]{9}|18[0-9]{9}$|18[0-9]{9}$/,
+        });
+
+        //获取重置密码的短信验证码
+        var validCode = true;
+
+        function cz_time_to_send_regvy() {
+            var time = 300;
+            var code = $(".mf_chongzhi1-3-3 i");
+            if (validCode) {
+                validCode = false;
+                code.addClass("msgs1");
+                var t = setInterval(function () {
+                    time--;
+                    code.html(time + "秒");
+
+                    if (time == 0) {
+                        clearInterval(t);
+                        code.html("重新获取");
+                        validCode = true;
+                        code.removeClass("msgs1");
+                    }
+
+                }, 1000)
+            }
+        }
+
+        $(".yy_chongzhi i").click(function () {
+            if (validCode) {
+                var mobile = $("#cz_email").val();
+                if (mobile == "") {
+                    swal("请输入邮箱");
+                } else{
+                    $.ajax({
+                        url: "/home/sendemail",
+                        data: {mobile: mobile},
+                        type: "POST",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data == 0) {
+                                
+                            } else {
+                                
+                            }
+                        }
+                    });
+                }
+            }
+        })
+
+        var chongzhi_ajax = $(".chongzhimima").Validform({
+            tiptype: function (msg, o, cssctl) {
+                if (!o.obj.is("form")) {
+                    var objtip = o.obj.siblings(".Validform_checktip");
+                    cssctl(objtip, o.type);
+                    objtip.text(msg);
+                }
+            },
+        });
+
+        $.extend($.Datatype, {
+            // 含有汉字、数字、字母、下划线
+            "u3": /^[a-zA-Z0-9\u4e00-\u9fa5]{3,10}$/,
+            // 不少于六位且必须有数字和字母！
+            "z6": /^(?![0-9]+$)(?![a-zA-Z]+$)[\S]{6,16}$/,
+            // "z8": /^(?![^a-zA-Z]+$)(?!\D+$).{8}/,
+            // "m": /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|18[0-9]{9}|17[0-9]{9}$|18[0-9]{9}|18[0-9]{9}$|18[0-9]{9}$/,
+        });
+
+        //显示登录提示
+        $(".lgtanchu").live("click", function () {
+            $('.mf_dengluzhezhao').fadeIn(300);
+            $('.mf_denglu').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+        });
+        //弹出登录
+        $(".mf_zhucetan").live("click", function () {
+            $('.mf_dengluzhezhao').fadeIn(300);
+            $('.zhuce').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+        });
+        //弹出登录
+
+        //弹出注册
+        $(".mf_denglu2-2 a").live("click", function () {
+            $('.mf_denglu').addClass('bounceOutUp').fadeOut();
+            setTimeout(function () {
+                $('.zhuce').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+            }, 400);
+        });
+
+        //弹出重置
+        $(".mf_denglu1-4 a").live("click", function () {
+            $('.mf_denglu').addClass('bounceOutUp').fadeOut();
+            setTimeout(function () {
+                $('.mf_chongzhi').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+            }, 400);
+        });
+
+        //弹出登录
+        $(".zhuce2-2 p").live("click", function () {
+            $('.zhuce').addClass('bounceOutUp').fadeOut();
+            setTimeout(function () {
+                $('.mf_denglu').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+            }, 400);
+        });
+
+        //关闭登录
+        $('.mf_dengluguan').click(function () {
+            $('.mf_dengluzhezhao').fadeOut(300, function () {
+                $('.mf_denglu').addClass('bounceOutUp').fadeOut();
+            });
+        });
+
+
+        //关闭注册
+        $('.mf_zhuceguan1').click(function () {
+            $('.mf_dengluzhezhao').fadeOut(300, function () {
+                $('.zhuce').addClass('bounceOutUp').fadeOut();
+            });
+        });
+
+        //关闭重置
+        $('.mf_chongzhiguan').click(function () {
+            $('.mf_dengluzhezhao').fadeOut(300, function () {
+                $('.mf_chongzhi').addClass('bounceOutUp').fadeOut();
+            });
+        });
+
+    });
+</script>
+<!-- 登录提示代码结束 --><!-- 登录提示代码结束 -->
+
+<!-- 弹出反馈代码开始 -->
+<div class="fankui"></div>
+<div class="fankuichengong"><img src="/homes/public/templates/default/images/chenggong.png"width="565" height="238" /></div>
+<div class="fankui1">
+
+    <div class="fankuiguanbi shenyinclick"></div>
+    <div class="fankui1-1">您的意见/问题/申诉
+    </div>
+    <form id="form" class="registerform" name="form">
+        <div class="fankui1-2">
+            <div class="fankui1-2-1">
+                主题：（简要您的意见/问题/申诉内容）
+            </div>
+            <div class="fankui1-2-2">
+                <label >
+                    <input type="text" name="zhuti" id="zhuti"  nullmsg="请输入您的主题！" errormsg="主题至少6个字符,最多18个字符！" datatype="s6-18" >
+                </label>  <div class="info"><span class="Validform_checktip"></span><span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
+            </div>
+        </div>
+
+        <div class="fankui1-3">
+            <div class="fankui1-3-1">
+                您的邮箱：（我们会将反馈发送至您的邮箱）
+            </div>
+            <div class="fankui1-3-2">
+                <label>
+                    <input type="text" name="Email" id="Email" datatype="e" nullmsg="请输入您的邮箱！" errormsg="邮箱不正确！" >
+                </label><div class="info"><span class="Validform_checktip"></span><span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
+            </div>
+        </div>
+
+        <div class="fankui1-4">
+            <div class="fankui1-4-1">
+                描述您的反馈内容
+            </div>
+            <div class="fankui1-4-2">
+                <label >
+                    <textarea name="content" id="contents" cols="45" rows="5"  datatype="*" nullmsg="请输入您的内容！"  ></textarea>
+                </label><div class="info"><span class="Validform_checktip"></span><span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
+            </div>
+        </div>
+        <div class="fankui1-5"><p class="button--wayra"><label>
+            <input type="button" name="tijiao" id="tijiao" class="ajaxpost shenyinclick "  value="提交反馈"  >
+        </label></p>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        //显示弹框
+        $('.fankuidakai').click(function(){
+            $('body').css("overflow","hidden");
+            $('.fankui').fadeIn(300);
+            $('.fankui1').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+        });
+
+        //关闭弹窗
+        $('.fankuiguanbi' ).click(function(){
+            $('body').css("overflow-y","scroll");
+            $('.fankui').fadeOut(300,function(){
+                $('.fankui1').addClass('bounceOutUp').fadeOut();
+            });
+        });
+
+    });
+</script>
+
+<!-- 弹出反馈代码结束 -->
+<!-- 表单验证插件代码开始 -->
+<script type="text/javascript"  src="/homes/public/templates/default/js/Validform_v5.3.2_min.js" tppabs="http://www.mfdemo.cn/public/templates/default/js/Validform_v5.3.2_min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var demo=$(".registerform").Validform({
+            btnSubmit:"#tijiao",
+            tiptype:function(msg,o,cssctl){
+                //msg：提示信息;
+                //o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
+                //cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
+
+                if(!o.obj.is("form")){
+                    var objtip=o.obj.parents("label").next().find(".Validform_checktip");
+                    cssctl(objtip,o.type);
+                    objtip.text(msg);
+                    var infoObj=o.obj.parents("label").next();
+                    if(o.type==2){
+                        infoObj.fadeOut(200);
+                    }else{
+                        if(infoObj.is(":visible")){return;}
+                        var left=0,
+                            top=0;
+                        infoObj.css({
+                            left:left+0,
+                            top:top-50
+                        }).show().animate({
+                            top:top-33
+                        },200);
+                    }
+                }
+            },
+            beforeSubmit:function(curform){
+                var title=$("#zhuti").val();
+                var email=$("#Email").val();
+                var content=$("#content").val();
+                $.ajax({
+                    url: "/templet/index/dofeedback",
+                    type:"POST",
+                    data:{title:title,email:email,content:content},
+                    dataType:'json',
+                    success: function(data){
+                        if(data.result==0){
+//                            window.location.reload();
+                            $('.fankui').fadeIn(300);
+                            $('.fankuichengong').removeClass('bounceOutUp');
+                            $('.fankuichengong').addClass('animated bounceInDown').fadeIn();
+                            setTimeout(function(){
+                                $('body').css("overflow-y","auto");
+                                $('.fankui').fadeOut(300,function(){
+                                    $('.fankuichengong').addClass('bounceOutUp').fadeOut();
+                                });
+                            }, 2000);
+                        }else{
+                            alert(data.msg);
+                        }
+                    }
+                });
+                return false;
+            }
+
+        });
+
+    });
+</script>
+<!-- 表单验证插件代码结束 -->
+<!-- 反馈代码结束 -->
+
+
+    </body>
+
+</html>

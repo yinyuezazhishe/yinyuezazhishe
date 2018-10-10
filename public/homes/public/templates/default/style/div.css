@@ -1,0 +1,333 @@
+chazhao1-2@charset "utf-8";
+/* CSS Document */
+
+.moban{
+	
+	overflow:hidden;
+	position:relative;
+
+	margin-right:575px;
+
+	       min-height: 1200px;
+		   	-webkit-transition: margin-right 300ms cubic-bezier(0.7, 0, 0.3, 1);
+    -o-transition: margin-right 300ms cubic-bezier(0.7, 0, 0.3, 1);
+    transition: margin-right 300ms cubic-bezier(0.7, 0, 0.3, 1);
+	}
+.mobanhua{
+	margin-right:60px;}
+	
+.chazhao{
+	position:fixed;
+	right:0px;
+	z-index:1;
+	top:0px;
+	width:575px;
+	height:100%;
+	
+	
+	-webkit-transition: right 300ms cubic-bezier(0.7, 0, 0.3, 1);
+    -o-transition: right 300ms cubic-bezier(0.7, 0, 0.3, 1);
+    transition: right 300ms cubic-bezier(0.7, 0, 0.3, 1);
+	}
+	
+	.chazhaohua{
+		right:-515px;}
+	
+	.chazhao1{
+		width:60px;
+		float:left;
+		height:100%;overflow:hidden;
+		position:relative;
+		background-color:#eaeff2;
+		}
+		
+		
+			.chazhao1-1{
+				width:100%;
+				overflow:hidden;
+				margin-top:20px;
+				float:left;
+				}
+				.weidengru{
+					width:100%;
+					overflow:hidden;
+					
+					}
+					.weidengru a{
+						color:#333;
+						display:inline-block;
+						width:100%;
+						line-height:30px;
+						    transition:no;
+    -webkit-transition:no;
+    -o-transition:no;
+    -moz-transition:no;
+    -ms-transition:no;
+						
+						}
+						
+							.weidengru a:hover{
+						color:#fff;
+						background-color:#960000;
+						}
+				.weidengru1{
+					width:100%;
+					float:left;
+					text-align:center;
+					}
+				
+				.weidengru2{
+					width:100%;float:left;
+					text-align:center;
+					margin-top:15px;
+					}
+					
+					
+					
+						.dengru{
+							width:100%;
+							float:left;	overflow:hidden;
+							
+							
+							}
+							
+							.dengru1{
+								width:100%;
+								height:50px;
+								float:left;
+								text-align:center;
+							
+								overflow:hidden;}
+								
+							
+								
+								.dengru1 img{
+									width:50px;
+									display:inline-block;
+									border-radius:50%;-webkit-transition:-webkit-transform 0.4s ease-out;-moz-transition: -moz-transform 0.4s ease-out;transition:transform 0.4s ease-out;
+									height:50px;
+									}
+									
+									
+									.dengru1 img:hover{-webkit-transform:rotate(360deg);-moz-transform:rotate(360deg);transform:rotate(360deg);}
+									.dengru2{
+										width:100%;
+										overflow:hidden;
+										float:left;
+										margin-top:20px;
+										
+										text-align:center;}
+										.dengru2 a{
+											display:inline-block;
+											width:100%;
+											color:#333; -webkit-transition:no;
+    -o-transition:no;
+    -moz-transition:no;
+    -ms-transition:no;
+											padding:15px 0px 15px 0px;
+											overflow:hidden;}
+											
+											.dengru2 a:hover{
+												background-color:#960000;
+												color:#fff;
+												
+												}
+										
+										.dengru3{	width:100%;
+										overflow:hidden;
+										float:left;
+										margin-top:20px;
+										
+										text-align:center;}
+										
+													.dengru3 a{
+											display:inline-block;
+											width:100%;
+											color:#333; -webkit-transition:no;
+    -o-transition:no;
+    -moz-transition:no;
+    -ms-transition:no;
+											padding:15px 0px 15px 0px;
+											overflow:hidden;}
+											
+											.dengru3 a:hover{
+												background-color:#960000;
+												color:#fff;
+												
+												}
+					
+					
+					.chazhao1-2{
+						width:100%;
+						position:absolute;
+						cursor:pointer;
+						top:50%;
+						
+					}
+					
+					
+					.chazhao1-2:hover{
+				
+						
+						
+						}
+						.chazhao1-2 p{
+							display:inline-block;
+							float:left;
+							background-image:url(../images/jiantou1.png)/*tpa=http://www.mfdemo.cn/public/templates/default/images/jiantou1.png*/;
+							background-repeat:no-repeat;
+							background-position:center;
+							width:20px;
+							height:80px;
+							margin-left:5px;
+							margin-right:10px;
+							
+						
+							
+							
+							
+							}
+						.chazhao1-2 span{
+							display:inline-block;
+							width:20px;
+							height:80px;
+							
+							float:left;
+						
+							
+							}
+							
+							.chazhao1-2 i{
+								display:inline-block;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);transform:rotate(-90deg);
+								float:left;
+								font-style:normal;}
+				
+					.chazhao1-3{
+						position:absolute;
+						bottom:0px;
+						left:0px;
+						z-index:1;
+						background-color:#fff;
+						text-align:center;
+						height:150px;
+						width:100%;
+						
+						
+						}
+				
+					.chazhao1-3-1{
+						width:100%;
+						float:left;
+						margin-top:10px;
+						}
+				
+				.chazhao1-3-1 a{
+					width:100%;
+					display:inline-block;
+					line-height:30px;
+					color:#333;
+					
+									    transition:no;
+    -webkit-transition:no;
+    -o-transition:no;
+    -moz-transition:no;
+    -ms-transition:no;
+				}
+				
+				.chazhao1-3-1 a:hover{color:#fff;
+						background-color:#960000;
+					
+					}
+				
+					.chazhao1-3-2{
+						width:17px;
+						display:inline-block;
+						cursor:pointer;
+						
+						
+						background-image:url(../images/dingbu.png)/*tpa=http://www.mfdemo.cn/public/templates/default/images/dingbu.png*/;
+						height:31px;
+						background-repeat:no-repeat;
+						background-position:center 0;
+						margin-top:20px;
+						 -webkit-transition: 0.5s all ease;
+    -o-transition: 0.3s all ease;
+    -moz-transition: 0.3s all ease;
+    -ms-transition: 0.3s all ease;
+						}
+						
+						.chazhao1-3-2:hover{
+							
+							background-position:0px -31px;}
+				
+				
+		
+			.chazhao2{
+				float:left;
+				width:515px;
+				    overflow-y: auto;
+				background-image:url(../images/heidi.jpg)/*tpa=http://www.mfdemo.cn/public/templates/default/images/heidi.jpg*/;
+			    background-size: cover;
+    background-position: center center;
+				height:100%;
+				padding:0px 70px 0px 70px; box-sizing: border-box;
+				
+				}
+				
+				
+				
+				
+				
+			
+			
+			
+			
+			
+			
+					@media screen and (min-width:320px) and (max-width:399px) {
+	
+								
+			}
+			
+				
+				
+				
+				
+				@media screen and (min-width: 400px) and (max-width:499px){
+
+			
+			}
+		
+		@media screen and (min-width: 500px) and (max-width:639px){
+		
+			
+			}
+		
+		
+		
+		
+		
+		@media screen and (min-width: 640px) and (max-width:767px){
+			
+			
+			
+			}
+		
+		
+		
+		
+		@media screen and (min-width: 768px) and (max-width:991px){
+
+			
+			}
+		
+		@media screen and (min-width: 992px)and (max-width:1199px){
+
+						
+			
+			}
+
+	@media screen and (min-width: 1200px)and (max-width:1400px){
+				}
+	
+				
