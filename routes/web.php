@@ -54,3 +54,13 @@ Route::prefix('Admin')->group(function(){
 });
 //前台链接展示
 Route::get('Home/Blogroll','Home\BlogrollController@showBlogroll');
+
+//用户修改头像
+Route::get('/admin/user/setFace','Admin\AdminUsersController@setFace');
+Route::post('/admin/user/do_setFace','Admin\AdminUsersController@do_setFace');
+
+//用户修改密码
+Route::get('/admin/setPass','Admin\AdminUsersController@setPass');
+//后台用户
+Route::get('/admin/user/getName','Admin\AdminUsersController@getName');
+Route::resource('/admin/user','Admin\AdminUsersController');
