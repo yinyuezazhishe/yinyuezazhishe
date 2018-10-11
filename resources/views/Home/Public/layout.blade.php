@@ -1,40 +1,23 @@
 ﻿<!DOCTYPE html>
 <!-- HTML 5 -->
 <html lang="zh-CN">
-    <head>
-        <meta charset="UTF-8" />
+    <meta charset="UTF-8" />
         <title> @yield('title') </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="applicable-device" content="pc,mobile">
         <meta name="keywords" content="小众音乐,小清新,民谣,最好听的歌" />
         <meta name="description" content="用音乐和文字温暖生活，微信公众号“麦音乐”。小众音乐、有声电台、独立音乐、民谣、摇滚、爵士、欧美音乐、轻音乐。推荐最好的音乐，不管它是什么类型。"
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="applicable-device" content="pc,mobile">
-        <!-- <link rel="profile" href="http://gmpg.org/xfn/11" /> -->
-        <!-- <link rel="pingback" href="https://www.mtyyw.com/xmlrpc.php" /> -->
-        <link type="text/css" media="all" href="/homes/css/autoptimize_92080519133b963b934f14202138607c.css" rel="stylesheet" />
-        <!-- <link type="text/css" media="all" href="https://www.mtyyw.com/wp-content/cache/autoptimize/css/autoptimize_c3a9191adf57ce3ae0ac3a8b3f70a892.css" rel="stylesheet"> -->
-        <link type="text/css" media="screen" href="/homes/css/autoptimize_2ec1ff9a1d403cbc0b7b30c4780eade8.css" rel="stylesheet" />        
-        <!-- <link rel="stylesheet" href="http://yinyue.com/admins/js/plugins/layer/skin/layer.css" id="layui_layer_skinlayercss" style=""> -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <link rel="shortcut icon" href="/admins/img/logo.ico">
+        <link type="text/css" media="all" href="/homes/css/autoptimize_92080519133b963b934f14202138607c.css" rel="stylesheet" />
 
-        <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+        <link rel="stylesheet" href="http://yinyue.com/admins/js/plugins/layer/skin/layer.css" id="layui_layer_skinlayercss" style="">
+
         <script src="/homes/js/sweetalert.min.js"></script>
-        
-        <link rel='dns-prefetch' href='//s.w.org' />
-        <script type='text/javascript'>
-            var hermit = {
-                "url": "https:\/\/www.mtyyw.com\/wp-content\/plugins\/hermit\/assets\/swf\/",
-                "ajax_url": "https:\/\/www.mtyyw.com\/wp-admin\/admin-ajax.php",
-                "text_tips": "\u5355\u51fb\u9f20\u6807\u5de6\u952e\u64ad\u653e\u6216\u6682\u505c\u3002",
-                "remain_time": "10",
-                "debug": "0",
-                "version": "3.1.6",
-                "album_source": "0"
-            };
+
         </script>
-        <!-- <script type='text/javascript' src='homes/js/hermit.js'>
-        </script> -->
         <!--[if lt IE 9]>
             <script src="https://www.mtyyw.com/wp-content/themes/dynamic-news-lite/js/html5shiv.min.js"
             type="text/javascript">
@@ -48,7 +31,6 @@
                 s.parentNode.insertBefore(hm, s);
             })();
         </script> -->
-        <script src="/homes/js/c.js"></script>
         
         <link href="/homes/public/templates/default/style/css.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/css.css" rel="stylesheet" type="text/css" />
 
@@ -61,18 +43,33 @@
 
         <!-- 动画代码 开始 -->
         <link  href="/homes/public/templates/default/style/animate.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/animate.css" rel="stylesheet" type="text/css" />
-
         <!-- 动画代码 结束 -->
 
         <link href="/homes/public/templates/default/style/Validform.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/Validform.css" rel="stylesheet" type="text/css" /><!-- Validform表单验证代码 结束 -->
         <link href="/homes/public/templates/default/style/fankui.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/fankui.css" rel="stylesheet" type="text/css" /><!-- 反馈样式代码 结束 -->
         <link href="/homes/public/templates/default/style/anniutexiao.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/anniutexiao.css" rel="stylesheet" type="text/css" /><!-- 按钮特效代码 结束 -->
 
-        <link  href="/homes/public/templates/default/style/logintan.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/logintan.css" rel="stylesheet" type="text/css" /><!-- 登录代码 结束 -->    
+        <link  href="/homes/public/templates/default/style/logintan.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/logintan.css" rel="stylesheet" type="text/css" /><!-- 登录代码 结束 --> 
+
+        <!-- banner 样式  -->
+        <link rel="stylesheet" type="text/css" href="/homes/css/banner.css">
         
         <style type="text/css">
             .chazhao1 {
                 background-color: #e5e5e5 ; 
+            }
+            
+            #content {
+                border: none;
+            }
+
+            .button--wayra:hover {
+                text-decoration: none;
+            }
+            
+            .shenyinclick a {
+                text-decoration: none;
+                font-size: 14px;
             }
             .thumbnail{
                     display: block;
@@ -88,7 +85,7 @@
             }
         </style>
     </head>    
-<body class="home blog">        
+    <body class="home blog">        
         @if(session('error'))  
         <script type="text/javascript">
             swal("对不起!", "{{session('error')}}", "error");
@@ -188,22 +185,58 @@
                     </ul>
                 </nav>
             </div>
-            <style type="text/css">
-                #content {
-                    border: none;
-                }
-
-                .button--wayra:hover {
-                    text-decoration: none;
-                }
-                
-                .shenyinclick a {
-                    text-decoration: none;
-                    font-size: 14px;
-                }
-
-            </style>
             @section('content')
+            <!-- banner start -->
+            <div id="banner_tabs" style="margin:0px;padding:0px" class="flexslider">
+                <ul class="slides">
+                    <li>
+                        <a title="" target="_blank" href="#">
+                            <img width="1920" height="482" alt="" style="background: url(/homes/images/banner1.jpg) no-repeat center;" src="/homes/images/alpha.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a title="" href="#">
+                            <img width="1920" height="482" alt="" style="background: url(/homes/images/banner2.jpg) no-repeat center;" src="/homes/images/alpha.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a title="" href="#">
+                            <img width="1920" height="482" alt="" style="background: url(/homes/images/banner3.jpg) no-repeat center;" src="/homes/images/alpha.png">
+                        </a>
+                    </li>
+                </ul>
+                <ul class="flex-direction-nav">
+                    <li><a class="flex-prev" href="javascript:;">Previous</a></li>
+                    <li><a class="flex-next" href="javascript:;">Next</a></li>
+                </ul>
+                <ol id="bannerCtrl" class="flex-control-nav flex-control-paging">
+                    <li><a>1</a></li>
+                    <li><a>2</a></li>
+                    <li><a>2</a></li>
+                </ol>
+            </div>
+            <!-- <script src="js/jquery-1.10.2.min.js"></script> -->
+            <script src="/homes/js/slider.js"></script>
+            <script type="text/javascript">
+            $(function() {
+                var bannerSlider = new Slider($('#banner_tabs'), {
+                    time: 5000,
+                    delay: 400,
+                    event: 'hover',
+                    auto: true,
+                    mode: 'fade',
+                    controller: $('#bannerCtrl'),
+                    activeControllerCls: 'active'
+                });
+                $('#banner_tabs .flex-prev').click(function() {
+                    bannerSlider.prev()
+                });
+                $('#banner_tabs .flex-next').click(function() {
+                    bannerSlider.next()
+                });
+            })
+            </script>
+            <!-- banner stop -->
             <div id="wrap" class="container clearfix">
                 <section id="content" class="primary" role="main">
                     <article id="post-13827" class="content-excerpt post-13827 post type-post status-publish format-standard has-post-thumbnail sticky hentry category-nomusic tag-t">
@@ -1092,582 +1125,627 @@
 <!-- 左边模板展示代码 结束 -->
 
 <!--登录代码开始 -->
-<div class="mf_dengluzhezhao"></div>
+        <div class="mf_dengluzhezhao"></div>
 
-<div class="mf_denglu">
+        <div class="mf_denglu">
 
-    <div class="mf_dengluhuo"></div>
+            <div class="mf_dengluhuo"></div>
 
-    <div class="mf_dengluguan shenyinclick">
-        <svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23px" height="23px" viewBox="175.364 -61.823 23 23" enable-background="new 175.364 -61.823 23 23" tppabs="http://www.mfdemo.cn/new 175.364 -61.823 23 23" xml:space="preserve"><path fill="#846045" d="M186.88-49.493l-3.995,3.995l-0.407,0.407l-0.813-0.813l0.406-0.407l3.995-3.997l-3.995-3.997l-0.406-0.406 l0.813-0.813l0.407,0.406l3.995,3.996l3.996-3.996l0.407-0.406l0.813,0.813l-0.407,0.406l-3.995,3.997l3.995,3.997l0.407,0.407 l-0.813,0.813l-0.407-0.407L186.88-49.493z M186.864-38.823c6.351,0,11.5-5.149,11.5-11.5s-5.149-11.5-11.5-11.5 s-11.5,5.149-11.5,11.5S180.514-38.823,186.864-38.823z"/></svg>
-    </div>
+            <div class="mf_dengluguan shenyinclick">
+                <svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23px" height="23px" viewBox="175.364 -61.823 23 23" enable-background="new 175.364 -61.823 23 23" tppabs="http://www.mfdemo.cn/new 175.364 -61.823 23 23" xml:space="preserve"><path fill="#846045" d="M186.88-49.493l-3.995,3.995l-0.407,0.407l-0.813-0.813l0.406-0.407l3.995-3.997l-3.995-3.997l-0.406-0.406 l0.813-0.813l0.407,0.406l3.995,3.996l3.996-3.996l0.407-0.406l0.813,0.813l-0.407,0.406l-3.995,3.997l3.995,3.997l0.407,0.407 l-0.813,0.813l-0.407-0.407L186.88-49.493z M186.864-38.823c6.351,0,11.5-5.149,11.5-11.5s-5.149-11.5-11.5-11.5 s-11.5,5.149-11.5,11.5S180.514-38.823,186.864-38.823z"/></svg>
+            </div>
 
-    <div class="mf_denglu1">
-        <div class="mf_denglu1-1" style="margin-top: 26px">
-            <a href="#"><img src="/admins/img/yinyuelogo.png" tppabs="" width="48"/></a>
-        </div>
-        <div class="mf_denglu1-2">音悦杂志社</div>
-
-        <div class="mf_denglu1-3">
-
-            <form id="form1" name="form1" action="/home/dologin"  class="denglufrom" method="post">
-                {{csrf_field()}}
-
-                <div class="zhuce1-3-1">
-                    <label> </label>
-                    <input type="text" name="username" class="tel form-put" nullmsg="请输入您的用户名!" errormsg="中文、数字、字母,且不能少三多十!" datatype="u3" placeholder="输入您的用户名">
-                    <div class="Validform_checktip"></div>
+            <div class="mf_denglu1">
+                <div class="mf_denglu1-1" style="margin-top: 26px">
+                    <a href="#"><img src="/admins/img/yinyuelogo-1.png" tppabs="" width="48"/></a>
                 </div>
+                <div class="mf_denglu1-2">音悦杂志社</div>
 
-                <div class="zhuce1-3-2">
-                    <label></label>
-                    <input type="password" name="password" class="mima form-put" placeholder="输入您的登录密码"
-                           datatype="z6" nullmsg="请填写登录密码！" errormsg="必须有数字字母,且不能少六多十六！"/>
-                    <div class="Validform_checktip"></div>
-                </div>
+                <div class="mf_denglu1-3">
 
-                <div class="mf_chongzhi1-3-3">
+                    <form id="form1" name="form1" action="/home/dologin"  class="denglufrom" method="post">
+                        {{csrf_field()}}
 
-                    <div class="mf_chongzhi1-3-3-1"><label></label>
-                        <input type="text" id="cz_yzm" name="code" class="yzm form-put" placeholder="输入验证码" datatype="*" nullmsg="请填写验证码！" errormsg="验证码错误">
-                        <img data-src="/code" style="border-radius:8px; position:fixed; left:280px; top:291px;" onclick="this.src='/code?rand='+Math.random();">
-                        <div class="Validform_checktip"></div>
-                    </div>
+                        <div class="zhuce1-3-1">
+                            <label> </label>
+                            <input type="text" name="username" class="tel form-put" nullmsg="请输入您的用户名!" errormsg="中文、数字、字母,且不能少三多十!" datatype="u3" placeholder="输入您的用户名">
+                            <div class="Validform_checktip"></div>
+                        </div>
 
+                        <div class="zhuce1-3-2">
+                            <label></label>
+                            <input type="password" name="password" class="mima form-put" placeholder="输入您的登录密码"
+                                   datatype="z6" nullmsg="请填写登录密码！" errormsg="必须有数字字母,且不能少六多十六！"/>
+                            <div class="Validform_checktip"></div>
+                        </div>
 
-                </div>
+                        <div class="mf_chongzhi1-3-3">
 
-                <div class="from-an">
-                    <p><button type="submit" class="button--wayra mf_denglutijiao shenyinclick lgtanchu" id="denglutijiao">登录</button></p>
-                </div>
+                            <div class="mf_chongzhi1-3-3-1"><label></label>
+                                <input type="text" id="cz_yzm" name="code" class="yzm form-put" placeholder="输入验证码" datatype="*" nullmsg="请填写验证码！" errormsg="验证码错误">
+                                <img src="/code" style="border-radius:8px; position:fixed; left:280px; top:291px;" onclick="this.src='/code?rand='+Math.random();">
+                                <div class="Validform_checktip"></div>
+                            </div>
 
-                <!-- <div class="mf_denglu1-3-4">
-                    <p><label class="u-checkbox z-checked">
 
-                        <input id="remember" name="mf_login_remember" type="checkbox" value="1" checked="checked">
-                        
-                        <input type="hidden" id="is_remember" value="">
-                        <i class="icon shenyinclick"></i>
+                        </div>
 
-                    </label></p>
-                    <span style="margin-top: 7px;">在此计算机上记住密码</span>
-                </div> -->
-            </form>
+                        <div class="from-an">
+                            <p><button type="submit" class="button--wayra mf_denglutijiao shenyinclick lgtanchu" id="denglutijiao">登录</button></p>
+                        </div>
 
-        </div>
+                        <!-- <div class="mf_denglu1-3-4">
+                            <p><label class="u-checkbox z-checked">
 
-        <div class="mf_denglu1-4 shenyinclick"><a href="Javascript:;">忘记密码</a></div>
-    </div>
-
-    <div class="mf_denglu2">
-        <div class="mf_denglu2-1">
-
-            <p><a class=" fa fa-qq" href="javascript:if(confirm(%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/qq/callback/"  target="_blank"></a></p>
-            <span><a class="fa fa-wechat" href="javascript:if(confirm(%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/weixin/callback/"></a></span>
-
-        </div>
-
-        <div class="mf_denglu2-2 shenyinclick"><a href="Javascript:;">注册</a></div>
-
-    </div>
-</div>
-<!--登录代码结束 -->
-
-
-<!--注册代码开始 -->
-<div class="zhuce">
-
-    <div class="mf_dengluhuo"></div>
-
-    <div class="mf_zhuceguan mf_zhuceguan1 shenyinclick">
-        <svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23px" height="23px" viewBox="175.364 -61.823 23 23" enable-background="new 175.364 -61.823 23 23" tppabs="http://www.mfdemo.cn/new 175.364 -61.823 23 23" xml:space="preserve"><path fill="#846045" d="M186.88-49.493l-3.995,3.995l-0.407,0.407l-0.813-0.813l0.406-0.407l3.995-3.997l-3.995-3.997l-0.406-0.406 l0.813-0.813l0.407,0.406l3.995,3.996l3.996-3.996l0.407-0.406l0.813,0.813l-0.407,0.406l-3.995,3.997l3.995,3.997l0.407,0.407 l-0.813,0.813l-0.407-0.407L186.88-49.493z M186.864-38.823c6.351,0,11.5-5.149,11.5-11.5s-5.149-11.5-11.5-11.5 s-11.5,5.149-11.5,11.5S180.514-38.823,186.864-38.823z"/></svg>
-    </div>
-
-    <div class="zhuce1">
-        <div class="mf_denglu1-1" style="margin-top: 26px">
-            <a href="#"><img src="/admins/img/yinyuelogo.png" tppabs="" width="48"/></a>
-        </div>
-        <div class="mf_denglu1-2">音悦杂志社</div>
-
-        <div class="zhuce1-3">
-            <form class="zhucezhanghu" method="post" action="/home/doregister">
-                {{csrf_field()}}
-
-                <div class="zhuce1-3-1">
-                    <label> </label>
-                    <input id="reg_tel" type="text" name="username" class="tel form-put" nullmsg="请输入您的用户名!" errormsg="中文、数字、字母,且不能少三多十!" datatype="u3" placeholder="输入您的用户名">
-                    <div class="Validform_checktip"></div>
-                </div>
-
-                <div class="zhuce1-3-1">
-                    <label> </label>
-                    <input type="tex" id="reg_yzm" name="email" class="tel form-put" errormsg="邮箱格式不正确!" placeholder="输入邮箱" datatype="e" nullmsg="请填写邮箱！"/>
-                        <div class="Validform_checktip"></div>
-                </div>
-
-                <div class="zhuce1-3-2">
-                    <label></label>
-                    <input type="password" id="reg_mima" name="password" class="mima form-put" placeholder="输入您的登录密码"
-                           datatype="z6" nullmsg="请填写登录密码！" errormsg="必须有数字字母,且不能少六多十六！"/>
-                    <div class="Validform_checktip"></div>
-                </div>
-
-                <div class="zhuce1-3-2"><label></label>
-                    <input type="password" id="reg_mima2" name="repassword" class="mima2 form-put" placeholder="重复登录密码"
-                           datatype="*" recheck="password" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！"/>
-                    <div class="Validform_checktip"></div>
-                </div>
-
-                <div class="from-an">
-                    <p><button type="submit" class="button--wayra mf_zhucetijiao shenyinclick ">注册</button></p>
-                </div>
-            </form>
-        </div>
-
-    </div>
-
-    <div class="zhuce2">
-
-        <div class="mf_denglu2-1">
-
-            <p><a class=" fa fa-qq" href="javascript:if(confirm(%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/qq/callback/"  target="_blank"></a></p>
-            <span><a class="fa fa-wechat" href="javascript:if(confirm(%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/weixin/callback/"></a></span> 
-
-        </div>
-
-        <div class="zhuce2-2">
-            <p class="shenyinclick"><a href="Javascript:;">已有账号</a></p><span class="mf_zhuceguan1 shenyinclick"><a
-                href="Javascript:;">我是游客>></a></span>
-        </div>
-    </div>
-
-</div>
-
-<div class="zhucechenggong">
-    <div class="zhucechenggong1">
-        <img src="/homes/public/templates/default/images/gou.png" width="30" height="29"/>
-    </div>
-
-    <div class="zhucechenggong2">注册成功</div>
-
-    <div class="zhucechenggong3"><p>3</p><span>s后返回登录</span></div>
-</div>
-
-<!--注册代码结束 -->
-
-<!-- 重置密码代码 开始 -->
-
-<div class="mf_chongzhi">
-    <div class="mf_chongzhihuo"></div>
-
-    <div class="mf_chongzhiguan shenyinclick">
-        <svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23px" height="23px" viewBox="175.364 -61.823 23 23" enable-background="new 175.364 -61.823 23 23" tppabs="http://www.mfdemo.cn/new 175.364 -61.823 23 23" xml:space="preserve"><path fill="#846045" d="M186.88-49.493l-3.995,3.995l-0.407,0.407l-0.813-0.813l0.406-0.407l3.995-3.997l-3.995-3.997l-0.406-0.406 l0.813-0.813l0.407,0.406l3.995,3.996l3.996-3.996l0.407-0.406l0.813,0.813l-0.407,0.406l-3.995,3.997l3.995,3.997l0.407,0.407 l-0.813,0.813l-0.407-0.407L186.88-49.493z M186.864-38.823c6.351,0,11.5-5.149,11.5-11.5s-5.149-11.5-11.5-11.5 s-11.5,5.149-11.5,11.5S180.514-38.823,186.864-38.823z"></path></svg>
-    </div>
-
-    <div class="mf_chongzhi1">
-
-        <div class="mf_denglu1-1" style="margin-top: 26px">
-            <a href="#"><img src="/admins/img/yinyuelogo.png" tppabs="" width="48"/></a>
-        </div>
-        <div class="mf_denglu1-2">音悦杂志社</div>
-
-        <div class="mf_chongzhi1-3">
-            <form class="chongzhimima" method="post" action="/home/forgetpass">
-                {{csrf_field()}}
-
-                <div class="zhuce1-3-1">
-                    <label> </label>
-                    <input type="tex" id="reg_yzm" name="email" class="tel form-put" errormsg="邮箱格式不正确!" placeholder="输入邮箱" datatype="e" nullmsg="请填写邮箱！"/>
-                    <div class="Validform_checktip"></div>
-                </div>
-
-                <div class="mf_chongzhi1-3-3 yy_chongzhi">
-                   <div class="mf_chongzhi1-3-3-1"><label></label>
-                        <input type="text" id="cz_yzm" name="code" class="yzm form-put" placeholder="输入验证码" datatype="*" nullmsg="请填写验证码！" errormsg="验证码错误">
-                        <div class="Validform_checktip"></div>
-                    </div>
-                    <i class="button--wayra">获取</i>
-                </div>
-
-                <div class="mf_chongzhi1-3-2">
-                    <label></label>
-                    <input type="password" name="password" class="mima form-put" placeholder="输入您的新密码" datatype="z6" nullmsg="请填写新密码！" errormsg="必须有数字字母,且不能少六多十六！"/>
-                    <div class="Validform_checktip"></div>
-                </div>
-
-                <div class="mf_chongzhi1-3-2">
-                    <label></label>
-                    <input type="password" name="repassword" class="mima2 form-put" placeholder="重复新密码" datatype="*" recheck="password" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！"/>
-                    <div class="Validform_checktip"></div>
-                </div>
-
-                <div class="from-an">
-                    <p><button type="submit" class="button--wayra mf_chongzhitijiao shenyinclick ">重置密码</button></p>
-                </div>
-            </form>
-        </div>
-
-    </div>
-
-    <div class="mf_chongzhi2"></div>
-</div>
-
-<div class="chongzhichenggong">
-    <div class="chongzhichenggong1"><img src="/homes/public/templates/default/images/gou.png" tppabs="http://www.mfdemo.cn/public/templates/default/images/gou.png" width="30" height="29"/>
-    </div>
-
-    <div class="chongzhichenggong2">重置成功</div>
-
-    <div class="chongzhichenggong3"><p>3</p><span>s后返回登录</span></div>
-
-</div>
-
-<script type="text/javascript">
-    $(function () {
-
-        var reg = /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|18[0-9]{9}|17[0-9]{9}$/;
-
-        var denglu_ajax = $(".denglufrom").Validform({
-            tiptype: function (msg, o, cssctl) {
-                //msg：提示信息;
-                //o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
-                //cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
-                if (!o.obj.is("form")) {
-                    var objtip = o.obj.siblings(".Validform_checktip");
-                    cssctl(objtip, o.type);
-                    objtip.text(msg);
-
-                    var infoObj = o.obj.parents("label").next();
-                    if (o.type == 2) {
-                        infoObj.fadeOut(200);
-                    } else {
-
-                        if (infoObj.is(":visible")) {
-                            return;
-                        }
-                        var left = 0,
-                                top = 0;
-
-                        infoObj.css({
-                            left: left + 0,
-                            top: top - 50
-                        }).show().animate({
-                            top: top - 33
-                        }, 200);
-
-                    }
-
-                }
-            },
-        });
-        $.extend($.Datatype, {
-            // 含有汉字、数字、字母、下划线
-            "u3": /^[a-zA-Z0-9\u4e00-\u9fa5]{3,10}$/,
-            // 不少于六位且必须有数字和字母！
-            "z6": /^(?![0-9]+$)(?![a-zA-Z]+$)[\S]{6,16}$/,
-            // "z8": /^(?![^a-zA-Z]+$)(?!\D+$).{8}/,
-            // "m": /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|18[0-9]{9}|17[0-9]{9}$/,
-        });
-
-        var zhuce_ajax = $(".zhucezhanghu").Validform({
-            tiptype: function (msg, o, cssctl) {
-                if (!o.obj.is("form")) {
-                    var objtip = o.obj.siblings(".Validform_checktip");
-                    cssctl(objtip, o.type);
-                    objtip.text(msg);
-
-                    var infoObj = o.obj.parents("label").next();
-                    if (o.type == 2) {
-                        infoObj.fadeOut(200);
-                    } else {
-                        if (infoObj.is(":visible")) {
-                            return;
-                        }
-                        var left = 0,
-                                top = 0;
-
-                        infoObj.css({
-                            left: left + 0,
-                            top: top - 50
-                        }).show().animate({
-                            top: top - 33
-                        }, 200);
-                    }
-
-                }
-            },
-        });
-        $.extend($.Datatype, {
-            // 含有汉字、数字、字母、下划线
-            "u3": /^[a-zA-Z0-9\u4e00-\u9fa5]{3,10}$/,
-            // 不少于六位且必须有数字和字母！
-            "z6": /^(?![0-9]+$)(?![a-zA-Z]+$)[\S]{6,16}$/,
-            // "m": /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|18[0-9]{9}|17[0-9]{9}$|18[0-9]{9}|18[0-9]{9}$|18[0-9]{9}$/,
-        });
-
-        //获取重置密码的短信验证码
-        var validCode = true;
-
-        function cz_time_to_send_regvy() {
-            var time = 300;
-            var code = $(".mf_chongzhi1-3-3 i");
-            if (validCode) {
-                validCode = false;
-                code.addClass("msgs1");
-                var t = setInterval(function () {
-                    time--;
-                    code.html(time + "秒");
-
-                    if (time == 0) {
-                        clearInterval(t);
-                        code.html("重新获取");
-                        validCode = true;
-                        code.removeClass("msgs1");
-                    }
-
-                }, 1000)
-            }
-        }
-
-        $(".yy_chongzhi i").click(function () {
-            if (validCode) {
-                var mobile = $("#cz_email").val();
-                if (mobile == "") {
-                    swal("请输入邮箱");
-                } else{
-                    $.ajax({
-                        url: "/home/sendemail",
-                        data: {mobile: mobile},
-                        type: "POST",
-                        dataType: "json",
-                        success: function (data) {
-                            if (data == 0) {
+                                <input id="remember" name="mf_login_remember" type="checkbox" value="1" checked="checked">
                                 
+                                <input type="hidden" id="is_remember" value="">
+                                <i class="icon shenyinclick"></i>
+
+                            </label></p>
+                            <span style="margin-top: 7px;">在此计算机上记住密码</span>
+                        </div> -->
+                    </form>
+
+                </div>
+
+                <div class="mf_denglu1-4 shenyinclick"><a href="Javascript:;">忘记密码</a></div>
+            </div>
+
+            <div class="mf_denglu2">
+                <div class="mf_denglu2-1">
+
+                    <p><a class=" fa fa-qq" href="javascript:if(confirm(%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/qq/callback/"  target="_blank"></a></p>
+                    <span><a class="fa fa-wechat" href="javascript:if(confirm(%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/weixin/callback/"></a></span>
+
+                </div>
+
+                <div class="mf_denglu2-2 shenyinclick"><a href="Javascript:;">注册</a></div>
+
+            </div>
+        </div>
+        <!--登录代码结束 -->
+
+
+        <!--注册代码开始 -->
+        <div class="zhuce">
+
+            <div class="mf_dengluhuo"></div>
+
+            <div class="mf_zhuceguan mf_zhuceguan1 shenyinclick">
+                <svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23px" height="23px" viewBox="175.364 -61.823 23 23" enable-background="new 175.364 -61.823 23 23" tppabs="http://www.mfdemo.cn/new 175.364 -61.823 23 23" xml:space="preserve"><path fill="#846045" d="M186.88-49.493l-3.995,3.995l-0.407,0.407l-0.813-0.813l0.406-0.407l3.995-3.997l-3.995-3.997l-0.406-0.406 l0.813-0.813l0.407,0.406l3.995,3.996l3.996-3.996l0.407-0.406l0.813,0.813l-0.407,0.406l-3.995,3.997l3.995,3.997l0.407,0.407 l-0.813,0.813l-0.407-0.407L186.88-49.493z M186.864-38.823c6.351,0,11.5-5.149,11.5-11.5s-5.149-11.5-11.5-11.5 s-11.5,5.149-11.5,11.5S180.514-38.823,186.864-38.823z"/></svg>
+            </div>
+
+            <div class="zhuce1">
+                <div class="mf_denglu1-1" style="margin-top: 26px">
+                    <a href="#"><img src="/admins/img/yinyuelogo-1.png" tppabs="" width="48"/></a>
+                </div>
+                <div class="mf_denglu1-2">音悦杂志社</div>
+
+                <div class="zhuce1-3">
+                    <form class="zhucezhanghu" method="post" action="/home/doregister">
+                        {{csrf_field()}}
+
+                        <div class="zhuce1-3-1">
+                            <label> </label>
+                            <input id="reg_tel" type="text" name="username" class="tel form-put" nullmsg="请输入您的用户名!" errormsg="中文、数字、字母,且不能少三多十!" datatype="u3" placeholder="输入您的用户名">
+                            <div class="Validform_checktip"></div>
+                        </div>
+
+                        <div class="zhuce1-3-1">
+                            <label> </label>
+                            <input type="tex" id="reg_yzm" name="email" class="tel form-put" errormsg="邮箱格式不正确!" placeholder="输入邮箱" datatype="e" nullmsg="请填写邮箱！"/>
+                                <div class="Validform_checktip"></div>
+                        </div>
+
+                        <div class="zhuce1-3-2">
+                            <label></label>
+                            <input type="password" id="reg_mima" name="password" class="mima form-put" placeholder="输入您的登录密码"
+                                   datatype="z6" nullmsg="请填写登录密码！" errormsg="必须有数字字母,且不能少六多十六！"/>
+                            <div class="Validform_checktip"></div>
+                        </div>
+
+                        <div class="zhuce1-3-2"><label></label>
+                            <input type="password" id="reg_mima2" name="repassword" class="mima2 form-put" placeholder="重复登录密码"
+                                   datatype="*" recheck="password" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！"/>
+                            <div class="Validform_checktip"></div>
+                        </div>
+
+                        <div class="from-an">
+                            <p><button type="submit" class="button--wayra mf_zhucetijiao shenyinclick ">注册</button></p>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="zhuce2">
+
+                <div class="mf_denglu2-1">
+
+                    <p><a class=" fa fa-qq" href="javascript:if(confirm(%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/qq/callback/"  target="_blank"></a></p>
+                    <span><a class="fa fa-wechat" href="javascript:if(confirm(%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/weixin/callback/"></a></span> 
+
+                </div>
+
+                <div class="zhuce2-2">
+                    <p class="shenyinclick"><a href="Javascript:;">已有账号</a></p><span class="mf_zhuceguan1 shenyinclick"><a
+                        href="Javascript:;">我是游客>></a></span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="zhucechenggong">
+            <div class="zhucechenggong1">
+                <img src="/homes/public/templates/default/images/gou.png" width="30" height="29"/>
+            </div>
+
+            <div class="zhucechenggong2">注册成功</div>
+
+            <div class="zhucechenggong3"><p>3</p><span>s后返回登录</span></div>
+        </div>
+
+        <!--注册代码结束 -->
+
+        <!-- 重置密码代码 开始 -->
+
+        <div class="mf_chongzhi">
+            <div class="mf_chongzhihuo"></div>
+
+            <div class="mf_chongzhiguan shenyinclick">
+                <svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23px" height="23px" viewBox="175.364 -61.823 23 23" enable-background="new 175.364 -61.823 23 23" tppabs="http://www.mfdemo.cn/new 175.364 -61.823 23 23" xml:space="preserve"><path fill="#846045" d="M186.88-49.493l-3.995,3.995l-0.407,0.407l-0.813-0.813l0.406-0.407l3.995-3.997l-3.995-3.997l-0.406-0.406 l0.813-0.813l0.407,0.406l3.995,3.996l3.996-3.996l0.407-0.406l0.813,0.813l-0.407,0.406l-3.995,3.997l3.995,3.997l0.407,0.407 l-0.813,0.813l-0.407-0.407L186.88-49.493z M186.864-38.823c6.351,0,11.5-5.149,11.5-11.5s-5.149-11.5-11.5-11.5 s-11.5,5.149-11.5,11.5S180.514-38.823,186.864-38.823z"></path></svg>
+            </div>
+
+            <div class="mf_chongzhi1">
+
+                <div class="mf_denglu1-1" style="margin-top: 26px">
+                    <a href="#"><img src="/admins/img/yinyuelogo-1.png" tppabs="" width="48"/></a>
+                </div>
+                <div class="mf_denglu1-2">音悦杂志社</div>
+
+                <div class="mf_chongzhi1-3">
+                    <form class="chongzhimima" method="post" action="/home/forgetpass">
+                        {{csrf_field()}}
+
+                        <div class="zhuce1-3-1">
+                            <label> </label>
+                            <input type="tex" id="cz_email" name="email" class="tel form-put" errormsg="邮箱格式不正确!" placeholder="输入邮箱" datatype="e" nullmsg="请填写邮箱！"/>
+                            <div class="Validform_checktip"></div>
+                        </div>
+
+                        <div class="mf_chongzhi1-3-3 yy_chongzhi">
+                           <div class="mf_chongzhi1-3-3-1"><label></label>
+                                <input type="text" name="code" class="yzm form-put" placeholder="输入验证码" datatype="*" nullmsg="请填写验证码！" errormsg="验证码错误">
+                                <div class="Validform_checktip"></div>
+                            </div>
+                            <i class="button--wayra">获取</i>
+                        </div>
+
+                        <div class="mf_chongzhi1-3-2">
+                            <label></label>
+                            <input type="password" name="password" class="mima form-put" placeholder="输入您的新密码" datatype="z6" nullmsg="请填写新密码！" errormsg="必须有数字字母,且不能少六多十六！"/>
+                            <div class="Validform_checktip"></div>
+                        </div>
+
+                        <div class="mf_chongzhi1-3-2">
+                            <label></label>
+                            <input type="password" name="repassword" class="mima2 form-put" placeholder="重复新密码" datatype="*" recheck="password" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！"/>
+                            <div class="Validform_checktip"></div>
+                        </div>
+
+                        <div class="from-an">
+                            <p><button type="submit" class="button--wayra mf_chongzhitijiao shenyinclick ">重置密码</button></p>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="mf_chongzhi2"></div>
+        </div>
+
+        <div class="chongzhichenggong">
+            <div class="chongzhichenggong1"><img src="/homes/public/templates/default/images/gou.png" tppabs="http://www.mfdemo.cn/public/templates/default/images/gou.png" width="30" height="29"/>
+            </div>
+
+            <div class="chongzhichenggong2">重置成功</div>
+
+            <div class="chongzhichenggong3"><p>3</p><span>s后返回登录</span></div>
+
+        </div>
+
+        <script type="text/javascript">
+
+             $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $(function () {
+
+                var reg = /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|18[0-9]{9}|17[0-9]{9}$/;
+
+                var denglu_ajax = $(".denglufrom").Validform({
+                    tiptype: function (msg, o, cssctl) {
+                        //msg：提示信息;
+                        //o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
+                        //cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
+                        if (!o.obj.is("form")) {
+                            var objtip = o.obj.siblings(".Validform_checktip");
+                            cssctl(objtip, o.type);
+                            objtip.text(msg);
+
+                            var infoObj = o.obj.parents("label").next();
+                            if (o.type == 2) {
+                                infoObj.fadeOut(200);
                             } else {
-                                
+
+                                if (infoObj.is(":visible")) {
+                                    return;
+                                }
+                                var left = 0,
+                                        top = 0;
+
+                                infoObj.css({
+                                    left: left + 0,
+                                    top: top - 50
+                                }).show().animate({
+                                    top: top - 33
+                                }, 200);
                             }
                         }
-                    });
+                    },
+                });
+                $.extend($.Datatype, {
+                    // 含有汉字、数字、字母、下划线
+                    "u3": /^[a-zA-Z0-9\u4e00-\u9fa5]{3,10}$/,
+                    // 不少于六位且必须有数字和字母！
+                    "z6": /^(?![0-9]+$)(?![a-zA-Z]+$)[\S]{6,16}$/,
+                    // "z8": /^(?![^a-zA-Z]+$)(?!\D+$).{8}/,
+                    // "m": /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|18[0-9]{9}|17[0-9]{9}$/,
+                });
+
+                var zhuce_ajax = $(".zhucezhanghu").Validform({
+                    tiptype: function (msg, o, cssctl) {
+                        if (!o.obj.is("form")) {
+                            var objtip = o.obj.siblings(".Validform_checktip");
+                            cssctl(objtip, o.type);
+                            objtip.text(msg);
+
+                            var infoObj = o.obj.parents("label").next();
+                            if (o.type == 2) {
+                                infoObj.fadeOut(200);
+                            } else {
+                                if (infoObj.is(":visible")) {
+                                    return;
+                                }
+                                var left = 0,
+                                        top = 0;
+
+                                infoObj.css({
+                                    left: left + 0,
+                                    top: top - 50
+                                }).show().animate({
+                                    top: top - 33
+                                }, 200);
+                            }
+
+                        }
+                    },
+                });
+                $.extend($.Datatype, {
+                    // 含有汉字、数字、字母、下划线
+                    "u3": /^[a-zA-Z0-9\u4e00-\u9fa5]{3,10}$/,
+                    // 不少于六位且必须有数字和字母！
+                    "z6": /^(?![0-9]+$)(?![a-zA-Z]+$)[\S]{6,16}$/,
+                    // "m": /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|18[0-9]{9}|17[0-9]{9}$|18[0-9]{9}|18[0-9]{9}$|18[0-9]{9}$/,
+                });
+
+                //获取重置密码的短信验证码
+                var validCode = true;
+                var flag=true;
+
+                //设置cookie
+                function setCookie(name, value, days) { 
+                    var d = new Date();
+                    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+                    var expires = "expires=" + d.toUTCString();
+                    document.cookie = name + "=" + value + "; " + expires;
                 }
-            }
-        })
 
-        var chongzhi_ajax = $(".chongzhimima").Validform({
-            tiptype: function (msg, o, cssctl) {
-                if (!o.obj.is("form")) {
-                    var objtip = o.obj.siblings(".Validform_checktip");
-                    cssctl(objtip, o.type);
-                    objtip.text(msg);
+                //读取cookies 
+                function getCookie(name) 
+                { 
+                    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+                 
+                    if(arr=document.cookie.match(reg))
+                 
+                        return unescape(arr[2]); 
+                    else 
+                        return null; 
                 }
-            },
-        });
 
-        $.extend($.Datatype, {
-            // 含有汉字、数字、字母、下划线
-            "u3": /^[a-zA-Z0-9\u4e00-\u9fa5]{3,10}$/,
-            // 不少于六位且必须有数字和字母！
-            "z6": /^(?![0-9]+$)(?![a-zA-Z]+$)[\S]{6,16}$/,
-            // "z8": /^(?![^a-zA-Z]+$)(?!\D+$).{8}/,
-            // "m": /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|18[0-9]{9}|17[0-9]{9}$|18[0-9]{9}|18[0-9]{9}$|18[0-9]{9}$/,
-        });
+                function verify()
+                {
+                    var m = getCookie('verify');
+                    var timestamp = (new Date()).getTime() + 300000 * 1000;
+                    
+                    var init = setInterval(function ()
+                    {
+                        if (m < 0) {
+                            clearInterval(init);
+                            return validCode = true;
+                        }  
 
-        //显示登录提示
-        $(".lgtanchu").live("click", function () {
-            $('.mf_dengluzhezhao').fadeIn(300);
-            $('.mf_denglu').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
-        });
-        //弹出登录
-        $(".mf_zhucetan").live("click", function () {
-            $('.mf_dengluzhezhao').fadeIn(300);
-            $('.zhuce').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
-        });
-        //弹出登录
+                        if(flag){
+                            swal(m + "秒后可重新获取验证码");
+                            flag = false;
+                        }
+                        // console.log(m);
 
-        //弹出注册
-        $(".mf_denglu2-2 a").live("click", function () {
-            $('.mf_denglu').addClass('bounceOutUp').fadeOut();
-            setTimeout(function () {
-                $('.zhuce').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
-            }, 400);
-        });
+                        setCookie('verify', m--, timestamp-0.0000116);
+                        validCode = false;
 
-        //弹出重置
-        $(".mf_denglu1-4 a").live("click", function () {
-            $('.mf_denglu').addClass('bounceOutUp').fadeOut();
-            setTimeout(function () {
-                $('.mf_chongzhi').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
-            }, 400);
-        });
-
-        //弹出登录
-        $(".zhuce2-2 p").live("click", function () {
-            $('.zhuce').addClass('bounceOutUp').fadeOut();
-            setTimeout(function () {
-                $('.mf_denglu').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
-            }, 400);
-        });
-
-        //关闭登录
-        $('.mf_dengluguan').click(function () {
-            $('.mf_dengluzhezhao').fadeOut(300, function () {
-                $('.mf_denglu').addClass('bounceOutUp').fadeOut();
-            });
-        });
-
-
-        //关闭注册
-        $('.mf_zhuceguan1').click(function () {
-            $('.mf_dengluzhezhao').fadeOut(300, function () {
-                $('.zhuce').addClass('bounceOutUp').fadeOut();
-            });
-        });
-
-        //关闭重置
-        $('.mf_chongzhiguan').click(function () {
-            $('.mf_dengluzhezhao').fadeOut(300, function () {
-                $('.mf_chongzhi').addClass('bounceOutUp').fadeOut();
-            });
-        });
-
-    });
-</script>
-<!-- 登录提示代码结束 --><!-- 登录提示代码结束 -->
-
-<!-- 弹出反馈代码开始 -->
-<div class="fankui"></div>
-<div class="fankuichengong"><img src="/homes/public/templates/default/images/chenggong.png"width="565" height="238" /></div>
-<div class="fankui1">
-
-    <div class="fankuiguanbi shenyinclick"></div>
-    <div class="fankui1-1">您的意见/问题/申诉
-    </div>
-    <form id="form" class="registerform" name="form">
-        <div class="fankui1-2">
-            <div class="fankui1-2-1">
-                主题：（简要您的意见/问题/申诉内容）
-            </div>
-            <div class="fankui1-2-2">
-                <label >
-                    <input type="text" name="zhuti" id="zhuti"  nullmsg="请输入您的主题！" errormsg="主题至少6个字符,最多18个字符！" datatype="s6-18" >
-                </label>  <div class="info"><span class="Validform_checktip"></span><span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
-            </div>
-        </div>
-
-        <div class="fankui1-3">
-            <div class="fankui1-3-1">
-                您的邮箱：（我们会将反馈发送至您的邮箱）
-            </div>
-            <div class="fankui1-3-2">
-                <label>
-                    <input type="text" name="Email" id="Email" datatype="e" nullmsg="请输入您的邮箱！" errormsg="邮箱不正确！" >
-                </label><div class="info"><span class="Validform_checktip"></span><span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
-            </div>
-        </div>
-
-        <div class="fankui1-4">
-            <div class="fankui1-4-1">
-                描述您的反馈内容
-            </div>
-            <div class="fankui1-4-2">
-                <label >
-                    <textarea name="content" id="contents" cols="45" rows="5"  datatype="*" nullmsg="请输入您的内容！"  ></textarea>
-                </label><div class="info"><span class="Validform_checktip"></span><span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
-            </div>
-        </div>
-        <div class="fankui1-5"><p class="button--wayra"><label>
-            <input type="button" name="tijiao" id="tijiao" class="ajaxpost shenyinclick "  value="提交反馈"  >
-        </label></p>
-        </div>
-    </form>
-</div>
-
-<script type="text/javascript">
-    $(function(){
-        //显示弹框
-        $('.fankuidakai').click(function(){
-            $('body').css("overflow","hidden");
-            $('.fankui').fadeIn(300);
-            $('.fankui1').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
-        });
-
-        //关闭弹窗
-        $('.fankuiguanbi' ).click(function(){
-            $('body').css("overflow-y","scroll");
-            $('.fankui').fadeOut(300,function(){
-                $('.fankui1').addClass('bounceOutUp').fadeOut();
-            });
-        });
-
-    });
-</script>
-
-<!-- 弹出反馈代码结束 -->
-<!-- 表单验证插件代码开始 -->
-<script type="text/javascript"  src="/homes/public/templates/default/js/Validform_v5.3.2_min.js" tppabs="http://www.mfdemo.cn/public/templates/default/js/Validform_v5.3.2_min.js"></script>
-<script type="text/javascript">
-    $(function(){
-        var demo=$(".registerform").Validform({
-            btnSubmit:"#tijiao",
-            tiptype:function(msg,o,cssctl){
-                //msg：提示信息;
-                //o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
-                //cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
-
-                if(!o.obj.is("form")){
-                    var objtip=o.obj.parents("label").next().find(".Validform_checktip");
-                    cssctl(objtip,o.type);
-                    objtip.text(msg);
-                    var infoObj=o.obj.parents("label").next();
-                    if(o.type==2){
-                        infoObj.fadeOut(200);
-                    }else{
-                        if(infoObj.is(":visible")){return;}
-                        var left=0,
-                            top=0;
-                        infoObj.css({
-                            left:left+0,
-                            top:top-50
-                        }).show().animate({
-                            top:top-33
-                        },200);
-                    }
+                    }, 1000)
                 }
-            },
-            beforeSubmit:function(curform){
-                var title=$("#zhuti").val();
-                var email=$("#Email").val();
-                var content=$("#content").val();
-                $.ajax({
-                    url: "/templet/index/dofeedback",
-                    type:"POST",
-                    data:{title:title,email:email,content:content},
-                    dataType:'json',
-                    success: function(data){
-                        if(data.result==0){
-//                            window.location.reload();
-                            $('.fankui').fadeIn(300);
-                            $('.fankuichengong').removeClass('bounceOutUp');
-                            $('.fankuichengong').addClass('animated bounceInDown').fadeIn();
-                            setTimeout(function(){
-                                $('body').css("overflow-y","auto");
-                                $('.fankui').fadeOut(300,function(){
-                                    $('.fankuichengong').addClass('bounceOutUp').fadeOut();
+
+                flag = false;
+                verify();
+                $(".yy_chongzhi i").click(function () {
+                    flag = true;
+                    if (validCode) {
+                        // console.log(validCode);
+                        var email = $("#cz_email").val();
+                        if (email == "") {
+                            swal("请输入邮箱");
+                        } else{
+                            if (getCookie('verify') == 0){
+                                $.ajax({
+                                    url: "/home/sendemail",
+                                    data: {email: email},
+                                    type: "POST",
+                                    dataType: "json",
+                                    success: function (data) {
+                                        if (data == 0) {
+                                            flag = false;
+                                            swal("恭喜您!", "请前往您的邮件, 输入验证码!", "success");
+                                            setCookie('verify', 300, 0.0034722); 
+                                            verify();
+                                        } else if (data == 1) {
+                                            swal("对不起!", "您输入的的邮箱未在本网站登录过, 请核对后再输入!", "error");
+                                        } else if (data == 2) {
+                                            swal("对不起!", "您输入的的邮箱未在本网站注册验证成功, 请前往您注册时的邮箱进行验证再修改密码!", "error");
+                                        }
+                                    },
+                                    error: function(){
+                                        swal("对不起!", "发送邮件失败!", "error");
+                                    },
+                                    // timeout:3000,
+                                    async: true
                                 });
-                            }, 2000);
-                        }else{
-                            alert(data.msg);
+                            }
                         }
                     }
+                })
+
+                var chongzhi_ajax = $(".chongzhimima").Validform({
+                    tiptype: function (msg, o, cssctl) {
+                        if (!o.obj.is("form")) {
+                            var objtip = o.obj.siblings(".Validform_checktip");
+                            cssctl(objtip, o.type);
+                            objtip.text(msg);
+                        }
+                    },
                 });
-                return false;
-            }
 
-        });
+                $.extend($.Datatype, {
+                    // 含有汉字、数字、字母、下划线
+                    "u3": /^[a-zA-Z0-9\u4e00-\u9fa5]{3,10}$/,
+                    // 不少于六位且必须有数字和字母！
+                    "z6": /^(?![0-9]+$)(?![a-zA-Z]+$)[\S]{6,16}$/,
+                    // "z8": /^(?![^a-zA-Z]+$)(?!\D+$).{8}/,
+                    // "m": /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|18[0-9]{9}|17[0-9]{9}$|18[0-9]{9}|18[0-9]{9}$|18[0-9]{9}$/,
+                });
 
-    });
-</script>
-<!-- 表单验证插件代码结束 -->
-<!-- 反馈代码结束 -->
+                //显示登录提示
+                $(".lgtanchu").live("click", function () {
+                    $('.mf_dengluzhezhao').fadeIn(300);
+                    $('.mf_denglu').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+                });
+                //弹出登录
+                $(".mf_zhucetan").live("click", function () {
+                    $('.mf_dengluzhezhao').fadeIn(300);
+                    $('.zhuce').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+                });
+                //弹出登录
+
+                //弹出注册
+                $(".mf_denglu2-2 a").live("click", function () {
+                    $('.mf_denglu').addClass('bounceOutUp').fadeOut();
+                    setTimeout(function () {
+                        $('.zhuce').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+                    }, 400);
+                });
+
+                //弹出重置
+                $(".mf_denglu1-4 a").live("click", function () {
+                    $('.mf_denglu').addClass('bounceOutUp').fadeOut();
+                    setTimeout(function () {
+                        $('.mf_chongzhi').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+                    }, 400);
+                });
+
+                //弹出登录
+                $(".zhuce2-2 p").live("click", function () {
+                    $('.zhuce').addClass('bounceOutUp').fadeOut();
+                    setTimeout(function () {
+                        $('.mf_denglu').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+                    }, 400);
+                });
+
+                //关闭登录
+                $('.mf_dengluguan').click(function () {
+                    $('.mf_dengluzhezhao').fadeOut(300, function () {
+                        $('.mf_denglu').addClass('bounceOutUp').fadeOut();
+                    });
+                });
+
+
+                //关闭注册
+                $('.mf_zhuceguan1').click(function () {
+                    $('.mf_dengluzhezhao').fadeOut(300, function () {
+                        $('.zhuce').addClass('bounceOutUp').fadeOut();
+                    });
+                });
+
+                //关闭重置
+                $('.mf_chongzhiguan').click(function () {
+                    $('.mf_dengluzhezhao').fadeOut(300, function () {
+                        $('.mf_chongzhi').addClass('bounceOutUp').fadeOut();
+                    });
+                });
+
+            });
+        </script>
+        <!-- 登录提示代码结束 --><!-- 登录提示代码结束 -->
+
+        <!-- 弹出反馈代码开始 -->
+        <div class="fankui"></div>
+        <div class="fankuichengong"><img src="/homes/public/templates/default/images/chenggong.png"width="565" height="238" /></div>
+        <div class="fankui1">
+
+            <div class="fankuiguanbi shenyinclick"></div>
+            <div class="fankui1-1">您的意见/问题/申诉
+            </div>
+            <form id="form" class="registerform" name="form">
+                <div class="fankui1-2">
+                    <div class="fankui1-2-1">
+                        主题：（简要您的意见/问题/申诉内容）
+                    </div>
+                    <div class="fankui1-2-2">
+                        <label >
+                            <input type="text" name="zhuti" id="zhuti"  nullmsg="请输入您的主题！" errormsg="主题至少6个字符,最多18个字符！" datatype="s6-18" >
+                        </label>  <div class="info"><span class="Validform_checktip"></span><span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
+                    </div>
+                </div>
+
+                <div class="fankui1-3">
+                    <div class="fankui1-3-1">
+                        您的邮箱：（我们会将反馈发送至您的邮箱）
+                    </div>
+                    <div class="fankui1-3-2">
+                        <label>
+                            <input type="text" name="Email" id="Email" datatype="e" nullmsg="请输入您的邮箱！" errormsg="邮箱不正确！" >
+                        </label><div class="info"><span class="Validform_checktip"></span><span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
+                    </div>
+                </div>
+
+                <div class="fankui1-4">
+                    <div class="fankui1-4-1">
+                        描述您的反馈内容
+                    </div>
+                    <div class="fankui1-4-2">
+                        <label >
+                            <textarea name="content" id="contents" cols="45" rows="5"  datatype="*" nullmsg="请输入您的内容！"  ></textarea>
+                        </label><div class="info"><span class="Validform_checktip"></span><span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
+                    </div>
+                </div>
+                <div class="fankui1-5"><p class="button--wayra"><label>
+                    <input type="button" name="tijiao" id="tijiao" class="ajaxpost shenyinclick "  value="提交反馈"  >
+                </label></p>
+                </div>
+            </form>
+        </div>
+
+        <script type="text/javascript">
+            $(function(){
+                //显示弹框
+                $('.fankuidakai').click(function(){
+                    $('body').css("overflow","hidden");
+                    $('.fankui').fadeIn(300);
+                    $('.fankui1').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+                });
+
+                //关闭弹窗
+                $('.fankuiguanbi' ).click(function(){
+                    $('body').css("overflow-y","scroll");
+                    $('.fankui').fadeOut(300,function(){
+                        $('.fankui1').addClass('bounceOutUp').fadeOut();
+                    });
+                });
+
+            });
+        </script>
+
+        <!-- 弹出反馈代码结束 -->
+        <!-- 表单验证插件代码开始 -->
+        <script type="text/javascript"  src="/homes/public/templates/default/js/Validform_v5.3.2_min.js" tppabs="http://www.mfdemo.cn/public/templates/default/js/Validform_v5.3.2_min.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                var demo=$(".registerform").Validform({
+                    btnSubmit:"#tijiao",
+                    tiptype:function(msg,o,cssctl){
+                        //msg：提示信息;
+                        //o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
+                        //cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
+
+                        if(!o.obj.is("form")){
+                            var objtip=o.obj.parents("label").next().find(".Validform_checktip");
+                            cssctl(objtip,o.type);
+                            objtip.text(msg);
+                            var infoObj=o.obj.parents("label").next();
+                            if(o.type==2){
+                                infoObj.fadeOut(200);
+                            }else{
+                                if(infoObj.is(":visible")){return;}
+                                var left=0,
+                                    top=0;
+                                infoObj.css({
+                                    left:left+0,
+                                    top:top-50
+                                }).show().animate({
+                                    top:top-33
+                                },200);
+                            }
+                        }
+                    },
+                    beforeSubmit:function(curform){
+                        var title=$("#zhuti").val();
+                        var email=$("#Email").val();
+                        var content=$("#content").val();
+                        $.ajax({
+                            url: "/templet/index/dofeedback",
+                            type:"POST",
+                            data:{title:title,email:email,content:content},
+                            dataType:'json',
+                            success: function(data){
+                                if(data.result==0){
+        //                            window.location.reload();
+                                    $('.fankui').fadeIn(300);
+                                    $('.fankuichengong').removeClass('bounceOutUp');
+                                    $('.fankuichengong').addClass('animated bounceInDown').fadeIn();
+                                    setTimeout(function(){
+                                        $('body').css("overflow-y","auto");
+                                        $('.fankui').fadeOut(300,function(){
+                                            $('.fankuichengong').addClass('bounceOutUp').fadeOut();
+                                        });
+                                    }, 2000);
+                                }else{
+                                    alert(data.msg);
+                                }
+                            }
+                        });
+                        return false;
+                    }
+
+                });
+
+            });
+        </script>
+        <!-- 表单验证插件代码结束 -->
+        <!-- 反馈代码结束 -->
 
 
     </body>
