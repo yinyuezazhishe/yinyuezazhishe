@@ -61,6 +61,8 @@ Route::post('/admin/user/do_setFace','Admin\AdminUsersController@do_setFace');
 
 //用户修改密码
 Route::get('/admin/setPass','Admin\AdminUsersController@setPass');
+Route::post('/admin/doPass','Admin\AdminUsersController@doPass');
+
 //后台用户
 Route::get('/admin/user/getName','Admin\AdminUsersController@getName');
 Route::resource('/admin/user','Admin\AdminUsersController');

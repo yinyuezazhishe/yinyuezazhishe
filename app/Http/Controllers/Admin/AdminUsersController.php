@@ -295,4 +295,37 @@ class AdminUsersController extends Controller
     {
         return view('Admin.User.setpass',['title'=>'修改密码']);
     }
+
+    public function doPass(Request $request)
+    {
+
+        $res = $request -> except('_token','repass','_method','oldpass');
+
+        $id = session('id');
+
+        $oldPass = AdminUsers::find(session('id'))->password;
+ 
+        $newPass = $request->input('oldpass');
+
+        if (Hash::check($newPass,$oldPass)) {
+
+            $res['password'] = Hash::make($request->input('password'));
+
+            $rs = AdminUsers::where('id',$id) -> update($res);
+
+            if ($rs) {
+
+                $request->session()->forget(['username','face','power','id']);
+
+                return redirect('/admin/login') -> with('success','修改成功! 请重新登录');
+
+            } else {
+                return back() -> with('error','修改失败');
+            }
+
+        } else {
+
+            return back() -> with('error','密码不正确');
+        }
+    }
 }
