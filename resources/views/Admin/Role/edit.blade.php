@@ -54,9 +54,9 @@
         @endforeach
 	@endif
 
-	@if(session('error'))  
+	@if(session('errors'))  
     <script type="text/javascript">
-        swal("对不起!", "{{session('error')}}", "error");
+        swal("对不起!", "{{session('errors')}}", "error");
     </script>
     @endif
 

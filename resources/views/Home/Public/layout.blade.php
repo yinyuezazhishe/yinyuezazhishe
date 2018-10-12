@@ -13,7 +13,7 @@
         <link rel="shortcut icon" href="/admins/img/logo.ico">
         <link type="text/css" media="all" href="/homes/css/autoptimize_92080519133b963b934f14202138607c.css" rel="stylesheet" />
 
-        <link rel="stylesheet" href="http://yinyue.com/admins/js/plugins/layer/skin/layer.css" id="layui_layer_skinlayercss" style="">
+        <link rel="stylesheet" href="/admins/js/plugins/layer/skin/layer.css" id="layui_layer_skinlayercss" style="">
 
         <script src="/homes/js/sweetalert.min.js"></script>
 
@@ -51,6 +51,12 @@
 
         <link  href="/homes/public/templates/default/style/logintan.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/logintan.css" rel="stylesheet" type="text/css" /><!-- 登录代码 结束 --> 
 
+        <link rel="stylesheet" href="/homes/css/menu.css" type="text/css" />
+        <script src="/homes/js/jquery-1.4.2.js" type="text/javascript"></script>
+        <script src="/homes/js/jquery.backgroundpos.js" type="text/javascript"></script>
+        <script src="/homes/js/menu.js" type="text/javascript"></script>
+
+
         <!-- banner 样式  -->
         <link rel="stylesheet" type="text/css" href="/homes/css/banner.css">
         
@@ -83,6 +89,24 @@
                     -o-transition: border .2s ease-in-out;
                     transition: border .2s ease-in-out;
             }
+            .header {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            body {
+                /*background-color: #eee ; */
+            }
+            .language {
+                
+            }
+            .weidengru1 {
+                width: 50%;
+                float: none;
+            }
+            .weidengru2 {
+                width: 50%;
+                float: none;
+            }
         </style>
     </head>    
     <body class="home blog">        
@@ -99,92 +123,37 @@
         @endif
 
         <div id="wrapper" class="hfeed">
-            <div id="header-wrap">
-                <header id="header" class="container clearfix" role="banner">
-                    <div id="logo" class="clearfix">
-                        <a href="/" title="音悦杂志社" rel="home">
-                            <img class="site-logo" src="/homes/images/TB2l2EWdHZnBKNjSZFKXXcGOVXa_!!13533312.jpg"
-                            alt="音悦杂志社" />
-                        </a>
-                    </div>
-                    <div id="header-content" class="clearfix">
-                    </div>
-                </header>
+            <!-- 代码 开始 -->
+            <div class="header">
+                <ul class="menus" margin: 0px;>
+                    <li class="current first"><a href="http://sc.chinaz.com/" target="_self">首页</a></li>
+                    <li><a href="#" target="_self">功能</a></li>
+                    <li><a href="#" target="_self">下载</a></li>
+                    <li class="li_3"><a class="noclick" href="http://sc.chinaz.com/" target="_blank">更多产品</a>
+                        <dl style="margin:0px; padding: 0px;" class="li_3_content">
+                            <dt></dt>
+                            <dd style="margin:0px; padding: 0px;"><a href="http://sc.chinaz.com/" target="_blank"><span>应用商店</span></a></dd>
+                            <dd style="margin:0px; padding: 0px;"><a href="http://sc.chinaz.com/" target="_blank"><span>主题商店</span></a></dd>
+                            <dd style="margin:0px; padding: 0px;"><a href="http://sc.chinaz.com/" target="_blank"><span>小米桌面</span></a></dd>
+                            <dd class="lastItem" style="margin:0px; padding: 0px;"><a href="http://sc.chinaz.com/" target="_blank"><span>懒人图库</span></a></dd>
+                        </dl>
+                    </li>
+                    <li class=""><a class="noborder " href="#" target="_self">论坛</a></li>
+                </ul>
+            
+                <a href="http://sc.chinaz.com/">
+                    <img title="MIUI" class="miui_logo" src="/admins/img/yinyuelogo.png" width="200" alt="网站logo" /></a>
+                @if(empty(session('homeuser')))
+                <p class="language">
+                    <a style="display: inline;" class="weidengru1 lgtanchu shenyinclick">登录</a>
+                    <span>|</span>
+                    <a style="display: inline;" class="weidengru2 mf_zhucetan shenyinclick" href="Javascript:;" rel="nofollow">注册</a>
+                </p>
+                @else
+                @endif
             </div>
-            <div id="navi-wrap" >
-                <nav id="mainnav" class="container clearfix" role="navigation">
-                    <h4 id="mainnav-icon">
-                        Menu
-                    </h4>
-                    <ul id="mainnav-menu" class="menu">
-                        <li id="menu-item-10887" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-10887">
-                            <a href="https://www.mtyyw.com/">
-                                首页
-                            </a>
-                        </li>
-                        <li id="menu-item-10889" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10889">
-                            <a href="https://www.mtyyw.com/gedan/">
-                                歌单
-                            </a>
-                        </li>
-                        <li id="menu-item-10890" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10890">
-                            <a href="https://www.mtyyw.com/fm/">
-                                电台
-                            </a>
-                        </li>
-                        <li id="menu-item-13211" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13211">
-                            <a href="https://www.mtyyw.com/tag/indie-pop/">
-                                独立
-                            </a>
-                        </li>
-                        <li id="menu-item-11037" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11037">
-                            <a href="https://www.mtyyw.com/tag/minyao/">
-                                民谣
-                            </a>
-                        </li>
-                        <li id="menu-item-11038" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11038">
-                            <a href="https://www.mtyyw.com/tag/rock/">
-                                摇滚
-                            </a>
-                        </li>
-                        <li id="menu-item-17496" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-17496">
-                            <a href="https://www.mtyyw.com/tag/jueshi/">
-                                爵士
-                            </a>
-                        </li>
-                        <li id="menu-item-11035" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11035">
-                            <a href="https://www.mtyyw.com/qingyinyue/">
-                                轻音乐
-                            </a>
-                        </li>
-                        <li id="menu-item-13210" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-13210">
-                            <a href="https://www.mtyyw.com/video/">
-                                影像
-                            </a>
-                        </li>
-                        <li id="menu-item-11027" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11027">
-                            <a href="https://www.mtyyw.com/tag/maiyouji/">
-                                麦游记
-                            </a>
-                        </li>
-                        <li id="menu-item-13229" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13229">
-                            <a href="https://www.mtyyw.com/index.php?random=1">
-                                随机
-                            </a>
-                        </li>
-                        <li id="menu-item-10888" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10888">
-                            <a href="https://www.mtyyw.com/guestbook/">
-                                留言本
-                            </a>
-                        </li>
-                        <li id="menu-item-11036" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11036">
-                            <a href="https://mtyyw.taobao.com">
-                                淘宝店
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+            <!-- 代码 结束 -->
+
             @section('content')
             <!-- banner start -->
             <div id="banner_tabs" style="margin:0px;padding:0px" class="flexslider">
@@ -215,7 +184,6 @@
                     <li><a>2</a></li>
                 </ol>
             </div>
-            <!-- <script src="js/jquery-1.10.2.min.js"></script> -->
             <script src="/homes/js/slider.js"></script>
             <script type="text/javascript">
             $(function() {
@@ -733,8 +701,7 @@
                                     </li>
                                     <li class="widget-avatar">
                                         <a href="https://www.mtyyw.com/19350/comment-page-1/#comment-88586">
-                                            <img alt='' src='https://secure.gravatar.com/avatar/0631110401f17c6af712c2728b93dfd6?s=55&#038;d=monsterid&#038;r=g'
-                                            srcset='https://secure.gravatar.com/avatar/0631110401f17c6af712c2728b93dfd6?s=110&#038;d=monsterid&#038;r=g 2x'
+                                            <img alt='' src=''
                                             class='avatar avatar-55 photo' height='55' width='55' />
                                         </a>
                                         可可 on
@@ -744,8 +711,7 @@
                                     </li>
                                     <li class="widget-avatar">
                                         <a href="https://www.mtyyw.com/19350/comment-page-1/#comment-88585">
-                                            <img alt='' src='https://secure.gravatar.com/avatar/385583e3bfbb16aeaf6cf5fad92ad31c?s=55&#038;d=monsterid&#038;r=g'
-                                            srcset='https://secure.gravatar.com/avatar/385583e3bfbb16aeaf6cf5fad92ad31c?s=110&#038;d=monsterid&#038;r=g 2x'
+                                            <img alt='' src=''                                        
                                             class='avatar avatar-55 photo' height='55' width='55' />
                                         </a>
                                         杨超 on
@@ -755,8 +721,7 @@
                                     </li>
                                     <li class="widget-avatar">
                                         <a href="https://www.mtyyw.com/guestbook/comment-page-74/#comment-88584">
-                                            <img alt='' src='https://secure.gravatar.com/avatar/c5336b1d01ff9475e5ae1c42ba002361?s=55&#038;d=monsterid&#038;r=g'
-                                            srcset='https://secure.gravatar.com/avatar/c5336b1d01ff9475e5ae1c42ba002361?s=110&#038;d=monsterid&#038;r=g 2x'
+                                            <img alt='' src=''
                                             class='avatar avatar-55 photo' height='55' width='55' />
                                         </a>
                                         张张 on
@@ -766,8 +731,7 @@
                                     </li>
                                     <li class="widget-avatar">
                                         <a href="https://www.mtyyw.com/19350/comment-page-1/#comment-88583">
-                                            <img alt='' src='https://secure.gravatar.com/avatar/ae8fba67f144c3687a1ace91f4b1c0b1?s=55&#038;d=monsterid&#038;r=g'
-                                            srcset='https://secure.gravatar.com/avatar/ae8fba67f144c3687a1ace91f4b1c0b1?s=110&#038;d=monsterid&#038;r=g 2x'
+                                            <img alt='' src=''
                                             class='avatar avatar-55 photo' height='55' width='55' />
                                         </a>
                                         高明月 on
@@ -869,7 +833,7 @@
                         </h3>
                         <div class="textwidget">
                             <a href="https://www.mtyyw.com/18639/" rel="nofollow" target="_blank">
-                                <img src="https://ww1.sinaimg.cn/bmiddle/625a192fgw1evzlexxwgjj209q09dt98.jpg"
+                                <img src=""
                                 alt="麦田音乐CD" width="350" height="337" class="alignnone size-full wp-image-11045"
                                 />
                             </a>
@@ -913,7 +877,7 @@
                                     </h3>
                                     <div class="textwidget">
                                         <p>
-                                            <img src="https://ww2.sinaimg.cn/bmiddle/625a192fgw1evyqx1cu8ej2076076mxm.jpg"
+                                            <img src=""
                                             alt="音悦杂志社微信群" width="220" height="220" class="alignnone size-full wp-image-11032"
                                             />
                                         </p>
@@ -1033,70 +997,6 @@
         <!-- 7 queries in 0.088 seconds. -->
              
 <!-- 右边展开代码开始 -->
-
-<div class="chazhao chazhaohua">
-    @if(empty(session('homeuser')))
-    <div class="chazhao1">
-        <div class="chazhao1-1">
-
-            <!-- 未登陆代码开始 -->
-                <div class="weidengru">
-                    <div  class="weidengru1 lgtanchu shenyinclick"><a href="Javascript:;" rel="nofollow">登录</a></div>
-                    <div class="weidengru2 mf_zhucetan shenyinclick"><a href="Javascript:;" rel="nofollow">注册</a></div>
-                </div>
-                <!-- 未登陆代码结束 -->
-                    </div>
-
-        <div class="chazhao1-3">
-            
-            <div class="chazhao1-3-1 shenyinclick fankuidakai" ><a href="Javascript:;" rel="nofollow">反馈</a></div>
-            <div class="chazhao1-3-2 fanhui shenyinclick"></div>
-        </div>
-    </div>
-    @else
-    <div class="chazhao1">
-        
-        <style type="text/css">
-            .dengru2 a, .dengru3 a{
-                text-decoration: none;
-            }
-        </style>
-
-        <div class="chazhao1-1">
-
-            <!-- 登陆代码开始 -->
-                <div class="dengru">
-                    <div class="dengru1"><a href="/templet/center/index" target="_blank">
-                        <img id="head_img" src="{{session('homeuser')->face}}" width="280" height="210">
-                    </a></div>
-                    <div class="dengru2"><a href="/home/center" id="center" rel="nofollow">个<br>人<br>中<br>心</a></div>
-                    <div class="dengru3"><a href="/home/logout" class="logout" rel="nofollow">退<br>出</a></div>
-                    <script type="text/javascript">
-                        $('.logout').click(function(){
-                            $.ajax({
-                                url:'/user/index/logout',
-                                type:'POST',
-                                dataType:'json',
-                                success:function(data){
-                                    if (data.res==1) {
-                                        location.reload();
-                                    }
-                                }
-                            })
-                        });
-                    </script>
-                </div>
-                <!-- 登陆代码结束 -->        
-            </div>
-
-
-        <div class="chazhao1-3">
-            
-            <div class="chazhao1-3-1 shenyinclick fankuidakai"><a href="Javascript:;" rel="nofollow">反馈</a></div>
-            <div class="chazhao1-3-2 fanhui shenyinclick"></div>
-        </div>
-    </div>
-    @endif
 
 <script src="/homes/public/templates/default/js/JCheck.js" tppabs="http://www.mfdemo.cn/public/templates/default/js/JCheck.js"></script>
 <script>
@@ -1611,75 +1511,6 @@
         </script>
         <!-- 登录提示代码结束 --><!-- 登录提示代码结束 -->
 
-        <!-- 弹出反馈代码开始 -->
-        <div class="fankui"></div>
-        <div class="fankuichengong"><img src="/homes/public/templates/default/images/chenggong.png"width="565" height="238" /></div>
-        <div class="fankui1">
-
-            <div class="fankuiguanbi shenyinclick"></div>
-            <div class="fankui1-1">您的意见/问题/申诉
-            </div>
-            <form id="form" class="registerform" name="form">
-                <div class="fankui1-2">
-                    <div class="fankui1-2-1">
-                        主题：（简要您的意见/问题/申诉内容）
-                    </div>
-                    <div class="fankui1-2-2">
-                        <label >
-                            <input type="text" name="zhuti" id="zhuti"  nullmsg="请输入您的主题！" errormsg="主题至少6个字符,最多18个字符！" datatype="s6-18" >
-                        </label>  <div class="info"><span class="Validform_checktip"></span><span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
-                    </div>
-                </div>
-
-                <div class="fankui1-3">
-                    <div class="fankui1-3-1">
-                        您的邮箱：（我们会将反馈发送至您的邮箱）
-                    </div>
-                    <div class="fankui1-3-2">
-                        <label>
-                            <input type="text" name="Email" id="Email" datatype="e" nullmsg="请输入您的邮箱！" errormsg="邮箱不正确！" >
-                        </label><div class="info"><span class="Validform_checktip"></span><span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
-                    </div>
-                </div>
-
-                <div class="fankui1-4">
-                    <div class="fankui1-4-1">
-                        描述您的反馈内容
-                    </div>
-                    <div class="fankui1-4-2">
-                        <label >
-                            <textarea name="content" id="contents" cols="45" rows="5"  datatype="*" nullmsg="请输入您的内容！"  ></textarea>
-                        </label><div class="info"><span class="Validform_checktip"></span><span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
-                    </div>
-                </div>
-                <div class="fankui1-5"><p class="button--wayra"><label>
-                    <input type="button" name="tijiao" id="tijiao" class="ajaxpost shenyinclick "  value="提交反馈"  >
-                </label></p>
-                </div>
-            </form>
-        </div>
-
-        <script type="text/javascript">
-            $(function(){
-                //显示弹框
-                $('.fankuidakai').click(function(){
-                    $('body').css("overflow","hidden");
-                    $('.fankui').fadeIn(300);
-                    $('.fankui1').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
-                });
-
-                //关闭弹窗
-                $('.fankuiguanbi' ).click(function(){
-                    $('body').css("overflow-y","scroll");
-                    $('.fankui').fadeOut(300,function(){
-                        $('.fankui1').addClass('bounceOutUp').fadeOut();
-                    });
-                });
-
-            });
-        </script>
-
-        <!-- 弹出反馈代码结束 -->
         <!-- 表单验证插件代码开始 -->
         <script type="text/javascript"  src="/homes/public/templates/default/js/Validform_v5.3.2_min.js" tppabs="http://www.mfdemo.cn/public/templates/default/js/Validform_v5.3.2_min.js"></script>
         <script type="text/javascript">
@@ -1745,9 +1576,6 @@
             });
         </script>
         <!-- 表单验证插件代码结束 -->
-        <!-- 反馈代码结束 -->
-
 
     </body>
-
 </html>

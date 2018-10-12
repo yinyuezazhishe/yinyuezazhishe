@@ -37,12 +37,13 @@
                             </div>
                             <div class="col-sm-3 col-sm-offset-3">
                                 <div class="input-group">
-                                    <input type="text" placeholder="请输入角色名称" class="input-sm form-control" name="permission_name" value="{{$request->permission_name}}"> <span class="input-group-btn">
+                                    <input type="text" placeholder="请输入角色名称" class="input-sm form-control" name="per_name" value="{{$request->per_name}}"> <span class="input-group-btn">
                                         <button type="submit" class="btn btn-sm btn-primary"> 搜索</button> </span>
                                 </div>
                             </div>                  
                         </div>
-                    </form>             
+                    </form>
+                <div style="height: 30px;"></div>           
                 <table class="table table-striped table-bordered table-hover dataTables-example dataTable text-center">
                     <thead>
                         <tr role="row">
@@ -103,9 +104,9 @@
     <script src="/admins/js/demo/form-validate-demo.min.js"></script>
     <script src="/homes/js/sweetalert.min.js"></script>
 
-	@if(session('success'))  
+	@if(session('succes'))  
     <script type="text/javascript">
-        swal("恭喜您!", "{{session('success')}}", "success");
+        swal("恭喜您!", "{{session('succes')}}", "success");
     </script>
     @endif
 

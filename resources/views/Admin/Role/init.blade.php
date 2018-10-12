@@ -42,7 +42,8 @@
                                 </div>
                             </div>                  
                         </div>
-                    </form>             
+                    </form>
+                <div style="height: 30px;"></div>
                 <table class="table table-striped table-bordered table-hover dataTables-example dataTable text-center">
                     <thead>
                         <tr role="row">
@@ -102,9 +103,9 @@
     <script src="/admins/js/demo/form-validate-demo.min.js"></script>
     <script src="/homes/js/sweetalert.min.js"></script>
 
-	@if(session('success'))  
+	@if(session('succes'))  
     <script type="text/javascript">
-        swal("恭喜您!", "{{session('success')}}", "success");
+        swal("恭喜您!", "{{session('succes')}}", "success");
     </script>
     @endif
 
