@@ -66,12 +66,12 @@ class PermissionAdminController extends Controller
 
             if($data){
 
-                return redirect('/admin/permission')->with('success','添加权限成功');
+                return redirect('/admin/permission')->with('succes','添加权限成功');
             }
 
         }catch(\Exception $e){
 
-            return back()->with('error','添加权限失败');
+            return back()->with('errors','添加权限失败');
 
         }
     }
@@ -129,7 +129,7 @@ class PermissionAdminController extends Controller
 
         if ($rs['per_name'] == $role -> per_name && $rs['urls'] == $role -> urls ) {
 
-            return redirect('/admin/permission')->with('success','修改权限成功');
+            return redirect('/admin/permission')->with('succes','修改权限成功');
         }
        
         try{
@@ -138,12 +138,12 @@ class PermissionAdminController extends Controller
 
             if($data){
 
-                return redirect('/admin/permission')->with('success','修改权限成功');
+                return redirect('/admin/permission')->with('succes','修改权限成功');
             }
 
         }catch(\Exception $e){
 
-            return back()->with('error','修改权限失败');
+            return back()->with('errors','修改权限失败');
         }
     }
 
@@ -155,6 +155,19 @@ class PermissionAdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // 删除权限
+        try{
+           
+            $data = Permission::where('id',$id)->delete();
+
+            if($data){
+
+                return redirect('/admin/permission')->with('succes','删除权限成功');
+            }
+        }catch(\Exception $e){
+
+            return back()->with('errors','删除权限失败');
+
+        }
     }
 }

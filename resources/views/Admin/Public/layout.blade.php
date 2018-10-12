@@ -31,26 +31,32 @@
             </div>
             <div class="sidebar-collapse">
                 <ul class="nav" id="side-menu">
-                    <li class="nav-header">
+                   <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src="/admins/img/profile_small.jpg" /></span>
+                            <span><img alt="image" class="img-circle" src="{{session('adminusers')->face}}" style="width: 64px;height: 64px" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
-                               <span class="block m-t-xs"><strong class="font-bold">Beaut-zihan</strong></span>
-                                <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
+                               <span class="block m-t-xs"><strong class="font-bold">{{session("adminusers")->username}}</strong></span>
+                                <span class="text-muted text-xs block">
+                                    @if(session('power') == '0')
+                                        普通群众
+                                    @elseif(session('power') == '1')
+                                        中级管理员
+                                    @elseif(session('power') == '2')
+                                        高级管理员
+                                    @elseif(session('power') == '3')
+                                        超级管理员
+                                    @endif
+                                    <b class="caret"></b></span>
                                 </span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a class="J_menuItem" href="form_avatar.html">修改头像</a>
+                                <li><a class="" href="/admin/user/setFace">修改头像</a>
                                 </li>
-                                <li><a class="J_menuItem" href="profile.html">个人资料</a>
-                                </li>
-                                <li><a class="J_menuItem" href="contacts.html">联系我们</a>
-                                </li>
-                                <li><a class="J_menuItem" href="mailbox.html">信箱</a>
+                                <li><a class="" href="/admin/setPass">修改密码</a>
                                 </li>
                                 <li class="divider"></li>
-                                <li><a href="login.html">安全退出</a>
+                                <li><a href="/admin/Exitlogon">安全退出</a>
                                 </li>
                             </ul>
                         </div>
@@ -58,44 +64,49 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/admin">
                             <i class="fa fa-home"></i>
                             <span class="nav-label">首页</span>
                         </a>
-                    </li>                  
+                    </li>                 
                     <li>
-                        <a href="#">
+                        <a href="">
                             <i class="fa fa-group"></i> 
                             <span class="nav-label">用户管理</span>
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="form_basic.html">基本表单</a>
+                            <li>
+                                <a href="/admin/user">浏览用户</a>
                             </li>
-                            <li><a class="J_menuItem" href="form_validate.html">表单验证</a>
-                            </li>
-                            <li><a class="J_menuItem" href="form_advanced.html">高级插件</a>
-                            </li>
-                            <li><a class="J_menuItem" href="form_wizard.html">表单向导</a>
-                            </li>
-                            <li><a class="J_menuItem" href="suggest.html">搜索自动补全</a>
-                            </li>
-                            <li><a class="J_menuItem" href="layerdate.html">日期选择器layerDate</a>
+                            <li>
+                                <a href="/admin/user/create">添加用户</a>
                             </li>
                         </ul>
-                    </li>                    
+                    </li>                 
                     <li>
                         <a href="#">
-                            <i class="fa fa-user-secret"></i> 
-                            <span class="nav-label">用户权限管理</span>
+                            <i class="fa fa-github-square"></i> 
+                            <span class="nav-label">角色管理</span>
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="404.html">404页面</a>
+                            <li class="create_role"><a href="/admin/role/create">添加角色</a>
                             </li>
-                            <li><a class="J_menuItem" href="500.html">500页面</a>
+                            <li class="show_role"><a href="/admin/role">浏览角色</a>
                             </li>
-                            <li><a class="J_menuItem" href="empty_page.html">空白页</a>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-user-secret"></i> 
+                            <span class="nav-label">权限管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li class="create_permission"><a href="/admin/permission/create">添加权限</a>
+                            </li>
+                            <li class="show_permission"><a href="/admin/permission">浏览权限</a>
                             </li>
                         </ul>
                     </li>
@@ -136,12 +147,18 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="404.html">404页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="500.html">500页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="empty_page.html">空白页</a>
-                            </li>
+                            <li>
+                                <a href="/Admin/category/create"> 
+                                    <span class="nav-label">添加类别</span>
+                                </a>                                 
+                            </li>                           
+                        </ul>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/Admin/category"> 
+                                    <span class="nav-label">浏览类别</span>
+                                </a>
+                            </li>                           
                         </ul>
                     </li>
                     <li>
@@ -217,18 +234,18 @@
                             </li>                            
                         </ul>
                     </li>
-                    <li>
+                      <li>
                         <a href="#">
                             <i class="fa fa-edit"></i> 
                             <span class="nav-label">留言板管理</span>
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="404.html">404页面</a>
+                            <li>
+                                <a href="404.html">添加留言</a>
                             </li>
-                            <li><a class="J_menuItem" href="500.html">500页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="empty_page.html">空白页</a>
+                            <li>
+                                <a href="500.html">浏览留言</a>
                             </li>
                         </ul>
                     </li>
@@ -239,26 +256,24 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="404.html">404页面</a>
+                            <li>
+                                <a href="/Admin/banner/create">添加轮播</a>
                             </li>
-                            <li><a class="J_menuItem" href="500.html">500页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="empty_page.html">空白页</a>
+                            <li>
+                                <a href="/Admin/banner">浏览轮播</a>
                             </li>
                         </ul>
                     </li>
-                    <li>
+                     <li>
                         <a href="#">
                             <i class="fa fa-map-signs"></i> 
                             <span class="nav-label">广告管理</span>
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="404.html">404页面</a>
+                            <li><a href="/Admin/advertising/create">添加广告</a>
                             </li>
-                            <li><a class="J_menuItem" href="500.html">500页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="empty_page.html">空白页</a>
+                            <li><a href="/Admin/advertising">浏览广告</a>
                             </li>
                         </ul>
                     </li>

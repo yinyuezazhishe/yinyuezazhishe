@@ -64,12 +64,12 @@ class RoleAdminController extends Controller
 
             if($data){
 
-                return redirect('/admin/role')->with('success','添加角色成功');
+                return redirect('/admin/role')->with('succes','添加角色成功');
             }
 
         }catch(\Exception $e){
 
-            return back()->with('error','添加角色失败');
+            return back()->with('errors','添加角色失败');
 
         }
     }
@@ -124,7 +124,7 @@ class RoleAdminController extends Controller
 
         if ($rs['role_name'] == $role -> role_name) {
 
-        	return redirect('/admin/role')->with('success','修改角色成功');
+        	return redirect('/admin/role')->with('succes','修改角色成功');
         }
 
         // dd($role -> role_name, $rs);
@@ -135,12 +135,12 @@ class RoleAdminController extends Controller
 
             if($data){
 
-                return redirect('/admin/role')->with('success','修改角色成功');
+                return redirect('/admin/role')->with('succes','修改角色成功');
             }
 
         }catch(\Exception $e){
 
-            return back()->with('error','修改角色失败');
+            return back()->with('errors','修改角色失败');
         }
     }
 
@@ -157,12 +157,12 @@ class RoleAdminController extends Controller
 
             if($data){
 
-                return back()->with('success','删除角色成功');
+                return back()->with('succes','删除角色成功');
             }
 
         }catch(\Exception $e){
 
-            return back()->with('error','删除角色失败');
+            return back()->with('errors','删除角色失败');
         }
     }
 }

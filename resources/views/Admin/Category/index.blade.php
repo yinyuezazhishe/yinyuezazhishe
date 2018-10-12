@@ -11,65 +11,64 @@
             {{$title}}
         </span>
     
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <form action="/Admin/category" method='get'>
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>查看链接</h5>                        
+        </div>  
+        <div class="ibox-content">
+            <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+            <form action="/Admin/category" method='get'>
             <div class="row">
             	<div class="col-sm-8">
             		<div class="dataTables_length" id="DataTables_Table_0_length">
-            			<label>每页 <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control input-sm">
-            			<option value="10" @if($request->num == 10)  selected="selected"  @endif >
+            			<label>每页 <select name="num" aria-controls="DataTables_Table_0" class="form-control input-sm">
+            			<option value="5" @if($request->num == 5)  selected="selected"  @endif >
+                            5
+                        </option>
+                        <option value="10" @if($request->num == 10)  selected="selected"  @endif>
                             10
                         </option>
-                        <option value="25" @if($request->num == 25)  selected="selected"  @endif>
-                            25
-                        </option>
-                        <option value="30" @if($request->num == 30)  selected="selected"  @endif>
-                            30
+                        <option value="15" @if($request->num == 15)  selected="selected"  @endif>
+                            15
                         </option>
             			</select>
                     条记录
                 </label>
-            		</div>
             	</div>
-            			<div class="col-sm-2">
-            				<div id="DataTables_Table_0_filter" class="dataTables_filter">
-            					<label>分类名：<input type="text" name='catename' value='{{$request->catename}}' aria-controls="DataTables_Table_1">
-            					</label>
-                                <button class='btn btn-info'>搜索</button>
-            				</div>
-            			</div>
-            		</div>
-
-            </form>
-
-                        </div>
-                        <div class="ibox-content">
-
-                            <table class="footable table table-stripped toggle-arrow-tiny default breakpoint footable-loaded" data-page-size="8">
-                                <thead>
-                                <tr>
-
-                                    <th data-toggle="true" class="footable-visible footable-first-column footable-sortable">ID
-                                    	<span class="footable-sort-indicator"></span>
-                                    </th>
-                                    <th class="footable-visible footable-sortable">catename
-                                    	<span class="footable-sort-indicator"></span>
-                                    </th>
-                                    <th class="footable-visible footable-sortable">
-                                        pid
-                                    	<span class="footable-sort-indicator"></span>
-                                    </th>
-                                    <th class="footable-visible footable-sortable">
-                                        path
-                                    	<span class="footable-sort-indicator"></span>
-                                    </th>
-                                    <th class="footable-visible footable-last-column footable-sortable">操作<span class="footable-sort-indicator">
-                                    	
-                                    </span>
-                                </th>
-                                </tr>
-                                </thead>
+            	</div>
+    			<div class="col-sm-4">
+    				<div class="input-group">
+    					<input type="text" name='catename' value='{{$request->catename}}' aria-controls="DataTables_Table_1" placeholder="请输入类名" class="input-sm form-control">
+                        <span class="input-group-btn"><button class='btn btn-info btn-sm' style="display: inline-block;">搜索</button></span>
+    				</div>
+    			</div>  
+            	</div>
+                </form>
+            </div>
+    <div class="ibox-content">
+        <table class="footable table table-stripped toggle-arrow-tiny default breakpoint footable-loaded" data-page-size="8">
+            <thead>
+            <tr>
+                <th data-toggle="true" class="footable-visible footable-first-column footable-sortable">ID
+                	<span class="footable-sort-indicator"></span>
+                </th>
+                <th class="footable-visible footable-sortable">catename
+                	<span class="footable-sort-indicator"></span>
+                </th>
+                <th class="footable-visible footable-sortable">
+                    pid
+                	<span class="footable-sort-indicator"></span>
+                </th>
+                <th class="footable-visible footable-sortable">
+                    path
+                	<span class="footable-sort-indicator"></span>
+                </th>
+                <th class="footable-visible footable-last-column footable-sortable">操作<span class="footable-sort-indicator">
+                	
+                </span>
+            </th>
+            </tr>
+            </thead>
 
                     <tbody role="alert" aria-live="polite" aria-relevant="all">
 					
@@ -115,6 +114,8 @@
         </div>
       </div>
     </div>
+</div>
+</div>
 </div>
 @stop
 
