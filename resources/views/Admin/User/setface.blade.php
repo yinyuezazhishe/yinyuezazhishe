@@ -16,7 +16,7 @@
                 <div class="h4">图片预览</div>
                 <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                     <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
-                        <img id="picImg" style="width: 100%;height: auto;max-height: 140px;" src="{{session('adminusers')->face}}" alt="">
+                        <img id="picImg" style="width: 100%;height: auto;max-height: 140px;" src="{{session('adminusers_face')}}" alt="">
                     </div>
                     <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                     <div>
@@ -29,16 +29,17 @@
                     </div>
                 </div>
             </div>
-            <div class="hr-line-dashed"></div>
+
             {{ csrf_field() }}
+
              <div class="form-group">
-                <div class="col-sm-10 col-md-offset-2">
+                <div class=" col-md-offset-2">
                     <button class="btn btn-primary" id="sub" type="submit">添加</button>
                     <a href="/admin/user" class="btn btn-warning">取消</a>
                 </div>
             </div>
+            <div class="hr-line-dashed"></div>
         </form>
-
     </div>  
 </div>          
 </div>

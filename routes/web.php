@@ -20,6 +20,9 @@ Route::get('admin/login', 'Admin\LoginAdminController@login');
 // 后台登录验证
 Route::post('admin/dologin', 'Admin\LoginAdminController@dologin');
 
+//后台退出登录
+Route::get('/admin/Exitlogon','Admin\LoginAdminController@Exitlogon');
+
 // 后台角色管理
 Route::resource('admin/role', 'Admin\RoleAdminController');
 
