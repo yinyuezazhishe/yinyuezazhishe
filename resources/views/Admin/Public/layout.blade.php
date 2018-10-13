@@ -33,7 +33,7 @@
                 <ul class="nav" id="side-menu">
                    <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src="{{session('adminusers')->face}}" style="width: 64px;height: 64px" /></span>
+                            <span><img alt="image" class="img-circle" src="{{session('adminusers_face')}}" style="width: 64px;height: 64px" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                <span class="block m-t-xs"><strong class="font-bold">{{session("adminusers")->username}}</strong></span>

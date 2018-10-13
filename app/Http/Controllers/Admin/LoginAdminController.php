@@ -88,8 +88,26 @@ class LoginAdminController extends Controller
     		return redirect('/admin/login')->with('error','用户名或密码错误');
     	}
 
-    	// dump($user) ;
-        session(['adminusers'=>$user]);
+    	// 用户信息
+        session(['admin_user'=>$user]);
+        //用户头像路径
+        session(['adminusers_face'=>$user->face]);
+
     	return redirect('/admin')->with('success','登录成功');        
+    }
+
+
+     /**
+     *  退出登录
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function Exitlogon(Request $request)
+    {   
+        //将用户信息从session中清除
+        $request->session()->forget(['username','adminusers_face','power','id']);
+
+        return redirect('/admin/login');
     }
 }
