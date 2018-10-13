@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Gregwar\Captcha\CaptchaBuilder;
 use Gregwar\Captcha\PhraseBuilder;
-use App\Model\Admin\AdminLogin;
+use App\Model\Admin\AdminUsers;
 use Hash;
 
 class LoginAdminController extends Controller
@@ -66,7 +66,7 @@ class LoginAdminController extends Controller
 			return redirect('/admin/login')->with('error','验证码错误');
 		}
 
-    	$user = AdminLogin::where('username', $request -> username) -> first();
+    	$user = AdminUsers::where('username', $request -> username) -> first();
 
     	if ($user) {
 

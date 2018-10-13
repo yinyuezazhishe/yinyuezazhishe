@@ -76,7 +76,7 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li>
+                            <li class="show_user">
                                 <a href="/admin/user">浏览用户</a>
                             </li>
                             <li>
