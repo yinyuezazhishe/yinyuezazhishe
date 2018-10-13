@@ -1359,21 +1359,24 @@
                 function getCookie(name) 
                 { 
                     var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
-                 
                     if(arr=document.cookie.match(reg))
-                 
                         return unescape(arr[2]); 
-                    else 
+                    else
                         return null; 
                 }
 
                 function verify()
                 {
                     var m = getCookie('verify');
-                    var timestamp = (new Date()).getTime() + 300000 * 1000;
+                    
+                    var timestamp;
                     
                     var init = setInterval(function ()
                     {
+                        if (m == 300) {
+                            timestamp = (new Date()).getTime() + 300000 * 1000;
+                        }
+
                         if (m < 0) {
                             clearInterval(init);
                             return validCode = true;
@@ -1384,6 +1387,7 @@
                             flag = false;
                         }
                         // console.log(m);
+                        // console.log(timestamp);
 
                         setCookie('verify', m--, timestamp-0.0000116);
                         validCode = false;

@@ -14,13 +14,32 @@
             $menu.stop().animate({ backgroundPosition: (101 * num + 30) + "px" + " bottom" }, 100 * len);
         }
     });
-    $li_3.hover(function () {
-        $li_3_content.stop(true, true).fadeIn(0);
-    }, function () {
-        $li_3_content.fadeOut(500, function () {
-            $li_3_content.css("display", "none");
+
+    // console.log($(this))
+    $menuLi.each(function ()
+    {
+        $(this).hover(function() {
+        // console.log($(this).find('.li_3_content'));
+        $(this).find('.li_3_content').stop(true, true).fadeIn(0);
+        // $li_3_content.stop(true, true).fadeIn(0);
+        },
+        function() {
+            // console.log(2);
+            var content = $(this).find('.li_3_content');
+            content.fadeOut(500,
+            function() {
+                content.css("display", "none");
+            });
         });
-    });
+    })
+    
+    // $li_3.hover(function () {
+    //     $li_3_content.stop(true, true).fadeIn(0);
+    // }, function () {
+    //     $li_3_content.fadeOut(500, function () {
+    //         $li_3_content.css("display", "none");
+    //     });
+    // });
     $menu.mouseleave(function () {
         var $this = $(this), num = $menuLi.index($this), current = $menuLi.index($current), len = current - num;
         $menuLi.removeClass("first");
