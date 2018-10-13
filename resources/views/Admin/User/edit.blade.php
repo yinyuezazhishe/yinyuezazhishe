@@ -23,7 +23,7 @@
         <form method="post" class="form-horizontal" enctype='multipart/form-data' action="/admin/user/{{$rs->id}}">
             <div class="form-group">
                 <label class="col-sm-2 control-label">用户名</label>
-                <div class="col-sm-10">
+                <div class="col-sm-6 ">
                     <input type="text" class="form-control username" name="username"  placeholder="请输入用户名" value="{{$rs->username}}">
                     <span class="help-block m-b-none title"></span>
                 </div>
@@ -92,53 +92,72 @@
 @stop
 
 @section('js')
+
 <script type="text/javascript">
- var flag = false;
+
+    var flag = true;
+
+    //获取原本的用户名
+    var oldname = $('.username').val();
+
     $('.username').blur(function(){
 
         //获取输入的值
         var name = $(this).val();
-       
-        //发送ajax
-        $.ajax({
-            url: '/admin/user/getName',   
-            data: {'username':name},    
-            dataType: 'json',    
-            type: 'GET',      
-            success: function(data){
-                // console.log(data);
-                //判断是否被用户名占用并且不为空
-                if (data == '1' && name != '') {
+        //判断初始用户名是否更改
+        if (oldname != name) {
 
-                    $('.username').css('border','1px solid #1ab394');
+            //发送ajax
+            $.ajax({
+                url: '/admin/user/getName',   
+                data: {'username':name},    
+                dataType: 'json',    
+                type: 'GET',      
+                success: function(data){
+                    // console.log(data);
+                    //判断是否被用户名占用并且不为空
+                    if (data == '1' && name != '') {
 
-                    $('.title').html('<i class="fa fa-info-circle"></i>该用户名可以使用').css('color','green');
-                    flag = true;
-                //判断是否被用户名占用 被占用则无法提交
-                } else if (data == '0') {
+                        $('.username').css('border','1px solid #1ab394');
 
-                    $('.username').css('border','1px solid red');
+                        $('.title').html('<i class="fa fa-info-circle"></i>该用户名可以使用').css('color','green');
 
-                    $('.title').html('<i class="fa fa-info-circle"></i>该用户名已被使用').css('color','red');
+                        flag = true;
+                    //判断是否被用户名占用 被占用则无法提交
+                    } else if (data == '0') {
 
-                //用户名为空 则无法提交
-                } else if (name == '') {
+                        $('.username').css('border','1px solid red');
 
-                    $('.title').html('<i class="fa fa-info-circle"></i>不能为空').css('color','red');
-                    
-                }
-            },    
-            error: function(){},         
-            timeout:3000,      
-            async: true    
-        });
+                        $('.title').html('<i class="fa fa-info-circle"></i>该用户名已被使用').css('color','red');
 
+                        flag = false;
+                    //用户名为空 则无法提交
+                    } else if (name == '') {
+
+                        $('.title').html('<i class="fa fa-info-circle"></i>不能为空').css('color','red');
+                        $('.submit').click(function(){
+
+                            flag = false;
+
+                        });
+                    }
+                },    
+                error: function(){},         
+                timeout:3000,      
+                async: true    
+            });
+        } else {
+            $('.username').css('border','1px solid #e5e6e7');
+            $('.title').html('');
+
+            flag = true;
+        } 
     });
 
     $('#sub').click(function(){
-        
-            return flag;
-        });
+        return flag;
+    });
+
 </script>
 
 @stop

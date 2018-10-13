@@ -76,13 +76,13 @@ class AdminUsersController extends Controller
             $suffix = $request->file('face')->getClientOriginalExtension(); 
 
             //移动
-            $request -> file('face') -> move('admins/uploads/face/',$name.'.'.$suffix);
+            $request -> file('face') -> move('uploads',$name.'.'.$suffix);
 
              //头像文件路径
-            $res['face'] = '/admins/uploads/face/'.$name.'.'.$suffix;
+            $res['face'] = '/uploads/'.$name.'.'.$suffix;
         } else {
 
-            $res['face'] = '/admins/uploads/face/default.jpg';
+            $res['face'] = '/uploads/default.jpg';
         }
 
        
@@ -174,6 +174,8 @@ class AdminUsersController extends Controller
                 unlink('.'.$oldFace);
             }
 
+            session(['adminusers_face' => $res['face']]);
+
         }
 
             
@@ -195,20 +197,36 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
+        $oldface = $request->input('oldpicture');
+
         try{
 
-            $rs = AdminUsers::where('id',$id) -> delete();
+            $rs = AdminUsers::where('id',$id)->delete();
 
             if ($rs) {
+                
+                if ($oldface) {
+                   unlink('.'.$oldface);
+                }
 
-                return redirect('/admin/user') -> with('success','删除成功');
+                session(['success'=>'删除成功']);
+                return 1;
+
+            } else {
+
+                session(['error'=>'删除失败']);
+                return 0;
             }
+
         }catch(\Exception $e){
-            
-                 return back() -> with('error','删除失败');
-            }
+
+            session(['error'=>'删除失败']);
+            return 0;
+
+        }
+    
     }
 
     /**
@@ -265,21 +283,25 @@ class AdminUsersController extends Controller
             $suffix = $request->file('face')->getClientOriginalExtension(); 
 
             //移动
-            $request -> file('face') -> move('admins/uploads/face/',$name.'.'.$suffix);
+            $request -> file('face') -> move('uploads/Face',$name.'.'.$suffix);
 
              //头像文件路径
-            $res['face'] = '/admins/uploads/face/'.$name.'.'.$suffix;
+            $res['face'] = '/uploads/Face/'.$name.'.'.$suffix;
 
             //获取原来头像的url地址
             $oldFace = session('adminusers_face');
+
+            // dd($oldFace);
             
             //将新修改图片路径存进session
             session(['adminusers_face'=> $res['face']]);
 
+            // dd(session('admin_user')->face);
             //删除原来的额旧头像
             if ($oldFace) {
                 unlink('.'.$oldFace);
             } 
+
             $rs = AdminUsers::where('id',session('admin_user')->id) -> update($res);
              if ($rs) {
                 return redirect('/admin') -> with('success','修改成功');
@@ -290,29 +312,19 @@ class AdminUsersController extends Controller
     }
 
 
-     /**
-     * 用户修改密码页面
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function setPass()
     {
         return view('Admin.User.setpass',['title'=>'修改密码']);
     }
 
-    /**
-     *进行用户修改密码
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function doPass(Request $request)
     {
 
         $res = $request -> except('_token','repass','_method','oldpass');
 
-        $id = session('admin_user')->id;
+        $id = session('id');
 
-        $oldPass = AdminUsers::find($id)->password;
+        $oldPass = AdminUsers::find(session('id'))->password;
  
         $newPass = $request->input('oldpass');
 

@@ -61,10 +61,10 @@ class LoginAdminController extends Controller
 
     	// echo session('code');
 
-    	if ($request -> code != session('code')) {
+  //   	if ($request -> code != session('code')) {
 
-			return redirect('/admin/login')->with('error','验证码错误');
-		}
+		// 	return redirect('/admin/login')->with('error','验证码错误');
+		// }
 
     	$user = AdminLogin::where('username', $request -> username) -> first();
 
@@ -72,7 +72,7 @@ class LoginAdminController extends Controller
 
     		if ($user -> username != $request -> username) {
 
-	    		return redirect('/admin/login')->with('error','用户名或密码错误');
+	    		return back()->with('error','用户名或密码错误');
 	    	}
 
 	    	// echo $request -> password;
@@ -80,24 +80,27 @@ class LoginAdminController extends Controller
 
 	    	if (!Hash::check($request -> password, $user -> password)) {
 
-			    return redirect('/admin/login')->with('error','用户名或密码错误');
+			    return back()->with('error','用户名或密码错误');
 			}
 
     	} else {
 
-    		return redirect('/admin/login')->with('error','用户名或密码错误');
+    		return back()->with('error','用户名或密码错误');
     	}
-
-    	// 用户信息
+      
+      // dd($user);
+        //把用户信息储到session
         session(['admin_user'=>$user]);
+
         //用户头像路径
         session(['adminusers_face'=>$user->face]);
 
-    	return redirect('/admin')->with('success','登录成功');        
+        
+    	return redirect('/admin')->with('success','登录成功');
+
     }
 
-
-     /**
+    /**
      *  退出登录
      *
      * @param  \Illuminate\Http\Request  $request
@@ -106,7 +109,8 @@ class LoginAdminController extends Controller
     public function Exitlogon(Request $request)
     {   
         //将用户信息从session中清除
-        $request->session()->forget(['username','adminusers_face','power','id']);
+        session(['admin_user'=>'']);
+        session(['adminusers_face'=>'']);
 
         return redirect('/admin/login');
     }

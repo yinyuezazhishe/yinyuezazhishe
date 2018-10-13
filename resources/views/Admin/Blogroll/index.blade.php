@@ -155,7 +155,8 @@
 		})		
 		$('.del').click(function(){
 			id = $(this).attr('data-id');
-			var oldpicture = $(this).parents('td').find('input').val();
+			var oldpicture = $(this).prev().val();
+			console.log(oldpicture);
 			layer.confirm('你确定删除吗',{btn:['确定','取消'],title:'提示',icon:'3'},function(){
 				$.post('/Admin/Blogroll/'+id,{'oldpicture':oldpicture,'_token':'{{ csrf_token() }}','_method':'DELETE'},function(data){
 					if(data){

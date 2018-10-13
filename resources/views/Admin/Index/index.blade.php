@@ -3,7 +3,7 @@
 @section('title',$title)
 
 @section('content')
-	
+	<input type="hidden" name="" class="theme" value="{{session('admin_user')->theme}}">
 	<div class="col-sm-3">
         <div class="widget style1 navy-bg">
             <div class="row">
@@ -65,13 +65,13 @@
                 <h5>状态</small></h5>
             </div>
             <div class="ibox-content">
-            <div class="widget navy-bg no-padding">
+            <div class="widget navy-bg no-padding style1">
                 <div class="p-m">
                 	<div style="width: 100px;height: 100px;float: left;margin-top: 5px;">
                 	<img alt="image" class="img-circle" src="{{session('adminusers_face')}}" style="width: 120px;height: 120px">
                 	</div>
             		<ul style="width:200px;float:left;list-style: none;">
-                		<li class="m-xs font-bold" style="width:200px;">{{session('admin_user')->username}} 您好</li>
+                		<li class="m-xs font-bold username" style="width:200px;">{{session('admin_user')->username}} 您好</li>
                 		<br>
                			<li class="m-xs font-bold" style="width:200px;">
                    		这是您第12次登录
@@ -143,6 +143,36 @@
 		    document.getElementById("time1").innerHTML = c+"&nbsp"+b;
 		    }
 		setInterval(function() {mytime()},1000);
+
+        // var flag = 1;
+
+        // if (flag) {
+        //     flag = 0;
+        //     $(function(){
+
+                
+
+        //         var theme1 = $('.theme').val();
+
+        //         console.log(theme1);
+
+        //         $('body').eq(0).addClass(theme1);
+
+        //         if (theme1 == 'skin-1') {
+
+        //         $('.style1').addClass('lazur-bg');
+
+        //         } else if (theme1 == 'skin-3') {
+
+        //             $('.style1').addClass('yellow-bg');
+
+        //         } else {
+
+        //              $('.style1').addClass('navy-bg');
+        //         }
+
+        //     });
+        // }
 	</script>
 
 @stop
