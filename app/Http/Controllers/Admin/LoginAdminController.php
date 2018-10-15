@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Gregwar\Captcha\CaptchaBuilder;
 use Gregwar\Captcha\PhraseBuilder;
-use App\Model\Admin\AdminUsers;
+use App\Model\Admin\AdminLogin;
 use Hash;
 
 class LoginAdminController extends Controller
@@ -66,7 +66,7 @@ class LoginAdminController extends Controller
 			return redirect('/admin/login')->with('error','验证码错误');
 		}
 
-    	$user = AdminUsers::where('username', $request -> username) -> first();
+    	$user = AdminLogin::where('username', $request -> username) -> first();
 
     	if ($user) {
 
@@ -88,26 +88,8 @@ class LoginAdminController extends Controller
     		return redirect('/admin/login')->with('error','用户名或密码错误');
     	}
 
-    	// 用户信息
-        session(['admin_user'=>$user]);
-        //用户头像路径
-        session(['adminusers_face'=>$user->face]);
-
+    	// dump($user) ;
+        session(['adminusers'=>$user]);
     	return redirect('/admin')->with('success','登录成功');        
-    }
-
-
-     /**
-     *  退出登录
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function Exitlogon(Request $request)
-    {   
-        //将用户信息从session中清除
-        $request->session()->forget(['username','adminusers_face','power','id']);
-
-        return redirect('/admin/login');
     }
 }

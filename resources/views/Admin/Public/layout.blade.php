@@ -33,7 +33,7 @@
                 <ul class="nav" id="side-menu">
                    <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src="{{session('adminusers_face')}}" style="width: 64px;height: 64px" /></span>
+                            <span><img alt="image" class="img-circle" src="{{session('adminusers')->face}}" style="width: 64px;height: 64px" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                <span class="block m-t-xs"><strong class="font-bold">{{session("adminusers")->username}}</strong></span>
@@ -76,7 +76,7 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li class="show_user">
+                            <li>
                                 <a href="/admin/user">浏览用户</a>
                             </li>
                             <li>
@@ -242,10 +242,10 @@
                         </a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="404.html">添加留言</a>
+                                <a href="/Admin/message/create">添加留言</a>
                             </li>
                             <li>
-                                <a href="500.html">浏览留言</a>
+                                <a href="/Admin/message">浏览留言</a>
                             </li>
                         </ul>
                     </li>

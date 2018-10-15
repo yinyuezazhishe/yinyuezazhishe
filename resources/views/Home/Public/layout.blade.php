@@ -121,26 +121,33 @@
             swal("恭喜你!", "{{session('success')}}", "success");
         </script>
         @endif
-
+            <?php
+                $cate = \App\Model\Home\CateGory::getSubCates();
+                // dd($cate);
+            ?>
         <div id="wrapper" class="hfeed">
             <!-- 代码 开始 -->
+            
             <div class="header">
                 <ul class="menus" margin: 0px;>
-                    <li class="current first"><a href="http://sc.chinaz.com/" target="_self">首页</a></li>
-                    <li><a href="#" target="_self">功能</a></li>
-                    <li><a href="#" target="_self">下载</a></li>
-                    <li class="li_3"><a class="noclick" href="http://sc.chinaz.com/" target="_blank">更多产品</a>
+                    <li class="current first">
+                        <a href="/" target="_self">首页</a>
+                    </li>
+                    @foreach ($cate as $k => $v)
+                    <li class="li_3">
+                        <a class="noclick" href="#" target="_blank">{{$v -> catename}}</a>
                         <dl style="margin:0px; padding: 0px;" class="li_3_content">
                             <dt></dt>
-                            <dd style="margin:0px; padding: 0px;"><a href="http://sc.chinaz.com/" target="_blank"><span>应用商店</span></a></dd>
-                            <dd style="margin:0px; padding: 0px;"><a href="http://sc.chinaz.com/" target="_blank"><span>主题商店</span></a></dd>
-                            <dd style="margin:0px; padding: 0px;"><a href="http://sc.chinaz.com/" target="_blank"><span>小米桌面</span></a></dd>
-                            <dd class="lastItem" style="margin:0px; padding: 0px;"><a href="http://sc.chinaz.com/" target="_blank"><span>懒人图库</span></a></dd>
+                            @foreach ($v->sub as $kk=>$vv)
+
+                            <dd style="margin:0px; padding: 0px;"><a href="http://sc.chinaz.com/" target="_blank"><span>{{$vv -> catename}}</span></a></dd>
+                           
+                            @endforeach
                         </dl>
                     </li>
-                    <li class=""><a class="noborder " href="#" target="_self">论坛</a></li>
+                    @endforeach
                 </ul>
-            
+                
                 <a href="http://sc.chinaz.com/">
                     <img title="MIUI" class="miui_logo" src="/admins/img/yinyuelogo.png" width="200" alt="网站logo" /></a>
                 @if(empty(session('homeuser')))
@@ -155,37 +162,36 @@
             <!-- 代码 结束 -->
 
             @section('content')
+            <?php
+                $pictures = \App\Model\Home\Banner::BanNer();
+             ?>
+            
             <!-- banner start -->
             <div id="banner_tabs" style="margin:0px;padding:0px" class="flexslider">
                 <ul class="slides">
+                    @foreach ($pictures as $k => $v)
                     <li>
-                        <a title="" target="_blank" href="#">
-                            <img width="1920" height="482" alt="" style="background: url(/homes/images/banner1.jpg) no-repeat center;" src="/homes/images/alpha.png">
+                        <a title="{{$v->title}}" target="_blank" href="#">
+                            <img width="1920" height="482" alt="{{$v->alt}}" style="background: url({{$v->picture}}) no-repeat center;" src="{{$v->picture}}">
                         </a>
                     </li>
-                    <li>
-                        <a title="" href="#">
-                            <img width="1920" height="482" alt="" style="background: url(/homes/images/banner2.jpg) no-repeat center;" src="/homes/images/alpha.png">
-                        </a>
-                    </li>
-                    <li>
-                        <a title="" href="#">
-                            <img width="1920" height="482" alt="" style="background: url(/homes/images/banner3.jpg) no-repeat center;" src="/homes/images/alpha.png">
-                        </a>
-                    </li>
+                    @endforeach
                 </ul>
                 <ul class="flex-direction-nav">
                     <li><a class="flex-prev" href="javascript:;">Previous</a></li>
                     <li><a class="flex-next" href="javascript:;">Next</a></li>
                 </ul>
                 <ol id="bannerCtrl" class="flex-control-nav flex-control-paging">
-                    <li><a>1</a></li>
-                    <li><a>2</a></li>
-                    <li><a>2</a></li>
+                    @for($i = 1; $i <= count($pictures); $i ++)
+                    <li><a>{{$i}}</a></li>
+                    @endfor
                 </ol>
+
             </div>
+             
             <script src="/homes/js/slider.js"></script>
             <script type="text/javascript">
+           
             $(function() {
                 var bannerSlider = new Slider($('#banner_tabs'), {
                     time: 5000,
@@ -1359,24 +1365,21 @@
                 function getCookie(name) 
                 { 
                     var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+                 
                     if(arr=document.cookie.match(reg))
+                 
                         return unescape(arr[2]); 
-                    else
+                    else 
                         return null; 
                 }
 
                 function verify()
                 {
                     var m = getCookie('verify');
-                    
-                    var timestamp;
+                    var timestamp = (new Date()).getTime() + 300000 * 1000;
                     
                     var init = setInterval(function ()
                     {
-                        if (m == 300) {
-                            timestamp = (new Date()).getTime() + 300000 * 1000;
-                        }
-
                         if (m < 0) {
                             clearInterval(init);
                             return validCode = true;
@@ -1387,7 +1390,6 @@
                             flag = false;
                         }
                         // console.log(m);
-                        // console.log(timestamp);
 
                         setCookie('verify', m--, timestamp-0.0000116);
                         validCode = false;

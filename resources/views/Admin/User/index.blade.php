@@ -83,7 +83,7 @@
                                 创建时间
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
-                            colspan="1" aria-label="操作" style="width: 120px; text-align: center;">
+                            colspan="1" aria-label="操作" style="width: 80px; text-align: center;">
                                 操作
                             </th>
                         </tr>
@@ -133,7 +133,6 @@
                                     {{date('Y-m-d H:i:s',$v->addtime)}}
                                 </td>
                                 <td class="center ">
-                                    <a style="width: 46px;" href="/admin/user_role/{{$v->id}}/u_r_edit" class="btn btn-info btn-sm"><i class="fa fa-github-square"></i></a>
                                     <a href="/admin/user/{{$v->id}}/edit" class="btn btn-info btn-sm">修改</a>
                                     <form action="/admin/user/{{$v->id}}" method="post" style="display: inline;">
                                         {{ csrf_field() }}
@@ -167,24 +166,5 @@
 
 @section('js')
 
-    <script type="text/javascript">
-        //改变导航条样式
-        var show_user = $('.show_user').parents('li');
-        $('.show_user a').css({'color':'#fff'});
-        show_user.attr('class','active');
-    </script>
-    <script src="/homes/js/sweetalert.min.js"></script>
-
-    @if(session('succes'))
-    <script type="text/javascript">
-        swal("恭喜你!", "{{session('succes')}}", "success");
-    </script>
-    @endif
-
-    @if(session('errors'))
-    <script type="text/javascript">
-        swal("对不起!", "{{session('errors')}}", "error");
-    </script>
-    @endif
 
 @stop

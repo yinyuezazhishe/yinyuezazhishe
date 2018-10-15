@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Model\Admin;
+namespace App\Model\Home;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Banner extends Model
 {
     /**
      * 与模型关联的数据表
      *
      * @var string
      */
-    protected $table = 'role';
+    protected $table = 'banner';
 
     //主键
     protected $primaryKey = 'id';
@@ -29,4 +29,17 @@ class Role extends Model
 	 * @var array
 	 */
 	protected $guarded = [];
+
+
+    static public function BanNer($pictures=[])
+    {
+
+            $pictures = self::all();
+
+        	// foreach($pictures as $k => $v){
+        	// 	return $v;
+        	// }
+
+        return $pictures;
+    }
 }

@@ -15,7 +15,7 @@ class PermissionAdminController extends Controller
      */
     public function index(Request $request)
     {
-        $permission = Permission::where('per_name','like','%'.$request->per_name.'%')->orderBy('id', $request->input('sort', 'asc'))->paginate($request->input('num',5));
+        $permission = Permission::where('per_name','like','%'.$request->per_name.'%')->orderBy('id', 'desc')-> paginate($request->input('num',5));
 
         // 显示权限页
         return view('Admin.Permission.init', [

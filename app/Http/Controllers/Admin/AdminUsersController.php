@@ -271,16 +271,16 @@ class AdminUsersController extends Controller
             $res['face'] = '/admins/uploads/face/'.$name.'.'.$suffix;
 
             //获取原来头像的url地址
-            $oldFace = session('adminusers_face');
+            $oldFace = session('face');
             
             //将新修改图片路径存进session
-            session(['adminusers_face'=> $res['face']]);
+            session(['adminusers->face'=> $res['face']]);
 
             //删除原来的额旧头像
             if ($oldFace) {
                 unlink('.'.$oldFace);
             } 
-            $rs = AdminUsers::where('id',session('admin_user')->id) -> update($res);
+            $rs = AdminUsers::where('id',session('adminusersid')) -> update($res);
              if ($rs) {
                 return redirect('/admin') -> with('success','修改成功');
             }
@@ -290,29 +290,19 @@ class AdminUsersController extends Controller
     }
 
 
-     /**
-     * 用户修改密码页面
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function setPass()
     {
         return view('Admin.User.setpass',['title'=>'修改密码']);
     }
 
-    /**
-     *进行用户修改密码
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function doPass(Request $request)
     {
 
         $res = $request -> except('_token','repass','_method','oldpass');
 
-        $id = session('admin_user')->id;
+        $id = session('id');
 
-        $oldPass = AdminUsers::find($id)->password;
+        $oldPass = AdminUsers::find(session('id'))->password;
  
         $newPass = $request->input('oldpass');
 

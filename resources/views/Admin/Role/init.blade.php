@@ -12,7 +12,7 @@
                 <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
                     <form action="/admin/role" method="get">
                         <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-sm-6">
                                 <div class="dataTables_length" id="DataTables_Table_0_length">
                                     <label>
                                         每页
@@ -32,27 +32,6 @@
                                             </option>
                                         </select>
                                         条记录
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <style type="text/css">
-                                    select.input-sm{
-                                        height: 35px;
-                                    }
-                                </style>
-                                <div class="dataTables_length" id="DataTables_Table_0_length">
-                                    <label>
-                                        排序
-                                        <select name="sort" aria-controls="DataTables_Table_0"
-                                        class="form-control input-sm" >
-                                            <option value="asc" @if($request->sort == 'asc') selected @endif>
-                                                正序
-                                            </option>
-                                            <option value="desc" @if($request->sort == 'desc') selected @endif>
-                                                倒序
-                                            </option>
-                                        </select>
                                     </label>
                                 </div>
                             </div>
@@ -79,7 +58,7 @@
                             <td>{{$v->id}}</td>
                             <td>{{$v->role_name}}</td>                        
                             <td>
-                                <a style="width: 40px" href="/admin/role_permission/{{$v->id}}/r_p_edit" class="btn btn-info btn-small"><i  class="fa fa-user-secret"></i></a>
+                                <a style="width: 40px" href="/admin/role/{{$v->id}}/edit" class="btn btn-info btn-small"><i  class="fa fa-user-secret"></i></a>
                                 <a href="/admin/role/{{$v->id}}/edit" class="btn btn-info btn-small"><i class="glyphicon glyphicon-edit"></i></a>
                                 <form action="/admin/role/{{$v->id}}" method="post" class="del"  style="display: inline;">
                                     {{csrf_field()}}
@@ -127,12 +106,6 @@
 	@if(session('succes'))  
     <script type="text/javascript">
         swal("恭喜您!", "{{session('succes')}}", "success");
-    </script>
-    @endif
-
-    @if(session('errors'))  
-    <script type="text/javascript">
-        swal("对不起!", "{{session('errors')}}", "error");
     </script>
     @endif
 

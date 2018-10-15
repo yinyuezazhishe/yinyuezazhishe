@@ -15,7 +15,7 @@ class RoleAdminController extends Controller
      */
     public function index(Request $request)
     {
-    	$role = Role::where('role_name','like','%'.$request->role_name.'%')->orderBy('id', $request->input('sort', 'asc'))->paginate($request->input('num',5)) ;
+    	$role = Role::where('role_name','like','%'.$request->role_name.'%')->orderBy('id', 'desc')->paginate($request->input('num',5)) ;
 
         return view('Admin.Role.init',[
             'title'=>'浏览角色',

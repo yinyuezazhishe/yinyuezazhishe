@@ -12,7 +12,7 @@
                 <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
                     <form action="/admin/permission" method="get">
                         <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-sm-6">
                                 <div class="dataTables_length" id="DataTables_Table_0_length">
                                     <label>
                                         每页
@@ -32,27 +32,6 @@
                                             </option>
                                         </select>
                                         条记录
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <style type="text/css">
-                                    select.input-sm{
-                                        height: 35px;
-                                    }
-                                </style>
-                                <div class="dataTables_length" id="DataTables_Table_0_length">
-                                    <label>
-                                        排序
-                                        <select name="sort" aria-controls="DataTables_Table_0"
-                                        class="form-control input-sm" >
-                                            <option value="asc" @if($request->sort == 'asc') selected @endif>
-                                                正序
-                                            </option>
-                                            <option value="desc" @if($request->sort == 'desc') selected @endif>
-                                                倒序
-                                            </option>
-                                        </select>
                                     </label>
                                 </div>
                             </div>
