@@ -125,7 +125,7 @@
         function prev() {
             stop();
 
-            currentIndex == 1 ? triggerPlay(length - 4) : triggerPlay(currentIndex - 4);
+            currentIndex == 0 ? triggerPlay(length - 2) : triggerPlay(currentIndex - 2);
 
             isAuto && autoPlay();
         }
