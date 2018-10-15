@@ -8,8 +8,6 @@
         $this.addClass("first");
         if (len <= 0) { len = -len; };
             $menu.stop().animate({ backgroundPosition: (131 * num) + "px" + " bottom" }, 130 * len);
-
-
     });
 
     // console.log($(this))

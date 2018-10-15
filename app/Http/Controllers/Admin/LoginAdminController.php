@@ -6,19 +6,19 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Gregwar\Captcha\CaptchaBuilder;
 use Gregwar\Captcha\PhraseBuilder;
-use App\Model\Admin\AdminLogin;
+use App\Model\Admin\AdminUsers;
 use Hash;
 
 class LoginAdminController extends Controller
 {
-	/**
-	 *  登录主页面
-	 *
-	 *  @return string
-	 */
+    /**
+     *  登录主页面
+     *
+     *  @return string
+     */
     public function login()
     {
-    	return view('Admin/Login/index', ['title' => '登录页']);
+        return view('Admin/Login/index', ['title' => '登录页']);
     }
 
     /**
@@ -28,7 +28,7 @@ class LoginAdminController extends Controller
      */
     public function verify()
     {
-		$phrase = new PhraseBuilder;
+        $phrase = new PhraseBuilder;
         // 设置验证码位数
         $code = $phrase->build(4);
         // 生成验证码图片的Builder对象，配置相应属性
@@ -57,39 +57,39 @@ class LoginAdminController extends Controller
      */
     public function dologin(Request $request)
     {
-		// dd($user);
+        // dd($user);
 
-    	// echo session('code');
+        // echo session('code');
 
-    	if ($request -> code != session('code')) {
+        if ($request -> code != session('code')) {
 
-			return redirect('/admin/login')->with('error','验证码错误');
-		}
+            return redirect('/admin/login')->with('error','验证码错误') -> withInput();
+        }
 
-    	$user = AdminLogin::where('username', $request -> username) -> first();
+        $user = AdminUsers::where('username', $request -> username) -> first();
 
-    	if ($user) {
+        if ($user) {
 
-    		if ($user -> username != $request -> username) {
+            if ($user -> username != $request -> username) {
 
-	    		return redirect('/admin/login')->with('error','用户名或密码错误');
-	    	}
+                return redirect('/admin/login')->with('error','用户名或密码错误') -> withInput();
+            }
 
-	    	// echo $request -> password;
-	    	// echo $user -> password;
+            // echo $request -> password;
+            // echo $user -> password;
 
-	    	if (!Hash::check($request -> password, $user -> password)) {
+            if (!Hash::check($request -> password, $user -> password)) {
 
-			    return redirect('/admin/login')->with('error','用户名或密码错误');
-			}
+                return redirect('/admin/login')->with('error','用户名或密码错误') -> withInput();
+            }
 
-    	} else {
+        } else {
 
-    		return redirect('/admin/login')->with('error','用户名或密码错误');
-    	}
+            return redirect('/admin/login')->with('error','用户名或密码错误') -> withInput();
+        }
 
-    	// dump($user) ;
+        // dump($user) ;
         session(['adminusers'=>$user]);
-    	return redirect('/admin')->with('success','登录成功');        
+        return redirect('/admin')->with('success','登录成功');        
     }
 }
