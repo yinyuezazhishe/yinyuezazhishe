@@ -191,6 +191,8 @@
              
             <script src="/homes/js/slider.js"></script>
             <script type="text/javascript">
+
+            $('#bannerCtrl').find('li').first().addClass('active');
            
             $(function() {
                 var bannerSlider = new Slider($('#banner_tabs'), {
