@@ -149,7 +149,7 @@
                 </ul>
                 
                 <a href="http://sc.chinaz.com/">
-                    <img title="MIUI" class="miui_logo" src="/admins/img/yinyuelogo.png" width="200" alt="网站logo" /></a>
+                    <img title="音悦杂志社" class="miui_logo" src="/admins/img/yinyuelogo.png" width="200" alt="网站logo" /></a>
                 @if(empty(session('homeuser')))
                 <p class="language">
                     <a style="display: inline;" class="weidengru1 lgtanchu shenyinclick">登录</a>
