@@ -41,7 +41,7 @@
                         </div>
                         <div class="col-sm-6" style="padding-left: 250px">
                             <div class="input-group">
-                                <input type="text" placeholder="请输入关键词" class="input-sm form-control" name="username" value="{{$request->username}}">
+                                <input type="text" placeholder="请输入用户名" class="input-sm form-control" name="username" value="{{$request->username}}">
                                 <span class="input-group-btn">
                                 <button type="submit" class="btn btn-sm btn-primary">搜索</button>
                             </div>
@@ -134,11 +134,12 @@
                                 </td>
                                 <td class="center ">
                                     <a href="/admin/user/{{$v->id}}/edit" class="btn btn-info btn-sm">修改</a>
-                                    <form action="/admin/user/{{$v->id}}" method="post" style="display: inline;">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                        <button class="btn btn-danger btn-sm" id="del">删除</button>
-                                    </form>
+                                    <!-- <form action="/admin/user/{{$v->id}}" method="post" style="display: inline;"> -->
+                                        {{-- csrf_field() --}}
+                                        {{-- method_field('DELETE') --}}
+                                        <input type="hidden" value="{{$v->face}}">
+                                        <button class="btn btn-danger btn-sm del"  data-id="{{$v->id}}" >删除</button>
+                                    <!-- </form> -->
                                 </td>
 	                        </tr>
                         @endforeach
@@ -166,5 +167,33 @@
 
 @section('js')
 
+<script type="text/javascript">
+
+    $('.del').click(function(){
+
+        id = $(this).attr('data-id');
+
+        var oldpicture = $(this).prev().val();
+
+        console.log(oldpicture);
+
+        layer.confirm('你确定删除吗',{btn:['确定','取消'],title:'提示',icon:'3'},function(){
+
+            $.post('/admin/user/'+id,{'oldpicture':oldpicture,'_token':'{{ csrf_token() }}','_method':'DELETE'},
+                function(data){
+                    console.log(data);
+                    if(data){
+
+                        location.reload(true);
+
+                    }
+                })
+
+        },function(){
+            
+        })
+    return false;
+    })
+</script>
 
 @stop

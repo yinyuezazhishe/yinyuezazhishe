@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5a0edabe899f7ed5e00ea6eaba064e5e",
+    "content-hash": "b7904d07d1e1765a0a199aa11d6301a3",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -357,6 +357,7 @@
             "time": "2017-06-15T17:19:42+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "gregwar/captcha",
 <<<<<<< HEAD
             "version": "v1.1.7",
@@ -438,6 +439,8 @@
 >>>>>>> 9c6b69e99b972f22a0c61d2d6654d7d2c0bea3e5
         },
         {
+=======
+>>>>>>> hh
             "name": "jakub-onderka/php-console-color",
             "version": "0.1",
             "source": {

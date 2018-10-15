@@ -76,13 +76,13 @@ class AdminUsersController extends Controller
             $suffix = $request->file('face')->getClientOriginalExtension(); 
 
             //移动
-            $request -> file('face') -> move('admins/uploads/face/',$name.'.'.$suffix);
+            $request -> file('face') -> move('uploads',$name.'.'.$suffix);
 
              //头像文件路径
-            $res['face'] = '/admins/uploads/face/'.$name.'.'.$suffix;
+            $res['face'] = '/uploads/'.$name.'.'.$suffix;
         } else {
 
-            $res['face'] = '/admins/uploads/face/default.jpg';
+            $res['face'] = '/uploads/default.jpg';
         }
 
        
@@ -174,13 +174,18 @@ class AdminUsersController extends Controller
                 unlink('.'.$oldFace);
             }
 
+            session(['adminusers_face' => $res['face']]);
+
         }
 
             
             $rs = AdminUsers::where('id',$id) -> update($res);
             if ($rs) {
+
                return redirect('/admin/user') -> with('success','修改成功');
+
             } else {
+
                 return back() -> with('error','未做任何修改');
             }
 
@@ -195,20 +200,38 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
+        $oldface = $request->input('oldpicture');
+
         try{
 
-            $rs = AdminUsers::where('id',$id) -> delete();
+            $rs = AdminUsers::where('id',$id)->delete();
 
             if ($rs) {
+                
+                // 删除用户头像
+                if ($oldface) {
 
-                return redirect('/admin/user') -> with('success','删除成功');
+                   unlink('.'.$oldface);
+                }
+
+                session(['success'=>'删除成功']);
+                return 1;
+
+            } else {
+
+                session(['error'=>'删除失败']);
+                return 0;
             }
+
         }catch(\Exception $e){
-            
-                 return back() -> with('error','删除失败');
-            }
+
+            session(['error'=>'删除失败']);
+            return 0;
+
+        }
+    
     }
 
     /**
@@ -265,24 +288,31 @@ class AdminUsersController extends Controller
             $suffix = $request->file('face')->getClientOriginalExtension(); 
 
             //移动
-            $request -> file('face') -> move('admins/uploads/face/',$name.'.'.$suffix);
+            $request -> file('face') -> move('uploads/Face',$name.'.'.$suffix);
 
              //头像文件路径
-            $res['face'] = '/admins/uploads/face/'.$name.'.'.$suffix;
+            $res['face'] = '/uploads/Face/'.$name.'.'.$suffix;
 
             //获取原来头像的url地址
-            $oldFace = session('face');
+            $oldFace = session('adminusers_face');
+
+            // dd($oldFace);
             
             //将新修改图片路径存进session
-            session(['adminusers->face'=> $res['face']]);
+            session(['adminusers_face'=> $res['face']]);
 
+            // dd(session('admin_user')->face);
             //删除原来的额旧头像
             if ($oldFace) {
                 unlink('.'.$oldFace);
             } 
-            $rs = AdminUsers::where('id',session('adminusersid')) -> update($res);
-             if ($rs) {
-                return redirect('/admin') -> with('success','修改成功');
+            try{
+                $rs = AdminUsers::where('id',session('admin_user')->id) -> update($res);
+                 if ($rs) {
+                    return redirect('/admin') -> with('success','修改成功');
+                }
+            }catch(\Exception $e){
+                return redirect('/admin') -> with('success','修改失败');
             }
         }
 
@@ -290,41 +320,104 @@ class AdminUsersController extends Controller
     }
 
 
+     /**
+     * 用户修改密码页面
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function setPass()
     {
         return view('Admin.User.setpass',['title'=>'修改密码']);
     }
 
+
+     /**
+     * 将用户密码进行修改
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function doPass(Request $request)
     {
-
+        //去掉不需要的数据
         $res = $request -> except('_token','repass','_method','oldpass');
 
+        // 获取用户id
         $id = session('id');
 
+        // 通过id获取到用户额原密码
         $oldPass = AdminUsers::find(session('id'))->password;
- 
+        
+        //获取输入的原密码
         $newPass = $request->input('oldpass');
 
+        //判断密码是否一致
         if (Hash::check($newPass,$oldPass)) {
 
+            //加密 输入的新密码
             $res['password'] = Hash::make($request->input('password'));
 
-            $rs = AdminUsers::where('id',$id) -> update($res);
+            try{
 
-            if ($rs) {
+                //对用户的密码进行修改
+                $rs = AdminUsers::where('id',$id) -> update($res);
 
-                $request->session()->forget(['username','face','power','id']);
+                if ($rs) {
 
-                return redirect('/admin/login') -> with('success','修改成功! 请重新登录');
+                    //清空session 里面用户的数据
+                    $request->session()->forget(['admin_user','adminusers_face']);
 
-            } else {
+                    return redirect('/admin/login') -> with('success','修改成功! 请重新登录');
+
+                } else {
+
+                    return back() -> with('error','修改失败');
+                }
+            }catch(\Exception $e){
+
                 return back() -> with('error','修改失败');
             }
-
         } else {
 
             return back() -> with('error','密码不正确');
         }
     }
+
+
+     /**
+     * 将用户主题进行修改
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function setTheme(Request $request)
+    {   
+        //去除多余数据
+        $res = $request -> except('_token','id','_method');
+
+        //获取用户id
+        $id = $request -> input('id');
+        
+        try{
+
+            //通过id进行修改
+            $rs = AdminUsers::where('id',$id) -> update($res);
+
+            if ($rs) {
+
+                session(['success'=>'修改主题成功']);
+                return 1;
+
+            } else {
+
+                session(['error'=>'修改主题失败']);
+                return 0;
+            }
+        }catch(\Exception $e){
+
+            session(['error'=>'修改主题失败']);
+        }
+    }
+
 }
