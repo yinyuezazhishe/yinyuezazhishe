@@ -36,7 +36,7 @@ Route::resource('admin/permission', 'Admin\PermissionAdminController');
 Route::prefix('Admin')->group(function(){
 	Route::get('Blogroll/rank','Admin\AdminBlogrollController@rank');
 	Route::resource('Blogroll','Admin\AdminBlogrollController');
-
+});
 // 后台管理主页
 Route::any('admin','Admin\IndexController@index');
 
