@@ -17,9 +17,11 @@
     <link href="/admins/css/animate.min.css" rel="stylesheet">
     <link href="/admins/css/style.min.css?v=4.0.0" rel="stylesheet">
     <link href="/admins/css/bootstrap-fileinput.css" rel="stylesheet">
+    <link href="/admins/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="/admins/css/animate.min.css" rel="stylesheet">
+    <link href="/admins/css/style.min.css?v=4.0.0" rel="stylesheet">
     <link href="/admins/layer/mobile/need/layer.css" rel="stylesheet">
     <link href="/admins/layer/theme/default/layer.css" rel="stylesheet">
-
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
     <div id="wrapper">
@@ -29,21 +31,20 @@
             </div>
             <div class="sidebar-collapse">
                 <ul class="nav" id="side-menu">
-                    <li class="nav-header">
+                   <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <input type="hidden" class="uid" value="{{session('admin_user')->id}}">
-                            <span><img alt="image" class="img-circle" src="{{session('adminusers_face')}}" style="width: 64px;height: 64px" /></span>
+                            <span><img alt="image" class="img-circle" src="{{session('adminusers')->face}}" style="width: 64px;height: 64px" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
-                               <span class="block m-t-xs"><strong class="font-bold">{{session('admin_user')->username}}</strong></span>
+                               <span class="block m-t-xs"><strong class="font-bold">{{session("adminusers")->username}}</strong></span>
                                 <span class="text-muted text-xs block">
-                                    @if(session('admin_user')->power == '0')
+                                    @if(session('power') == '0')
                                         普通群众
-                                    @elseif(session('admin_user')->power == '1')
+                                    @elseif(session('power') == '1')
                                         中级管理员
-                                    @elseif(session('admin_user')->power == '2')
+                                    @elseif(session('power') == '2')
                                         高级管理员
-                                    @elseif(session('admin_user')->power == '3')
+                                    @elseif(session('power') == '3')
                                         超级管理员
                                     @endif
                                     <b class="caret"></b></span>
@@ -63,38 +64,49 @@
                         </div>
                     </li>
                     <li>
-                        <a href="/admin">
+                        <a class="ind" href="/admin">
                             <i class="fa fa-home"></i>
                             <span class="nav-label">首页</span>
                         </a>
-                    </li>                  
-                    <li class="active">
+                    </li>                 
+                    <li>
                         <a href="">
                             <i class="fa fa-group"></i> 
                             <span class="nav-label">用户管理</span>
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li>
+                            <li class="show_user">
                                 <a href="/admin/user">浏览用户</a>
                             </li>
-                            <li>
+                            <li class="create_user">
                                 <a href="/admin/user/create">添加用户</a>
                             </li>
                         </ul>
-                    </li>                    
+                    </li>                 
                     <li>
                         <a href="#">
-                            <i class="fa fa-user-secret"></i> 
-                            <span class="nav-label">用户权限管理</span>
+                            <i class="fa fa-github-square"></i> 
+                            <span class="nav-label">角色管理</span>
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="404.html">404页面</a>
+                            <li class="create_role"><a href="/admin/role/create">添加角色</a>
                             </li>
-                            <li><a class="J_menuItem" href="500.html">500页面</a>
+                            <li class="show_role"><a href="/admin/role">浏览角色</a>
                             </li>
-                            <li><a class="J_menuItem" href="empty_page.html">空白页</a>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-user-secret"></i> 
+                            <span class="nav-label">权限管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li class="create_permission"><a href="/admin/permission/create">添加权限</a>
+                            </li>
+                            <li class="show_permission"><a href="/admin/permission">浏览权限</a>
                             </li>
                         </ul>
                     </li>
@@ -135,12 +147,18 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="404.html">404页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="500.html">500页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="empty_page.html">空白页</a>
-                            </li>
+                            <li>
+                                <a href="/Admin/category/create"> 
+                                    <span class="nav-label">添加类别</span>
+                                </a>                                 
+                            </li>                           
+                        </ul>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/Admin/category"> 
+                                    <span class="nav-label">浏览类别</span>
+                                </a>
+                            </li>                           
                         </ul>
                     </li>
                     <li>
@@ -180,7 +198,7 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="404.html">浏览订单</a>
+                            <li><a class="J_menuItem" href="404.html">404页面</a>
                             </li>
                             <li><a class="J_menuItem" href="500.html">500页面</a>
                             </li>
@@ -204,32 +222,30 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="javascript:void(0)">
                             <i class="glyphicon glyphicon-link"></i> 
                             <span class="nav-label">链接管理</span>
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="404.html">404页面</a>
+                            <li class="showlink"><a href="/Admin/Blogroll">查看链接</a>
                             </li>
-                            <li><a class="J_menuItem" href="500.html">500页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="empty_page.html">空白页</a>
-                            </li>
+                            <li class="createlink"><a href="/Admin/Blogroll/create">添加链接</a>
+                            </li>                            
                         </ul>
                     </li>
-                    <li>
+                      <li>
                         <a href="#">
                             <i class="fa fa-edit"></i> 
                             <span class="nav-label">留言板管理</span>
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="404.html">404页面</a>
+                            <li>
+                                <a href="404.html">添加留言</a>
                             </li>
-                            <li><a class="J_menuItem" href="500.html">500页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="empty_page.html">空白页</a>
+                            <li>
+                                <a href="500.html">浏览留言</a>
                             </li>
                         </ul>
                     </li>
@@ -240,26 +256,24 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="404.html">404页面</a>
+                            <li>
+                                <a href="/Admin/banner/create">添加轮播</a>
                             </li>
-                            <li><a class="J_menuItem" href="500.html">500页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="empty_page.html">空白页</a>
+                            <li>
+                                <a href="/Admin/banner">浏览轮播</a>
                             </li>
                         </ul>
                     </li>
-                    <li>
+                     <li>
                         <a href="#">
                             <i class="fa fa-map-signs"></i> 
                             <span class="nav-label">广告管理</span>
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="404.html">404页面</a>
+                            <li><a href="/Admin/advertising/create">添加广告</a>
                             </li>
-                            <li><a class="J_menuItem" href="500.html">500页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="empty_page.html">空白页</a>
+                            <li><a href="/Admin/advertising">浏览广告</a>
                             </li>
                         </ul>
                     </li>
@@ -277,13 +291,12 @@
                             <li><a class="J_menuItem" href="empty_page.html">空白页</a>
                             </li>
                         </ul>
-
                 </ul>
             </div>
         </nav>
         <!--左侧导航结束-->
         <!--右侧部分开始-->
-        <div id="page-wrapper" class="gray-bg dashbard-1" style="overflow-x: hidden;">
+        <div id="page-wrapper" class="gray-bg dashbard-1" style="overflow-x:hidden;">
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header" style="width:90%;">
@@ -369,147 +382,54 @@
                             <div class="title">皮肤选择</div>
                             <div class="setings-item default-skin nb">
                                 <span class="skin-name ">
-                         <a href="#" class="s-skin-0 default">
-                             默认皮肤
-                         </a>
-                    </span>
+                                     <a href="#" class="s-skin-0">
+                                         默认皮肤
+                                     </a>
+                                </span>
                             </div>
                             <div class="setings-item blue-skin nb">
                                 <span class="skin-name ">
-                        <a href="#" class="s-skin-1 blue">
-                            蓝色主题
-                        </a>
-                    </span>
+                                    <a href="#" class="s-skin-1">
+                                        蓝色主题
+                                    </a>
+                                </span>
                             </div>
                             <div class="setings-item yellow-skin nb">
                                 <span class="skin-name ">
-                        <a href="#" class="s-skin-3 yellow">
-                            黄色/紫色主题
-                        </a>
-                    </span>
+                                    <a href="#" class="s-skin-3">
+                                        黄色/紫色主题
+                                    </a>
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-    </div>
     <script src="/admins/js/jquery.min.js?v=2.1.4"></script>
     <script src="/admins/js/bootstrap.min.js?v=3.3.5"></script>
+    <script src="/admins/js/bootstrap-fileinput.js"></script>    
     <script src="/admins/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="/admins/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
     <script src="/admins/js/plugins/layer/layer.min.js"></script>
     <script src="/admins/js/hplus.min.js?v=4.0.0"></script>
     <script type="text/javascript" src="/admins/js/contabs.min.js"></script>
     <script src="/admins/js/plugins/pace/pace.min.js"></script>
-    <script src="/admins/js/bootstrap-fileinput.js"></script>
     <script src="/admins/layer/layer.js"></script>
-    <script src="/admins/js/jquerysession.js"></script>
-
+    <script type="text/javascript" src="/admins/js/contabs.min.js"></script>
+    <script src="/admins/js/plugins/pace/pace.min.js"></script>
     <script type="text/javascript">
-
-        var id = $('.uid').val();
         //接收返回信息
         $(function(){
             @if(session('success'))
-                layer.msg("{{session('success')}}");
+                layer.alert("{{session('success')}}",{title:'提示',icon:'6'});
                 {{session()->forget('success')}}
             @endif
-
             @if(session('error'))
-                layer.msg("{{session('error')}}");
+                layer.alert("{{session('error')}}",{title:'提示',icon:'5'});
                 {{session()->forget('error')}}
-            @endif  
-
-            var theme1 = $('.theme').val();
-
-            var theme =  $.session.get('theme');
-
-            if (theme == undefined){
-
-                theme = theme1;
-
-            }
-
-            $('body').eq(0).addClass(theme);
-
-            if (theme == 'skin-1') {
-
-            $('.style1').addClass('lazur-bg');
-
-            } else if (theme == 'skin-3') {
-
-                $('.style1').addClass('yellow-bg');
-
-            } else {
-
-                 $('.style1').addClass('navy-bg');
-            }
-
+            @endif
         })
-
-        $('.blue').click(function(){
-
-            $.session.set('theme','skin-1');
-
-            $('.style1').removeClass('navy-bg');
-            $('.style1').removeClass('yellow-bg');
-
-            $('.style1').addClass('lazur-bg');
-
-            setTheme('skin-1');
-        });
-
-        $('.yellow').click(function(){
-
-            $.session.set('theme','skin-3');
-           
-            $('.style1').removeClass('navy-bg');
-            $('.style1').removeClass('lazur-bg');
-
-            $('.style1').addClass('yellow-bg');
-
-            setTheme('skin-3');
-        });
-
-        $('.default').click(function(){
-
-            $.session.set('theme','default');
-            
-            $('.style1').removeClass('yellow-bg');
-            $('.style1').removeClass('lazur-bg');
-
-            $('.style1').addClass('navy-bg');
-
-            setTheme('default');
-        });
-
-        function setTheme(a)
-        {
-            $.ajax({
-
-                url:'/admin/setTheme',
-                data:{
-                    'id':id,
-                    'theme':a
-                },
-                dataType:'json',
-                type:'GET',
-                success:function(data){
-                    if (data){
-                        
-                        location.reload(true);
-                    }
-                },
-                error:function(){
-                    
-                },
-                timeout:3000,
-                async:false
-            });
-        }
-
     </script>
     @section('js')
 

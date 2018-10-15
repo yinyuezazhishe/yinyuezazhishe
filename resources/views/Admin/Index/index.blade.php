@@ -133,6 +133,13 @@
 @stop
 
 @section('js')
+
+    <script type="text/javascript">
+        //改变导航条样式
+        var ind = $('.ind').parents('li');
+        $('.ind a').css({'color':'#fff'});
+        ind.attr('class','active');
+    </script>
 	
 	<script>
 		mytime();

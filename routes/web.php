@@ -32,10 +32,21 @@ Route::resource('admin/role', 'Admin\RoleAdminController');
 // 后台权限管理
 Route::resource('admin/permission', 'Admin\PermissionAdminController');
 
+/* 后台用户角色权限 */
+// 为用户添加角色
+Route::get('admin/user_role/{id}/u_r_edit', 'Admin\User_Role_Permission@u_r_edit');
+// 处理用户添加角色
+Route::post('admin/u_r_update', 'Admin\User_Role_Permission@u_r_update');
+// 为角色添加权限
+Route::get('admin/role_permission/{id}/r_p_edit', 'Admin\User_Role_Permission@r_p_edit');
+// 处理角色添加权限
+Route::post('admin/r_p_update', 'Admin\User_Role_Permission@r_p_update');
+
 //后台链接管理
 Route::prefix('Admin')->group(function(){
 	Route::get('Blogroll/rank','Admin\AdminBlogrollController@rank');
 	Route::resource('Blogroll','Admin\AdminBlogrollController');
+});
 
 // 后台管理主页
 Route::any('admin','Admin\IndexController@index');
