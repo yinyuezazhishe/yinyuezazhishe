@@ -61,10 +61,10 @@ class LoginAdminController extends Controller
 
     	// echo session('code');
 
-    	if ($request -> code != session('code')) {
+  //   	if ($request -> code != session('code')) {
 
-			return redirect('/admin/login')->with('error','验证码错误') -> withInput();
-		}
+		// 	return redirect('/admin/login')->with('error','验证码错误') -> withInput();
+		// }
 
     	$user = AdminUsers::where('username', $request -> username) -> first();
 
@@ -90,6 +90,22 @@ class LoginAdminController extends Controller
 
     	// dump($user) ;
         session(['adminusers'=>$user]);
+        session(['adminusers_face'=>$user->face]);
     	return redirect('/admin')->with('success','登录成功');        
+    }
+
+    /**
+     *  退出登录
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function Exitlogon(Request $request)
+    {   
+        //将用户信息从session中清除
+        session(['admin_user'=>'']);
+        session(['adminusers_face'=>'']);
+
+        return redirect('/admin/login');
     }
 }

@@ -3,7 +3,7 @@
 @section('title',$title)
 
 @section('content')
-	<input type="hidden" name="" class="theme" value="{{session('admin_user')->theme}}">
+	<input type="hidden" name="" class="theme" value="{{session('adminusers')->theme}}">
 	<div class="col-sm-3">
         <div class="widget style1 navy-bg">
             <div class="row">
@@ -71,7 +71,7 @@
                 	<img alt="image" class="img-circle" src="{{session('adminusers_face')}}" style="width: 120px;height: 120px">
                 	</div>
             		<ul style="width:200px;float:left;list-style: none;">
-                		<li class="m-xs font-bold username" style="width:200px;">{{session('admin_user')->username}} 您好</li>
+                		<li class="m-xs font-bold username" style="width:200px;">{{session('adminusers')->username}} 您好</li>
                 		<br>
                			<li class="m-xs font-bold" style="width:200px;">
                    		这是您第12次登录
@@ -133,6 +133,13 @@
 @stop
 
 @section('js')
+
+    <script type="text/javascript">
+        //改变导航条样式
+        var ind = $('.ind').parents('li');
+        $('.ind a').css({'color':'#fff'});
+        ind.attr('class','active');
+    </script>
 	
 	<script>
 		mytime();

@@ -344,10 +344,10 @@ class AdminUsersController extends Controller
         $res = $request -> except('_token','repass','_method','oldpass');
 
         // 获取用户id
-        $id = session('id');
+        $id = session('adminusers')->id;
 
         // 通过id获取到用户额原密码
-        $oldPass = AdminUsers::find(session('id'))->password;
+        $oldPass = AdminUsers::find($id)->password;
         
         //获取输入的原密码
         $newPass = $request->input('oldpass');
