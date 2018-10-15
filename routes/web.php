@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Home/index');
 });
 
 
@@ -25,10 +25,10 @@ Route::get('/admin/setPass','Admin\AdminUsersController@setPass');
 Route::post('/admin/doPass','Admin\AdminUsersController@doPass');
 
 //后台用户
-Route::get('/admin/user/getName','Admin\AdminUsersController@getName');
 Route::resource('/admin/user','Admin\AdminUsersController');
 
 //查询后用户名称是否重复
+Route::get('/admin/user/getName','Admin\AdminUsersController@getName');
 
 // 后台管理主页
 Route::any('admin','Admin\IndexController@index');
