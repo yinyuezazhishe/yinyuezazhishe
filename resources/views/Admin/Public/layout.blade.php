@@ -31,7 +31,8 @@
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src="{{session('adminusers')->face}}" style="width: 64px;height: 64px" /></span>
+                            <input type="hidden" class="uid" value="{{session('admin_user')->id}}">
+                            <span><img alt="image" class="img-circle" src="{{session('adminusers_face')}}" style="width: 64px;height: 64px" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                <span class="block m-t-xs"><strong class="font-bold">{{session('admin_user')->username}}</strong></span>
@@ -224,11 +225,11 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li>
-                                <a href="/Admin/message/create">添加留言</a>
+                            <li><a class="J_menuItem" href="404.html">404页面</a>
                             </li>
-                            <li>
-                                <a href="/Admin/message">浏览留言</a>
+                            <li><a class="J_menuItem" href="500.html">500页面</a>
+                            </li>
+                            <li><a class="J_menuItem" href="empty_page.html">空白页</a>
                             </li>
                         </ul>
                     </li>
@@ -408,8 +409,7 @@
 
     <script type="text/javascript">
 
-       
-
+        var id = $('.uid').val();
         //接收返回信息
         $(function(){
             @if(session('success'))
@@ -420,13 +420,17 @@
             @if(session('error'))
                 layer.msg("{{session('error')}}");
                 {{session()->forget('error')}}
-            @endif
+            @endif  
 
-            if (!theme == '') {
-                $.session.set('theme', $('.theme').val());
-            }
+            var theme1 = $('.theme').val();
 
             var theme =  $.session.get('theme');
+
+            if (theme == undefined){
+
+                theme = theme1;
+
+            }
 
             $('body').eq(0).addClass(theme);
 
@@ -443,40 +447,69 @@
                  $('.style1').addClass('navy-bg');
             }
 
-
-
         })
 
         $('.blue').click(function(){
 
-            $.session.set('theme', 'skin-1');
+            $.session.set('theme','skin-1');
 
             $('.style1').removeClass('navy-bg');
             $('.style1').removeClass('yellow-bg');
 
             $('.style1').addClass('lazur-bg');
 
-
+            setTheme('skin-1');
         });
 
         $('.yellow').click(function(){
 
-            $.session.set('theme', 'skin-3');
-
+            $.session.set('theme','skin-3');
+           
             $('.style1').removeClass('navy-bg');
             $('.style1').removeClass('lazur-bg');
 
             $('.style1').addClass('yellow-bg');
+
+            setTheme('skin-3');
         });
 
         $('.default').click(function(){
-            $.session.set('theme', 'skin-0');
 
+            $.session.set('theme','default');
+            
             $('.style1').removeClass('yellow-bg');
             $('.style1').removeClass('lazur-bg');
 
             $('.style1').addClass('navy-bg');
+
+            setTheme('default');
         });
+
+        function setTheme(a)
+        {
+            $.ajax({
+
+                url:'/admin/setTheme',
+                data:{
+                    'id':id,
+                    'theme':a
+                },
+                dataType:'json',
+                type:'GET',
+                success:function(data){
+                    if (data){
+                        
+                        location.reload(true);
+                    }
+                },
+                error:function(){
+                    
+                },
+                timeout:3000,
+                async:false
+            });
+        }
+
     </script>
     @section('js')
 
