@@ -103,9 +103,8 @@ class LoginAdminController extends Controller
     public function Exitlogon(Request $request)
     {   
         //将用户信息从session中清除
-        session(['admin_user'=>'']);
-        session(['adminusers_face'=>'']);
-
-        return redirect('/admin/login');
+        $request->session()->forget(['adminusers', 'adminusers_face']);
+        
+        return redirect('/admin/login') -> with('success', '退出成功, 请重新登录');
     }
 }

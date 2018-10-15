@@ -279,7 +279,6 @@ class AdminUsersController extends Controller
         //文件上传
         //判断是否有文化上传
         if ($request -> hasFile('face')) {
-
            
             //自定义名字
             $name = time().mt_rand(11111,99999);
@@ -307,7 +306,7 @@ class AdminUsersController extends Controller
                 unlink('.'.$oldFace);
             } 
             try{
-                $rs = AdminUsers::where('id',session('admin_user')->id) -> update($res);
+                $rs = AdminUsers::where('id',session('adminusers')->id) -> update($res);
                  if ($rs) {
                     return redirect('/admin') -> with('success','修改成功');
                 }
@@ -398,6 +397,8 @@ class AdminUsersController extends Controller
 
         //获取用户id
         $id = $request -> input('id');
+
+        // return 1;
         
         try{
 
@@ -414,9 +415,12 @@ class AdminUsersController extends Controller
                 session(['error'=>'修改主题失败']);
                 return 0;
             }
+
         }catch(\Exception $e){
 
-            session(['error'=>'修改主题失败']);
+            echo $e -> getMessage();
+
+            // session(['error'=>'修改主题失败']);
         }
     }
 
