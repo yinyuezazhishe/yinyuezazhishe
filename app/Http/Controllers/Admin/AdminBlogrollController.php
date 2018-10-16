@@ -166,11 +166,11 @@ class AdminBlogrollController extends Controller
                 session(['success'=>'删除成功']);
                 return 1;
             }else{
-                session(['success'=>'删除失败']);
+                session(['error'=>'删除失败']);
                 return 0;
             }
         }catch(\Exception $e){
-            session(['success'=>'删除失败']);
+            session(['error'=>'删除失败']);
             return 0;
         }
     }
@@ -192,9 +192,12 @@ class AdminBlogrollController extends Controller
             if($rs){
                 session(['success'=>'排序成功']);
                 return 1;
+            }else{
+                session(['error'=>'排序失败']);
+                return 0;
             }
         }catch(\Exception $e){
-            session(['success'=>'排序成功']);
+            session(['error'=>'排序失败']);
             return 0;
         }
     }

@@ -11,8 +11,8 @@ class BlogrollController extends Controller
     //
     public function ShowBlogroll()
     {
-    	$imglinks = Blogroll::where('type','0')->orderBy('type','asc')->get();
-    	$fontlinks = Blogroll::where('type','1')->orderBy('type','asc')->get();
+    	$imglinks = Blogroll::where('type','0')->orderBy('rank','asc')->get();
+    	$fontlinks = Blogroll::where('type','1')->orderBy('rank','asc')->get();
     	return view('Home.Blogroll.show',['imglinks'=>$imglinks,'fontlinks'=>$fontlinks]);
     }
 }

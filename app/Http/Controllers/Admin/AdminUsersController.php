@@ -165,7 +165,7 @@ class AdminUsersController extends Controller
             $request -> file('face') -> move('uploads',$name.'.'.$suffix);
 
              //头像文件路径
-            $res['face'] = '/uploads/'.$name.'.'.$suffix;
+            $res['face'] = '/admins/uploads/face/'.$name.'.'.$suffix;;
 
              //获取原来头像的url地址
             $oldFace = $request->input('oldface');
@@ -271,16 +271,14 @@ class AdminUsersController extends Controller
             $res['face'] = '/admins/uploads/face/'.$name.'.'.$suffix;
 
             //获取原来头像的url地址
-            $oldFace = session('face');
-            
+            $oldFace = session('adminusers_face');
             //将新修改图片路径存进session
-            session(['adminusers->face'=> $res['face']]);
-
+            session(['adminusers_face'=> $res['face']]);
             //删除原来的额旧头像
             if ($oldFace) {
                 unlink('.'.$oldFace);
             } 
-            $rs = AdminUsers::where('id',session('adminusersid')) -> update($res);
+            $rs = AdminUsers::where('id',session('admin_user')->id) -> update($res);
              if ($rs) {
                 return redirect('/admin') -> with('success','修改成功');
             }

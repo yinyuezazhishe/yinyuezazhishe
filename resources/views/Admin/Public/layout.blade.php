@@ -22,6 +22,7 @@
     <link href="/admins/css/style.min.css?v=4.0.0" rel="stylesheet">
     <link href="/admins/layer/mobile/need/layer.css" rel="stylesheet">
     <link href="/admins/layer/theme/default/layer.css" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}"> 
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
     <div id="wrapper">
@@ -33,7 +34,7 @@
                 <ul class="nav" id="side-menu">
                    <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src="{{session('adminusers')->face}}" style="width: 64px;height: 64px" /></span>
+                            <span><img alt="image" class="img-circle" src="{{session('adminusers_face')}}" style="width: 64px;height: 64px" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                <span class="block m-t-xs"><strong class="font-bold">{{session("adminusers")->username}}</strong></span>
@@ -117,11 +118,7 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="404.html">404页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="500.html">500页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="empty_page.html">空白页</a>
+                            <li class="showuser"><a href="/Admin/HomeUsers/index">查看会员</a>
                             </li>
                         </ul>
                     </li>

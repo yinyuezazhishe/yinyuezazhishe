@@ -30,6 +30,12 @@ Route::resource('admin/permission', 'Admin\PermissionAdminController');
 Route::prefix('Admin')->group(function(){
 	Route::get('Blogroll/rank','Admin\AdminBlogrollController@rank');
 	Route::resource('Blogroll','Admin\AdminBlogrollController');
+	//会员管理
+	Route::get('HomeUsers/index','Admin\HomeUsersController@index');
+	//会员状态
+	Route::get('HomeUsers','Admin\HomeUsersController@status');
+	//会员删除
+	Route::delete('HomeUsers/{id}','Admin\HomeUsersController@distory');
 });
 
 //后台用户修改头像
@@ -62,7 +68,7 @@ Route::resource('Admin/message', 'Admin\AdminMessageController');
 
 // 前台主页
 Route::any('/', function () {
-    return view('Home/index');
+    return view('home/index');
 });
 
 // 前台登录验证
@@ -86,8 +92,17 @@ Route::post('home/forgetpass', 'Home\LoginHomeController@forgetpass');
 //前台链接展示
 Route::get('Home/Blogroll','Home\BlogrollController@showBlogroll');
 
-
-
-
+//前台个人中心显示
+Route::get('home/user/center','Home\HomeUsersController@index');
+//前台个人中心个性签名
+Route::get('home/user/sdasd','Home\HomeUsersController@sdasd');
+//前台个人中心设置
+Route::get('home/user/setting','Home\HomeUsersController@setting');
+//保存个人中心设置
+Route::post('home/user/saveinfo','Home\HomeUsersController@saveinfo');
+//上传用户头像
+Route::post('home/user/uploadface','Home\HomeUsersController@uploadface');
+//用户音乐设置
+Route::post('home/user/music',"Home\HomeUsersController@music");
 // 生成验证码
 Route::any('/code', 'Admin\LoginAdminController@verify');	
