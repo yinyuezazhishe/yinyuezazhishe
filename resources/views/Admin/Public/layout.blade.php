@@ -25,6 +25,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}"> 
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+        <input type="hidden" name="" class="theme" value="{{session('adminusers')->theme}}">
     <div id="wrapper">
         <!--左侧导航开始-->
         <nav class="navbar-default navbar-static-side" role="navigation">
@@ -437,8 +438,7 @@
             var theme1 = $('.theme').val();
 
             theme =  $.session.get('theme');
-            // console.log(theme);
-
+            
             if (theme == undefined){
 
                 theme = theme1;

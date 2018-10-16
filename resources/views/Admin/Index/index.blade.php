@@ -3,7 +3,7 @@
 @section('title',$title)
 
 @section('content')
-	<input type="hidden" name="" class="theme" value="{{session('adminusers')->theme}}">
+
 	<div class="col-sm-3">
         <div class="widget style1 navy-bg">
             <div class="row">
@@ -103,19 +103,19 @@
                 <table class="table table-striped">
                         <tr>
                             <td width="150px;">操作系统:</td>
-                            <td width="320px">Windows</td>
+                            <td width="320px">{{PHP_OS}}</td>
                             <td width="150px;">运行环境</td>
-                            <td width="320px">Windows</td>
+                            <td width="320px">{{php_sapi_name()}}</td>
                         </tr>
                         <tr>
-                            <td width="150px;">操作系统:</td>
-                            <td width="320px">Windows</td>
-                            <td width="150px;">操作系统</td>
-                            <td width="320px">Windows</td>
+                            <td width="150px;">PHP版本:</td>
+                            <td width="320px">{{phpversion()}}</td>
+                            <td width="150px;">Apache版本:</td>
+                            <td width="320px">{{phpversion()}}</td>
                         </tr>
                         <tr>
-                            <td width="150px;">操作系统:</td>
-                            <td width="320px">Windows</td>
+                            <td width="150px;">数据库版本:</td>
+                            <td width="320px">{{PHP_OS}}</td>
                             <td width="150px;">操作系统</td>
                             <td width="320px">Windows</td>
                         </tr>

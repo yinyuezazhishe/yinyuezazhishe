@@ -21,6 +21,7 @@
     </div>
     <div class="ibox-content">
         <form method="post" class="form-horizontal" enctype='multipart/form-data' action="/admin/user/{{$rs->id}}">
+            <input type="hidden" name="uid" value="{{session('adminusers')->id}}" >
             <div class="form-group">
                 <label class="col-sm-2 control-label">用户名</label>
                 <div class="col-sm-6 ">
