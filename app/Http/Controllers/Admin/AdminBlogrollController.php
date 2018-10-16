@@ -192,9 +192,12 @@ class AdminBlogrollController extends Controller
             if($rs){
                 session(['success'=>'排序成功']);
                 return 1;
+            }else{
+                session(['error'=>'排序失败']);
+                return 0;
             }
         }catch(\Exception $e){
-            session(['error'=>'排序成功']);
+            session(['error'=>'排序失败']);
             return 0;
         }
     }

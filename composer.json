@@ -27,7 +27,8 @@
             "App\\": "app/"
         },
         "files":[
-            "app/Function/catename.php"
+            "app/Function/catename.php",        
+            "app/Function/facepath.php"
         ]
     },
     "autoload-dev": {

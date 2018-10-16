@@ -228,4 +228,5 @@ return [
 
     ],
     'imgpath'=>public_path(),
+    'uploads'=>'./uploads',
 ];

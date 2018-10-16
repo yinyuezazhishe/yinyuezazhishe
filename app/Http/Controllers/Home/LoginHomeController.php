@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Model\Home\HomeUser;
+use App\Model\Home\HomeUserMusic;
 use Illuminate\Support\Facades\Mail;
 use Cookie;
 
@@ -39,6 +40,7 @@ class LoginHomeController extends Controller
 		}
 
         $user = HomeUser::where('username', $res['username']) -> first();
+        $music = HomeUserMusic::where('uid',$user->id)->first();
 
         if ($user) {
 
@@ -60,9 +62,12 @@ class LoginHomeController extends Controller
     	} else {
     		return redirect('/')->with('error','用户名或密码错误');
     	}
-
+        if($music){
+            session(["homeuserMusic"=>$music]);
+        }
     	session(['homeuser' => $user]);
-
+        session(['sdasd'=>$user->sdasd]);
+        session(['homeface'=>$user->face]);
     	return redirect('/')->with('success','登录成功');
 
     	// dd($res);
@@ -251,12 +256,12 @@ class LoginHomeController extends Controller
         $res = $request -> except('_token', 'repassword');
 
         $user = HomeUser::where('email' ,$res['email']) -> first();
-        echo $res['code'].'<br>';
-        echo Cookie::get('homecode');
+
+        // echo $res['code'].'<br>';
+        // echo Cookie::get('homecode');
         if (strtolower($res['code']) != strtolower(Cookie::get('homecode'))) {
-            echo $res['code'].'<br>';
-            echo Cookie::get('homecode');
-            // return redirect('/') -> with('error', '您输入的验证码有误, 请确认输入验证码与邮箱验证码一致!');
+
+            return redirect('/') -> with('error', '您输入的验证码有误, 请确认输入验证码与邮箱验证码一致!');
         }
 
         if (!preg_match("/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/", $res['email'])) {
@@ -282,21 +287,22 @@ class LoginHomeController extends Controller
         $pass['password'] = Hash::make($res['password']);
 
         // dd($res);
-        // try{
+
+        try{
            
-        //     $rs = HomeUser::where('email' ,$res['email']) -> update($pass);
+            $rs = HomeUser::where('email' ,$res['email']) -> update($pass);
 
-        //     if($rs){
+            if($rs){
 
-        //         return redirect('/')->with('success','修改密码成功');
-        //     }
+                return redirect('/')->with('success','修改密码成功');
+            }
 
-        // }catch(\Exception $e){
+        }catch(\Exception $e){
 
-        //     // echo $e -> getCode();
-        //     // echo $e -> getMessage();
+            // echo $e -> getCode();
+            // echo $e -> getMessage();
 
-        //     return back()->with('error','修改密码失败');
-        // }
+            return back()->with('error','修改密码失败');
+        }
     }
 }

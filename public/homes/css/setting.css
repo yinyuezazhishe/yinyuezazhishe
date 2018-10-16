@@ -1,0 +1,41 @@
+.input{
+	width: 100%;
+    height: 35px;
+    border:0px;
+    outline: none;
+    border: #bfbfbf solid 1px;
+    border-radius: 20px;
+    /*text-align: center;*/
+	box-sizing:border-box;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-family: "Microsoft Yahei", Tahoma, Arial, sans-serif;
+}
+.userinfo{
+	width:50%;
+	height:auto;
+	margin:0px auto;
+}
+.checkuser,.checkqq,.checksex,.checkage,.checktel,.checksdasd{
+	margin:0px !important;
+	width:100%;
+	height:20px;
+	line-height: 20px;
+	font-size:12px;
+}
+.form-edit p button{
+	color: #fff;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 22.5px;
+    line-height: 45px;
+    font-size: 16px;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    background-color: #960000;
+}

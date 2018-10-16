@@ -1,23 +1,27 @@
 ﻿<!DOCTYPE html>
 <!-- HTML 5 -->
 <html lang="zh-CN">
-    <meta charset="UTF-8" />
+<head>
+        <meta charset="UTF-8" />
         <title> @yield('title') </title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="applicable-device" content="pc,mobile">
         <meta name="keywords" content="小众音乐,小清新,民谣,最好听的歌" />
-        <meta name="description" content="用音乐和文字温暖生活，微信公众号“麦音乐”。小众音乐、有声电台、独立音乐、民谣、摇滚、爵士、欧美音乐、轻音乐。推荐最好的音乐，不管它是什么类型。"
+        <meta name="description" content="用音乐和文字温暖生活。小众音乐、有声电台、独立音乐、民谣、摇滚、爵士、欧美音乐、轻音乐。推荐最好的音乐，不管它是什么类型。"
         />
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <link rel="shortcut icon" href="/admins/img/logo.ico">
         <link type="text/css" media="all" href="/homes/css/autoptimize_92080519133b963b934f14202138607c.css" rel="stylesheet" />
+        <link rel="stylesheet" href="/admins/js/plugins/layer/skin/layer.css" id="layui_layer_skinlayercss">
+        @section('head')
 
-        <link rel="stylesheet" href="/admins/js/plugins/layer/skin/layer.css" id="layui_layer_skinlayercss" style="">
-
+        @show
         <script src="/homes/js/sweetalert.min.js"></script>
-
-        </script>
+        <!-- <script type="text/javascript" src="/layer/layer.js"></script> -->
+        <!-- <script type="text/javascript">
+            layer.msg('123');
+        </script> -->
         <!--[if lt IE 9]>
             <script src="https://www.mtyyw.com/wp-content/themes/dynamic-news-lite/js/html5shiv.min.js"
             type="text/javascript">
@@ -32,27 +36,26 @@
             })();
         </script> -->
         
-        <link href="/homes/public/templates/default/style/css.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/css.css" rel="stylesheet" type="text/css" />
+        <link href="/homes/public/templates/default/style/css.css"  rel="stylesheet" type="text/css" />
 
-        <link href="/homes/public/templates/default/style/div.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/div.css" rel="stylesheet" type="text/css" />
+        <link href="/homes/public/templates/default/style/div.css" ttype="text/css" />
         <!-- 公用样式代码 结束 -->
-        <link href="/homes/public/templates/default/style/font-awesome.min.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="/homes/public/templates/default/style/font-awesome.min.css"  rel="stylesheet" type="text/css" />
         <!-- 公用样式代码 结束 -->
-        <script type="text/javascript" src="/homes/public/templates/default/js/jQuery v1.7 .js" tppabs="http://www.mfdemo.cn/public/templates/default/js/jQuery v1.7 .js"></script>
+        <script type='text/javascript' src='/homes/js/jquery.min.js'></script>
         <!-- 公用js库链接代码 结束 -->
 
         <!-- 动画代码 开始 -->
-        <link  href="/homes/public/templates/default/style/animate.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/animate.css" rel="stylesheet" type="text/css" />
+        <link  href="/homes/public/templates/default/style/animate.css" rel="stylesheet" type="text/css" />
         <!-- 动画代码 结束 -->
 
-        <link href="/homes/public/templates/default/style/Validform.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/Validform.css" rel="stylesheet" type="text/css" /><!-- Validform表单验证代码 结束 -->
-        <link href="/homes/public/templates/default/style/fankui.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/fankui.css" rel="stylesheet" type="text/css" /><!-- 反馈样式代码 结束 -->
-        <link href="/homes/public/templates/default/style/anniutexiao.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/anniutexiao.css" rel="stylesheet" type="text/css" /><!-- 按钮特效代码 结束 -->
+        <link href="/homes/public/templates/default/style/Validform.css"  rel="stylesheet" type="text/css" /><!-- Validform表单验证代码 结束 -->
+        <link href="/homes/public/templates/default/style/fankui.css" rel="stylesheet" type="text/css" /><!-- 反馈样式代码 结束 -->
+        <link href="/homes/public/templates/default/style/anniutexiao.css"  rel="stylesheet" type="text/css" /><!-- 按钮特效代码 结束 -->
 
-        <link  href="/homes/public/templates/default/style/logintan.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/logintan.css" rel="stylesheet" type="text/css" /><!-- 登录代码 结束 --> 
+        <link  href="/homes/public/templates/default/style/logintan.css"  rel="stylesheet" type="text/css" /><!-- 登录代码 结束 --> 
 
         <link rel="stylesheet" href="/homes/css/menu.css" type="text/css" />
-        <script src="/homes/js/jquery-1.4.2.js" type="text/javascript"></script>
         <script src="/homes/js/jquery.backgroundpos.js" type="text/javascript"></script>
         <script src="/homes/js/menu.js" type="text/javascript"></script>
 
@@ -109,7 +112,7 @@
             }
         </style>
     </head>    
-    <body class="home blog">        
+    <body class="home blog" style="padding-right:0px !important;">        
         @if(session('error'))  
         <script type="text/javascript">
             swal("对不起!", "{{session('error')}}", "error");
@@ -150,16 +153,21 @@
                         <a href="/Home/message" target="_self">留言</a>
                     </li>
                 </ul>
-                
-                <a href="http://sc.chinaz.com/">
+            
+                <a href="/">
                     <img title="MIUI" class="miui_logo" src="/admins/img/yinyuelogo.png" width="200" alt="网站logo" /></a>
                 @if(empty(session('homeuser')))
                 <p class="language">
-                    <a style="display: inline;" class="weidengru1 lgtanchu shenyinclick">登录</a>
+                    <a style="display: inline;" href="javascript:void(0)" class="weidengru1 lgtanchu shenyinclick">登录</a>
                     <span>|</span>
-                    <a style="display: inline;" class="weidengru2 mf_zhucetan shenyinclick" href="Javascript:;" rel="nofollow">注册</a>
+                    <a style="display: inline;" class="weidengru2 mf_zhucetan shenyinclick" href="javascript:void(0)" rel="nofollow">注册</a>
                 </p>
                 @else
+                <p class="language">
+                    <a style="display: inline;" href="/home/user/center" id="indexuser">{{session('homeuser')->username}}</a>
+                    <span>|</span>
+                    <a style="display: inline;" href="/home/logout" rel="nofollow">退出登录</a>
+                </p>
                 @endif
             </div>
 
@@ -462,26 +470,21 @@
                                             <br />
                                             在浮躁、喧嚣的互联网中，希望你能在这里静下来。
                                             <br />
-                                            站长QQ群:906524423 微信:保密
-                                            <br />
-                                            <a href="https://www.weibo.com/" tar>
-                                                新浪微博
-                                            </a>
                                         </p>
                                     </div>
                                 </aside>
                             </div>
                             <div class="footer-widget-column">
-                                <aside id="text-6" class="widget widget_text">
+                                <aside id="text-6" class="widget widget_text" style="text-align:center;">
                                     <h3 class="widgettitle">
                                         <span>
-                                            微信群“音悦杂志社”
+                                            QQ群“音悦杂志社”
                                         </span>
                                     </h3>
                                     <div class="textwidget">
                                         <p>
-                                            <img src=""
-                                            alt="音悦杂志社微信群" width="220" height="220" class="alignnone size-full wp-image-11032"
+                                            <img src="/homes/picture/QQFansGroup1.jpg"
+                                            alt="音悦杂志社QQ群" title="音悦杂志社QQ群" width="220px" height="220px" class="alignnone size-full wp-image-11032"
                                             />
                                         </p>
                                     </div>
@@ -580,6 +583,7 @@
             </div>
         </div>
         <!-- end #wrapper -->
+        @section('homeuser')
         <script>
             (function(i, s, o, g, r, a, m) {
                 i['GoogleAnalyticsObject'] = r;
@@ -698,8 +702,8 @@
             <div class="mf_denglu2">
                 <div class="mf_denglu2-1">
 
-                    <p><a class=" fa fa-qq" href="javascript:if(confirm(%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/qq/callback/"  target="_blank"></a></p>
-                    <span><a class="fa fa-wechat" href="javascript:if(confirm(%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/weixin/callback/"></a></span>
+                    <p><a class=" fa fa-qq" href=""  target="_blank"></a></p>
+                    <span><a class="fa fa-wechat" href="" tppabs=""></a></span>
 
                 </div>
 
@@ -766,8 +770,8 @@
 
                 <div class="mf_denglu2-1">
 
-                    <p><a class=" fa fa-qq" href="javascript:if(confirm(%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/qq/callback/"  target="_blank"></a></p>
-                    <span><a class="fa fa-wechat" href="javascript:if(confirm(%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/weixin/callback/"></a></span> 
+                    <p><a class=" fa fa-qq" href=""  target="_blank"></a></p>
+                    <span><a class="fa fa-wechat" href="" ></a></span> 
 
                 </div>
 
@@ -796,9 +800,9 @@
         <div class="mf_chongzhi">
             <div class="mf_chongzhihuo"></div>
 
-            <div class="mf_chongzhiguan shenyinclick">
+            <!-- <div class="mf_chongzhiguan shenyinclick">
                 <svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23px" height="23px" viewBox="175.364 -61.823 23 23" enable-background="new 175.364 -61.823 23 23" tppabs="http://www.mfdemo.cn/new 175.364 -61.823 23 23" xml:space="preserve"><path fill="#846045" d="M186.88-49.493l-3.995,3.995l-0.407,0.407l-0.813-0.813l0.406-0.407l3.995-3.997l-3.995-3.997l-0.406-0.406 l0.813-0.813l0.407,0.406l3.995,3.996l3.996-3.996l0.407-0.406l0.813,0.813l-0.407,0.406l-3.995,3.997l3.995,3.997l0.407,0.407 l-0.813,0.813l-0.407-0.407L186.88-49.493z M186.864-38.823c6.351,0,11.5-5.149,11.5-11.5s-5.149-11.5-11.5-11.5 s-11.5,5.149-11.5,11.5S180.514-38.823,186.864-38.823z"></path></svg>
-            </div>
+            </div> -->
 
             <div class="mf_chongzhi1">
 
@@ -849,7 +853,7 @@
         </div>
 
         <div class="chongzhichenggong">
-            <div class="chongzhichenggong1"><img src="/homes/public/templates/default/images/gou.png" tppabs="http://www.mfdemo.cn/public/templates/default/images/gou.png" width="30" height="29"/>
+            <div class="chongzhichenggong1"><img src="/homes/public/templates/default/images/gou.png"  width="30" height="29"/>
             </div>
 
             <div class="chongzhichenggong2">重置成功</div>
@@ -1113,9 +1117,8 @@
             });
         </script>
         <!-- 登录提示代码结束 --><!-- 登录提示代码结束 -->
-
         <!-- 表单验证插件代码开始 -->
-        <script type="text/javascript"  src="/homes/public/templates/default/js/Validform_v5.3.2_min.js" tppabs="http://www.mfdemo.cn/public/templates/default/js/Validform_v5.3.2_min.js"></script>
+        <script type="text/javascript"  src="/homes/public/templates/default/js/Validform_v5.3.2_min.js"></script>
         <script type="text/javascript">
             $(function(){
                 var demo=$(".registerform").Validform({
@@ -1179,6 +1182,10 @@
             });
         </script>
         <!-- 表单验证插件代码结束 -->
-
+        @show
     </body>
+    <script type="text/javascript" src="/layer/layer.js"></script>
+    @section('js')
+
+    @show
 </html>
