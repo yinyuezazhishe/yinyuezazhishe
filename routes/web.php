@@ -101,8 +101,9 @@ Route::post('home/forgetpass', 'Home\LoginHomeController@forgetpass');
 //前台链接展示
 Route::get('Home/Blogroll','Home\BlogrollController@showBlogroll');
 
-
-
+//前台留言展示
+Route::get('Home/message','Home\MessageController@index');
+Route::post('Home/message','Home\MessageController@store');
 
 // 生成验证码
 Route::any('/code', 'Admin\LoginAdminController@verify');	
