@@ -243,10 +243,7 @@
                         </a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="404.html">添加留言</a>
-                            </li>
-                            <li>
-                                <a href="500.html">浏览留言</a>
+                                <a href="/Admin/message">浏览留言</a>
                             </li>
                         </ul>
                     </li>

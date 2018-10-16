@@ -146,6 +146,9 @@
                         </dl>
                     </li>
                     @endforeach
+                    <li class="li_3">
+                        <a href="/Home/message" target="_self">留言</a>
+                    </li>
                 </ul>
                 
                 <a href="http://sc.chinaz.com/">
