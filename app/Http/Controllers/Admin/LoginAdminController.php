@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Gregwar\Captcha\CaptchaBuilder;
 use Gregwar\Captcha\PhraseBuilder;
-use App\Model\Admin\AdminLogin;
+use App\Model\Admin\AdminUsers;
 use Hash;
 
 class LoginAdminController extends Controller
@@ -61,18 +61,18 @@ class LoginAdminController extends Controller
 
     	// echo session('code');
 
-    	if ($request -> code != session('code')) {
+  //   	if ($request -> code != session('code')) {
 
-			return redirect('/admin/login')->with('error','验证码错误');
-		}
+		// 	return redirect('/admin/login')->with('error','验证码错误') -> withInput();
+		// }
 
-    	$user = AdminLogin::where('username', $request -> username) -> first();
+    	$user = AdminUsers::where('username', $request -> username) -> first();
 
     	if ($user) {
 
     		if ($user -> username != $request -> username) {
 
-	    		return redirect('/admin/login')->with('error','用户名或密码错误');
+	    		return redirect('/admin/login')->with('error','用户名或密码错误') -> withInput();
 	    	}
 
 	    	// echo $request -> password;
@@ -80,16 +80,31 @@ class LoginAdminController extends Controller
 
 	    	if (!Hash::check($request -> password, $user -> password)) {
 
-			    return redirect('/admin/login')->with('error','用户名或密码错误');
+			    return redirect('/admin/login')->with('error','用户名或密码错误') -> withInput();
 			}
 
     	} else {
 
-    		return redirect('/admin/login')->with('error','用户名或密码错误');
+    		return redirect('/admin/login')->with('error','用户名或密码错误') -> withInput();
     	}
 
     	// dump($user) ;
         session(['adminusers'=>$user]);
+        session(['adminusers_face'=>$user->face]);
     	return redirect('/admin')->with('success','登录成功');        
+    }
+
+    /**
+     *  退出登录
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function Exitlogon(Request $request)
+    {   
+        //将用户信息从session中清除
+        $request->session()->forget(['adminusers', 'adminusers_face']);
+        
+        return redirect('/admin/login') -> with('success', '退出成功, 请重新登录');
     }
 }

@@ -20,11 +20,24 @@ Route::get('admin/login', 'Admin\LoginAdminController@login');
 // 后台登录验证
 Route::post('admin/dologin', 'Admin\LoginAdminController@dologin');
 
+//后台退出登录
+Route::get('/admin/Exitlogon','Admin\LoginAdminController@Exitlogon');
+
 // 后台角色管理
 Route::resource('admin/role', 'Admin\RoleAdminController');
 
 // 后台权限管理
 Route::resource('admin/permission', 'Admin\PermissionAdminController');
+
+/* 后台用户角色权限 */
+// 为用户添加角色
+Route::get('admin/user_role/{id}/u_r_edit', 'Admin\User_Role_Permission@u_r_edit');
+// 处理用户添加角色
+Route::post('admin/u_r_update', 'Admin\User_Role_Permission@u_r_update');
+// 为角色添加权限
+Route::get('admin/role_permission/{id}/r_p_edit', 'Admin\User_Role_Permission@r_p_edit');
+// 处理角色添加权限
+Route::post('admin/r_p_update', 'Admin\User_Role_Permission@r_p_update');
 
 //后台链接管理
 Route::prefix('Admin')->group(function(){
@@ -36,6 +49,8 @@ Route::prefix('Admin')->group(function(){
 Route::get('/admin/user/setFace','Admin\AdminUsersController@setFace');
 Route::post('/admin/user/do_setFace','Admin\AdminUsersController@do_setFace');
 
+//后台用户主题修改
+Route::get('/admin/setTheme','Admin\AdminUsersController@setTheme');
 //后台用户修改密码
 Route::get('/admin/setPass','Admin\AdminUsersController@setPass');
 Route::post('/admin/doPass','Admin\AdminUsersController@doPass');
@@ -44,16 +59,16 @@ Route::post('/admin/doPass','Admin\AdminUsersController@doPass');
 Route::get('/admin/user/getName','Admin\AdminUsersController@getName');
 Route::resource('/admin/user','Admin\AdminUsersController');
 
-// 类别管理
+// 后台类别管理
 Route::resource('Admin/category', 'Admin\AdminCategoryController');
 
-// 轮播图管理
+// 后台轮播图管理
 Route::resource('Admin/banner', 'Admin\AdminBannerController');
 
-// 广告管理
+// 后台广告管理
 Route::resource('Admin/advertising', 'Admin\AdminAdvertisingController');
 
-// 留言板管理
+// 后台留言板管理
 Route::resource('Admin/message', 'Admin\AdminMessageController');
 
 

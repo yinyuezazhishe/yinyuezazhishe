@@ -1,4 +1,4 @@
-@extends('Admin.Public.layout')
+﻿@extends('Admin.Public.layout')
 
 @section('title',$title)
 
@@ -41,7 +41,7 @@
                         </div>
                         <div class="col-sm-6" style="padding-left: 250px">
                             <div class="input-group">
-                                <input type="text" placeholder="请输入关键词" class="input-sm form-control" name="username" value="{{$request->username}}">
+                                <input type="text" placeholder="请输入用户名" class="input-sm form-control" name="username" value="{{$request->username}}">
                                 <span class="input-group-btn">
                                 <button type="submit" class="btn btn-sm btn-primary">搜索</button>
                             </div>
@@ -83,7 +83,7 @@
                                 创建时间
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
-                            colspan="1" aria-label="操作" style="width: 80px; text-align: center;">
+                            colspan="1" aria-label="操作" style="width: 120px; text-align: center;">
                                 操作
                             </th>
                         </tr>
@@ -133,12 +133,12 @@
                                     {{date('Y-m-d H:i:s',$v->addtime)}}
                                 </td>
                                 <td class="center ">
+                                    <a style="width: 46px;" href="/admin/user_role/{{$v->id}}/u_r_edit" class="btn btn-info btn-sm"><i class="fa fa-github-square"></i></a>
                                     <a href="/admin/user/{{$v->id}}/edit" class="btn btn-info btn-sm">修改</a>
-                                    <form action="/admin/user/{{$v->id}}" method="post" style="display: inline;">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                        <button class="btn btn-danger btn-sm" id="del">删除</button>
-                                    </form>
+                                        {{-- csrf_field() --}}
+                                        {{-- method_field('DELETE') --}}
+                                        <input type="hidden" value="{{$v->face}}">
+                                        <button class="btn btn-danger btn-sm del"  data-id="{{$v->id}}" >删除</button>
                                 </td>
 	                        </tr>
                         @endforeach
@@ -166,5 +166,55 @@
 
 @section('js')
 
+<script type="text/javascript">
+
+    $('.del').click(function(){
+
+        id = $(this).attr('data-id');
+
+        var oldpicture = $(this).prev().val();
+
+        console.log(oldpicture);
+
+        layer.confirm('你确定删除吗',{btn:['确定','取消'],title:'提示',icon:'3'},function(){
+
+            $.post('/admin/user/'+id,{'oldpicture':oldpicture,'_token':'{{ csrf_token() }}','_method':'DELETE'},
+                function(data){
+                    console.log(data);
+                    if(data){
+
+                        location.reload(true);
+
+                    }
+                })
+
+        },function(){
+            
+        })
+    return false;
+    })
+
+    //改变导航条样式
+    var show_user = $('.show_user').parents('li');
+    $('.show_user a').css({'color':'#fff'});
+    show_user.attr('class','active');
+
+   
+    
+</script>
+
+<script src="/homes/js/sweetalert.min.js"></script>
+
+@if(session('succes'))
+<script type="text/javascript">
+    swal("恭喜你!", "{{session('succes')}}", "success");
+</script>
+@endif
+
+@if(session('errors'))
+<script type="text/javascript">
+    swal("对不起!", "{{session('errors')}}", "error");
+</script>
+@endif
 
 @stop

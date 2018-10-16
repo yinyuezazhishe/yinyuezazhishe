@@ -2,25 +2,32 @@
     var $menu = $(".menus"), $menuLi = $menu.find("li"), $current = $menu.find('.current'), $li_3 = $menu.find('li.li_3'), $li_3_content = $li_3.find('.li_3_content');
     $menuLi.hover(function () {
         var $this = $(this), num = $menuLi.index($this), current = $menuLi.index($(".first")), len = current - num;
-        $menu.css("background-position", (101 * current) + "px" + " bottom");
+        $menu.css("background-position", (131 * current) + "px" + " bottom");
         $current.removeClass("lihover");
         $menuLi.removeClass("first");
         $this.addClass("first");
         if (len <= 0) { len = -len; };
-        if (num != 4) {
-            $menu.stop().animate({ backgroundPosition: (101 * num) + "px" + " bottom" }, 100 * len);
-        }
-        else {
-            $menu.stop().animate({ backgroundPosition: (101 * num + 30) + "px" + " bottom" }, 100 * len);
-        }
+            $menu.stop().animate({ backgroundPosition: (131 * num) + "px" + " bottom" }, 130 * len);
     });
-    $li_3.hover(function () {
-        $li_3_content.stop(true, true).fadeIn(0);
-    }, function () {
-        $li_3_content.fadeOut(500, function () {
-            $li_3_content.css("display", "none");
+
+    // console.log($(this))
+    $menuLi.each(function ()
+    {
+        $(this).hover(function() {
+        // console.log($(this).find('.li_3_content'));
+        $(this).find('.li_3_content').stop(true, true).fadeIn(0);
+        // $li_3_content.stop(true, true).fadeIn(0);
+        },
+        function() {
+            // console.log(2);
+            var content = $(this).find('.li_3_content');
+            content.fadeOut(500,
+            function() {
+                content.css("display", "none");
+            });
         });
-    });
+    })
+
     $menu.mouseleave(function () {
         var $this = $(this), num = $menuLi.index($this), current = $menuLi.index($current), len = current - num;
         $menuLi.removeClass("first");

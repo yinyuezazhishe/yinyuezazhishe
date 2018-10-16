@@ -27,13 +27,14 @@
     <div id="wrapper">
         <!--左侧导航开始-->
         <nav class="navbar-default navbar-static-side" role="navigation">
+            <input type="hidden" class="uid" value="{{session('adminusers')->id}}">
             <div class="nav-close"><i class="fa fa-times-circle"></i>
             </div>
             <div class="sidebar-collapse">
                 <ul class="nav" id="side-menu">
                    <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src="{{session('adminusers')->face}}" style="width: 64px;height: 64px" /></span>
+                            <span><img alt="image" class="img-circle" src="{{session('adminusers_face')}}" style="width: 64px;height: 64px" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                <span class="block m-t-xs"><strong class="font-bold">{{session("adminusers")->username}}</strong></span>
@@ -64,7 +65,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="/admin">
+                        <a class="ind" href="/admin">
                             <i class="fa fa-home"></i>
                             <span class="nav-label">首页</span>
                         </a>
@@ -76,10 +77,10 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li>
+                            <li class="show_user">
                                 <a href="/admin/user">浏览用户</a>
                             </li>
-                            <li>
+                            <li class="create_user">
                                 <a href="/admin/user/create">添加用户</a>
                             </li>
                         </ul>
@@ -382,28 +383,29 @@
                             <div class="title">皮肤选择</div>
                             <div class="setings-item default-skin nb">
                                 <span class="skin-name ">
-                                     <a href="#" class="s-skin-0">
-                                         默认皮肤
-                                     </a>
-                                </span>
+                         <a href="#" class="s-skin-0 default">
+                             默认皮肤
+                         </a>
+                    </span>
                             </div>
                             <div class="setings-item blue-skin nb">
                                 <span class="skin-name ">
-                                    <a href="#" class="s-skin-1">
-                                        蓝色主题
-                                    </a>
-                                </span>
+                        <a href="#" class="s-skin-1 blue">
+                            蓝色主题
+                        </a>
+                    </span>
                             </div>
                             <div class="setings-item yellow-skin nb">
                                 <span class="skin-name ">
-                                    <a href="#" class="s-skin-3">
-                                        黄色/紫色主题
-                                    </a>
-                                </span>
+                        <a href="#" class="s-skin-3 yellow">
+                            黄色/紫色主题
+                        </a>
+                    </span>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     <script src="/admins/js/jquery.min.js?v=2.1.4"></script>
@@ -418,18 +420,114 @@
     <script src="/admins/layer/layer.js"></script>
     <script type="text/javascript" src="/admins/js/contabs.min.js"></script>
     <script src="/admins/js/plugins/pace/pace.min.js"></script>
+    <script src="/admins/js/jquerysession.js"></script>
+
     <script type="text/javascript">
+        var theme = '';
+        var id = $('.uid').val();
+
+        console.log(id);
         //接收返回信息
         $(function(){
             @if(session('success'))
-                layer.alert("{{session('success')}}",{title:'提示',icon:'6'});
+                layer.msg("{{session('success')}}");
                 {{session()->forget('success')}}
             @endif
+
             @if(session('error'))
-                layer.alert("{{session('error')}}",{title:'提示',icon:'5'});
+                layer.msg("{{session('error')}}");
                 {{session()->forget('error')}}
-            @endif
+            @endif  
+
+            var theme1 = $('.theme').val();
+
+            theme =  $.session.get('theme');
+            console.log(theme);
+
+            if (theme == undefined){
+
+                theme = theme1;
+
+            }
+
+            $('body').eq(0).addClass(theme);
+
+            if (theme == 'skin-1') {
+
+            $('.style1').addClass('lazur-bg');
+
+            } else if (theme == 'skin-3') {
+
+                $('.style1').addClass('yellow-bg');
+
+            } else {
+
+                 $('.style1').addClass('navy-bg');
+            }
+
         })
+
+        $('.blue').click(function(){
+
+            $.session.set('theme','skin-1');
+
+            $('.style1').removeClass('navy-bg');
+            $('.style1').removeClass('yellow-bg');
+
+            $('.style1').addClass('lazur-bg');
+
+            setTheme('skin-1');
+        });
+
+        $('.yellow').click(function(){
+
+            $.session.set('theme','skin-3');
+           
+            $('.style1').removeClass('navy-bg');
+            $('.style1').removeClass('lazur-bg');
+
+            $('.style1').addClass('yellow-bg');
+
+            setTheme('skin-3');
+        });
+
+        $('.default').click(function(){
+
+            $.session.set('theme','default');
+            
+            $('.style1').removeClass('yellow-bg');
+            $('.style1').removeClass('lazur-bg');
+
+            $('.style1').addClass('navy-bg');
+
+            setTheme('default');
+        });
+
+        function setTheme(a)
+        {
+            $.ajax({
+
+                url:'/admin/setTheme',
+                data:{
+                    'id':id,
+                    'theme':a
+                },
+                dataType:'json',
+                type:'GET',
+                success:function(data){
+                    if (data){
+                        
+                        location.reload(true);
+                    }
+                },
+                error:function(){
+                    
+                },
+                timeout:3000,
+                async:false
+            });
+        }
+
     </script>
     @section('js')
 

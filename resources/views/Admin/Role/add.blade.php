@@ -6,7 +6,7 @@
 
 <div class="ibox float-e-margins">
     <div class="ibox-title">
-        <h5>添加角色</h5>
+        <h5>{{$title}}</h5>
     </div>
     <div class="ibox-content">
         <form class="form-horizontal m-t" id="signupForm" action="/admin/role" novalidate="novalidate" id="uploadForm" enctype='multipart/form-data' method="post">

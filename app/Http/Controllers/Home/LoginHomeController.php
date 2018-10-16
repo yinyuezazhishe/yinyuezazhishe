@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Model\Home\HomeUser;
 use Illuminate\Support\Facades\Mail;
+use Cookie;
 
 class LoginHomeController extends Controller
 {
@@ -31,7 +32,7 @@ class LoginHomeController extends Controller
             return redirect('/') -> with('error', '必须有数字和字母, 且必须要六位, 不能超过十六位！');
         }
 
-        if ($res['code'] != session('code')) {
+        if (strtolower($res['code']) != strtolower(session('code'))) {
         	// echo $res['code'];
         	// echo session('code');
 			return redirect('/')->with('error','验证码错误');
@@ -40,6 +41,13 @@ class LoginHomeController extends Controller
         $user = HomeUser::where('username', $res['username']) -> first();
 
         if ($user) {
+
+            if ($user -> status == 1) {
+                return redirect('/')->with('error','您的账户已被禁用, 请联系网站管理员!');
+
+            } else if ($user -> status == 2) {
+                return redirect('/')->with('error','您输入的的邮箱未在本网站注册验证成功, 请前往您注册时的邮箱进行验证再进行登录!');
+            }
 
     		if ($user -> username != $res['username']) {
 	    		return redirect('/')->with('error','用户名或密码错误');
@@ -70,6 +78,23 @@ class LoginHomeController extends Controller
     {
     	$req = $request -> except('_token', 'repassword');
 
+        $users = HomeUser::get();
+
+        foreach ($users as $k => $v) {
+
+            if ($req['username'] == $v -> username ) {
+
+                 return redirect('/')->with('error', '您注册的用户名重复, 请重新输入！');
+            }
+
+            if ($req['email'] == $v -> email ) {
+
+                 return redirect('/')->with('error', '您注册的邮箱重复, 请重新输入！');
+            }
+        }
+
+        // dd($users);
+
     	if (!preg_match_all("/^[\x{4e00}-\x{9fa5}A-Za-z0-9_\-]{3,10}$/u",$req['username'])) {
 
             return redirect('/')->with('error','用户名里含有字母、数字、下划线、中文以外的非法字符且必须最少3位, 最多十位！');
@@ -99,7 +124,7 @@ class LoginHomeController extends Controller
 
         $req['face'] = '/uploads/homes/01.jpg';
 
-        $req['status'] = '1';
+        $req['status'] = '2';
 
         $req['addtime'] = time();
 
@@ -153,7 +178,7 @@ class LoginHomeController extends Controller
         }
 
         $rs['status'] = '0';
-        //把id这条数据的状态从 1变成 0 
+        //把id这条数据的状态从 2变成 0 
 
         $data = HomeUser::where('id', $id)->update($rs);
 
@@ -184,27 +209,22 @@ class LoginHomeController extends Controller
     {
         $email = $request -> input('email');
 
-
         $user = HomeUser::where('email', $email) -> first();
-
 
         $code = str_random(6);
 
+        Cookie::queue('homecode', $code, 5);
 
-        session(['homecode' =>$code]);
-
+        // var_dump( Cookie::get('home') ) ;
 
         if ($user) {
 
-
             if ($user -> status == '1') {
-
 
                 return 2;
             }
 
-
-            // // 发送邮件
+            // 发送邮件
             Mail::send('Home.email.ecode', ['code' => $code, 'email' => $email], function ($msg) use ($user, $email){
                 //从哪发的邮件
                 $msg->from(env('MAIL_USERNAME'), '音悦杂志社');
@@ -212,17 +232,13 @@ class LoginHomeController extends Controller
                 $msg->to($email, $user->username)->subject('重置音悦杂志社密码');
             });
 
-
             return 0;
 
-
         } else {
-
 
             return 1;
         }
     }
-
 
     /**
      *  重置密码验证
@@ -232,69 +248,55 @@ class LoginHomeController extends Controller
     public function forgetpass(Request $request)
     {
 
-
         $res = $request -> except('_token', 'repassword');
 
-
         $user = HomeUser::where('email' ,$res['email']) -> first();
-
-
-        if ($res['code'] != session('homecode')) {
-            return redirect('/') -> with('error', '您输入的验证码有误, 请确认输入验证码与邮箱验证码一致!');
+        echo $res['code'].'<br>';
+        echo Cookie::get('homecode');
+        if (strtolower($res['code']) != strtolower(Cookie::get('homecode'))) {
+            echo $res['code'].'<br>';
+            echo Cookie::get('homecode');
+            // return redirect('/') -> with('error', '您输入的验证码有误, 请确认输入验证码与邮箱验证码一致!');
         }
-
 
         if (!preg_match("/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/", $res['email'])) {
             return redirect('/') -> with('error', '您输入的邮箱格式不正确!');
         }
 
-
         if (empty($res['password'])) {
             return redirect('/') -> with('error', '密码不能为空!');
         }
-
 
         if (!preg_match('/^(?![0-9]+$)(?![a-zA-Z]+$)[\S]{6,16}$/', $res['password'])) {
             return redirect('/') -> with('error', '必须有数字和字母, 且必须要六位, 不能超过十六位!');
         }
 
-
         if($res['password'] !== $request -> input('repassword')) {
             return redirect('/') -> with('error', '两次密码不一致!');
         }
-
 
         if (Hash::check($res['password'], $user -> password)) {
             return redirect('/') -> with('error', '不能与最近密码一致, 请更换密码!');
         }
 
-
         $pass['password'] = Hash::make($res['password']);
 
-
         // dd($res);
-
-
-        try{
+        // try{
            
-            $rs = HomeUser::where('email' ,$res['email']) -> update($pass);
+        //     $rs = HomeUser::where('email' ,$res['email']) -> update($pass);
 
+        //     if($rs){
 
-            if($rs){
+        //         return redirect('/')->with('success','修改密码成功');
+        //     }
 
+        // }catch(\Exception $e){
 
-                return redirect('/')->with('success','修改密码成功');
-            }
+        //     // echo $e -> getCode();
+        //     // echo $e -> getMessage();
 
-
-        }catch(\Exception $e){
-
-
-            // echo $e -> getCode();
-            // echo $e -> getMessage();
-
-
-            return back()->with('error','修改密码失败');
-        }
+        //     return back()->with('error','修改密码失败');
+        // }
     }
 }

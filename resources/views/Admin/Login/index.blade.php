@@ -63,7 +63,11 @@
 				            @if(session('error'))  
 				            <div class="alert alert-danger danger">
 				                {{session('error')}}  
-
+				            </div>
+				            @endif
+				            @if(session('success'))  
+				            <div class="alert alert-info danger">
+				                {{session('success')}}  
 				            </div>
 				            @endif
 
@@ -72,7 +76,7 @@
 						</div>
 						<div class="form-group">
 							<label for="username" class="sr-only">用户名</label>
-							<input type="text" class="form-control" name="username" id="username" placeholder="请输入您的用户名" autocomplete="off">
+							<input type="text" value="{{old('username')}}" class="form-control" name="username" id="username" placeholder="请输入您的用户名" autocomplete="off">
 						</div>
 						<div class="form-group">
 							<label for="password" class="sr-only">密 码</label>
@@ -308,4 +312,3 @@
 	<!-- <script src="/admins/login/js/jquery-1.8.3.min.js"></script> -->
 	</body>
 </html>
-
