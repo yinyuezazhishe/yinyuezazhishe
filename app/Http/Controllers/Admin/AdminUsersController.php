@@ -76,13 +76,13 @@ class AdminUsersController extends Controller
             $suffix = $request->file('face')->getClientOriginalExtension(); 
 
             //移动
-            $request -> file('face') -> move('uploads',$name.'.'.$suffix);
+            $request -> file('face') -> move('admins/uploads/face',$name.'.'.$suffix);
 
              //头像文件路径
-            $res['face'] = '/uploads/'.$name.'.'.$suffix;
+            $res['face'] = '/admins/uploads/face/'.$name.'.'.$suffix;
         } else {
 
-            $res['face'] = '/uploads/default.jpg';
+            $res['face'] = '/admins/uploads/face/default.jpg';
         }
 
        
@@ -145,8 +145,9 @@ class AdminUsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $res = $request -> except('_token','face','_method','oldface');
+        $res = $request -> except('_token','face','_method','oldface','uid');
 
+        $uid = $request -> input('uid');
        
         // dd($oldFace);
 
@@ -162,10 +163,10 @@ class AdminUsersController extends Controller
             $suffix = $request->file('face')->getClientOriginalExtension(); 
 
             //移动
-            $request -> file('face') -> move('uploads',$name.'.'.$suffix);
+            $request -> file('face') -> move('admins/uploads/face',$name.'.'.$suffix);
 
              //头像文件路径
-            $res['face'] = '/uploads/'.$name.'.'.$suffix;
+            $res['face'] = '/admins/uploads/face/'.$name.'.'.$suffix;
 
              //获取原来头像的url地址
             $oldFace = $request->input('oldface');
@@ -174,8 +175,10 @@ class AdminUsersController extends Controller
                 unlink('.'.$oldFace);
             }
 
-            session(['adminusers_face' => $res['face']]);
-
+            if($id == $uid){
+                
+                session(['adminusers_face' => $res['face']]);
+            }
         }
 
             
@@ -287,10 +290,10 @@ class AdminUsersController extends Controller
             $suffix = $request->file('face')->getClientOriginalExtension(); 
 
             //移动
-            $request -> file('face') -> move('uploads/Face',$name.'.'.$suffix);
+            $request -> file('face') -> move('admins/uploads/face',$name.'.'.$suffix);
 
              //头像文件路径
-            $res['face'] = '/uploads/Face/'.$name.'.'.$suffix;
+            $res['face'] = '/admins/uploads/face/'.$name.'.'.$suffix;
 
             //获取原来头像的url地址
             $oldFace = session('adminusers_face');
