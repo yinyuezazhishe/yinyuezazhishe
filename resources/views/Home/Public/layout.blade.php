@@ -156,6 +156,7 @@
             
                 <a href="/">
                     <img title="MIUI" class="miui_logo" src="/admins/img/yinyuelogo.png" width="200" alt="网站logo" /></a>
+
                 @if(empty(session('homeuser')))
                 <p class="language">
                     <a style="display: inline;" href="javascript:void(0)" class="weidengru1 lgtanchu shenyinclick">登录</a>

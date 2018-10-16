@@ -55,6 +55,12 @@
     <script src="/admins/js/demo/form-validate-demo.min.js"></script>
     <script src="/homes/js/sweetalert.min.js"></script>
 	
+    @if(session('errors'))  
+    <script type="text/javascript">
+        swal("对不起!", "{{session('errors')}}", "error");
+    </script>
+    @endif
+
 	@if (count($errors) > 0)
     	@foreach ($errors->all() as $error)
             <script type="text/javascript">
@@ -62,11 +68,5 @@
 			</script>
         @endforeach
 	@endif
-
-	@if(session('errors'))  
-    <script type="text/javascript">
-        swal("对不起!", "{{session('errors')}}", "error");
-    </script>
-    @endif
 
 @stop

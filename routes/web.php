@@ -77,6 +77,9 @@ Route::resource('Admin/advertising', 'Admin\AdminAdvertisingController');
 // 后台留言板管理
 Route::resource('Admin/message', 'Admin\AdminMessageController');
 
+// 后台详情管理
+Route::resource('admin/details', 'Admin\AdminDetailsController');
+
 
 
 

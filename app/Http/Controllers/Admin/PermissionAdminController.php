@@ -54,7 +54,7 @@ class PermissionAdminController extends Controller
                 'per_name.regex'=>'权限名称含有字母、数字、下划线、中文以外的非法字符且必须最少2位!',
                 'urls' => 'url地址不能为空'
             ]
-        );
+        ) -> withInput();;
 
         $rs = $request->except('_token');
 
@@ -71,7 +71,7 @@ class PermissionAdminController extends Controller
 
         }catch(\Exception $e){
 
-            return back()->with('errors','添加权限失败');
+            return back()->with('errors','添加权限失败') -> withInput();;
 
         }
     }
