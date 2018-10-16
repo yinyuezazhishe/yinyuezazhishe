@@ -3,7 +3,7 @@
 @section('title',$title)
 
 @section('content')
-	<input type="hidden" name="" class="theme" value="{{session('adminusers')->theme}}">
+
 	<div class="col-sm-3">
         <div class="widget style1 navy-bg">
             <div class="row">

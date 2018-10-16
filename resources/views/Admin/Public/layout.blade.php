@@ -24,6 +24,7 @@
     <link href="/admins/layer/theme/default/layer.css" rel="stylesheet">
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+        <input type="hidden" name="" class="theme" value="{{session('adminusers')->theme}}">
     <div id="wrapper">
         <!--左侧导航开始-->
         <nav class="navbar-default navbar-static-side" role="navigation">
@@ -443,7 +444,7 @@
 
             theme =  $.session.get('theme');
             console.log(theme);
-
+            console.log(theme1);
             if (theme == undefined){
 
                 theme = theme1;
