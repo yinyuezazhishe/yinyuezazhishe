@@ -17,7 +17,7 @@ class AdminMessageController extends Controller
     public function index(Request $request)
     {
     	$rs = Message::select(DB::raw('*,concat(hid,id) as hid'))->
-    	where('content','like','%'.$rsquest->input('content').'%')->
+    	where('content','like','%'.$request->input('content').'%')->
     	orderBy('hid')->
     	paginate($request->input('num',5));
     	return view('Admin.message.index',[
