@@ -76,15 +76,15 @@ class AdminUsersController extends Controller
             $suffix = $request->file('face')->getClientOriginalExtension(); 
 
             //移动
-            $request -> file('face') -> move('uploads',$name.'.'.$suffix);
+            $request -> file('face') -> move('/admins/uploads/face/',$name.'.'.$suffix);
 
              //头像文件路径
-            $res['face'] = '/uploads/'.$name.'.'.$suffix;
+            $res['face'] = '/admins/uploads/face/'.$name.'.'.$suffix;
+
         } else {
 
-            $res['face'] = '/uploads/default.jpg';
+            $res['face'] = '/admins/uploads/face/default.jpg';
         }
-
        
 
         //哈希加密秘密
@@ -146,7 +146,6 @@ class AdminUsersController extends Controller
     public function update(Request $request, $id)
     {
         $res = $request -> except('_token','face','_method','oldface');
-
        
         // dd($oldFace);
 
@@ -162,10 +161,10 @@ class AdminUsersController extends Controller
             $suffix = $request->file('face')->getClientOriginalExtension(); 
 
             //移动
-            $request -> file('face') -> move('uploads',$name.'.'.$suffix);
+            $request -> file('face') -> move('/admins/uploads/face/',$name.'.'.$suffix);
 
              //头像文件路径
-            $res['face'] = '/admins/uploads/face'.$name.'.'.$suffix;
+            $res['face'] = '/admins/uploads/face/'.$name.'.'.$suffix;
 
              //获取原来头像的url地址
             $oldFace = $request->input('oldface');
@@ -287,10 +286,10 @@ class AdminUsersController extends Controller
             $suffix = $request->file('face')->getClientOriginalExtension(); 
 
             //移动
-            $request -> file('face') -> move('uploads/Face',$name.'.'.$suffix);
+            $request -> file('face') -> move('/admins/uploads/face/',$name.'.'.$suffix);
 
              //头像文件路径
-            $res['face'] = '/admins/uploads/face'.$name.'.'.$suffix;
+            $res['face'] = '/admins/uploads/face/'.$name.'.'.$suffix;
 
             //获取原来头像的url地址
             $oldFace = session('adminusers_face');
@@ -303,7 +302,7 @@ class AdminUsersController extends Controller
             // dd(session('admin_user')->face);
             //删除原来的额旧头像
             if ($oldFace) {
-                unlink('.'.$oldFace);
+                // unlink('.'.$oldFace);
             } 
             try{
                 $rs = AdminUsers::where('id',session('adminusers')->id) -> update($res);
