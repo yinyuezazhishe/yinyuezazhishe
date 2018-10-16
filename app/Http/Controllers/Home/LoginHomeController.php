@@ -127,7 +127,7 @@ class LoginHomeController extends Controller
 
         $req['password'] = Hash::make($request->password);
 
-        $req['face'] = '/uploads/homes/01.jpg';
+        $req['face'] = '/homes/uploads/01.jpg';
 
         $req['status'] = '2';
 
