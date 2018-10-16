@@ -165,7 +165,7 @@ class AdminUsersController extends Controller
             $request -> file('face') -> move('uploads',$name.'.'.$suffix);
 
              //头像文件路径
-            $res['face'] = '/uploads/'.$name.'.'.$suffix;
+            $res['face'] = '/admins/uploads/face'.$name.'.'.$suffix;
 
              //获取原来头像的url地址
             $oldFace = $request->input('oldface');
@@ -290,7 +290,7 @@ class AdminUsersController extends Controller
             $request -> file('face') -> move('uploads/Face',$name.'.'.$suffix);
 
              //头像文件路径
-            $res['face'] = '/uploads/Face/'.$name.'.'.$suffix;
+            $res['face'] = '/admins/uploads/face'.$name.'.'.$suffix;
 
             //获取原来头像的url地址
             $oldFace = session('adminusers_face');

@@ -184,11 +184,9 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="404.html">404页面</a>
+                            <li class="create_details"><a href="/admin/details/create">添加详情</a>
                             </li>
-                            <li><a class="J_menuItem" href="500.html">500页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="empty_page.html">空白页</a>
+                            <li class="show_details"><a href="/admin/details">浏览详情</a>
                             </li>
                         </ul>
                     </li>
@@ -421,12 +419,15 @@
     <script type="text/javascript" src="/admins/js/contabs.min.js"></script>
     <script src="/admins/js/plugins/pace/pace.min.js"></script>
     <script src="/admins/js/jquerysession.js"></script>
+    <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="/ueditor/ueditor.all.min.js"></script>
+    <script type="text/javascript" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
 
     <script type="text/javascript">
         var theme = '';
         var id = $('.uid').val();
 
-        console.log(id);
+        // console.log(id);
         //接收返回信息
         $(function(){
             @if(session('success'))
@@ -442,7 +443,7 @@
             var theme1 = $('.theme').val();
 
             theme =  $.session.get('theme');
-            console.log(theme);
+            // console.log(theme);
 
             if (theme == undefined){
 

@@ -251,12 +251,12 @@ class LoginHomeController extends Controller
         $res = $request -> except('_token', 'repassword');
 
         $user = HomeUser::where('email' ,$res['email']) -> first();
-        echo $res['code'].'<br>';
-        echo Cookie::get('homecode');
+        // echo $res['code'].'<br>';
+        // echo Cookie::get('homecode');
         if (strtolower($res['code']) != strtolower(Cookie::get('homecode'))) {
-            echo $res['code'].'<br>';
-            echo Cookie::get('homecode');
-            // return redirect('/') -> with('error', '您输入的验证码有误, 请确认输入验证码与邮箱验证码一致!');
+            // echo $res['code'].'<br>';
+            // echo Cookie::get('homecode');
+            return redirect('/') -> with('error', '您输入的验证码有误, 请确认输入验证码与邮箱验证码一致!');
         }
 
         if (!preg_match("/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/", $res['email'])) {
@@ -282,21 +282,21 @@ class LoginHomeController extends Controller
         $pass['password'] = Hash::make($res['password']);
 
         // dd($res);
-        // try{
+        try{
            
-        //     $rs = HomeUser::where('email' ,$res['email']) -> update($pass);
+            $rs = HomeUser::where('email' ,$res['email']) -> update($pass);
 
-        //     if($rs){
+            if($rs){
 
-        //         return redirect('/')->with('success','修改密码成功');
-        //     }
+                return redirect('/')->with('success','修改密码成功');
+            }
 
-        // }catch(\Exception $e){
+        }catch(\Exception $e){
 
-        //     // echo $e -> getCode();
-        //     // echo $e -> getMessage();
+            // echo $e -> getCode();
+            // echo $e -> getMessage();
 
-        //     return back()->with('error','修改密码失败');
-        // }
+            return back()->with('error','修改密码失败');
+        }
     }
 }
