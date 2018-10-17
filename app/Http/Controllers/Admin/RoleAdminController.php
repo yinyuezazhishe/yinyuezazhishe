@@ -49,9 +49,9 @@ class RoleAdminController extends Controller
 
 	        ],[
 	            'role_name.required'=>'角色名称不能为空!',
-	            'role_name.regex'=>'角色名称含有字母、数字、下划线、中文以外的非法字符且必须最少2位!'
+	            'role_name.regex'=>'角色名称含有字母、数字、下划线、中文以外的非法字符且必须最少2位!',
 	        ]
-        );  
+        ) -> withInput();;
 
         $rs = $request->except('_token');
 
@@ -69,7 +69,7 @@ class RoleAdminController extends Controller
 
         }catch(\Exception $e){
 
-            return back()->with('errors','添加角色失败');
+            return back()->with('errors','添加角色失败') -> withInput();;
 
         }
     }

@@ -127,7 +127,7 @@ class LoginHomeController extends Controller
 
         $req['password'] = Hash::make($request->password);
 
-        $req['face'] = '/uploads/homes/01.jpg';
+        $req['face'] = '/homes/uploads/01.jpg';
 
         $req['status'] = '2';
 
@@ -257,10 +257,9 @@ class LoginHomeController extends Controller
 
         $user = HomeUser::where('email' ,$res['email']) -> first();
 
-        // echo $res['code'].'<br>';
-        // echo Cookie::get('homecode');
         if (strtolower($res['code']) != strtolower(Cookie::get('homecode'))) {
-
+            // echo $res['code'].'<br>';
+            // echo Cookie::get('homecode');
             return redirect('/') -> with('error', '您输入的验证码有误, 请确认输入验证码与邮箱验证码一致!');
         }
 
@@ -287,7 +286,7 @@ class LoginHomeController extends Controller
         $pass['password'] = Hash::make($res['password']);
 
         // dd($res);
-
+        
         try{
            
             $rs = HomeUser::where('email' ,$res['email']) -> update($pass);
