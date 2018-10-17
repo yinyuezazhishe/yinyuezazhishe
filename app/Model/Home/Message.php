@@ -28,5 +28,9 @@ class Message extends Model
         return $this->belongsTo('App\Model\HomeUser');
     }
 
-   
+   //模型关联：获取该留言的所有回复
+    public function remessages()
+    {
+        return $this->hasMany('App\Models\Remessage');
+    }
 }

@@ -56,7 +56,8 @@
         <script src="/homes/js/jquery.backgroundpos.js" type="text/javascript"></script>
         <script src="/homes/js/menu.js" type="text/javascript"></script>
 
-
+        <!-- advertising 样式  -->
+        <link rel="stylesheet" type="text/css" href="/homes/css/advertising.css">
         <!-- banner 样式  -->
         <link rel="stylesheet" type="text/css" href="/homes/css/banner.css">
         
@@ -119,12 +120,15 @@
         @if(session('success'))
         <script type="text/javascript">
             swal("恭喜你!", "{{session('success')}}", "success");
-        </script>
+        </script>      
         @endif
+        
+
             <?php
                 $cate = \App\Model\Home\CateGory::getSubCates();
                 // dd($cate);
             ?>
+
         <div id="wrapper" class="hfeed">
             <!-- 代码 开始 -->
             
@@ -147,7 +151,7 @@
                     </li>
                     @endforeach
                     <li class="li_3">
-                        <a href="/Home/message" target="_self">留言</a>
+                        <a style="width:60px;" href="/Home/message" target="_self">留言板</a>
                     </li>
                 </ul>
                 
@@ -194,8 +198,6 @@
              
             <script src="/homes/js/slider.js"></script>
             <script type="text/javascript">
-
-            $('#bannerCtrl').find('li').first().addClass('active');
            
             $(function() {
                 var bannerSlider = new Slider($('#banner_tabs'), {
@@ -836,20 +838,27 @@
                             </div>
                         </div>
                     </aside>
+                    
+                     @php 
+                      $advertising = \App\Model\Home\Advertising::AdverTising();
+           
+                     @endphp
+                     @foreach ($advertising as $k=>$v)
                     <aside id="text-8" class="widget widget_text clearfix">
-                        <h3 class="widgettitle">
+                         <h3 class="widgettitle">
                             <span>
-                                麦田车载CD
+                                {{$v->title}}
                             </span>
                         </h3>
                         <div class="textwidget">
-                            <a href="https://www.mtyyw.com/18639/" rel="nofollow" target="_blank">
-                                <img src=""
-                                alt="麦田音乐CD" width="350" height="337" class="alignnone size-full wp-image-11045"
+                            <a href="{{$v->links}}" rel="nofollow" target="_blank">
+                                <img src="{{$v->picture}}"
+                                 width="350" height="337" class="alignnone size-full wp-image-11045"
                                 />
                             </a>
                         </div>
                     </aside>
+                    @endforeach
                 </section>
             </div>
             @show

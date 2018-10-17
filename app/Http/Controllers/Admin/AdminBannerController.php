@@ -77,9 +77,11 @@ class AdminBannerController extends Controller
 
             $suffix = $files->getClientOriginalExtension();
 
-            $files->move(Config::get('app.uploads').'/banner/', $gname.'.'.$suffix);
+            // dd(Config::get('app.uploads'));
 
-            $rs['picture'] = '/uploads/banner/'.$gname.'.'.$suffix;
+            $files->move('admins/uploads/banner/', $gname.'.'.$suffix);
+
+            $rs['picture'] = Config::get('app.uploads').'/banner/'.$gname.'.'.$suffix;
         }
         // dd($rs);
 
@@ -142,10 +144,10 @@ class AdminBannerController extends Controller
             $suffix = $request->file('picture')->getClientOriginalExtension(); 
 
             //移动
-            $request -> file('picture') -> move('uploads/banner/',$gname.'.'.$suffix);
+            $request -> file('picture') -> move('admins/uploads/banner/',$gname.'.'.$suffix);
 
              //头像文件路径
-            $res['picture'] = '/uploads/banner/'.$gname.'.'.$suffix;
+            $res['picture'] = Config::get('app.uploads').'/banner/'.$gname.'.'.$suffix;
         }
     
 

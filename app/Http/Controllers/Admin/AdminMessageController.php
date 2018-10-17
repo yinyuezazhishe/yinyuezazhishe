@@ -19,7 +19,7 @@ class AdminMessageController extends Controller
         $rs = Message::select(DB::raw('*,concat(hid,id) as hid'))->
         where('content','like','%'.$request->input('content').'%')->
         orderBy('hid');
-        // dd($rs);
+        dd($rs);
       
         return view('Admin.message.index',[
             'title'=>'留言浏览',
