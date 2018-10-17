@@ -59,7 +59,8 @@
         <script src="/homes/js/jquery.backgroundpos.js" type="text/javascript"></script>
         <script src="/homes/js/menu.js" type="text/javascript"></script>
 
-
+        <!-- advertising 样式  -->
+        <link rel="stylesheet" type="text/css" href="/homes/css/advertising.css">
         <!-- banner 样式  -->
         <link rel="stylesheet" type="text/css" href="/homes/css/banner.css">
         
@@ -122,12 +123,15 @@
         @if(session('success'))
         <script type="text/javascript">
             swal("恭喜你!", "{{session('success')}}", "success");
-        </script>
+        </script>      
         @endif
+        
+
             <?php
                 $cate = \App\Model\Home\CateGory::getSubCates();
                 // dd($cate);
             ?>
+
         <div id="wrapper" class="hfeed">
             <!-- 代码 开始 -->
             
@@ -150,7 +154,7 @@
                     </li>
                     @endforeach
                     <li class="li_3">
-                        <a href="/Home/message" target="_self">留言</a>
+                        <a style="width:60px;" href="/Home/message" target="_self">留言板</a>
                     </li>
                 </ul>
             
@@ -176,7 +180,395 @@
             @section('content')
             
 
+<<<<<<< HEAD
             @show
+=======
+            </div>
+             
+            <script src="/homes/js/slider.js"></script>
+            <script type="text/javascript">
+           
+            $(function() {
+                var bannerSlider = new Slider($('#banner_tabs'), {
+                    time: 5000,
+                    delay: 400,
+                    event: 'hover',
+                    auto: true,
+                    mode: 'fade',
+                    controller: $('#bannerCtrl'),
+                    activeControllerCls: 'active'
+                });
+                $('#banner_tabs .flex-prev').click(function() {
+                    bannerSlider.prev()
+                });
+                $('#banner_tabs .flex-next').click(function() {
+                    bannerSlider.next()
+                });
+            })
+            </script>
+            <!-- banner stop -->
+            <div id="wrap" class="container clearfix">
+                <section id="content" class="primary" role="main">
+                    <article id="post-13827" class="content-excerpt post-13827 post type-post status-publish format-standard has-post-thumbnail sticky hentry category-nomusic tag-t">
+                        <h2 class="post-title entry-title">
+                            <a href="https://www.mtyyw.com/13827/" rel="bookmark">
+                                2018年T恤上新：我真的喜欢做一些让人喜欢的东西
+                            </a>
+                        </h2>
+                        <div class="postmeta">
+                            2016-3-10
+                        </div>
+                        <div class="entry clearfix">
+                            <p>
+                                <img class="" src="/homes/images/TB2uFTbg7OWBuNjSsppXXXPgpXa_!!13533312.jpg"
+                                align="absmiddle" />
+                                <br />
+                                2018年麦田T恤上新中。
+                            </p>
+                            <a href="https://www.mtyyw.com/13827/" class="more-link">
+                                查看全部
+                            </a>
+                        </div>
+                        <div class="postinfo clearfix">
+                            <span class="meta-category">
+                                <ul class="post-categories">
+                                    <li>
+                                        <a href="https://www.mtyyw.com/nomusic/" rel="category tag">
+                                            无关音乐
+                                        </a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                    </article>
+                    <article id="post-19564" class="content-excerpt post-19564 post type-post status-publish format-standard hentry category-feizhuliuyinyue category-wenzi tag-minyao tag-1933">
+                        <h2 class="post-title entry-title">
+                            <a href="https://www.mtyyw.com/19564/" rel="bookmark">
+                                只要现在欢乐，赵照《舍不得过》唱到你心里
+                            </a>
+                        </h2>
+                        <div class="postmeta">
+                            2018-9-26
+                        </div>
+                        <div class="entry clearfix">
+                            <blockquote>
+                                <p>
+                                    与人交往要守住态度，值得的我一定真心相待不辜负，不值得的一笑而过不再多说。没有必要也没有可能与所有人成为好朋友，要做一个有原则的人，不亏待每一份热情，也绝不讨好任何的冷漠。——苑子文
+                                </p>
+                            </blockquote>
+                            <p>
+                                <img class="alignnone size-full wp-image-19565" src="/homes/images/shebudeguo.jpg"
+                                alt="舍不得过 - 赵照" width="400" height="400" />
+                                <br />
+                                曲名：舍不得过
+                                <br />
+                                歌手：赵照
+                                <br />
+                                发行年代：2015
+                                <br />
+                                风格：民谣
+                                <br />
+                                介绍：舍不得过这首歌创作于2013年夏末，这是一个简洁的弹唱版本，气质慵懒，风格老旧。因为制作上的反反复复，一直拖到今天才勉强发表。赵照表示如果说《当你老了》对于我是一个问题，那《舍不得过》像一个答案。然而答案是引发另外一个问题的开始……
+                            </p>
+                            <a href="https://www.mtyyw.com/19564/" class="more-link">
+                                查看全部
+                            </a>
+                        </div>
+                        <div class="postinfo clearfix">
+                            <span class="meta-category">
+                                <ul class="post-categories">
+                                    <li>
+                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
+                                            小众音乐
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.mtyyw.com/wenzi/" rel="category tag">
+                                            文字
+                                        </a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                    </article>
+                    <article id="post-19561" class="content-excerpt post-19561 post type-post status-publish format-standard has-post-thumbnail hentry category-feizhuliuyinyue category-wenzi tag-2146 tag-minyao tag-2851 tag-2831">
+                        <h2 class="post-title entry-title">
+                            <a href="https://www.mtyyw.com/19561/" rel="bookmark">
+                                我沉迷于秋日 &#8211; 纣王老胡
+                            </a>
+                        </h2>
+                        <div class="postmeta">
+                            2018-9-25
+                        </div>
+                        <div class="entry clearfix">
+                            <blockquote>
+                                <p>
+                                    我的生命不过是温柔的疯狂。眼里一片海，我却不肯蓝。——兰波
+                                </p>
+                            </blockquote>
+                            <p>
+                                <img src="/homes/images/qiuri-mtyyw.jpg"
+                                alt="我沉迷于秋日" width="500" height="333" class="alignnone size-full wp-image-19563"
+                                />
+                                <br />
+                                曲名：我沉迷于秋日
+                                <br />
+                                歌手：纣王老胡
+                                <br />
+                                作曲：纣王老胡
+                                <br />
+                                作词：林清
+                                <br />
+                                所属专辑：沉迷于秋日
+                                <br />
+                                发行时间：2018-09-01
+                                <br />
+                                风格：民谣
+                                <br />
+                                介绍：我沉迷于秋日 / 沉迷于你目光所致 / 我沉迷于放肆 / 沉迷于你眼神所视 / 这世界花花的也不过如此。
+                            </p>
+                            <a href="https://www.mtyyw.com/19561/" class="more-link">
+                                查看全部
+                            </a>
+                        </div>
+                        <div class="postinfo clearfix">
+                            <span class="meta-category">
+                                <ul class="post-categories">
+                                    <li>
+                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
+                                            小众音乐
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.mtyyw.com/wenzi/" rel="category tag">
+                                            文字
+                                        </a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                    </article>
+                    <article id="post-19558" class="content-excerpt post-19558 post type-post status-publish format-standard has-post-thumbnail hentry category-feizhuliuyinyue category-wenzi tag-3448 tag-rock tag-1336 tag-minyao">
+                        <h2 class="post-title entry-title">
+                            <a href="https://www.mtyyw.com/19558/" rel="bookmark">
+                                秋天的老狼 | 李志
+                            </a>
+                        </h2>
+                        <div class="postmeta">
+                            2018-9-23
+                        </div>
+                        <div class="entry clearfix">
+                            <blockquote>
+                                <p>
+                                    你需要的伴侣，最好是那能够和你并肩立在船头，浅斟低唱两岸风光，同时更能在惊涛骇浪中紧紧握住你的手不放的人。换句话说，最好她本身不是你必须应付的惊涛骇浪。——龙应台
+                                </p>
+                            </blockquote>
+                            <p>
+                                <img src="/homes/images/lizhibb.jpg"
+                                alt="李志《你好，郑州》" width="400" height="400" class="alignnone size-full wp-image-19559"
+                                />
+                                <br />
+                                曲名：秋天的老狼
+                                <br />
+                                歌手：李志
+                                <br />
+                                所属专辑：你好，郑州
+                                <br />
+                                发行年代：2010
+                                <br />
+                                风格：摇滚，民谣
+                            </p>
+                            <a href="https://www.mtyyw.com/19558/" class="more-link">
+                                查看全部
+                            </a>
+                        </div>
+                        <div class="postinfo clearfix">
+                            <span class="meta-category">
+                                <ul class="post-categories">
+                                    <li>
+                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
+                                            小众音乐
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.mtyyw.com/wenzi/" rel="category tag">
+                                            文字
+                                        </a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                    </article>
+                    <article id="post-19556" class="content-excerpt post-19556 post type-post status-publish format-standard has-post-thumbnail hentry category-feizhuliuyinyue tag-3447 tag-3446 tag-jita tag-chunyinyue tag-3138">
+                        <h2 class="post-title entry-title">
+                            <a href="https://www.mtyyw.com/19556/" rel="bookmark">
+                                吉他发烧曲《那些花儿》
+                            </a>
+                        </h2>
+                        <div class="postmeta">
+                            2018-9-21
+                        </div>
+                        <div class="entry clearfix">
+                            <blockquote>
+                                <p>
+                                    我想和你在一起，几天也好。在某个地方，某个时候。——电影《广岛之恋》
+                                </p>
+                            </blockquote>
+                            <p>
+                                <img src="/homes/images/post-432298-1145330675.jpg"
+                                alt="彻夜未眠" width="357" height="328" class="alignnone size-full wp-image-18050"
+                                />
+                                <br />
+                                曲名：那些花儿
+                                <br />
+                                歌手：陈小平
+                                <br />
+                                所属专辑：彻夜未眠
+                                <br />
+                                发行年代：2005
+                                <br />
+                                风格：纯音乐，发烧音乐，吉他
+                                <br />
+                                介绍：这是一套在网上广为流传的吉他发烧碟，首张发行于2005年。无可挑剔的技术、出神入化的演奏、华丽亲切的音乐气氛、清晰明亮的音色、以及层次感丰富的配器，无不令人耳目一新，是一张不折不扣的原声吉他发烧录音，而专辑中所选曲目，多为我们所熟悉，这更增加了我们聆听时的亲切感。
+                            </p>
+                            <a href="https://www.mtyyw.com/19556/" class="more-link">
+                                查看全部
+                            </a>
+                        </div>
+                        <div class="postinfo clearfix">
+                            <span class="meta-category">
+                                <ul class="post-categories">
+                                    <li>
+                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
+                                            小众音乐
+                                        </a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                    </article>
+                    <article id="post-19553" class="content-excerpt post-19553 post type-post status-publish format-standard has-post-thumbnail hentry category-feizhuliuyinyue category-wenzi tag-bob-dylan tag-minyao tag-2225">
+                        <h2 class="post-title entry-title">
+                            <a href="https://www.mtyyw.com/19553/" rel="bookmark">
+                                天色未暗 夜已不远 Not Dark Yet &#8211; Bob Dylan
+                            </a>
+                        </h2>
+                        <div class="postmeta">
+                            2018-9-20
+                        </div>
+                        <div class="entry clearfix">
+                            <blockquote>
+                                <p>
+                                    我的名字并不能提供任何有关我这个人的线索，我的生活也不能暗示我的本质。——安吉拉·卡特
+                                </p>
+                            </blockquote>
+                            <p>
+                                <img src="/homes/images/The-Best-of-Bob-Dylan.jpg"
+                                alt="The Best of Bob Dylan" width="400" height="400" class="alignnone size-full wp-image-19554"
+                                />
+                                <br />
+                                曲名：Not Dark Yet
+                                <br />
+                                歌手：Bob Dylan
+                                <br />
+                                所属专辑：The Best of Bob Dylan
+                                <br />
+                                发行年代：2005
+                                <br />
+                                风格：民谣
+                            </p>
+                            <a href="https://www.mtyyw.com/19553/" class="more-link">
+                                查看全部
+                            </a>
+                        </div>
+                        <div class="postinfo clearfix">
+                            <span class="meta-category">
+                                <ul class="post-categories">
+                                    <li>
+                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
+                                            小众音乐
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.mtyyw.com/wenzi/" rel="category tag">
+                                            文字
+                                        </a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                    </article>
+                    <article id="post-19547" class="content-excerpt post-19547 post type-post status-publish format-standard hentry category-feizhuliuyinyue category-wenzi tag-tiny-harvest tag-3444 tag-3445 tag-3443 tag-2010">
+                        <h2 class="post-title entry-title">
+                            <a href="https://www.mtyyw.com/19547/" rel="bookmark">
+                                美好的一天 Beautiful Day &#8211; Tiny Harvest
+                            </a>
+                        </h2>
+                        <div class="postmeta">
+                            2018-9-19
+                        </div>
+                        <div class="entry clearfix">
+                            <blockquote>
+                                <p>
+                                    看清楚这个世界，并不能让这个世界变更好。但可能让你在看清楚这个世界是个怎样的世界后，把自己变得比较好。——朱德庸
+                                </p>
+                            </blockquote>
+                            <p>
+                                <img class="alignnone size-full wp-image-19548" src="/homes/images/TAS-The-Absolute-Sound-2006.jpg"
+                                alt="TAS- The Absolute Sound 2006" width="400" height="400" />
+                            </p>
+                            <p>
+                                曲名：Beautiful Day
+                                <br />
+                                歌手：Tiny Harvest
+                                <br />
+                                所属专辑：TAS：The Absolute Sound 2006
+                                <br />
+                                专辑中文名：绝对的声音 2006
+                            </p>
+                            <a href="https://www.mtyyw.com/19547/" class="more-link">
+                                查看全部
+                            </a>
+                        </div>
+                        <div class="postinfo clearfix">
+                            <span class="meta-category">
+                                <ul class="post-categories">
+                                    <li>
+                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
+                                            小众音乐
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.mtyyw.com/wenzi/" rel="category tag">
+                                            文字
+                                        </a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                    </article>
+                    <div class="post-pagination clearfix">
+                        <span aria-current='page' class='page-numbers current'>
+                            1
+                        </span>
+                        <a class='page-numbers' href='https://www.mtyyw.com/page/2/'>
+                            2
+                        </a>
+                        <a class='page-numbers' href='https://www.mtyyw.com/page/3/'>
+                            3
+                        </a>
+                        <span class="page-numbers dots">
+                            &hellip;
+                        </span>
+                        <a class='page-numbers' href='https://www.mtyyw.com/page/530/'>
+                            530
+                        </a>
+                        <a class="next page-numbers" href="https://www.mtyyw.com/page/2/">
+                            &raquo;
+                        </a>
+                    </div>
+                </section>
+>>>>>>> ljx
                 <section id="sidebar" class="secondary clearfix" role="complementary">
                     <aside id="search-8" class="widget widget_search clearfix">
                         <h3 class="widgettitle">
@@ -436,20 +828,27 @@
                             </div>
                         </div>
                     </aside>
+                    
+                     @php 
+                      $advertising = \App\Model\Home\Advertising::AdverTising();
+           
+                     @endphp
+                     @foreach ($advertising as $k=>$v)
                     <aside id="text-8" class="widget widget_text clearfix">
-                        <h3 class="widgettitle">
+                         <h3 class="widgettitle">
                             <span>
-                                麦田车载CD
+                                {{$v->title}}
                             </span>
                         </h3>
                         <div class="textwidget">
-                            <a href="https://www.mtyyw.com/18639/" rel="nofollow" target="_blank">
-                                <img src=""
-                                alt="麦田音乐CD" width="350" height="337" class="alignnone size-full wp-image-11045"
+                            <a href="{{$v->links}}" rel="nofollow" target="_blank">
+                                <img src="{{$v->picture}}"
+                                 width="350" height="337" class="alignnone size-full wp-image-11045"
                                 />
                             </a>
                         </div>
                     </aside>
+                    @endforeach
                 </section>
             </div>
             @show

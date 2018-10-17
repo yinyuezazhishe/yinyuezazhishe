@@ -228,5 +228,6 @@ return [
 
     ],
     'imgpath'=>public_path(),
-    'uploads'=>'./uploads',
+
+    'uploads'=>'/admins/uploads'
 ];

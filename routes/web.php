@@ -108,8 +108,10 @@ Route::post('home/forgetpass', 'Home\LoginHomeController@forgetpass');
 Route::get('Home/Blogroll','Home\BlogrollController@showBlogroll');
 
 //前台留言展示
-Route::get('Home/message','Home\MessageController@index');
-Route::post('Home/message','Home\MessageController@store');
+Route::get('Home/message','Home\MessageController@index')->name('messages.index');
+Route::post('Home/message','Home\MessageController@store')->middleware('throttle:5')->name('messages.store');
+//回复（留言）
+Route::post('Home/remessags', 'Home\RemessagesController@store')->middleware('throttle:5')->name('remessages.store');
 
 //前台个人中心显示
 Route::get('home/user/center','Home\HomeUsersController@index');
