@@ -4,14 +4,14 @@ namespace App\Model\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class DetailsContent extends Model
 {
     /**
      * 与模型关联的数据表
      *
      * @var string
      */
-    protected $table = 'category';
+    protected $table = 'details_content';
 
     //主键
     protected $primaryKey = 'id';
@@ -29,6 +29,4 @@ class Category extends Model
 	 * @var array
 	 */
 	protected $guarded = [];
-
 }
-

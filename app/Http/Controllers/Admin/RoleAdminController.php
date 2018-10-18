@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Admin\Role;
+use Validator;
 
 class RoleAdminController extends Controller
 {
@@ -43,15 +44,19 @@ class RoleAdminController extends Controller
      */
     public function store(Request $request)
     {
-    	// 表单验证
-        $this->validate($request, [
-            	'role_name' => 'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_\-]{2,}$/u',
+        // 表单验证
+        $role = Validator::make($request->all(), [
+                'role_name' => 'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_\-]{2,}$/u',
 
-	        ],[
-	            'role_name.required'=>'角色名称不能为空!',
-	            'role_name.regex'=>'角色名称含有字母、数字、下划线、中文以外的非法字符且必须最少2位!',
-	        ]
-        ) -> withInput();;
+            ],[
+                'role_name.required'=>'角色名称不能为空!',
+                'role_name.regex'=>'角色名称含有字母、数字、下划线、中文以外的非法字符且必须最少2位!'
+            ]
+        );
+
+        if ($role->fails()) {
+            return back() ->withErrors($role) ->withInput();
+        }
 
         $rs = $request->except('_token');
 
@@ -69,7 +74,7 @@ class RoleAdminController extends Controller
 
         }catch(\Exception $e){
 
-            return back()->with('errors','添加角色失败') -> withInput();;
+            return back()->with('errors','添加角色失败') -> withInput();
 
         }
     }
@@ -109,14 +114,18 @@ class RoleAdminController extends Controller
     public function update(Request $request, $id)
     {
         // 表单验证
-        $this->validate($request, [
-            	'role_name' => 'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_\-]{2,}$/u',
+        $role = Validator::make($request->all(), [
+                'role_name' => 'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_\-]{2,}$/u',
 
-	        ],[
-	            'role_name.required'=>'角色名称不能为空!',
-	            'role_name.regex'=>'角色名称含有字母、数字、下划线、中文以外的非法字符且必须最少2位!'
-	        ]
-        );  
+            ],[
+                'role_name.required'=>'角色名称不能为空!',
+                'role_name.regex'=>'角色名称含有字母、数字、下划线、中文以外的非法字符且必须最少2位!'
+            ]
+        );
+
+        if ($role->fails()) {
+            return back() ->withErrors($role) ->withInput();
+        }
 
         $rs = $request->only('role_name');
 
@@ -152,7 +161,7 @@ class RoleAdminController extends Controller
      */
     public function destroy($id)
     {
-        try{
+        /*try{
             $data= Role::where('id',$id)->delete();
 
             if($data){
@@ -163,6 +172,6 @@ class RoleAdminController extends Controller
         }catch(\Exception $e){
 
             return back()->with('errors','删除角色失败');
-        }
+        }*/
     }
 }

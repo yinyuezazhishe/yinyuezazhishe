@@ -79,7 +79,8 @@ Route::resource('Admin/message', 'Admin\AdminMessageController');
 
 // 后台详情管理
 Route::resource('admin/details', 'Admin\AdminDetailsController');
-
+// 详情状态
+Route::get('admin/details/{id}/edit_status', 'Admin\AdminDetailsController@edit_status');
 
 
 

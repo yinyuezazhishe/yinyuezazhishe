@@ -4,14 +4,14 @@ namespace App\Model\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Details extends Model
 {
     /**
      * 与模型关联的数据表
      *
      * @var string
      */
-    protected $table = 'category';
+    protected $table = 'details';
 
     //主键
     protected $primaryKey = 'id';
@@ -30,5 +30,19 @@ class Category extends Model
 	 */
 	protected $guarded = [];
 
-}
+	/**
+     * 获得此详情的内容
+     */
+    public function details_content()
+    {
+        return $this->hasOne('App\Model\Admin\DetailsContent', 'did', 'id');
+    }
 
+    /**
+     * 获得此详情对应的列表。
+     */
+    public function lists()
+    {
+        return $this->belongsTo('App\Model\Admin\Lists', 'lid', 'id');
+    }
+}

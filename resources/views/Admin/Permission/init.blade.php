@@ -81,11 +81,11 @@
                             <td>{{$v->per_name}}</td>
                             <td>{{$v->urls}}</td>
                             <td>
-                                <a href="/admin/permission/{{$v->id}}/edit" class="btn btn-info btn-small"><i class="glyphicon glyphicon-edit"></i></a>
+                                <a href="/admin/permission/{{$v->id}}/edit" title="修改" class="btn btn-info btn-small"><i class="glyphicon glyphicon-edit"></i></a>
                                 <form action="/admin/permission/{{$v->id}}" method="post" class="del"  style="display: inline;">
                                     {{csrf_field()}}
                                     {{method_field('DELETE')}}
-                                    <button class="btn btn-danger btn-small del" data-id="{{$v->id}}"><i class="glyphicon glyphicon-trash"></i></button>
+                                    <button class="btn btn-danger btn-small del" title="删除" data-id="{{$v->id}}"><i class="glyphicon glyphicon-trash"></i></button>
                                 </form>
                             </td>
                         </tr>
@@ -118,12 +118,6 @@
 		$('.show_permission a').css({'color':'#fff'});
 		show_permission.attr('class','active');
 	</script>
-
-    <!-- <script src="/admins/js/content.min.js?v=1.0.0"></script> -->
-    <script src="/admins/js/plugins/validate/jquery.validate.min.js"></script>
-    <script src="/admins/js/plugins/validate/messages_zh.min.js"></script>
-    <script src="/admins/js/demo/form-validate-demo.min.js"></script>
-    <script src="/homes/js/sweetalert.min.js"></script>
 
 	@if(session('succes'))  
     <script type="text/javascript">
