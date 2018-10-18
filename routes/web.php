@@ -54,6 +54,7 @@ Route::prefix('admin')->group(function(){
 	Route::resource('activity','Admin\AdminActivityController');
 	//用户积分
 	Route::get('integral/index','Admin\HomeIntegralController@index');
+	Route::get('integral/{id}/show','Admin\HomeIntegralController@show');
 });
 
 //后台用户修改头像

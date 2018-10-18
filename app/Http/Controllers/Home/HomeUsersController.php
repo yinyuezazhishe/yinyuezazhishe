@@ -56,7 +56,7 @@ class HomeUsersController extends Controller
     	$name = time().rand(1000,9999);
 		if(!empty($request->input('image'))){
 			//如果旧图片不为空
-			if(!empty($request->input('oldface'))){
+			if(!empty($request->input('oldface')) && file_exists('.'.$request->input('oldface'))){
 				unlink('.'.$request->input('oldface'));	
 			}
 			//调用函数拿到路径
