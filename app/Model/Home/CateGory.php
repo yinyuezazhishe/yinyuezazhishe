@@ -47,4 +47,14 @@ class CateGory extends Model
         return $arr;
     }
 
+    /**
+     *  获取此类别的列表
+     *
+     *  @return \Illuminate\Http\Response.
+     */
+    public function lists()
+    {
+        return $this->hasMany('App\Model\Admin\Lists', 'cid', 'id');
+    }
+
 }

@@ -37,4 +37,14 @@ class Lists extends Model
     {
         return $this->hasOne('App\Model\Admin\Details', 'lid', 'id');
     }
+
+    /**
+     *  获取此列表的类别
+     *
+     *  @return \Illuminate\Http\Response.
+     */
+    public function category()
+    {
+        return $this->belongsTo('App\Model\Admin\CateGory', 'cid', 'id');
+    }
 }

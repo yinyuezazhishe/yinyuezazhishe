@@ -104,7 +104,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-3 col-sm-offset-2">
+                <div class="col-sm-1 col-sm-offset-2">
+                    <a class="btn btn-primary" href="javascript:history.go(-1)" type="submit" >返回上一步</a>
+                </div>
+                <div class="col-sm-3" style="margin-left: 30px;">
                     {{csrf_field()}}
                     {{method_field('PUT')}}
                     <button class="btn btn-primary" type="submit">修改</button>
@@ -162,9 +165,9 @@
         } 
 
 		//改变导航条样式
-		var create_details = $('.create_details').parents('li');
-		$('.create_details a').css({'color':'#fff'});
-		create_details.attr('class','active');
+		var show_details = $('.show_details').parents('li');
+		$('.show_details a').css({'color':'#fff'});
+		show_details.attr('class','active');
 
         //实例化编辑器
         //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
