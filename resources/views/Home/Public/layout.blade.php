@@ -154,7 +154,10 @@
                     </li>
                     @endforeach
                     <li class="li_3">
-                        <a style="width:60px;" href="/Home/message" target="_self">留言板</a>
+                        <a class="noclick" href="/Home/message" target="_blank">留言板</a>
+                        <dl style="margin:0px; padding: 0px;" class="li_3_content">
+                            <dt></dt>
+                        </dl>
                     </li>
                 </ul>
             
@@ -177,17 +180,38 @@
             </div>
 
             <!-- 代码 结束 -->
-
             @section('content')
+            <?php
+                $pictures = \App\Model\Home\Banner::BanNer();
+             ?>
             
-
-<<<<<<< HEAD
+            <!-- banner start -->
+            <div id="banner_tabs" style="margin:0px;padding:0px" class="flexslider">
+                <ul class="slides">
+                    @foreach ($pictures as $k => $v)
+                    <li>
+                        <a title="{{$v->title}}" target="_blank" href="#">
+                            <img width="1920" height="482" alt="{{$v->alt}}" style="background: url({{$v->picture}}) no-repeat center;" src="{{$v->picture}}">
+                        </a>
+                    </li>
+                    @endforeach
+                </ul>
+                <ul class="flex-direction-nav">
+                    <li><a class="flex-prev" href="javascript:;">Previous</a></li>
+                    <li><a class="flex-next" href="javascript:;">Next</a></li>
+                </ul>
+                <ol id="bannerCtrl" class="flex-control-nav flex-control-paging">
+                    @for($i = 1; $i <= count($pictures); $i ++)
+                    <li><a>{{$i}}</a></li>
+                    @endfor
+                </ol>
             @show
-=======
             </div>
              
             <script src="/homes/js/slider.js"></script>
             <script type="text/javascript">
+
+            $('#bannerCtrl').find('li').first().addClass('active');
            
             $(function() {
                 var bannerSlider = new Slider($('#banner_tabs'), {
@@ -569,7 +593,6 @@
                         </a>
                     </div>
                 </section>
->>>>>>> ljx
                 <section id="sidebar" class="secondary clearfix" role="complementary">
                     <aside id="search-8" class="widget widget_search clearfix">
                         <h3 class="widgettitle">
@@ -853,6 +876,7 @@
                 </section>
             </div>
             @show
+
             <div id="footer-widgets-bg">
                 <div id="footer-widgets-wrap" class="container">
                     <div id="footer-widgets" class="clearfix">

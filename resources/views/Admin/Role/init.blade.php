@@ -79,12 +79,12 @@
                             <td>{{$v->id}}</td>
                             <td>{{$v->role_name}}</td>                        
                             <td>
-                                <a style="width: 40px" href="/admin/role_permission/{{$v->id}}/r_p_edit" class="btn btn-info btn-small"><i  class="fa fa-user-secret"></i></a>
-                                <a href="/admin/role/{{$v->id}}/edit" class="btn btn-info btn-small"><i class="glyphicon glyphicon-edit"></i></a>
+                                <a style="width: 40px" href="/admin/role_permission/{{$v->id}}/r_p_edit" title="添加角色权限" class="btn btn-info btn-small"><i  class="fa fa-user-secret"></i></a>
+                                <a href="/admin/role/{{$v->id}}/edit" title="修改" class="btn btn-info btn-small"><i class="glyphicon glyphicon-edit"></i></a>
                                 <form action="/admin/role/{{$v->id}}" method="post" class="del"  style="display: inline;">
                                     {{csrf_field()}}
                                     {{method_field('DELETE')}}
-                                    <button class="btn btn-danger btn-small del" data-id="{{$v->id}}"><i class="glyphicon glyphicon-trash"></i></button>
+                                    <button class="btn btn-danger btn-small del" title="删除" data-id="{{$v->id}}"><i class="glyphicon glyphicon-trash"></i></button>
                                 </form>
                             </td>
                         </tr>
@@ -117,12 +117,6 @@
 		$('.show_role a').css({'color':'#fff'});
 		show_role.attr('class','active');
 	</script>
-
-    <!-- <script src="/admins/js/content.min.js?v=1.0.0"></script> -->
-    <script src="/admins/js/plugins/validate/jquery.validate.min.js"></script>
-    <script src="/admins/js/plugins/validate/messages_zh.min.js"></script>
-    <script src="/admins/js/demo/form-validate-demo.min.js"></script>
-    <script src="/homes/js/sweetalert.min.js"></script>
 
 	@if(session('succes'))  
     <script type="text/javascript">

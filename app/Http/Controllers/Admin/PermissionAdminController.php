@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Admin\Permission;
+use Validator;
 
 class PermissionAdminController extends Controller
 {
@@ -45,7 +46,7 @@ class PermissionAdminController extends Controller
     public function store(Request $request)
     {
         // 表单验证
-        $this->validate($request, [
+        $permission = Validator::make($request->all(), [
                 'per_name' => 'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_\-]{2,}$/u',
                 'urls' => 'required',
 
@@ -54,7 +55,11 @@ class PermissionAdminController extends Controller
                 'per_name.regex'=>'权限名称含有字母、数字、下划线、中文以外的非法字符且必须最少2位!',
                 'urls' => 'url地址不能为空'
             ]
-        ) -> withInput();;
+        );
+
+        if ($permission->fails()) {
+            return back() ->withErrors($permission) ->withInput();
+        }
 
         $rs = $request->except('_token');
 
@@ -71,7 +76,7 @@ class PermissionAdminController extends Controller
 
         }catch(\Exception $e){
 
-            return back()->with('errors','添加权限失败') -> withInput();;
+            return back()->with('errors','添加权限失败') -> withInput();
 
         }
     }
@@ -112,7 +117,7 @@ class PermissionAdminController extends Controller
     public function update(Request $request, $id)
     {
         // 表单验证
-        $this->validate($request, [
+        $permission = Validator::make($request->all(), [
                 'per_name' => 'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_\-]{2,}$/u',
                 'urls' => 'required',
 
@@ -122,6 +127,10 @@ class PermissionAdminController extends Controller
                 'urls' => 'url地址不能为空'
             ]
         );
+
+        if ($permission->fails()) {
+            return back() ->withErrors($permission) ->withInput();
+        }
 
         $rs = $request->except('_token','_method');
 

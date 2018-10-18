@@ -9,7 +9,7 @@
         <h5>{{$title}}</h5>
     </div>
     <div class="ibox-content">
-        <form class="form-horizontal m-t" id="signupForm" action="/admin/role" novalidate="novalidate" id="uploadForm" enctype='multipart/form-data' method="post">
+        <form class="form-horizontal m-t" id="signupForm" action="/admin/role" novalidate="novalidate" id="uploadForm" method="post">
             <div class="form-group">
                 <label class="col-sm-3 control-label">角色名称：</label>
                 <div class="col-sm-3">
