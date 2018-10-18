@@ -1,4 +1,4 @@
-﻿@extends('Admin.Public.layout')
+@extends('Admin.Public.layout')
 
 @section('content')
 
@@ -8,7 +8,7 @@
         </div>        
             <div class="ibox-content">
                 <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
-                    <form action="/admin/details" method="get">
+                    <form action="/admin/lists" method="get">
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="dataTables_length" id="DataTables_Table_0_length">
@@ -56,7 +56,7 @@
                             </div>
                             <div class="col-sm-3 col-sm-offset-3">
                                 <div class="input-group">
-                                    <input type="text" placeholder="请输入详情作者" class="input-sm form-control" name="author" value="{{$request->author}}"> <span class="input-group-btn">
+                                    <input type="text" placeholder="请输入分类名称" class="input-sm form-control" name="cid" value="{{$request->cid}}"> <span class="input-group-btn">
                                         <button type="submit" class="btn btn-sm btn-primary"> 搜索</button> </span>
                                 </div>
                             </div>                  
@@ -66,39 +66,26 @@
                 <table class="table table-striped table-bordered table-hover dataTables-example dataTable text-center">
                     <thead>
                         <tr role="row">
-                            <th style="width: 70px;" class="text-center">详情id</th>
+                            <th style="width: 70px;" class="text-center">列表id</th>
                             <th style="width: 80px;" class="text-center">分类名称</th>
-                            <th style="width: 116px;" class="text-center">详情标题</th>   
-                            <th style="width: 100px;" class="text-center">详情作者</th>   
-                            <th style="width: 116px;" class="text-center">详情语录</th>   
-                            <th style="width: 116px;" class="text-center">详情描述</th>   
-                            <th style="width: 116px;" class="text-center">图片欣赏</th>
-                            <th style="width: 175px;" class="text-center">操作</th>
+                            <th style="width: 170px;" class="text-center">操作</th>
                         </tr>
                     </thead>
                     <tbody>    
-                        @foreach ($details as $k=>$v)
+                        @foreach ($lists as $k=>$v)
                         <tr class="gradeA odd">
                             <td>{{$v->id}}</td>
                             <td>
-                                @foreach ($cate as $kk=>$vv)
-                                    @if($v->lists->cid == $vv->id)
-                                        {{$vv->catename}}
-                                    @endif
-                                @endforeach
-                            </td>
-                            <td>{{$v->details_content->title}}</td>
-                            <td>{{$v->details_content->author}}</td>
-                            <td>{{$v->details_content->saying}}</td>
-                            <td>{{$v->details_content->describe}}</td>
-                            <td>
-                                <img src="{{$v->details_content->picstream}}" height="120px">
+                                {{$v->category->catename}}
                             </td>
                             <td class="st">
-                                <a style="width: 40px;" @if($v->status == 0) title="启用" @elseif($v->status==1) title="禁用" @endif href="/admin/details/{{$v->id}}/edit_status" class="btn status btn-info btn-small"><i style="font-size: 17px;" @if($v->status == 0) class="fa fa-check-circle-o" @elseif($v->status==1) class="fa fa-times-circle-o" @endif ></i></a>
-                                <a style="width: 40px" title="查看详情内容" href="/admin/details/{{$v->id}}" class="btn btn-info btn-small"><i  class="fa fa-th-large"></i></a>
-                                <a href="/admin/details/{{$v->id}}/edit" title="修改" class="btn btn-info btn-small"><i class="glyphicon glyphicon-edit"></i></a>
-                                <a href="/admin/lists?id={{$v->id}}" class="btn btn-danger btn-small del" title="删除"><i class="glyphicon glyphicon-trash"></i></a>
+                                <a style="width: 40px;" href="/admin/lists/{{$v->id}}/edit_status" @if($v->status == 0) title="启用" @elseif($v->status==1) title="禁用" @endif  class="btn status btn-info btn-small"><i style="font-size: 17px;" @if($v->status == 0) class="fa fa-check-circle-o" @elseif($v->status==1) class="fa fa-times-circle-o" @endif ></i></a>
+                                <a href="/admin/lists/{{$v->id}}/edit" title="修改" class="btn btn-info btn-small"><i class="glyphicon glyphicon-edit"></i></a>
+                                <form action="/admin/lists/{{$v->id}}" method="post" class="del" style="display: inline;">
+                                    {{csrf_field()}}
+                                    {{method_field('DELETE')}}
+                                    <button class="btn btn-danger btn-small del" title="删除" data-id="{{$v->id}}"><i class="glyphicon glyphicon-trash"></i></button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach
@@ -108,12 +95,12 @@
                     <div class="col-sm-6">
                         <div class="dataTables_info" id="DataTables_Table_0_info" role="alert"
                         aria-live="polite" aria-relevant="all">
-                            显示 {{$details->firstItem()}} 到 {{$details->lastItem()}} 项，共 {{$details->total()}} 项
+                            显示 {{$lists->firstItem()}} 到 {{$lists->lastItem()}} 项，共 {{$lists->total()}} 项
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-                            {{$details->appends($request->all())->links()}}
+                            {{$lists->appends($request->all())->links()}}
                         </div>
                     </div>
                 </div>
@@ -126,9 +113,9 @@
 @section('js')
 	<script type="text/javascript">
 		//改变导航条样式
-		var show_details = $('.show_details').parents('li');
-		$('.show_details a').css({'color':'#fff'});
-		show_details.attr('class','active');
+		var show_lists = $('.show_lists').parents('li');
+		$('.show_lists a').css({'color':'#fff'});
+		show_lists.attr('class','active');
 
         $('.status').click(function ()
         {
@@ -175,31 +162,9 @@
             return false;
         })
 
-        // flags();
-
-        $('.del').click(function ()
-        {
-            var hrefs= $(this).attr('href');
-            swal({
-                title: "您确定要删除此条详情吗?",
-                text: "点击OK将会自动跳转至列表进行删除操作, 请谨慎操作!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-                
-            }).then((willDelete) =>{
-                if (willDelete) {
-                    window.location.href=hrefs;
-                } else {
-                    return false;
-                }
-            });
-
-            return false;
-        })
-    
-
 	</script>
+
+    <script src="/homes/js/sweetalert.min.js"></script>
 
 	@if(session('succes'))  
     <script type="text/javascript">
@@ -207,6 +172,5 @@
     </script>
     @endif
 
-    <script src="/homes/js/sweetalert.min.js"></script>
 
 @stop

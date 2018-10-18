@@ -37,7 +37,10 @@
             </div>
 
             <div class="form-group">
-                <div class="col-sm-2 col-sm-offset-2">
+                <div class="col-sm-1 col-sm-offset-2">
+                    <a class="btn btn-primary" href="javascript:history.go(-1)" type="submit" >返回上一步</a>
+                </div>
+                <div class="col-sm-2" style="margin-left: 30px;">
                 	{{csrf_field()}}
                     <button class="btn btn-primary" type="submit">添加</button>
                 </div>

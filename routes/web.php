@@ -82,8 +82,10 @@ Route::resource('admin/details', 'Admin\AdminDetailsController');
 // 详情状态
 Route::get('admin/details/{id}/edit_status', 'Admin\AdminDetailsController@edit_status');
 
-
-
+// 后台列表管理
+Route::resource('admin/lists', 'Admin\AdminListsController');
+// 列表状态
+Route::get('admin/lists/{id}/edit_status', 'Admin\AdminListsController@edit_status');
 
 // 前台主页
 Route::any('/', function () {

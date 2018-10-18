@@ -152,7 +152,7 @@ class AdminDetailsController extends Controller
             // 判断三个表是否添加数据成功
             if($lists && $details &&  $d_content){
 
-                return redirect('/admin/details')->with('success','添加详情成功!');
+                return redirect('/admin/details')->with('succes','添加详情成功!');
             }
 
         }catch(\Exception $e){
@@ -161,7 +161,7 @@ class AdminDetailsController extends Controller
 
             // echo $e -> getLine();
 
-            return back()->with('error','添加详情失败!');
+            return back()->with('errors','添加详情失败!');
 
         }
     }
@@ -297,7 +297,7 @@ class AdminDetailsController extends Controller
     }
 
     /**
-     *  Display a listing of the resource.
+     *  详情修改状态
      *
      *  @return \Illuminate\Http\Response.
      */
@@ -329,7 +329,6 @@ class AdminDetailsController extends Controller
             if($data){
 
                 echo $stat + 1;
-
                 return 0;
             }
 
@@ -338,7 +337,6 @@ class AdminDetailsController extends Controller
             // echo getMessage();
 
             return 1;
-
         }
     }
 }
