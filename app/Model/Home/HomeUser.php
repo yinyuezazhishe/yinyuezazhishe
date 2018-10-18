@@ -29,4 +29,12 @@ class HomeUser extends Model
 	 * @var array
 	 */
 	protected $guarded = [];
+    //关联积分表
+    public function integral(){
+        return $this->hasOne('App\Model\Admin\Integral','hid','id');
+    }
+    //关联活动表
+    public function activity(){
+        return $this->hasMany('App\Model\Admin\AdminActivity','uid','id');
+    }
 }

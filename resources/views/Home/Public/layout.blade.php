@@ -37,7 +37,7 @@
         </script> -->
         
         <link href="/homes/public/templates/default/style/css.css"  rel="stylesheet" type="text/css" />
-
+        <link href="/homes/css/player.css" rel="stylesheet" type="text/css" />
         <link href="/homes/public/templates/default/style/div.css" ttype="text/css" />
         <!-- 公用样式代码 结束 -->
         <link href="/homes/public/templates/default/style/font-awesome.min.css"  rel="stylesheet" type="text/css" />
@@ -58,8 +58,6 @@
         <link rel="stylesheet" href="/homes/css/menu.css" type="text/css" />
         <script src="/homes/js/jquery.backgroundpos.js" type="text/javascript"></script>
         <script src="/homes/js/menu.js" type="text/javascript"></script>
-
-
         <!-- banner 样式  -->
         <link rel="stylesheet" type="text/css" href="/homes/css/banner.css">
         
@@ -124,24 +122,31 @@
             swal("恭喜你!", "{{session('success')}}", "success");
         </script>
         @endif
-
+            <?php
+                $cate = \App\Model\Home\CateGory::getSubCates();
+                // dd($cate);
+            ?>
         <div id="wrapper" class="hfeed">
             <!-- 代码 开始 -->
+            
             <div class="header">
-                <ul class="menus">
-                    <li class="current first"><a href="http://sc.chinaz.com/" target="_self">首页</a></li>
-                    <li><a href="#" target="_self">功能</a></li>
-                    <li><a href="#" target="_self">下载</a></li>
-                    <li class="li_3"><a class="noclick" href="http://sc.chinaz.com/" target="_blank">更多产品</a>
+                <ul class="menus" margin: 0px;>
+                    <li class="current first">
+                        <a href="/" target="_self">首页</a>
+                    </li>
+                    @foreach ($cate as $k => $v)
+                    <li class="li_3">
+                        <a class="noclick" href="#" target="_blank">{{$v -> catename}}</a>
                         <dl style="margin:0px; padding: 0px;" class="li_3_content">
                             <dt></dt>
-                            <dd style="margin:0px; padding: 0px;"><a href="http://sc.chinaz.com/" target="_blank"><span>应用商店</span></a></dd>
-                            <dd style="margin:0px; padding: 0px;"><a href="http://sc.chinaz.com/" target="_blank"><span>主题商店</span></a></dd>
-                            <dd style="margin:0px; padding: 0px;"><a href="http://sc.chinaz.com/" target="_blank"><span>小米桌面</span></a></dd>
-                            <dd class="lastItem" style="margin:0px; padding: 0px;"><a href="http://sc.chinaz.com/" target="_blank"><span>懒人图库</span></a></dd>
+                            @foreach ($v->sub as $kk=>$vv)
+
+                            <dd style="margin:0px; padding: 0px;"><a href="http://sc.chinaz.com/" target="_blank"><span>{{$vv -> catename}}</span></a></dd>
+                           
+                            @endforeach
                         </dl>
                     </li>
-                    <li class=""><a class="noborder " href="#" target="_self">论坛</a></li>
+                    @endforeach
                 </ul>
             
                 <a href="/">
@@ -163,37 +168,38 @@
             <!-- 代码 结束 -->
 
             @section('content')
+            <?php
+                $pictures = \App\Model\Home\Banner::BanNer();
+             ?>
+            
             <!-- banner start -->
             <div id="banner_tabs" style="margin:0px;padding:0px" class="flexslider">
                 <ul class="slides">
+                    @foreach ($pictures as $k => $v)
                     <li>
-                        <a title="" target="_blank" href="#">
-                            <img width="1920" height="482" alt="" style="background: url(/homes/images/banner1.jpg) no-repeat center;" src="/homes/images/alpha.png">
+                        <a title="{{$v->title}}" target="_blank" href="#">
+                            <img width="1920" height="482" alt="{{$v->alt}}" style="background: url({{$v->picture}}) no-repeat center;" src="{{$v->picture}}">
                         </a>
                     </li>
-                    <li>
-                        <a title="" href="#">
-                            <img width="1920" height="482" alt="" style="background: url(/homes/images/banner2.jpg) no-repeat center;" src="/homes/images/alpha.png">
-                        </a>
-                    </li>
-                    <li>
-                        <a title="" href="#">
-                            <img width="1920" height="482" alt="" style="background: url(/homes/images/banner3.jpg) no-repeat center;" src="/homes/images/alpha.png">
-                        </a>
-                    </li>
+                    @endforeach
                 </ul>
                 <ul class="flex-direction-nav">
                     <li><a class="flex-prev" href="javascript:;">Previous</a></li>
                     <li><a class="flex-next" href="javascript:;">Next</a></li>
                 </ul>
                 <ol id="bannerCtrl" class="flex-control-nav flex-control-paging">
-                    <li><a>1</a></li>
-                    <li><a>2</a></li>
-                    <li><a>2</a></li>
+                    @for($i = 1; $i <= count($pictures); $i ++)
+                    <li><a>{{$i}}</a></li>
+                    @endfor
                 </ol>
+
             </div>
+             
             <script src="/homes/js/slider.js"></script>
             <script type="text/javascript">
+
+            $('#bannerCtrl').find('li').first().addClass('active');
+           
             $(function() {
                 var bannerSlider = new Slider($('#banner_tabs'), {
                     time: 5000,
@@ -960,14 +966,23 @@
                     <nav id="footernav" class="clearfix" role="navigation">
                         <ul id="footernav-menu" class="menu">
                             <li id="menu-item-11063" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-11063">
-                                <a href="/Home/Blogroll">
+                                <a href="/home/blogroll">
                                     友情链接
                                 </a>
                             </li>
                             <li id="menu-item-18946" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-18946">
-                                <a href="javascript:void(0)">
+                                @php
+                                    $rs = \App\Model\Admin\AdminActivity::where('status',0)->first();
+                                @endphp
+                                @if($rs)
+                                <a href="{{$rs['route_link']}}">
                                     音悦节
                                 </a>
+                                @else
+                                <a href="/home/noactivity">
+                                    音悦节
+                                </a>
+                                @endif
                             </li>
                         </ul>
                         <h4 id="footernav-icon">

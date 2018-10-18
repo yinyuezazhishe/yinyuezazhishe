@@ -500,7 +500,7 @@
 			var current = F.current;
 
 			if (!current) {
-				return;
+				return ;
 			}
 
 			index = getScalar(index);

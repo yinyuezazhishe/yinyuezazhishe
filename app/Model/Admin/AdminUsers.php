@@ -31,4 +31,11 @@ class AdminUsers extends Model
 	 */
 	protected $guarded = [];
 
+    /**
+     * 获得此用户的角色。
+     */
+    public function roles()
+    {
+        return $this->belongsToMany('App\Model\Admin\Role', 'user_role', 'user_id', 'role_id');
+    }
 }

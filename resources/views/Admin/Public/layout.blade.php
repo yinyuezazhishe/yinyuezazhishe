@@ -17,6 +17,7 @@
     <link href="/admins/css/animate.min.css" rel="stylesheet">
     <link href="/admins/css/style.min.css?v=4.0.0" rel="stylesheet">
     <link href="/admins/css/bootstrap-fileinput.css" rel="stylesheet">
+    <link href="/admins/css/icheck-bootstrap.css" rel="stylesheet">
     <link href="/admins/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <link href="/admins/css/animate.min.css" rel="stylesheet">
     <link href="/admins/css/style.min.css?v=4.0.0" rel="stylesheet">
@@ -28,6 +29,7 @@
     <div id="wrapper">
         <!--左侧导航开始-->
         <nav class="navbar-default navbar-static-side" role="navigation">
+            <input type="hidden" class="uid" value="{{session('adminusers')->id}}">
             <div class="nav-close"><i class="fa fa-times-circle"></i>
             </div>
             <div class="sidebar-collapse">
@@ -65,7 +67,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="/admin">
+                        <a class="ind" href="/admin">
                             <i class="fa fa-home"></i>
                             <span class="nav-label">首页</span>
                         </a>
@@ -77,10 +79,10 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li>
+                            <li class="show_user">
                                 <a href="/admin/user">浏览用户</a>
                             </li>
-                            <li>
+                            <li class="create_user">
                                 <a href="/admin/user/create">添加用户</a>
                             </li>
                         </ul>
@@ -118,22 +120,18 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li class="showuser"><a href="/Admin/HomeUsers/index">查看会员</a>
+                            <li class="showuser"><a href="/admin/homeusers/index">查看会员</a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a href="#">
                             <i class="fa fa-vimeo-square"></i> 
-                            <span class="nav-label">会员等级管理</span>
+                            <span class="nav-label">会员积分管理</span>
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="404.html">404页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="500.html">500页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="empty_page.html">空白页</a>
+                            <li class='showintegral'><a href="/admin/integral/index">查看会员积分</a>
                             </li>
                         </ul>
                     </li>                    
@@ -225,9 +223,9 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li class="showlink"><a href="/Admin/Blogroll">查看链接</a>
+                            <li class="showlink"><a href="/admin/blogroll">查看链接</a>
                             </li>
-                            <li class="createlink"><a href="/Admin/Blogroll/create">添加链接</a>
+                            <li class="createlink"><a href="/admin/blogroll/create">添加链接</a>
                             </li>                            
                         </ul>
                     </li>
@@ -281,13 +279,12 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="404.html">404页面</a>
+                            <li class="createActivity"><a  href="/admin/activity/create">创建活动</a>
                             </li>
-                            <li><a class="J_menuItem" href="500.html">500页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="empty_page.html">空白页</a>
+                            <li class="showActivity"><a  href="/admin/activity">查看活动</a>
                             </li>
                         </ul>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -379,28 +376,29 @@
                             <div class="title">皮肤选择</div>
                             <div class="setings-item default-skin nb">
                                 <span class="skin-name ">
-                                     <a href="#" class="s-skin-0">
-                                         默认皮肤
-                                     </a>
-                                </span>
+                         <a href="#" class="s-skin-0 default">
+                             默认皮肤
+                         </a>
+                    </span>
                             </div>
                             <div class="setings-item blue-skin nb">
                                 <span class="skin-name ">
-                                    <a href="#" class="s-skin-1">
-                                        蓝色主题
-                                    </a>
-                                </span>
+                        <a href="#" class="s-skin-1 blue">
+                            蓝色主题
+                        </a>
+                    </span>
                             </div>
                             <div class="setings-item yellow-skin nb">
                                 <span class="skin-name ">
-                                    <a href="#" class="s-skin-3">
-                                        黄色/紫色主题
-                                    </a>
-                                </span>
+                        <a href="#" class="s-skin-3 yellow">
+                            黄色/紫色主题
+                        </a>
+                    </span>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     <script src="/admins/js/jquery.min.js?v=2.1.4"></script>
@@ -415,18 +413,117 @@
     <script src="/admins/layer/layer.js"></script>
     <script type="text/javascript" src="/admins/js/contabs.min.js"></script>
     <script src="/admins/js/plugins/pace/pace.min.js"></script>
+    <script src="/admins/js/jquerysession.js"></script>
+
     <script type="text/javascript">
+        var theme = '';
+        var id = $('.uid').val();
+
         //接收返回信息
         $(function(){
             @if(session('success'))
-                layer.alert("{{session('success')}}",{title:'提示',icon:'6'});
+                layer.msg("{{session('success')}}");
                 {{session()->forget('success')}}
             @endif
+
             @if(session('error'))
-                layer.alert("{{session('error')}}",{title:'提示',icon:'5'});
+                layer.msg("{{session('error')}}");
                 {{session()->forget('error')}}
+            @endif  
+
+            @if(session('activity'))
+                layer.alert("{{session('activity')}}",{title:'温馨提示',icon:'7'});
+                {{session()->forget('activity')}}
             @endif
+            var theme1 = $('.theme').val();
+
+            theme =  $.session.get('theme');
+            console.log(theme);
+
+            if (theme == undefined){
+
+                theme = theme1;
+
+            }
+
+            $('body').eq(0).addClass(theme);
+
+            if (theme == 'skin-1') {
+
+            $('.style1').addClass('lazur-bg');
+
+            } else if (theme == 'skin-3') {
+
+                $('.style1').addClass('yellow-bg');
+
+            } else {
+
+                 $('.style1').addClass('navy-bg');
+            }
+
         })
+
+        $('.blue').click(function(){
+
+            $.session.set('theme','skin-1');
+
+            $('.style1').removeClass('navy-bg');
+            $('.style1').removeClass('yellow-bg');
+
+            $('.style1').addClass('lazur-bg');
+
+            setTheme('skin-1');
+        });
+
+        $('.yellow').click(function(){
+
+            $.session.set('theme','skin-3');
+           
+            $('.style1').removeClass('navy-bg');
+            $('.style1').removeClass('lazur-bg');
+
+            $('.style1').addClass('yellow-bg');
+
+            setTheme('skin-3');
+        });
+
+        $('.default').click(function(){
+
+            $.session.set('theme','default');
+            
+            $('.style1').removeClass('yellow-bg');
+            $('.style1').removeClass('lazur-bg');
+
+            $('.style1').addClass('navy-bg');
+
+            setTheme('default');
+        });
+
+        function setTheme(a)
+        {
+            $.ajax({
+
+                url:'/admin/setTheme',
+                data:{
+                    'id':id,
+                    'theme':a
+                },
+                dataType:'json',
+                type:'GET',
+                success:function(data){
+                    if (data){
+                        
+                        location.reload(true);
+                    }
+                },
+                error:function(){
+                    
+                },
+                timeout:3000,
+                async:false
+            });
+        }
+
     </script>
     @section('js')
 
