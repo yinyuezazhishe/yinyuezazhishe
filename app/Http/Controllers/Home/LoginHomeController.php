@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use App\Model\Home\HomeUser;
+use App\Model\Admin\HomeUsers;
 use App\Model\Home\HomeUserMusic;
+use App\Model\Admin\Integral;
 use Illuminate\Support\Facades\Mail;
 use Cookie;
 
@@ -39,11 +40,9 @@ class LoginHomeController extends Controller
 			return redirect('/')->with('error','验证码错误');
 		}
 
-        $user = HomeUser::where('username', $res['username']) -> first();
-        $music = HomeUserMusic::where('uid',$user->id)->first();
-
+        $user = HomeUsers::where('username', $res['username']) -> first();
         if ($user) {
-
+            $music = HomeUserMusic::where('uid',$user->id)->first();
             if ($user -> status == 1) {
                 return redirect('/')->with('error','您的账户已被禁用, 请联系网站管理员!');
 
@@ -68,6 +67,32 @@ class LoginHomeController extends Controller
     	session(['homeuser' => $user]);
         session(['sdasd'=>$user->sdasd]);
         session(['homeface'=>$user->face]);
+        // 积分
+        $integral = Integral::where('hid',$user->id)->first();
+        $now = time();
+        $year = date('Y',$now); //年
+        $month = date('m',$now); //月
+        $day = date('d',$now); //日
+        $hour = date('H',$now); //小时
+        $minute = date('i',$now);//分
+        $seconds = date('s',$now);//秒
+        $futureday = mktime($hour,$minute,$seconds,$month,$day+1,$year);
+        if($integral->futuretime <= $now){
+            Integral::where('hid',$user->id)->update(['did_num'=>0,'mid_num'=>0,'rid_num'=>0,'hid_num'=>0]);
+        }
+        if($integral){
+            //查积分是否超过最大设置值
+            $isHid = Integral::where('hid',$user->id)->where('hid_num','>=',$integral->max_num)->first();   
+        }else{
+            $intId = Integral::insertGetId(['hid'=>$user->id]);
+            if($intId){
+                $isHid = Integral::where('hid',$user->id)->where('hid_num','>=',5)->first();
+            }
+        }
+        if(!$isHid){
+            Integral::where('hid',$user->id)->update(['hid_num'=>5,'futuretime'=>$futureday]);
+            HomeUsers::where('id',$user->id)->update(['integral'=>$user->integral+5]);
+        }
     	return redirect('/')->with('success','登录成功');
 
     	// dd($res);
@@ -83,7 +108,7 @@ class LoginHomeController extends Controller
     {
     	$req = $request -> except('_token', 'repassword');
 
-        $users = HomeUser::get();
+        $users = HomeUsers::get();
 
         foreach ($users as $k => $v) {
 
@@ -143,7 +168,7 @@ class LoginHomeController extends Controller
         }
 
         if($rs){
-
+            Integral::insert(['hid'=>$rs]);
     		//发送邮件
         	Mail::send('home.email.emessage', ['id'=>$rs,'req'=>$req,'token'=>$req['token']], function ($msg) use ($req){
         		//从哪发的邮件
@@ -171,7 +196,7 @@ class LoginHomeController extends Controller
         $id = $request->input('id');
 
         //通过id获取数据
-        $res = HomeUser::find($id);
+        $res = HomeUsers::find($id);
 
         //获取token
         $token = $request->input('token');
@@ -185,7 +210,7 @@ class LoginHomeController extends Controller
         $rs['status'] = '0';
         //把id这条数据的状态从 2变成 0 
 
-        $data = HomeUser::where('id', $id)->update($rs);
+        $data = HomeUsers::where('id', $id)->update($rs);
 
         if($data){
 
@@ -200,7 +225,10 @@ class LoginHomeController extends Controller
      */
     public function logout(Request $request)
     {
-    	$request->session()->forget('homeuser');
+        $request->session()->forget('homeuser');
+        session()->forget('sdasd');
+        session()->forget('homeuserMusic');
+    	session()->forget('homeface');
 
     	return redirect('/') -> with('success', '退出登录成功!');
     }
@@ -214,7 +242,7 @@ class LoginHomeController extends Controller
     {
         $email = $request -> input('email');
 
-        $user = HomeUser::where('email', $email) -> first();
+        $user = HomeUsers::where('email', $email) -> first();
 
         $code = str_random(6);
 
@@ -255,7 +283,12 @@ class LoginHomeController extends Controller
 
         $res = $request -> except('_token', 'repassword');
 
-        $user = HomeUser::where('email' ,$res['email']) -> first();
+        $user = HomeUsers::where('email' ,$res['email']) -> first();
+
+        // echo $res['code'].'<br>';
+        // echo Cookie::get('homecode');
+        if (strtolower($res['code']) != strtolower(Cookie::get('homecode'))) {
+
 
         if (strtolower($res['code']) != strtolower(Cookie::get('homecode'))) {
             // echo $res['code'].'<br>';
@@ -286,10 +319,10 @@ class LoginHomeController extends Controller
         $pass['password'] = Hash::make($res['password']);
 
         // dd($res);
-        
+
         try{
            
-            $rs = HomeUser::where('email' ,$res['email']) -> update($pass);
+            $rs = HomeUsers::where('email' ,$res['email']) -> update($pass);
 
             if($rs){
 

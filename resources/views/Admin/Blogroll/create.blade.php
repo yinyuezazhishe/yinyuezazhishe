@@ -7,7 +7,7 @@
         <h5>添加链接</h5>
     </div>
     <div class="ibox-content">
-        <form class="form-horizontal m-t" id="signupForm" action="/Admin/Blogroll" novalidate="novalidate" id="uploadForm" enctype='multipart/form-data' method="post">
+        <form class="form-horizontal m-t" id="signupForm" action="/admin/blogroll" novalidate="novalidate" id="uploadForm" enctype='multipart/form-data' method="post">
         	<div class="form-group">
                 <label class="col-sm-3 control-label">链接类型：</label>
                 <div class="col-sm-3">
@@ -100,7 +100,7 @@
 					mytitle = ajaxtitle.pop();
 					ajaxtitle = new Array();
 					if(mytitle){
-						$.get('/Admin/Blogroll/'+mytitle,{},function(data){
+						$.get('/admin/blogroll/'+mytitle,{},function(data){
 							if(data == '2'){
 								$('.mytitle').html('<i class="fa fa-check-circle" style="color:lightgreen;padding-right:3px;"></i>链接昵称可以使用');
 								$('.mytitle').css({'color':'lightgreen'});							

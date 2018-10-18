@@ -43,7 +43,7 @@
 	<script type="text/javascript">
 		$(function(){
 			//用户名正则
-			var user_reg = /^[\w\u4e00-\u9fa5·]{3,10}$/;
+			var user_reg = /^[\w\u4e00-\u9fa5]{3,10}$/;
 			//qq正则
 			var qq_reg = /^\d{6,10}$/;
 			//年龄正则
@@ -56,7 +56,7 @@
 			function checkall(){
 				$('input[name="username"]').blur(function(){
 					if(!user_reg.test($(this).val())){
-						$('.checkuser').html('<font style="color:red;"><i class="fa fa-close"></i>用户名含有汉字、数字、字母、下划线,且不能少于三位,多于十位</font>');
+						$('.checkuser').html('<font style="color:red;"><i class="fa fa-close"></i>用户名包含数字、字母、下划线,且不能少于三位,多于十位</font>');
 						flag = false;
 					}else{
 						$('.checkuser').html('<font style="color:lightgreen"><i class="fa fa-check"></i>用户名格式正确</font>');

@@ -238,10 +238,17 @@
                     </h3>
                     <div id="lmlblog-memeber-bg-music" class="aplayer">
                     </div>
+                    @if(session('homeuserMusic'))
                     <img src="{{session('homeuserMusic')->thumb_music}}" alt="{{session('homeuserMusic')->music_name}}" title="{{session('homeuserMusic')->music_name}}" style="height:130px;width:auto;">
                     <audio src="{{session('homeuserMusic')->music}}" controls autoplay="true">
                      你的浏览器不支持该播放器,请升级浏览器再来哦.
                     </audio>
+                    @else
+                    <img src="" alt="" title="" style="height:130px;width:auto;">
+                    <audio src="" controls autoplay="true">
+                     你的浏览器不支持该播放器,请升级浏览器再来哦.
+                    </audio>
+                    @endif
                 </div>
                 <div class="lmlblog-member-left-profile border-line">
                     <h3>

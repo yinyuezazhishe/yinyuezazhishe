@@ -26,8 +26,6 @@
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" href="/admins/img/logo.ico">
 
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
-	
 	<link rel="stylesheet" href="/admins/login/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/admins/login/css/animate.css">
 	<link rel="stylesheet" href="/admins/login/css/style.css">

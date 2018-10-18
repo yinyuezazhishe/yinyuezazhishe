@@ -1,9 +1,8 @@
 @extends('Admin.Public.layout')
 
-@section('title',$title)
 
 @section('content')
-
+	<input type="hidden" name="" class="theme" value="{{session('adminusers')->theme}}">
 	<div class="col-sm-3">
         <div class="widget style1 navy-bg">
             <div class="row">
@@ -116,7 +115,7 @@
                         <tr>
                             <td width="150px;">数据库版本:</td>
                             <td width="320px">{{PHP_OS}}</td>
-                            <td width="150px;">操作系统</td>
+                            <td width="150px;">运行环境</td>
                             <td width="320px">Windows</td>
                         </tr>
                         <tr>

@@ -29,7 +29,7 @@ class AdminBlogrollController extends Controller
 
         // $rs = Blogroll::orderBy('rank','asc')->get();
         
-        return view('Admin.Blogroll.index',['blogroll'=>$rs,'request'=>$request]);
+        return view('admin.blogroll.index',['blogroll'=>$rs,'request'=>$request]);
     }
 
     /**
@@ -68,7 +68,7 @@ class AdminBlogrollController extends Controller
         $rs = Blogroll::create($links);        
         if($rs){
             //跳转
-            return redirect('/Admin/Blogroll')->with('success','添加成功');
+            return redirect('/admin/blogroll')->with('success','添加成功');
         }else{
             return back()->with('error','添加失败');
         }
@@ -102,7 +102,7 @@ class AdminBlogrollController extends Controller
         //查询当前id的整条数据     
         $rs = Blogroll::where('id',$id)->first();
        
-        return view('Admin.Blogroll.edit',['rs'=>$rs]);
+        return view('admin.blogroll.edit',['rs'=>$rs]);
     }
 
     /**
@@ -140,7 +140,7 @@ class AdminBlogrollController extends Controller
         }
         $rs = Blogroll::where('id',$id)->update($linksdata);
         if($rs){
-            return redirect('/Admin/Blogroll')->with('success','修改成功');
+            return redirect('/admin/blogroll')->with('success','修改成功');
         }else{
             return back()->with('error','修改失败');
         }

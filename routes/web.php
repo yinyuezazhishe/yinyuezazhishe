@@ -40,15 +40,20 @@ Route::get('admin/role_permission/{id}/r_p_edit', 'Admin\User_Role_Permission@r_
 Route::post('admin/r_p_update', 'Admin\User_Role_Permission@r_p_update');
 
 //后台链接管理
-Route::prefix('Admin')->group(function(){
-	Route::get('Blogroll/rank','Admin\AdminBlogrollController@rank');
-	Route::resource('Blogroll','Admin\AdminBlogrollController');
+Route::prefix('admin')->group(function(){
+	Route::get('blogroll/rank','Admin\AdminBlogrollController@rank');
+	Route::resource('blogroll','Admin\AdminBlogrollController');
 	//会员管理
-	Route::get('HomeUsers/index','Admin\HomeUsersController@index');
+	Route::get('homeusers/index','Admin\HomeUsersController@index');
 	//会员状态
-	Route::get('HomeUsers','Admin\HomeUsersController@status');
+	Route::get('homeusers','Admin\HomeUsersController@status');
 	//会员删除
-	Route::delete('HomeUsers/{id}','Admin\HomeUsersController@distory');
+	Route::delete('homeusers/{id}','Admin\HomeUsersController@distory');
+
+	// 后台活动管理
+	Route::resource('activity','Admin\AdminActivityController');
+	//用户积分
+	Route::get('integral/index','Admin\HomeIntegralController@index');
 });
 
 //后台用户修改头像
@@ -82,12 +87,9 @@ Route::resource('admin/details', 'Admin\AdminDetailsController');
 // 详情状态
 Route::get('admin/details/{id}/edit_status', 'Admin\AdminDetailsController@edit_status');
 
-
-
-
 // 前台主页
-Route::any('/', function () {
-    return view('home/index');
+Route::any('/',function(){
+	return view('home.index');
 });
 
 // 前台登录验证
@@ -109,7 +111,7 @@ Route::post('home/sendemail', 'Home\LoginHomeController@sendemail');
 Route::post('home/forgetpass', 'Home\LoginHomeController@forgetpass');
 
 //前台链接展示
-Route::get('Home/Blogroll','Home\BlogrollController@showBlogroll');
+Route::get('home/blogroll','Home\BlogrollController@showBlogroll');
 
 //前台留言展示
 Route::get('Home/message','Home\MessageController@index')->name('messages.index');
@@ -129,6 +131,16 @@ Route::post('home/user/saveinfo','Home\HomeUsersController@saveinfo');
 Route::post('home/user/uploadface','Home\HomeUsersController@uploadface');
 //用户音乐设置
 Route::post('home/user/music',"Home\HomeUsersController@music");
+
+
+
+//前台活动页面展示
+Route::get('home/activity','Home\HomeActivityController@index')->middleware('activity');
+//前台用户获得积分
+Route::post('home/activity/get','Home\HomeActivityController@getActivity');
+//活动结束或未开始
+Route::get('home/noactivity','Home\HomeActivityController@noactivity');
+
 
 // 生成验证码
 Route::any('/code', 'Admin\LoginAdminController@verify');	

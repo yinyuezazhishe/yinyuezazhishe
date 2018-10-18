@@ -8,7 +8,7 @@
             </div>
             <div class="ibox-content">                         	
                 <div class="row">
-                	<form action="/Admin/HomeUsers/index" method="get">
+                	<form action="/admin/homeusers/index" method="get">
 	                    <div class="col-sm-1 m-b-xs">
 	                        <select class="form-control input-md" style="padding:5px;" name="status">
 	                            <option value="">状态</option>
@@ -136,7 +136,7 @@
             }else{
                 var id = $(this).parents('tr').find('input').attr('data-id');
                 layer.confirm('你确认删除该用户吗?',{btn:['确定','取消'],title:'温馨提示',icon:'3'},function(){
-                    $.post('/Admin/HomeUsers/'+id,{'_token':"{{csrf_token()}}",'_method':"DELETE"},function(data){
+                    $.post('/admin/homeUsers/'+id,{'_token':"{{csrf_token()}}",'_method':"DELETE"},function(data){
                             location.reload();
                     })
                 },function(){
@@ -156,7 +156,7 @@
                 str = '启用';
             }
             layer.confirm('确认要'+str+'该用户吗?',{btn:['确定','取消'],title:'温馨提示',icon:'3'},function(){
-                $.get('/Admin/HomeUsers',{'status':status,'id':id},function(data){
+                $.get('/admin/homeusers',{'status':status,'id':id},function(data){
                     if(data){
                         layer.alert(str+'成功');
                         if(data.status == 1){

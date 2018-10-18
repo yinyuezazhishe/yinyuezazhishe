@@ -7,7 +7,7 @@
         </div>        
 	        <div class="ibox-content">
 				<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
-					<form action="/Admin/Blogroll" method="get">
+					<form action="/admin/blogroll" method="get">
 					    <div class="row">
 					        <div class="col-sm-6">
 					            <div class="dataTables_length" id="DataTables_Table_0_length">
@@ -80,7 +80,7 @@
 	                        </td>
 	                        <td>{{$v->links}}</td>	                        
 	                        <td>
-	                        	<a href="/Admin/Blogroll/{{$v->id}}/edit" class="btn btn-info btn-small">修改</a>
+	                        	<a href="/admin/blogroll/{{$v->id}}/edit" class="btn btn-info btn-small">修改</a>
 	                        	<!-- <form action="/Admin/Blogroll/{{--$v->id--}}" method="post" class="del"  style="display: inline;"> -->
 	                        		{{--csrf_field()--}}
 	                        		{{--method_field('DELETE')--}}
@@ -132,7 +132,7 @@
 			})
 			if(rank.length && id.length){
 				$.ajax({
-					url: '/Admin/Blogroll/rank',  
+					url: '/admin/blogroll/rank',  
 					data: {
 						'id':id,
 						'rank':rank

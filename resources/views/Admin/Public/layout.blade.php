@@ -17,6 +17,7 @@
     <link href="/admins/css/animate.min.css" rel="stylesheet">
     <link href="/admins/css/style.min.css?v=4.0.0" rel="stylesheet">
     <link href="/admins/css/bootstrap-fileinput.css" rel="stylesheet">
+    <link href="/admins/css/icheck-bootstrap.css" rel="stylesheet">
     <link href="/admins/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <link href="/admins/css/animate.min.css" rel="stylesheet">
     <link href="/admins/css/style.min.css?v=4.0.0" rel="stylesheet">
@@ -120,22 +121,18 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li class="showuser"><a href="/Admin/HomeUsers/index">查看会员</a>
+                            <li class="showuser"><a href="/admin/homeusers/index">查看会员</a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a href="#">
                             <i class="fa fa-vimeo-square"></i> 
-                            <span class="nav-label">会员等级管理</span>
+                            <span class="nav-label">会员积分管理</span>
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="404.html">404页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="500.html">500页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="empty_page.html">空白页</a>
+                            <li class='showintegral'><a href="/admin/integral/index">查看会员积分</a>
                             </li>
                         </ul>
                     </li>                    
@@ -225,9 +222,9 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li class="showlink"><a href="/Admin/Blogroll">查看链接</a>
+                            <li class="showlink"><a href="/admin/blogroll">查看链接</a>
                             </li>
-                            <li class="createlink"><a href="/Admin/Blogroll/create">添加链接</a>
+                            <li class="createlink"><a href="/admin/blogroll/create">添加链接</a>
                             </li>                            
                         </ul>
                     </li>
@@ -278,13 +275,12 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="404.html">404页面</a>
+                            <li class="createActivity"><a  href="/admin/activity/create">创建活动</a>
                             </li>
-                            <li><a class="J_menuItem" href="500.html">500页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="empty_page.html">空白页</a>
+                            <li class="showActivity"><a  href="/admin/activity">查看活动</a>
                             </li>
                         </ul>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -439,6 +435,15 @@
 
             theme =  $.session.get('theme');
             
+            @if(session('activity'))
+                layer.alert("{{session('activity')}}",{title:'温馨提示',icon:'7'});
+                {{session()->forget('activity')}}
+            @endif
+            var theme1 = $('.theme').val();
+
+            theme =  $.session.get('theme');
+            console.log(theme);
+
             if (theme == undefined){
 
                 theme = theme1;

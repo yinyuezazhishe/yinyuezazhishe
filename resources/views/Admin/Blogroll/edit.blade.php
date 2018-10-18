@@ -7,7 +7,7 @@
         <h5>修改链接</h5>
     </div>
     <div class="ibox-content">
-        <form class="form-horizontal m-t" id="signupForm" action="/Admin/Blogroll/{{$rs->id}}" novalidate="novalidate" id="uploadForm" enctype='multipart/form-data' method="post">
+        <form class="form-horizontal m-t" id="signupForm" action="/admin/blogroll/{{$rs->id}}" novalidate="novalidate" id="uploadForm" enctype='multipart/form-data' method="post">
         	<div class="form-group">
                 <label class="col-sm-3 control-label">链接类型：</label>
                 <div class="col-sm-3">
@@ -69,7 +69,7 @@
                 	{{csrf_field()}}
                 	{{method_field("PUT")}}
                     <button class="btn btn-primary" type="submit">修改</button>
-                    <a href="/Admin/Blogroll" class="btn btn-warning">返回</a>
+                    <a href="/admin/blogroll" class="btn btn-warning">返回</a>
                 </div>
             </div>
         </form>
