@@ -2,14 +2,12 @@ $('.select-sdasd').click(function(){
 	$('#sdasd').attr('contenteditable','true');
 	selectText("sdasd");
 })
-
-function mysdsad()
+function mysdsad(flag)
 {
 	resdasd = $('.sdasd').attr('data-sdasd');
 	sdasdtext = $('#sdasd').text();
-    console.log(sdasdtext.length);
   	id = $('.select-sdasd').attr('data-id');
-	if(sdasdtext != resdasd && sdasdtext.length >=40){
+	if(sdasdtext != resdasd && sdasdtext.length <= 40 && flag){
 		$.get('/home/user/sdasd',{'id':id,'sdasd':sdasdtext},function(data){
 				if(data == '1'){
 					$('.sdasd').attr('data-sdasd',sdasdtext);
@@ -19,23 +17,27 @@ function mysdsad()
 					swal('个性签名更新失败');
 				}
 		})
+        wa = true;
 	}
     if(sdasdtext.length >= 40){
         swal('个性签名文字长度超过40个');
     }
 }
+var wa = true;
+$('#sdasd').blur(function(){
+    $('#sdasd').removeAttr('contenteditable');
+    mysdsad(wa); 
+}) 
 $('#sdasd').on('keypress',function(event){
     if (event.keyCode == 13) {
-    	$('#sdasd').removeAttr('contenteditable');        
-		mysdsad();
-        event.preventDefault();
-    }else{
-    	$('#sdasd').blur(function(){
-			$('#sdasd').removeAttr('contenteditable');
-			mysdsad(); 
-		})
+        wa = false;
+    	$('#sdasd').removeAttr('contenteditable');   
+		mysdsad(true);
+        event.preventDefault();  
     }
 })
+
+
 
 //选中文本
 function selectText(element) {
