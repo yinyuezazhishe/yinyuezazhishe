@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\Home\Message;
-use Auth;
-use App\Mail\NewMessage;
+use App\Model\Home\Message; #获取留言
+use App\Mail\NewMessage; #留言提醒
 use App\Model\Home\HomeUser;
 use Illuminate\Support\Facades\Mail;
+use DB;
 class MessageController extends Controller
 {
 	/**
@@ -19,34 +19,46 @@ class MessageController extends Controller
     public function index(Request $request)
     {
     	//获取全部留言
-        $message = Message::orderBy('hid','desc')->paginate(20);
+        $messages = Message::with('homeuser','remessages')->orderBy('addtime','desc')->paginate(5);
+
+        // dd($messages);
 
         return view('Home.message.index',[
-            'message'=>$message
+            'messages' => $messages,
+            'title'=>'音乐杂志社--留言板',
+            'request'=>$request
         ]);
     }
 
+    // public function 
+
      public function store(Request $request)
     {
-        $this->validate($request, [
-            'content' => 'required|max:120',
-        ]);
-
-        //获取 id 未登录用户为 0
-        if (Auth::check()) {
-            $user_id = Auth::id();
-        }else{
-            $user_id = 0;
+        $message = $request->except('_token');
+        $message['addtime'] = time();
+        if (!empty(session('homeuser'))) {
+            $message['user_id'] = session('homeuser')->id; 
+        } else {
+            return 2;
         }
+        if (empty($request -> content)) {
+            return 3;
+        } else if(!preg_match_all("/^[\x{4e00}-\x{9fa5}\S\-]{3,120}$/u",$request -> content)) {
+            return 4;
+        }
+        // $message['user_id'] = session('homeusers')->id;
+        // var_dump($message);die;
 
-        $message = Message::create([
-            'user_id' => $user_id,
-            'content' => $request->content,
-        ]);
+        try{
+            $info = Message::create($message);
 
-        Mail::to(HomeUser::findOrFail(1))->send(new NewMessage());
+            if($info){
+                return 0;
+            }
+        }catch(\Exception $e){
 
-        session()->lash('success', '留言成功');
-        return redirect()->route('messages.index');
+            return 1;
+
+        }
     }
 }

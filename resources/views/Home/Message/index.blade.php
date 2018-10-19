@@ -1,5 +1,7 @@
 @extends('Home.Public.layout')
 
+@section('title',$title)
+
 @section('content')
 
 
@@ -22,131 +24,114 @@
                 发表您的留言
             </h5>
 
-            <form action="{{ route('messages.store') }}" method="post" id="commentform" class="comment-form">
+            <form action="/Home/message" method="post" id="commentform" class="comment-form">
                  {{ csrf_field() }}
                 <div class="form-group">
-                    <textarea id="comment" name="content" cols="110" rows="8" maxlength="65525" placeholder="不超过120字" class="form-control">
-                    </textarea>
+                    <textarea id="comment" name="content" cols="110" rows="8" maxlength="65525" placeholder="不超过120字" class="form-control"></textarea>
                 </div>
-                <div id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                class="modal fade">
-                    <div role="document" class="modal-dialog">
-                       <!--  <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" data-dismiss="modal" aria-label="Close" class="close">
-                                    <span aria-hidden="true">
-                                        ×
-                                    </span>
-                                </button>
-                                <h4 id="myModalLabel" class="modal-title">
-                                    提示：
-                                </h4>
-                            </div>
-                            <div class="modal-body">
-                                请勿回复类似 “123” 这样的无意义的留言哦，否则将会被删除，谢谢~
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" data-dismiss="modal" class="btn btn-default">
-                                    取消
-                                </button>
-                                <button type="submit" class="btn btn-primary">
-                                    确认
-                                </button>
-                            </div>
-                        </div> -->
-                    </div>
-                </div>
-                @if(Auth::check())
-                <button style="width:80px;height:50px;" type="submit" class="btn btn-default">发表</button>
-                @else
-               <button style="width:80px;height:50px;" class="btn btn-primary weidengru1 lgtanchu shenyinclick" type="button">登陆后留言</button>
-                @endif
+                @if(empty(session('homeuser')))
+               <input style="width:80px;height:50px;" type="submit" class="btn publish btn-default" value="请登录后留言">
+               @else
+               <input name="submit" type="submit" id="submit" class="submit publish" value="发表"> 
+             
+               @endif
             </form>
-
+            <br>
             <!-- 留言列表 -->
-            <p style="padding-top: 30px;">
-                <b>
-                    留言
-                </b></p>
-            <hr>
-        @foreach ($message as $message)
-            <div class="z-comment">
-                @if( $message->hid == 1)
-                <p>
-                    <b>
-                        {{$message->user->name}}
-                    </b>
-                @else
-                    <span style="float: right;">
-                        {{ $message->id  }} 楼
-                    </span>
-                </p>
-                @endif
-                <p>
-                    {{ $message->content }}
-                </p>
-                <p>
-                    {{ $message->created_at }}
-                    @if (Auth::check())
-                        @if (Auth::id() === 1)
-                            <a href="javascript:;" style="float:right" id="replyButton" data-message-id="{{ $message->id }}">回复</a>
-                        @endif
-                    @endif
-                </p>
-                <!-- 回复 -->
-                <div class="reply" style="margin-left: 30px;">
-                    <div id="replyLists1008" class="replyList">
-                    </div>
-                </div>
-                <hr>
-            </div>
-        @endforeach
+        @foreach ($messages as $k => $v)
 
+            <li style="list-style:none;" class="comment even thread-even depth-1" id="comment-88322">
+                <div id="div-comment-88322" calss="comment-body">
+                    <div class="comment-author vcard clearfix">
+                        <span style="cursor:pointer;" class="fn">{{$v->homeuser['username']}}</span>
+                        <div class="comment-meta commentmetadata">
+                         <a href="">{{date('Y-m-d H:i:s ',$v->addtime)}}</a>
+                     </div>
+                        <a href="" style="float: right;">{{ $v->id  }} 楼</a>
+                    </div>
+
+                    <div style="cursor:pointer;" class="comment-content clearfix">
+                        <img  src="{{$v->homeuser['face']}}" class="avatar avatar-72 photo" height="72" width="72" alt="头像">&nbsp;&nbsp;{{ $v->content }}
+                    </div>
+                    <br>
+                </div>
+            </li>
+        @endforeach
             <a href="/Home/message">
                 我要留言
             </a>
         </div>
+         <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+            {{$messages->appends($request->all())->links()}}
+         </div>
     </div>
-
+    
 <script>
-$(document).ready(function(){
-    // //显示回复框函数
-    // $('a#replyButton').click(function(){
-    //     //获取点击的 message id
-    //     var message_id = $(this).attr('data-message-id');
 
-    //     //显示相应的回复表单
-    //     $('#replyForm' + message_id).show();
-    // });
-    //AJAX 回复
-    $('a#replyAJAX').click(function(){
+$(document).ready(function(){
+    //显示回复框函数
+    // $('a#replyButton').click(function(){
         //获取点击的 message id
         var message_id = $(this).attr('data-message-id');
 
-        //获取表单值
-        var form_data = $('#replyForm' + message_id).serialize();
+        //显示相应的回复表单
+        // $('#replyForm' + message_id).show();
+    // });
+        // console.log($('#comment').value());
 
+
+    //AJAX 留言
+    $('.publish').click(function(){
+
+        // console.log(this);
+
+        var comment = $('#comment').val();
+        var pub = $(this);
         //AJAX 存储
-        $.ajax({
-            url: "{{ route('remessages.store') }}",
-            type: "post",
-            data: form_data,
-            success: function(res){
-                console.log(res);
-                //刷新页面
-                location.reload();
-            },
-            error: function(err){
-                console.log(err.responseText);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+        $.ajax({
+            url: "/Home/message",
+            type: "POST",
+            data: {content: comment},
+            success: function(data){
+                location.reload();
+                if (data == 0) {
+                    swal('恭喜你', '留言成功', 'success');
+                } else if (data == 1) {
+                    swal('对不起', '留言失败', 'error');
+                } else if (data == 2) {
+                    swal('对不起', '您还没有登录, 请登录后留言', 'error');
+                    $('.zhuce').addClass('bounceOutUp').fadeOut();
+                    setTimeout(function () {
+                        $('.mf_denglu').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+                    }, 400);
+                } else if (data == 3) {
+                    swal('对不起', '内容不能为空', 'error');
+                } else if (data ==4) {
+                    swal('对不起', '内容不少于10个字符, 不多于120个字符', 'error');
+                }
+            },
+            error: function(err){
+                swal('对不起', '您还没有登录, 请登录后留言', 'error');
+                $('.zhuce').addClass('bounceOutUp').fadeOut();
+                    setTimeout(function () {
+                 $('.mf_denglu').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+                }, 400);
+            },
+        });
+
+        return false;
     });
 
-})
+});
 </script>
-</section>
 
-                <section id="sidebar" class="secondary clearfix" role="complementary">
+</section>
+            <section id="sidebar" class="secondary clearfix" role="complementary">
                     <aside id="search-8" class="widget widget_search clearfix">
                         <h3 class="widgettitle">
                             <span>
@@ -405,28 +390,37 @@ $(document).ready(function(){
                             </div>
                         </div>
                     </aside>
-                    
-                     @php 
+                      @php 
                       $advertising = \App\Model\Home\Advertising::AdverTising();
            
                      @endphp
-                     @foreach ($advertising as $k=>$v)
-                    <aside id="text-8" class="widget widget_text clearfix">
+                     <aside id="text-8" class="widget widget_text clearfix">
                          <h3 class="widgettitle">
                             <span>
-                                {{$v->title}}
+                                广告牌
                             </span>
                         </h3>
-                        <div class="textwidget">
-                            <a href="{{$v->links}}" title="{{$v->title}}" rel="nofollow" target="_blank">
+                         @foreach ($advertising as $k=>$v)
+                        <div class="textwidget" id="divs">
+                            <a href="{{$v->links}}" rel="nofollow" target="_blank">
                                 <img src="{{$v->picture}}"
                                  width="350" height="337" class="alignnone size-full wp-image-11045"
                                 />
                             </a>
+                            <img style="cursor:pointer;" width="25px" src="/admins/uploads/gg/gg1.png" onclick="closed();" />
                         </div>
+                         @endforeach
                     </aside>
-                    @endforeach
-                </section>
+            </section>
 </div>
+            <script>
+               function closed()
+               {
+                
+                var divs = document.getElementById('divs');
+                divs.style.cursor = 'hand';
+                divs.style.display = 'none';
+               }
 
+            </script>
 @stop

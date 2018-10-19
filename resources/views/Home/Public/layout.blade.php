@@ -10,7 +10,7 @@
         />
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <link rel="shortcut icon" href="/admins/img/logo.ico">
+        <link rel="shortcut icon" href="/admins/`/logo.ico">
         <link type="text/css" media="all" href="/homes/css/autoptimize_92080519133b963b934f14202138607c.css" rel="stylesheet" />
 
         <link rel="stylesheet" href="/admins/js/plugins/layer/skin/layer.css" id="layui_layer_skinlayercss" style="">
@@ -159,11 +159,16 @@
                     <img title="MIUI" class="miui_logo" src="/admins/img/yinyuelogo.png" width="200" alt="网站logo" /></a>
                 @if(empty(session('homeuser')))
                 <p class="language">
-                    <a style="display: inline;" class="weidengru1 lgtanchu shenyinclick">登录</a>
+                    <a style="display: inline;cursor:pointer;" class="weidengru1 lgtanchu shenyinclick">登录</a>
                     <span>|</span>
                     <a style="display: inline;" class="weidengru2 mf_zhucetan shenyinclick" href="Javascript:;" rel="nofollow">注册</a>
                 </p>
                 @else
+                <p class="language">
+                    <a style="display: inline;" href="/home/user/center" id="indexuser">{{session('homeuser')->username}}</a>
+                    <span>|</span>
+                    <a style="display: inline;" href="/home/logout" rel="nofollow">退出登录</a>
+                </p>
                 @endif
             </div>
             <!-- 代码 结束 -->
@@ -843,25 +848,37 @@
                       $advertising = \App\Model\Home\Advertising::AdverTising();
            
                      @endphp
-                     @foreach ($advertising as $k=>$v)
+                    
                     <aside id="text-8" class="widget widget_text clearfix">
                          <h3 class="widgettitle">
                             <span>
-                                {{$v->title}}
+                                广告牌
                             </span>
                         </h3>
-                        <div class="textwidget">
+                         @foreach ($advertising as $k=>$v)
+                        <div class="textwidget" id="divs">
                             <a href="{{$v->links}}" rel="nofollow" target="_blank">
                                 <img src="{{$v->picture}}"
                                  width="350" height="337" class="alignnone size-full wp-image-11045"
                                 />
                             </a>
+                            <img width="25px" src="/admins/uploads/gg/gg1.png" onclick="closed();" />
                         </div>
+                         @endforeach
                     </aside>
-                    @endforeach
+                   
                 </section>
             </div>
             @show
+            <script>
+               function closed()
+               {
+                
+                var divs = document.getElementById('divs');
+                divs.style.display = 'none';
+               }
+
+            </script>
             <div id="footer-widgets-bg">
                 <div id="footer-widgets-wrap" class="container">
                     <div id="footer-widgets" class="clearfix">

@@ -29,4 +29,10 @@ class HomeUser extends Model
 	 * @var array
 	 */
 	protected $guarded = [];
+
+    //模型关联：获取该用户所属的留言
+    public function message()
+    {
+        return $this->hasMany('App\Model\Home\HomeUser', 'user_id', 'id');
+    }
 }
