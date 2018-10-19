@@ -10,31 +10,38 @@
                 <table class="footable table table-stripped toggle-arrow-tiny default breakpoint footable-loaded" data-page-size="8" style="border-collapse: unset;">
                     <thead>
 	                    <tr>
-	                        <th data-toggle="true" class="footable-visible footable-first-column footable-sortable">产品<span class="footable-sort-indicator"></span></th>
-	                        <th class="footable-visible footable-sortable">名字<span class="footable-sort-indicator"></span></th>
-	                        <th class="footable-visible footable-sortable">电话<span class="footable-sort-indicator"></span></th>
+	                        <th data-toggle="true" class="footable-visible footable-first-column footable-sortable">会员id<span class="footable-sort-indicator"></span></th>
+	                        <th class="footable-visible footable-sortable">会员名<span class="footable-sort-indicator"></span></th>
+	                        <th class="footable-visible footable-sortable">总积分<span class="footable-sort-indicator"></span></th>
 	                        <th class="footable-visible footable-last-column footable-sortable">操作<span class="footable-sort-indicator"></span></th>
 	                    </tr>
                     </thead>
                     @foreach($integral as $k=>$v)
                     <tbody>
 	                    <tr class="footable-even" style="display: table-row;">
-	                        <td class="footable-visible footable-first-column"><span class="footable-toggle"></span>2015韩国童装韩版牛仔童短裤</td>
-	                        <td class="footable-visible">袁岳</td>
-	                        <td class="footable-visible">0800 051213</td>
-	                        <td class="footable-visible footable-last-column"><a href="#"><i class="fa fa-check text-navy"></i> 通过</a></td>
+	                        <td class="footable-visible footable-first-column"><span class="footable-toggle"></span>{{$v->id}}</td>
+	                        <td class="footable-visible">{{$v->username}}</td>
+	                        <td class="footable-visible">{{$v->integral}}</td>
+	                        <td class="footable-visible footable-last-column">
+	                        	<a href="/admin/integral/{{$v['id']}}/show" class="btn btn-info">查看积分详情</a>
+	                        </td>
 	                    </tr>
                     </tbody>
                     @endforeach
-                    <tfoot>
-	                    <tr>
-	                        <td colspan="5" class="footable-visible">
-	                            <ul class="pagination pull-right"><li class="footable-page-arrow disabled"><a data-page="first" href="#first">«</a></li><li class="footable-page-arrow disabled"><a data-page="prev" href="#prev">‹</a></li><li class="footable-page active"><a data-page="0" href="#">1</a></li><li class="footable-page"><a data-page="1" href="#">2</a></li><li class="footable-page-arrow"><a data-page="next" href="#next">›</a></li><li class="footable-page-arrow"><a data-page="last" href="#last">»</a></li></ul>
-	                        </td>
-	                    </tr>
-                    </tfoot>
                 </table>
-
+				<div class="row">
+				    <div class="col-sm-6">
+				        <div class="dataTables_info" id="DataTables_Table_0_info" role="alert"
+				        aria-live="polite" aria-relevant="all">
+				            显示 {{$integral->firstItem()}} 到 {{$integral->lastItem()}} 项，共 {{$integral->total()}} 项
+				        </div>
+				    </div>
+				    <div class="col-sm-6">
+				        <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+							{{$integral->appends($request->all())->links()}}		
+				        </div>
+				    </div>
+				</div
             </div>
         </div>
     </div>

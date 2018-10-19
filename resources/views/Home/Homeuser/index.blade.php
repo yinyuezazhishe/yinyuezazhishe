@@ -115,11 +115,14 @@
 	                    @endif
 	                </span>
 	                <span class="lmlblog-mark lmlblog-lv" title="经验：3815">
-	                    Lv.{{session('homeuser')->intengral}}
+	                    Lv.{{session('homeuser')->integral}}
 	                </span>
 	                <span class="lmlblog-mark lmlblog-vip">
-	                    VIP {{session('homeuser')->intengral}}
+	                    VIP {{session('homeuser')->integral}}
 	                </span>
+                    <h2 style="margin:10px;height:30px;line-height: 30px;">
+                        <div id="sdasd" style="vertical-align:middle;display:inline-block;">{{session('sdasd')}}</div><i class="fa fa-edit select-sdasd" data-id="{{session('homeuser')->id}}" style="vertical-align:middle;padding-left:5px;line-height:30px;"></i>
+                    </h2>
 	            </div>
                 <!--图片上传框-->
                 <div class="am-modal am-modal-no-btn up-frame-bj " tabindex="-1" id="doc-modal-1" style="overflow-y:hidden;">
@@ -526,7 +529,7 @@
                         </a>
                     </li>
                 </div>
-                <div class="lmlblog-member-left-bg-xg clear border-line" style="width:278px;">
+                <div class="lmlblog-member-left-bg-xg clear border-line" style="width:268px;">
                     <h3>相关推荐</h3>
                     <div id="lmlblog-memeber-bg-xg" class="aplayer">
                     </div>
