@@ -87,28 +87,24 @@ Route::resource('admin/lists', 'Admin\AdminListsController');
 // 列表状态
 Route::get('admin/lists/{id}/edit_status', 'Admin\AdminListsController@edit_status');
 
+
+
+
 // 前台主页
-Route::any('/', function () {
-    return view('home/index');
-});
+Route::any('/', 'Home\HomeIndexController@index');
 
 // 前台登录验证
-Route::post('home/dologin', 'Home\LoginHomeController@dologin');
-
+Route::post('home/dologin', 'Home\HomeLoginController@dologin');
 // 前台注册验证
-Route::post('home/doregister', 'Home\LoginHomeController@doregister');
-
+Route::post('home/doregister', 'Home\HomeLoginController@doregister');
 // 前台邮箱验证
-Route::any('home/activate', 'Home\LoginHomeController@activate');
-
+Route::any('home/activate', 'Home\HomeLoginController@activate');
 // 前台退出登录
-Route::any('home/logout', 'Home\LoginHomeController@logout');
-
+Route::any('home/logout', 'Home\HomeLoginController@logout');
 // 前台发送邮箱验证码
-Route::post('home/sendemail', 'Home\LoginHomeController@sendemail');
-
+Route::post('home/sendemail', 'Home\HomeLoginController@sendemail');
 // 前台重置密码
-Route::post('home/forgetpass', 'Home\LoginHomeController@forgetpass');
+Route::post('home/forgetpass', 'Home\HomeLoginController@forgetpass');
 
 //前台链接展示
 Route::get('Home/Blogroll','Home\BlogrollController@showBlogroll');
@@ -129,6 +125,12 @@ Route::post('home/user/saveinfo','Home\HomeUsersController@saveinfo');
 Route::post('home/user/uploadface','Home\HomeUsersController@uploadface');
 //用户音乐设置
 Route::post('home/user/music',"Home\HomeUsersController@music");
+
+// 前台列表显示
+Route::any('home/lists/{id}', 'Home\HomeListsController@index');
+
+// 前台详情显示
+Route::any('home/details/{id}', 'Home\HomeDetailsController@index');
 
 // 生成验证码
 Route::any('/code', 'Admin\LoginAdminController@verify');	
