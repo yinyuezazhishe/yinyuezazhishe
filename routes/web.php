@@ -127,5 +127,8 @@ Route::post('home/user/uploadface','Home\HomeUsersController@uploadface');
 //用户音乐设置
 Route::post('home/user/music',"Home\HomeUsersController@music");
 
+//评论
+Route::resource('home/comment','Home\CommentController');
+
 // 生成验证码
 Route::any('/code', 'Admin\LoginAdminController@verify');	
