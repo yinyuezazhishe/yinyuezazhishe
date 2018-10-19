@@ -153,14 +153,8 @@
                         <a class="noclick" href="/Home/message" target="_blank">留言板</a>
                         <dl style="margin:0px; padding: 0px;" class="li_3_content">
                             <dt></dt>
-                            @foreach ($v->sub as $kk=>$vv)
-
-                            <dd style="margin:0px; padding: 0px;"><a href="http://sc.chinaz.com/" target="_blank"><span>{{$vv -> catename}}</span></a></dd>
-                           
-                            @endforeach
                         </dl>
                     </li>
-                    @endforeach
                 </ul>
                 
                 <a href="http://sc.chinaz.com/">
@@ -297,7 +291,7 @@
                     </div>
                 </section>
                 @show
-                
+
                 <section id="sidebar" class="secondary clearfix" role="complementary">
                     <aside id="search-8" class="widget widget_search clearfix">
                         <h3 class="widgettitle">
