@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Model\Admin;
+namespace App\Model\Home;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AdminUsers extends Model
+class Comment extends Model
 {
     //
     /**
@@ -12,7 +12,7 @@ class AdminUsers extends Model
      *
      * @var string
      */
-    protected $table = 'adminusers';
+    protected $table = 'discuss';
 
     //主键
     protected $primaryKey = 'id';
@@ -32,13 +32,10 @@ class AdminUsers extends Model
 	protected $guarded = [];
 
     /**
-     * 获得此用户的角色。
+     * 获得评论的用户信息。
      */
-    public function roles()
+    public function users()
     {
-        return $this->belongsToMany('App\Model\Admin\Role', 'user_role', 'user_id', 'role_id');
+        return $this->belongsTo('App\Model\Home\HomeUser','hid','id');
     }
-
-    
-
 }
