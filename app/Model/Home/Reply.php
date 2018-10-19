@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Model\Admin;
+namespace App\Model\Home;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AdminUsers extends Model
+class Reply extends Model
 {
-    //
+    //    //
     /**
      * 与模型关联的数据表
      *
      * @var string
      */
-    protected $table = 'adminusers';
+    protected $table = 'reply';
 
     //主键
     protected $primaryKey = 'id';
@@ -30,15 +30,4 @@ class AdminUsers extends Model
 	 * @var array
 	 */
 	protected $guarded = [];
-
-    /**
-     * 获得此用户的角色。
-     */
-    public function roles()
-    {
-        return $this->belongsToMany('App\Model\Admin\Role', 'user_role', 'user_id', 'role_id');
-    }
-
-    
-
 }

@@ -93,7 +93,8 @@ class LoginAdminController extends Controller
       session(['adminusers'=>$user]);
       //用户头像路径
       session(['adminusers_face'=>$user->face]);
-    	return redirect('/admin')->with('success','登录成功');        
+        
+    	return redirect('/admin')->with('success','登录成功');     
     }
 
     /**
