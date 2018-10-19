@@ -38,6 +38,6 @@
         $menu.stop().animate({ backgroundPosition: (100 * current + 1) + "px" + " bottom" }, 100 * len);
     });
     $("a.noclick").click(function (event) {
-        event.preventDefault();
+        // event.preventDefault();
     });
 });

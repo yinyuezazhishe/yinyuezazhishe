@@ -11,7 +11,7 @@ use App\Model\Admin\Integral;
 use Illuminate\Support\Facades\Mail;
 use Cookie;
 
-class LoginHomeController extends Controller
+class HomeLoginController extends Controller
 {
 	/**
 	 *  登录验证
