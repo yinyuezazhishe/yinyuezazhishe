@@ -6,17 +6,29 @@ use Illuminate\Database\Eloquent\Model;
 
 class Remessage extends Model
 {
-    //数据表名称
-    protected $table = 'remessages';
+    /**
+     * 与模型关联的数据表
+     *
+     * @var string
+     */
+    protected $table = 'Remessage';
 
-    //可写字段
-    protected $fillable = [
-        'user_id','message_id','content',
-    ];
+    //主键
+    protected $primaryKey = 'id';
 
-    //模型关联：获取该评论所属的用户模型
-    public function homeuser()
-    {
-        return $this->belongsTo('App\Model\Home\HomeUser');
-    }
+    /**
+     * 该模型是否被自动维护时间戳
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
+    /**
+     * 不可被批量赋值的属性。
+     *
+     * @var array
+     */
+    protected $guarded = [];
+
+
 }

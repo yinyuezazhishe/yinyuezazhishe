@@ -16,13 +16,17 @@ class RemessageController extends Controller
     {
         $this->validate($request, [
             'content' => 'required',
+        ], [
+            'content.required' => '回复内容不能为空',
         ]);
 
-        $remessage = Remessage::create([
-            'user_id' => Auth::id(),
-            'message_id' => $request->message_id,
-            'content' => $request->content,
-        ]);
+                
+
+        // $remessage = Remessage::create([
+        //     'user_id' => Auth::id(),
+        //     'message_id' => $request->message_id,
+        //     'content' => $request->content,
+        // ]);
 
         //session()->flash('success', '回复成功');
         //return back();

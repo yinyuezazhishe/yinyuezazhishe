@@ -17,13 +17,13 @@ class AdminMessageController extends Controller
      */
     public function index(Request $request)
     {
-        $rs = Message::select(DB::raw('*,concat(hid,id) as hid'))->
-        where('content','like','%'.$request->input('content').'%')->
-        orderBy('hid');
+
+         $message = Message::with('homeuser','remessages')->orderBy('addtime','desc')->paginate(5);
+        
       
         return view('Admin.message.index',[
             'title'=>'留言浏览',
-            'rs'=>$rs
+            'message'=>$message
         ]);
     }
 
@@ -34,7 +34,8 @@ class AdminMessageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {   
+        echo 1;
         try{
              $rs =  Message::where('id',$id) -> delete();
              if ($rs){
