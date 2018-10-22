@@ -441,7 +441,7 @@
             var theme1 = $('.theme').val();
 
             theme =  $.session.get('theme');
-            console.log(theme);
+           
 
             if (theme == undefined){
 

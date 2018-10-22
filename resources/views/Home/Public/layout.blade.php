@@ -590,7 +590,6 @@
                }
 
             </script>
->>>>>>> ljx
             <div id="footer-widgets-bg">
                 <div id="footer-widgets-wrap" class="container">
                     <div id="footer-widgets" class="clearfix">

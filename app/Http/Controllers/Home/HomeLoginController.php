@@ -41,6 +41,7 @@ class HomeLoginController extends Controller
 		}
 
         $user = HomeUsers::where('username', $res['username']) -> first();
+
         if ($user) {
             $music = HomeUserMusic::where('uid',$user->id)->first();
             if ($user -> status == 1) {
@@ -284,11 +285,6 @@ class HomeLoginController extends Controller
         $res = $request -> except('_token', 'repassword');
 
         $user = HomeUsers::where('email' ,$res['email']) -> first();
-
-        // echo $res['code'].'<br>';
-        // echo Cookie::get('homecode');
-        if (strtolower($res['code']) != strtolower(Cookie::get('homecode'))) {
-
 
         if (strtolower($res['code']) != strtolower(Cookie::get('homecode'))) {
             // echo $res['code'].'<br>';
