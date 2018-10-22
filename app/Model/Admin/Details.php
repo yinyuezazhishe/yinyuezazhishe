@@ -43,6 +43,6 @@ class Details extends Model
      */
     public function lists()
     {
-        return $this->belongsTo('App\Model\Admin\Lists', 'lid', 'id')->where('status', '<>', '1');
+        return $this->belongsTo('App\Model\Admin\Lists', 'lid', 'id');
     }
 }

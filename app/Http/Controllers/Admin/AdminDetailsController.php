@@ -36,6 +36,8 @@ class AdminDetailsController extends Controller
         } else {
 
             $details = Details::with('details_content', 'lists') -> orderBy('id', $request->input('sort', 'asc')) -> paginate($request -> input('num',5));
+
+            // dd($details);
         }
 
         $cate = Category::get();
