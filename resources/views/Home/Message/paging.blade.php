@@ -36,9 +36,6 @@
                 我要留言
             </a>
         </div>
-         <a href="/Home/message/{{$v->id}}" class="more-link">
-                查看更多
-          </a>
     </div>
 
 </div>
