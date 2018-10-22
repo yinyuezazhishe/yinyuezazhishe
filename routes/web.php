@@ -55,6 +55,9 @@ Route::prefix('admin')->group(function(){
 	//用户积分
 	Route::get('integral/index','Admin\HomeIntegralController@index');
 	Route::get('integral/{id}/show','Admin\HomeIntegralController@show');
+
+	//后台每日一语管理
+	Route::resource('sentence','Admin\AdminSentenceController');
 });
 
 //后台用户修改头像
@@ -122,6 +125,8 @@ Route::post('home/user/saveinfo','Home\HomeUsersController@saveinfo');
 Route::post('home/user/uploadface','Home\HomeUsersController@uploadface');
 //用户音乐设置
 Route::post('home/user/music',"Home\HomeUsersController@music");
+//每日一语设置
+Route::post('home/user/sentence','Home\HomeUsersController@sentence');
 
 
 //前台活动页面展示

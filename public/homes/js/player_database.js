@@ -7,7 +7,8 @@ var myPlaylist = new jPlayerPlaylist({
 		 { title: "私奔 ", artist: "好听版", mp3:"/homes/MP3/siben.mp3", poster: "/homes/images/se.jpg"},
 		 { title: "谁", artist: "廖峻涛", mp3:"/homes/MP3/shui.mp3", poster: "/homes/images/se.jpg"},
 		 { title: "说谎", artist: "林宥嘉", mp3:"/homes/MP3/shuohuang.mp3", poster: "/homes/images/se.jpg"},
-		 { title: "后来", artist: "苏运莹", mp3:"/homes/MP3/houlai.mp3", poster: "/homes/images/se.jpg"}
+		 { title: "后来", artist: "苏运莹", mp3:"/homes/MP3/houlai.mp3", poster: "/homes/images/se.jpg"},
+		 { title: "美术生", artist: "庞明昊", mp3:"/homes/MP3/meishusheng.mp3", poster: "/homes/images/se.jpg"}
 	 ],
 		{playlistOptions:{enableRemoveControls: true},
 		swfPath: "js/",

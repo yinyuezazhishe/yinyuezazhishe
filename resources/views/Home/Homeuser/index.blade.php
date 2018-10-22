@@ -59,7 +59,6 @@
                 opacity: 0;
             }
             .mybtn{
-                margin:10px;
                 display: inline-block;
                 height: 38px;
                 line-height: 38px;
@@ -87,110 +86,102 @@
     <div class="lmlblog-member-content" style="padding:0px;">
     	<div style="background: url('/homes/picture/infobanner/1.jpg') no-repeat top center;background-size:100% 100%;width:100%;height:auto;" class="setting-set">
     		<div style="position:relative;padding:20px 0px;">
-	        <div class="lmlblog-member-header">
-	            <div class="lmlblog-member-avatar other up-img-cover"  id="up-img-touch">
-	                <img src="{{session('homeface')}}" class="avatar am-circle" data-am-popover="{content: '点击上传头像', trigger: 'hover focus'}" id="oldface"/>
-	                <i class="lmlblog-verify lmlblog-verify-a" title="{{session('homeuser')->username}}">
-	                </i>
-	            </div>
-	            <div class="lmlblog-member-username">
-	                <h1 id="user-id" user-id="{{session('homeuser')->id}}">
-	                    {{session('homeuser')->username}}
-	                </h1>
-	                <span class="lmlblog-mark 
-	                @if(session('homeuser')->sex == '0')lmlblog-girl   
-	                @elseif(session('homeuser')->sex =='1') lmlblog-boy
-	                @else lmlblog-intersex
-	                @endif
-	                ">
-	                	@if(session('homeuser')->sex =='0' )
-	                    <i class="fa fa-venus">
-	                    </i>
-	                    @elseif( session('homeuser')->sex =='1')
-	                    <i class="fa fa-mars">
-	                    </i> 
-	                    @else
-	                    	<i class="fa fa-intersex">
-	                    	</i>
-	                    @endif
-	                </span>
-	                <span class="lmlblog-mark lmlblog-lv" title="经验：3815">
-	                    Lv.{{session('homeuser')->integral}}
-	                </span>
-	                <span class="lmlblog-mark lmlblog-vip">
-	                    VIP {{session('homeuser')->integral}}
-	                </span>
-                    <h2 style="margin:10px;height:30px;line-height: 30px;">
-                        <div id="sdasd" style="vertical-align:middle;display:inline-block;">{{session('sdasd')}}</div><i class="fa fa-edit select-sdasd" data-id="{{session('homeuser')->id}}" style="vertical-align:middle;padding-left:5px;line-height:30px;"></i>
-                    </h2>
-	            </div>
-                <!--图片上传框-->
-                <div class="am-modal am-modal-no-btn up-frame-bj " tabindex="-1" id="doc-modal-1" style="overflow-y:hidden;">
-                  <div class="am-modal-dialog up-frame-parent up-frame-radius">
-                    <div class="am-modal-hd up-frame-header">
-                       <label>修改头像</label>
-                      <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
-                    </div>
-                    <div class="am-modal-bd  up-frame-body">
-                      <div class="am-g am-fl">
-                        <div class="am-form-group am-form-file">
-                          <div class="am-fl">
-                            <button type="button" class="am-btn am-btn-default am-btn-sm">
-                              <i class="am-icon-cloud-upload"></i> 选择要上传的文件</button>
+    	        <div class="lmlblog-member-header">
+    	            <div class="lmlblog-member-avatar other up-img-cover"  id="up-img-touch">
+    	                <img src="{{session('homeface')}}" class="avatar am-circle" data-am-popover="{content: '点击上传头像', trigger: 'hover focus'}" id="oldface"/>
+    	                <i class="lmlblog-verify lmlblog-verify-a" title="{{session('homeuser')->username}}">
+    	                </i>
+    	            </div>
+    	            <div class="lmlblog-member-username">
+    	                <h1 id="user-id" user-id="{{session('homeuser')->id}}">
+    	                    {{session('homeuser')->username}}
+    	                </h1>
+    	                <span class="lmlblog-mark 
+    	                @if(session('homeuser')->sex == '0')lmlblog-girl   
+    	                @elseif(session('homeuser')->sex =='1') lmlblog-boy
+    	                @else lmlblog-intersex
+    	                @endif
+    	                ">
+    	                	@if(session('homeuser')->sex =='0' )
+    	                    <i class="fa fa-venus">
+    	                    </i>
+    	                    @elseif( session('homeuser')->sex =='1')
+    	                    <i class="fa fa-mars">
+    	                    </i> 
+    	                    @else
+    	                    	<i class="fa fa-intersex">
+    	                    	</i>
+    	                    @endif
+    	                </span>
+    	                <span class="lmlblog-mark lmlblog-lv integral">
+    	                    <i class="fa fa-diamond"></i>{{session('integral')}}
+    	                </span>
+                        <h2 style="margin:10px;height:30px;line-height: 30px;">
+                            <div id="sdasd" style="vertical-align:middle;display:inline-block;">
+                            @if(!empty(session('sdasd'))) {{session('sdasd')}} @else 这家伙很懒,什么都没留下。@endif</div><i class="fa fa-edit select-sdasd" data-id="{{session('homeuser')->id}}" style="vertical-align:middle;padding-left:5px;line-height:30px;"></i>
+                        </h2>
+    	            </div>
+                    <!--图片上传框-->
+                    <div class="am-modal am-modal-no-btn up-frame-bj " tabindex="-1" id="doc-modal-1" style="overflow-y:hidden;">
+                      <div class="am-modal-dialog up-frame-parent up-frame-radius">
+                        <div class="am-modal-hd up-frame-header">
+                           <label>修改头像</label>
+                          <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+                        </div>
+                        <div class="am-modal-bd  up-frame-body">
+                          <div class="am-g am-fl">
+                            <div class="am-form-group am-form-file">
+                              <div class="am-fl">
+                                <button type="button" class="am-btn am-btn-default am-btn-sm">
+                                  <i class="am-icon-cloud-upload"></i> 选择要上传的文件</button>
+                              </div>
+                              <input type="file" id="inputImage">
+                            </div>
                           </div>
-                          <input type="file" id="inputImage">
-                        </div>
-                      </div>
-                      <div class="am-g am-fl" >
-                        <div class="up-pre-before up-frame-radius">
-                            <img alt="{{session('homeuser')->username}}的头像" src="{{session('homeface')}}" id="image" >
-                        </div>
-                        <div class="up-pre-after up-frame-radius">
-                        </div>
-                      </div>
-                      <div class="am-g am-fl">
-                        <div class="up-control-btns">
-                            <span class="am-icon-rotate-left"  onclick="rotateimgleft()"></span>
-                            <span class="am-icon-rotate-right" onclick="rotateimgright()"></span>
-                            <span class="am-icon-check" id="up-btn-ok" url="/home/user/uploadface"></span>
+                          <div class="am-g am-fl" >
+                            <div class="up-pre-before up-frame-radius">
+                                <img alt="{{session('homeuser')->username}}的头像" src="{{session('homeface')}}" id="image" >
+                            </div>
+                            <div class="up-pre-after up-frame-radius">
+                            </div>
+                          </div>
+                          <div class="am-g am-fl">
+                            <div class="up-control-btns">
+                                <span class="am-icon-rotate-left"  onclick="rotateimgleft()"></span>
+                                <span class="am-icon-rotate-right" onclick="rotateimgright()"></span>
+                                <span class="am-icon-check" id="up-btn-ok" url="/home/user/uploadface"></span>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-	            <div class="lmlblog-member-follow-info" style="text-align:center;">
-	                <a href="" target="_blank" rel="nofollow">
-	                    <span class="follow no opacity" style="margin-right: 0px;">
-	                        <i class="lmlblog-icon">
-	                        </i>
-	                        每日一语
-	                    </span>
-	                </a>
-	            </div>
-	        </div>
-	        <a href="/home/user/setting" class="hidden" style="display: none;">
-		        <span class="lmlblog-mark fa fa-cog" style="font-size:20px;position:absolute;top:10px;right:10px;" title="设置个人信息"></span>
-	   		</a>
+    	            <div class="lmlblog-member-follow-info" style="text-align:center;">
+    	                <a href="javascript:void(0)" id="sentence" rel="{{session('get_sentence_num')}}">
+    	                    <span class="follow no opacity" style="margin-right: 0px;">
+    	                        <i class="lmlblog-icon">
+    	                        </i>
+    	                        每日一语
+    	                    </span>
+    	                </a>
+    	            </div>
+    	        </div>
+    	        <a href="/home/user/setting" class="hidden" style="display: none;">
+    		        <span class="lmlblog-mark fa fa-cog" style="font-size:20px;position:absolute;top:10px;right:10px;" title="设置个人信息"></span>
+    	   		</a>
     		</div>
     	</div>
         <div class="lmlblog-member-menu clear border-line">
             <li class="on">
-                <a href="javascript:void(0)">主页</a>
-            </li>
-            <li>
-                <a href="javascript:void(0)">我的积分</a>
-            </li>
-            <li>
-                <a href="javascript:void(0)" target="_blank">
-                    音乐
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)">文章</a>
+                <a href="javascript:void(0)">我的主页</a>
             </li>
             <li>
                 <a href="javascript:void(0)" target="_blank">
                     我的留言
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" target="_blank">
+                    我的一语
                 </a>
             </li>
             <li>
@@ -242,7 +233,7 @@
                     <div id="lmlblog-memeber-bg-music" class="aplayer">
                     </div>
                     @if(session('homeuserMusic'))
-                    <img src="{{session('homeuserMusic')->thumb_music}}" alt="{{session('homeuserMusic')->music_name}}" title="{{session('homeuserMusic')->music_name}}" style="height:130px;width:auto;">
+                    <img src="{{session('homeuserMusic')->thumb_music}}" alt="{{session('homeuserMusic')->music_name}}" title="{{session('homeuserMusic')->music_name}}" style="height:auto;width:280px;">
                     <audio src="{{session('homeuserMusic')->music}}" controls autoplay="true">
                      你的浏览器不支持该播放器,请升级浏览器再来哦.
                     </audio>
@@ -352,198 +343,6 @@
                         </i>
                     </div>
                 </div>
-                <div class="lmlblog-member-left-visitor clear border-line">
-                    <h3>
-                        最近访客
-                    </h3>
-                    <li>
-                        <a href="#1" title="访问时间：22分钟前">
-                            <img src="/homes/picture/1.gif" class="avatar">
-                            <pid="oldface">
-                                born
-                            </p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2" title="访问时间：3小时前">
-                            <span class="lmlblog-vip-icon">
-                            </span>
-                            <img src="/homes/picture/qi.jpg" class="avatar">
-                            <p>
-                                司空琪
-                            </p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#3" title="访问时间：10小时前">
-                            <span class="lmlblog-vip-icon">
-                            </span>
-                            <img src="/homes/picture/2.gif" class="avatar">
-                            <p>
-                                晴川
-                            </p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#4" title="访问时间：14小时前">
-                            <img src="/homes/picture/3.gif" class="avatar">
-                            <p>
-                                大白兔
-                            </p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#5" title="访问时间：15小时前">
-                            <img src="/homes/picture/4.jpg" class="avatar">
-                            <p>
-                                momo
-                            </p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#6" title="访问时间：1天前">
-                            <span class="lmlblog-vip-icon">
-                            </span>
-                            <img src="/homes/picture/5.png" class="avatar">
-                            <p>
-                                啦啦啦123
-                            </p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#7" title="访问时间：1天前">
-                            <img src="/homes/picture/6.gif" class="avatar">
-                            <p>
-                                随风
-                            </p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#8" title="访问时间：1天前">
-                            <img src="/homes/picture/7.gif" class="avatar">
-                            <p>
-                                哒哒
-                            </p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#9" title="访问时间：1天前">
-                            <img src="/homes/picture/8.gif" class="avatar">
-                            <p>
-                                陌若
-                            </p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#10" title="访问时间：2天前">
-                            <span class="lmlblog-vip-icon">
-                            </span>
-                            <img src="/homes/picture/9.gif" class="avatar">
-                            <p>
-                                hidhz
-                            </p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#11" title="访问时间：2天前">
-                            <span class="lmlblog-vip-icon">
-                            </span>
-                            <img src="/homes/picture/10.gif" class="avatar">
-                            <p>
-                                老虎
-                            </p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#12" title="访问时间：3天前">
-                            <img src="/homes/picture/11.gif" class="avatar">
-                            <p>
-                                不要演有事说
-                            </p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#13" title="访问时间：3天前">
-                            <img src="/homes/picture/12.gif" class="avatar">
-                            <p>
-                                瑾似流年
-                            </p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#14" title="访问时间：3天前">
-                            <img src="/homes/picture/13.gif" class="avatar">
-                            <p>
-                                九张机
-                            </p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#15" title="访问时间：4天前">
-                            <img src="/homes/picture/14.jpg" class="avatar">
-                            <p>
-                                美美哒
-                            </p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#16" title="访问时间：4天前">
-                            <span class="lmlblog-vip-icon">
-                            </span>
-                            <img src="/homes/picture/15.gif" class="avatar">
-                            <p>
-                                zanbocm
-                            </p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2528" title="访问时间：4天前">
-                            <img src="/homes/picture/16.gif" class="avatar">
-                            <p>
-                                yfdaifhc
-                            </p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#52" title="访问时间：4天前">
-                            <img src="/homes/picture/17.png" class="avatar">
-                            <p>
-                                xcxla
-                            </p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#0292" title="访问时间：4天前">
-                            <img src="/homes/picture/18.jpg" class="avatar">
-                            <p>
-                                墨虹客栈
-                            </p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#1753" title="访问时间：5天前">
-                            <img src="/homes/picture/19.jpg" class="avatar">
-                            <p>
-                                空间吧
-                            </p>
-                        </a>
-                    </li>
-                </div>
-                <div class="lmlblog-member-left-bg-xg clear border-line" style="width:268px;">
-                    <h3>相关推荐</h3>
-                    <div id="lmlblog-memeber-bg-xg" class="aplayer">
-                    </div>
-                    <a href="" target="_blank">
-                        <h2>
-                            燕凌姣个人主页
-                        </h2>
-                        <img src=""
-                        alt="燕凌姣个人主页">
-                        <p>
-                            　　一袭蓝衣亭亭玉立，姣若春梅绽雪，神如月射寒江，香培玉琢、英姿飒爽;其静兰生幽谷，其动若飞若扬，性格大气坚毅、疏朗开阔，举止敢爱敢恨、聪明磊落...他就是燕凌姣
-                        </p>
-                    </a>
-                </div>
             </div>
             <div class="lmlblog-member-right show">
                 <div class="lmlblog-post-list">
@@ -555,8 +354,8 @@
                                 <a href="#1" style="display: inline-block;">
                                     <span class="lmlblog-vip-icon">
                                     </span>
-                                    <img src="/homes/images/tx2.jpg" class="avatar">
-                                    <i class="lmlblog-verify lmlblog-verify-a" title="司空琪">
+                                    <img src="{{session('homeface')}}" class="avatar face">
+                                    <i class="lmlblog-verify lmlblog-verify-a" title="{{session('homeuser')->username}}">
                                     </i>
                                 </a>
                                 <div class="lmlblog-user-info-card">
@@ -570,8 +369,8 @@
                             </div>
                             <div class="lmlblog-post-user-info-name">
                                 <a href="#1">
-                                    <font style="color:#333;font-weight:600">
-                                        司空琪
+                                    <font style="color:#333;font-weight:600" class="indexuser">
+                                        {{session('homeuser')->username}}
                                     </font>
                                 </a>
                                 <span class="lmlblog-mark lmlblog-lv" title="经验：3815">
@@ -582,30 +381,11 @@
                                 </span>
                             </div>
                             <div class="lmlblog-post-user-info-time" title="2017-12-14 05:25">
-                                12-14 05:25
-                            </div>
-                        </div>
-                        <!-- 作者信息 -->
-                        <div class="lmlblog-post-setting">
-                            <i class="fa fa-angle-down">
-                            </i>
-                            <div class="lmlblog-post-setting-box">
-                                <ul>
-                                    <a href="#" title="查看全文">
-                                        <li>
-                                            查看全文
-                                        </li>
-                                    </a>
-                                    <a href="#1" title="访问主页">
-                                        <li>
-                                            访问主页
-                                        </li>
-                                    </a>
-                                </ul>
+                               {{date("Y-m-d H:i:s",session('homeuser')->addtime)}}
                             </div>
                         </div>
                         <div class="lmlblog-post-content ">
-                            <a class="post_list_link" href="#">
+                            <a class="post_list_link" href="javascript:void(0)">
                                 <p>
                                     　　疏星淡月，紫陌曲岸，持觞游赏，神移长川。一片彀纹，溶溶泄泄，忽而烟靡云敛。睹一丽人，缦立青水，云蒸雾霭，花衬善睐。荧荧兮若北辰之荣现，扰扰兮若紫玉之生烟。颜如舜华，迫闻素腰华琚摇;和颜静志，远望渌水呈雾绡。戏流光之夜蝶，采舞雪之琼花，流眷眷之眸光，润荣曜之笑靥。
                                 </p>
@@ -617,13 +397,13 @@
                             </a>
                         </div>
                         <div class="lmlblog-post-images-list clear">
-                            <a href="/homes/images/qi01.jpg" data-fancybox="gallery" data-caption="<i class=&quot;fa fa-copyright&quot;></i> lmlblog">
+                            <a href="/homes/images/qi01.jpg" data-fancybox="gallery" data-caption="<i class=&quot;fa fa-copyright&quot;></i> 音悦杂志社">
                                 <img src="/homes/images/qi01.jpg" alt="司空琪吧十一月壁纸">
                             </a>
-                            <a href="/homes/images/qi02.jpg" data-fancybox="gallery" data-caption="<i class=&quot;fa fa-copyright&quot;></i> lmlblog">
+                            <a href="/homes/images/qi02.jpg" data-fancybox="gallery" data-caption="<i class=&quot;fa fa-copyright&quot;></i> 音悦杂志社">
                                 <img src="/homes/images/qi02.jpg" alt="司空琪吧十一月壁纸">
                             </a>
-                            <a href="/homes/images/qi03.jpg" data-fancybox="gallery" data-caption="<i class=&quot;fa fa-copyright&quot;></i> lmlblog">
+                            <a href="/homes/images/qi03.jpg" data-fancybox="gallery" data-caption="<i class=&quot;fa fa-copyright&quot;></i> 音悦杂志社">
                                 <img src="/homes/images/qi03.jpg" alt="司空琪吧十一月壁纸">
                             </a>
                         </div>
@@ -706,61 +486,204 @@
                     </div>
                 </div>
             </div>
-            <!--我的积分-->
-            <div class="lmlblog-member-right hide">
-                我的积分
+            <!--我的留言--> 
+            <div class="lmlblog-member-right  hide">
+                @if(!empty($message))
+                @foreach($message  as $k=>$v)
+                <div class=" border-line" style="margin-bottom:10px;padding:18px 0px 5px;">
+                    <!-- 动态内容部分，包括列表 -->
+                    <div class="lmlblog-post-user-info">
+                        <div class="lmlblog-post-user-info-avatar" user-data="1">
+                            <a href="#1" style="display: inline-block;">
+                                <span class="lmlblog-vip-icon">
+                                </span>
+                                <img src="{{session('homeface')}}" class="avatar face">
+                                <i class="lmlblog-verify lmlblog-verify-a" title="{{session('homeuser')->username}}">
+                                </i>
+                            </a>
+                        </div>
+                        <div class="lmlblog-post-user-info-name">
+                            <a href="#1">
+                                <font style="color:#333;font-weight:600" class="indexuser">
+                                    {{session('homeuser')->username}}
+                                </font>
+                            </a>
+                            <span class="lmlblog-mark lmlblog-lv integral">
+                                 <i class="fa fa-diamond"></i>{{session('integral')}}
+                            </span>
+                        </div>
+                        <div class="lmlblog-post-user-info-time" title="{{date('Y-m-d H:i:s',$v['addtime'])}}">
+                            {{date('Y-m-d H:i:s',$v['addtime'])}}
+                        </div>
+                    </div>
+                    <div class="lmlblog-post-content ">
+                        <a class="post_list_link" href="javascript:void(0)">
+                            <p>
+                                {{$v['content']}}
+                            </p>
+                        </a>
+                    </div>
+                </div>
+                @endforeach
+                @else
+                    <div class="border-line" style="width:100%;height:500px;margin-bottom:10px;padding:18px 0px 5px;">
+                        <p style="text-align: center;padding-top: 96px;">还没有留言,赶快去发布留言吧!</p>
+                        <p style="text-align: center;padding-top: 20px;width:100%;">
+                            <a href="/Home/message" style="border-radius: 2px;font-size: 15px;padding: 6px 20px;background-color: #fa7d3c;border: 1px solid #fa7d3c;color:#fff;">发表留言</a>
+                        </p>
+                    </div>
+                @endif
             </div>
-            <!--音乐-->
-            <div class="lmlblog-member-right hide">
-                音乐
+            <!--我的一语-->  
+            <div class="lmlblog-member-right hide" id="mySentence">
+                @foreach($sentence as $k=>$v)
+                <div class="border-line"  style="margin-bottom:10px;padding:18px 0px 5px;">
+                    <!-- 动态内容部分，包括列表 -->
+                    <div class="lmlblog-post-user-info">
+                        <div class="lmlblog-post-user-info-avatar" user-data="1">
+                            <a href="#1" style="display: inline-block;">
+                                <span class="lmlblog-vip-icon">
+                                </span>
+                                <img src="{{session('homeface')}}" class="avatar face">
+                                <i class="lmlblog-verify lmlblog-verify-a" title="{{session('homeuser')->username}}">
+                                </i>
+                            </a>
+                        </div>
+                        <div class="lmlblog-post-user-info-name">
+                            <a href="#1">
+                                <font style="color:#333;font-weight:600" class="indexuser">
+                                    {{session('homeuser')->username}}
+                                </font>
+                            </a>
+                            <span class="lmlblog-mark lmlblog-lv integral">
+                                 <i class="fa fa-diamond"></i>{{session('integral')}}
+                            </span>
+                        </div>
+                        <div class="lmlblog-post-user-info-time" title="{{date('Y-m-d H:i:s',$v->addtime)}}">
+                            {{date('Y-m-d H:i:s',$v->addtime)}}
+                        </div>
+                    </div>
+                    <div class="lmlblog-post-content ">
+                        <a class="post_list_link" href="javascript:void(0)">
+                            <p>
+                                {{$v->heart_sentence}}
+                            </p>
+                        </a>
+                    </div>
+                </div>
+                @endforeach
             </div>
-            <!--文章-->
-            <div class="lmlblog-member-right hide">   
-                文章
-            </div>
-            <!--我的留言-->  
-            <div class="lmlblog-member-right hide">
-                我的留言
+            <div class="border-line hide" id="hide" style="margin-bottom:10px;padding:18px 0px 5px;">
+                <!-- 动态内容部分，包括列表 -->
+                <div class="lmlblog-post-user-info">
+                    <div class="lmlblog-post-user-info-avatar" user-data="1">
+                        <a href="#1" style="display: inline-block;">
+                            <span class="lmlblog-vip-icon">
+                            </span>
+                            <img src="{{session('homeface')}}" class="avatar face">
+                            <i class="lmlblog-verify lmlblog-verify-a" title="{{session('homeuser')->username}}">
+                            </i>
+                        </a>
+                    </div>
+                    <div class="lmlblog-post-user-info-name">
+                        <a href="#1">
+                            <font style="color:#333;font-weight:600" class="indexuser">
+                                {{session('homeuser')->username}}
+                            </font>
+                        </a>
+                        <span class="lmlblog-mark lmlblog-lv integral">
+                             <i class="fa fa-diamond"></i>{{session('integral')}}
+                        </span>
+                    </div>
+                    <div class="lmlblog-post-user-info-time sentence-time" title="">
+                        <!-- 每日一语获得时间 -->
+                    </div>
+                </div>
+                <div class="lmlblog-post-content ">
+                    <a class="post_list_link" href="javascript:void(0)">
+                        <p>
+                            <!-- 每日一语内容 -->
+                        </p>
+                    </a>
+                </div>
             </div>
             <!--我的背景音乐-->
-            <div class="lmlblog-member-right hide">
-                <form action="/home/user/music" method="post" enctype="multipart/form-data"> 
-                    <div style="margin:10px;">
-                        <label for="music">
-                            <h6 style="padding:10px;padding-left:0px;">音乐名:</h6>
-                            <input type="text" name="music_name"  style="width:160px;border:1px solid #aaa;display: block;height:40px;padding:5px;box-sizing: border-box;border-radius:5px;"/>
-                        </label>
+            <div class="lmlblog-member-right border-line hide">
+                <div class="lmlblog-post-list">
+                    <div class="lmlblog-posts-list words">
+                        <!-- 动态内容部分，包括列表 -->
+                        <div class="lmlblog-post-user-info">
+                            <form action="/home/user/music" method="post" enctype="multipart/form-data">
+                                @if(!empty(session('homeuserMusic')))
+                                <div class="zhuce1-3-1" style="margin-bottom:10px;">
+                                    <label>
+                                        <h6 style="padding:10px;padding-left:0px;">音乐名:</h6>
+                                        <input type="text" id="reg_yzm" value="{{session('homeuserMusic')->music_name}}" name="music_name" style="box-sizing: border-box;text-align: left;" autocomplete="off" class="tel form-put" placeholder="音乐名">
+                                    </label>
+                                </div>                 
+                                <div class="zhuce1-3-1" style="margin-bottom:10px;position: relative;">
+                                    <label style="margin-bottom: 0px;">
+                                        <h6 style="padding:10px;padding-left:0px;">上传音频:</h6>
+                                        <a href='javascript:void(0);' class="blueButton" style='color:#fff;'>修改音频</a>
+                                        <input type="file" class="myFileUpload" name="music" style="padding-left: 15px; padding-right: 15px"/>
+                                        <div class="show-Music" style="display: block;width:500px;height:40px;float:left;line-height:40px;">{{session('homeuserMusic')->music_name}}{{strrchr(session('homeuserMusic')->music,'.')}}</div>
+                                        <div style="clear:both;"></div>
+                                        <input type="hidden" name="oldmusic" value="{{session('homeuserMusic')->music}}">
+                                    </label>
+                                </div>
+                                <div class="zhuce1-3-1" style="margin-bottom:10px;position: relative;">
+                                    <label style="margin-bottom: 0px;">
+                                        <h6 style="padding:10px;padding-left:0px;">上传音乐预览图:</h6>
+                                        <a href='javascript:void(0);' class="blueButton" style='color:#fff;'>修改图片</a>
+                                        <input type="file" class="myImgUpload" name="thumb_music"/>
+                                        <div class="show-Img" style="display: block;width:500px;height:40px;float:left;line-height:40px;">{{session('homeuserMusic')->music_name}}{{strrchr(session('homeuserMusic')->thumb_music,'.')}}</div>
+                                        <div style="clear:both;"></div>
+                                        <input type="hidden" name="oldthumb_music" value="{{session('homeuserMusic')->thumb_music}}">
+                                    </label>
+                                </div>
+                                @else
+                                <div class="zhuce1-3-1" style="margin-bottom:10px;">
+                                    <label for="music">
+                                        <h6 style="padding:10px;padding-left:0px;">音乐名:</h6>
+                                        <input type="text" name="music_name"  style="width:160px;border:1px solid #aaa;display: block;height:40px;padding:5px;box-sizing: border-box;border-radius:5px;" autocomplete="off" />
+                                    </label>
+                                </div>   
+                                <div class="zhuce1-3-1" style="margin-bottom:10px;position: relative;">
+                                    <label style="margin-bottom: 0px;">
+                                        <h6 style="padding:10px;padding-left:0px;">上传音频:</h6>
+                                        <a href='javascript:void(0);' class="blueButton" style='color:#fff;'>选择音频</a>
+                                        <input type="file" class="myFileUpload" name="music"/>
+                                        <div class="show-Music" style="display: block;width:500px;height:40px;float:left;line-height:40px;"></div>
+                                        <div style="clear:both;"></div>
+                                    </label>
+                                </div>
+                                <div class="zhuce1-3-1" style="margin-bottom:10px;position: relative;">
+                                    <label style="margin-bottom: 0px;">
+                                        <h6 style="padding:10px;padding-left:0px;">上传音乐预览图:</h6>
+                                        <a href='javascript:void(0);' class="blueButton" style='color:#fff;'>选择图片</a>
+                                        <input type="file" class="myImgUpload" name="thumb_music"/>
+                                        <div class="show-Img" style="display: block;width:500px;height:40px;float:left;line-height:40px;"></div>
+                                        <div style="clear:both;"></div>
+                                    </label>
+                                </div>
+                                @endif
+                                {{csrf_field()}}
+                                <input type="hidden" name="uid" value="{{session('homeuser')->id}}">
+                                <button type="submit" class="mybtn" style="margin-top: 10px;">@if(!empty(session('homeuserMusic'))) 修改上传 @else 开始上传 @endif</button>
+                            </form>
+                        </div>
                     </div>
-                    <div style="margin:10px;position: relative;">
-                        <label style="margin-bottom: 0px;">
-                            <h6 style="padding:10px;padding-left:0px;">上传音频:</h6>
-                            <a href='javascript:void(0);' class="blueButton" style='color:#fff;'>选择音频</a>
-                            <input type="file" class="myFileUpload" name="music"/>
-                            <div class="show-Music" style="display: block;width:500px;height:40px;float:left;line-height:40px;"></div>
-                            <div style="clear:both;"></div>
-                        </label>
-                    </div>
-                    <div style="margin:10px;position: relative;">
-                        <label style="margin-bottom: 0px;">
-                            <h6 style="padding:10px;padding-left:0px;">上传音乐预览图:</h6>
-                            <a href='javascript:void(0);' class="blueButton" style='color:#fff;'>选择图片</a>
-                            <input type="file" class="myImgUpload" name="thumb_music"/>
-                            <div class="show-Img" style="display: block;width:500px;height:40px;float:left;line-height:40px;"></div>
-                            <div style="clear:both;"></div>
-                        </label>
-                    </div>
-                    {{csrf_field()}}
-                    <input type="hidden" name="uid" value="{{session('homeuser')->id}}">
-                    <button type="submit" class="mybtn">开始上传</button>
-                </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
 @stop
+
 @section('homeuser')
 <!-- 不需要登录模块 -->
 @stop
+
 @section('js')
 	<!-- 返回顶部 -->
 <a href="javascript:returnTop();" class="cd-top"></a>
@@ -783,8 +706,20 @@ function returnTop() {
 <script src="/homes/js/amazeui.min.js" charset="utf-8"></script>
 <script src="/homes/js/cropper.min.js" charset="utf-8"></script>
 <script src="/homes/js/custom_up_img.js" charset="utf-8"></script>
+<!-- <script type="text/javascript" src="/homes/js/sentence.js" charset="utf-8"></script> -->
 <script>
 jQuery(document).ready(function($) {
+    //转换时间搓
+    function timestampToTime(timestamp) {
+        var date = new Date();
+        var Y = date.getFullYear() + '-';
+        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
+        var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+        var m = (date.getMinutes() <10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+        var s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
+        return Y+M+D+h+m+s;
+    }
 	$('.setting-set').hover(function(){
 		$('.hidden').show();
 	},function(){
@@ -808,10 +743,10 @@ jQuery(document).ready(function($) {
     function checkMusicName(ths){
         if(ths.val().length <= 0){
             ths.css({"border":"1px red solid"});
+            swal("温馨提示","音乐名不能为空","error");    
             musicFlag = false;
         }else{
-            ths.css({"border":"1px lightgrenn solid"});
-            musicFlag = true
+            ths.css({"border":"1px lightgreen solid"});
         }
     }
     //音乐文件
@@ -828,7 +763,7 @@ jQuery(document).ready(function($) {
     })
     function checkMusicType(ths){    
         if (ths.val() == "") {    
-            swal("温馨提示","请上传音频文件","error");    
+            swal("温馨提示","请选择音频文件","error");    
             musicFlag = false;   
         } else {    
             if (!/\.(mp3|wma|wav|ogg)$/i.test(ths.val())) {    
@@ -838,7 +773,6 @@ jQuery(document).ready(function($) {
                 musicFlag = false; 
             }    
         }    
-        musicFlag = true;   
     }
     //图片文件
     $(".myImgUpload").change(function(){
@@ -854,7 +788,7 @@ jQuery(document).ready(function($) {
     })
     function checkImgType(ths){    
         if (ths.val() == "") {    
-            swal("温馨提示","请上传图片文件","error");    
+            swal("温馨提示","请选择图片文件","error");    
            musicFlag = false;
         } else {    
             if (!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(ths.val())) {    
@@ -863,17 +797,16 @@ jQuery(document).ready(function($) {
                 $('.show-Img').text('');
                 musicFlag = false;
             }    
-        }    
-        musicFlag = true ;  
+        }     
     }
     $('form').submit(function(){
         checkImgType($("input[name='thumb_music']"));
         checkMusicType($("input[name='music']"));
         checkMusicName($("input[name='music_name']"));
         if(musicFlag){
-            return true;
+            return musicFlag;
         }
-        return false;
+        return musicFlag;
     })
 	//推荐用户悬浮设置
     $.fn.smartFloat = function() {
@@ -912,7 +845,39 @@ jQuery(document).ready(function($) {
             position($(this))
         })
     };
-    $(".lmlblog-member-left-bg-xg").smartFloat()
+    //每日一语
+    var id = $('input[name="uid"]').attr('value');
+    $('#sentence').click(function(){
+        var sentence = $(this);
+        if($('.integral').text() == '0'){
+            swal("温馨提示",'当前积分不足','error');
+        }else if(sentence.attr('rel') >= 6){
+            swal("温馨提示",'你当天已经获得过6次了哦','error');
+        }else{
+            $.post('/home/user/sentence',{"_token":"{{csrf_token()}}","uid":id},function(data){
+                if(data == '101'){
+                    swal("温馨提示",'你当天已经获得过6次了哦','error');
+                }else if(data == '1'){
+                    swal("温馨提示","获取每日一语失败",'error');
+                }else if(data == '100'){
+                    swal("温馨提示",'当前积分不足','error');
+                }else{
+                    swal("每日一语",data.heart_sentence,'success');
+                    myElement = $('#hide').clone(true);
+                    sentence.attr('rel',data.get_sentence_num);
+                    myElement.removeClass('hide');
+                    myElement.removeAttr('hide');
+                    myElement.find('.sentence-time').html(timestampToTime(data.addtime));
+                    myElement.find('.sentence-time').attr('title',timestampToTime(data.addtime));
+                    myElement.find('p').html(data.heart_sentence);
+                    $('.integral').html('<i class="fa fa-diamond"></i>'+data.integral);
+                    myElement.find('.integral').html('<i class="fa fa-diamond"></i>'+data.integral);
+                    $('#mySentence').prepend(myElement);
+                }
+            })
+        }
+    })
+    $(".lmlblog-member-left-bg-xg").smartFloat();
 });
 </script>	
 @stop

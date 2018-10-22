@@ -33,8 +33,11 @@
 	                个性签名:<input type="text" name="sdasd" class="input" autocomplete="off" value="{{session('homeuser')->sdasd}}" check-sdasd="{{session('homeuser')->sdasd}}">
 	                <p class="checksdasd"></p>
 	                <div class="form-edit">
-                            <p><button type="button" id="affrit_edit" mydata-id="{{session('homeuser')->id}}">确认修改</button></p>
+                            <p><button type="button" id="affrit_edit" mydata-id="{{session('homeuser')->id}}" style="background-color: #23c6c8;">确认修改</button></p>
                     </div>
+                    <p>
+                    	<a href="javascript:history.back()" style="display: inline-block;width: 100%;height: 100%;overflow: hidden;cursor: pointer;text-align: center;border-radius: 22.5px;line-height: 45px;font-size: 16px;color: #fff;position: relative;z-index: 1; background-color: #f8ac59;">返回个人中心</a>
+                    </p>
                 </div>
             </div>
         </div>
@@ -113,12 +116,14 @@
 					$('input[name="tel"]').val() == $('input[name="tel"]').attr('check-tel') &&
 					$('input[name="sdasd"]').val() == $('input[name="sdasd"]').attr('check-sdasd')
 					){
+					swal('温馨提示','你当前未做任何修改','error');
 					return false;
 				}
 				if(flag){
 					$.post('/home/user/saveinfo',{
 						"_token":"{{csrf_token()}}",
 						"username":$('input[name="username"]').val(),
+						"check_name":$('input[name="username"]').attr('check-name'),
 						"qq":$('input[name="qq"]').val(),
 						"sex":$('select[name="sex"]').val(),
 						"age":$('input[name="age"]').val(),
@@ -126,7 +131,7 @@
 						"sdasd":$('input[name="sdasd"]').val(),
 						"id":edit.attr('mydata-id')
 					},function(data){
-						if(data){
+						if(data.right == 1){
 							if($('input[name="username"]').val() != $('input[name="username"]').attr('check-name')){
 								$('#indexuser').html(data.username);
 								$('input[name="username"]').val(data.username);
@@ -153,6 +158,9 @@
 								$('input[name="sdasd"]').attr('check-sdasd',data.sdasd);
 							}
 							swal('温馨提示','信息修改成功','success');
+						}else if(data == 2){
+							$('input[name="username"]').val($('input[name="username"]').attr('check-name'));
+							swal('温馨提示','该用户名已存在','error');
 						}else{
 							swal('温馨提示','信息修改失败','error');
 						}
