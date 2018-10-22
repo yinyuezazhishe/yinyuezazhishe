@@ -49,6 +49,7 @@ class AdminAdvertisingController extends Controller
     {
     	$rs = Advertising::select(DB::raw('*,concat(title,id) as title'))->
             orderBy('picture')->get();
+            // dd($rs);   
         return view('Admin.advertising.add',[
         	'title'=>'广告添加',
         	'rs'=>$rs

@@ -36,7 +36,7 @@
                                 <div class="col-sm-4 col-sm-offset-2">
                                     {{csrf_field()}}  
                                     <button class="btn btn-primary" type="submit">添加类别</button>
-                                    <button class="btn btn-white" type="submit">取消</button>
+                                    <a href="/Admin/category" class="btn btn-warning">取消</a>
                                 </div>
                             </div>
          </form>

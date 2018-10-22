@@ -451,9 +451,7 @@
             // console.log(theme);
 
             if (theme == undefined){
-
                 theme = theme1;
-
             }
 
             $('body').eq(0).addClass(theme);

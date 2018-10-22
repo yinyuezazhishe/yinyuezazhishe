@@ -41,6 +41,7 @@ class HomeLoginController extends Controller
 		}
 
         $user = HomeUsers::where('username', $res['username']) -> first();
+
         if ($user) {
             $music = HomeUserMusic::where('uid',$user->id)->first();
             if ($user -> status == 1) {

@@ -26,12 +26,6 @@ class HomeDetailsController extends Controller
         $pr = '';
         if (!empty(session('homeuser'))) {
             $pr = DB::table('praise')->where([['d_c_id', $id], ['u_id', session('homeuser')->id]]) -> first();
-
-            // if($pr->u_id == session('homeuser')->id) {
-            //     echo 1;
-            // }
-
-            // die;
         }
 
     	return view('Home.Details.index', ['details' => $details, 'praise' => $praise, 'pr' => $pr, 'title' => '音乐杂志社']);

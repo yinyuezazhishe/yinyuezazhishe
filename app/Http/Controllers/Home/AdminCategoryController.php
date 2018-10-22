@@ -14,7 +14,7 @@ class AdminCategoryController extends Controller
         orderBy('path');
         // dd($CateGory);
         return view('Home.Public.layout',[
-        	'CateGory'=>$CateGory;
+        	'CateGory'=>$CateGory
         	]);
     }
 }
