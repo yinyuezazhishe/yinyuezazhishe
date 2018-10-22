@@ -35,7 +35,7 @@ class Lists extends Model
      */
     public function details()
     {
-        return $this->hasOne('App\Model\Admin\Details', 'lid', 'id');
+        return $this->hasOne('App\Model\Admin\Details', 'lid', 'id')->where('status', '<>', '1');
     }
 
     /**

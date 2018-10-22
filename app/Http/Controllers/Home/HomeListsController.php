@@ -49,9 +49,7 @@ class HomeListsController extends Controller
 
          //    $condition[] = ['title', 'like', '%'.$title.'%'];
         }
-
-        $details = Details::with('details_content', 'lists') ->  orderBy('id', 'asc') -> paginate(10);
         
-        return view('Home.Lists.index', ['title' => '音乐杂志社', 'd_content' => $d_content, 'details' => $details]);
+        return view('Home.Lists.index', ['title' => '音乐杂志社', 'd_content' => $d_content]);
     }
 }

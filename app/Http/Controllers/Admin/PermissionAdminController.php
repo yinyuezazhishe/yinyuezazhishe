@@ -171,11 +171,11 @@ class PermissionAdminController extends Controller
 
             if($data){
 
-                return redirect('/admin/permission')->with('succes','删除权限成功');
+                return 0;
             }
         }catch(\Exception $e){
 
-            return back()->with('errors','删除权限失败');
+            return 1;
 
         }
     }

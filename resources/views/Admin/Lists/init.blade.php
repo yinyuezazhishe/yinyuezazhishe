@@ -79,11 +79,11 @@
                                 {{$v->category->catename}}
                             </td>
                             <td class="st">
-                                <a style="width: 40px;" href="/admin/lists/{{$v->id}}/edit_status" @if($v->status == 0) title="启用" @elseif($v->status==1) title="禁用" @endif  class="btn status btn-info btn-small"><i style="font-size: 17px;" @if($v->status == 0) class="fa fa-check-circle-o" @elseif($v->status==1) class="fa fa-times-circle-o" @endif ></i></a>
+                                <a style="width: 40px;" href="/admin/lists/{{$v->id}}/edit_status" @if($v->status == 0) title="启用" @elseif($v->status==1) title="禁用" @endif  class="btn status btn-info btn-small"><i style="font-size: 17px;" @if($v->status == 0) class="fa fa-check-circle-o" @elseif($v->status==1) class="fa fa-ban" @endif ></i></a>
                                 <a href="/admin/lists/{{$v->id}}/edit" title="修改" class="btn btn-info btn-small"><i class="glyphicon glyphicon-edit"></i></a>
-                                <form action="/admin/lists/{{$v->id}}" method="post" class="del" style="display: inline;">
-                                    {{csrf_field()}}
-                                    {{method_field('DELETE')}}
+                                <form action="/admin/lists/{{$v->id}}" method="post" class="dels" style="display: inline;">
+                                    {{--csrf_field()--}}
+                                    {{--method_field('DELETE')--}}
                                     <button class="btn btn-danger btn-small del" title="删除" data-id="{{$v->id}}"><i class="glyphicon glyphicon-trash"></i></button>
                                 </form>
                             </td>
@@ -143,7 +143,7 @@
                 success: function (data) {
                     if (data == 20) {
                         sta.attr('title', '禁用');
-                        sta.find('i').attr('class', 'fa fa-times-circle-o');
+                        sta.find('i').attr('class', 'fa fa-ban');
                         swal("恭喜你!", "禁用成功!", "success");
                     } else if(data == 10) {
                         sta.attr('title', '启用');
@@ -157,6 +157,44 @@
                     swal("对不起!", "修改状态失败!", "error");
                 },
                 async: true
+            });
+
+            return false;
+        });
+
+        $('.dels').click(function ()
+        {
+            var hrefs= $(this).attr('action');
+            
+            swal({
+                title: "您确定要删除此条列表吗?",
+                text: "点击OK将会删除此条列表, 请谨慎操作!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                
+            }).then((willDelete) =>{
+                if (willDelete) {
+                    $.ajax({
+                        url: hrefs,
+                        data: {"_method" : "DELETE"},
+                        type: "POST",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data == 0) {
+                                location.reload(true);
+                                swal("恭喜您!", "删除列表成功!", "success");
+                                
+                            } else if (data == 1) {
+                                swal("对不起!", "删除列表失败!", "error");
+                            }
+                        },
+                        error: function(){
+                            swal("对不起!", "删除列表失败!", "error");
+                        },
+                        async: true
+                    });
+                }
             });
 
             return false;

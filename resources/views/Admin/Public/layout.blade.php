@@ -23,7 +23,7 @@
     <link href="/admins/css/style.min.css?v=4.0.0" rel="stylesheet">
     <link href="/admins/layer/mobile/need/layer.css" rel="stylesheet">
     <link href="/admins/layer/theme/default/layer.css" rel="stylesheet">
-    <meta name="csrf-token" content="{{ csrf_token() }}"> 
+    <meta name="csrf-token" content="{{csrf_token()}}"> 
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
         <input type="hidden" name="" class="theme" value="{{session('adminusers')->theme}}">
@@ -414,6 +414,13 @@
     <script type="text/javascript" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
 
     <script type="text/javascript">
+        
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         var theme = '';
         var id = $('.uid').val();
 
@@ -441,7 +448,7 @@
             var theme1 = $('.theme').val();
 
             theme =  $.session.get('theme');
-            console.log(theme);
+            // console.log(theme);
 
             if (theme == undefined){
 

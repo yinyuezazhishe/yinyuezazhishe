@@ -152,16 +152,20 @@ class AdminListsController extends Controller
 
         try{
             //使用模型关联向详情内容表删除数据
-            $d_content = DetailsContent::find($id)->delete();
+            $d_content = DetailsContent::find($id);
+
+            unlink('.'.$d_content->picstream);
+
+            $d_content->delete();
 
             // 判断三个表是否删除数据成功
             if ($lists && $details && $d_content) {
-                return redirect('/admin/lists')->with('succes','删除列表成功!');
+                return 0;
             }
 
         }catch(\Exception $e){
 
-            return back()->with('errors','删除列表失败!');
+            return 1;
         }       
     }
 

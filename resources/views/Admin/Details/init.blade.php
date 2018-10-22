@@ -72,8 +72,8 @@
                             <th style="width: 100px;" class="text-center">详情作者</th>   
                             <th style="width: 116px;" class="text-center">详情语录</th>   
                             <th style="width: 116px;" class="text-center">详情描述</th>   
-                            <th style="width: 116px;" class="text-center">图片欣赏</th>
-                            <th style="width: 175px;" class="text-center">操作</th>
+                            <th style="width: 106px;" class="text-center">图片欣赏</th>
+                            <th style="width: 180px;" class="text-center">操作</th>
                         </tr>
                     </thead>
                     <tbody>    
@@ -95,7 +95,7 @@
                                 <img src="{{$v->details_content->picstream}}" height="120px">
                             </td>
                             <td class="st">
-                                <a style="width: 40px;" @if($v->status == 0) title="启用" @elseif($v->status==1) title="禁用" @endif href="/admin/details/{{$v->id}}/edit_status" class="btn status btn-info btn-small"><i style="font-size: 17px;" @if($v->status == 0) class="fa fa-check-circle-o" @elseif($v->status==1) class="fa fa-times-circle-o" @endif ></i></a>
+                                <a style="width: 40px;" @if($v->status == 0) title="启用" @elseif($v->status==1) title="禁用" @endif href="/admin/details/{{$v->id}}/edit_status" class="btn status btn-info btn-small"><i style="font-size: 17px;" @if($v->status == 0) class="fa fa-check-circle-o" @elseif($v->status==1) class="fa fa fa-ban" @endif ></i></a>
                                 <a style="width: 40px" title="查看详情内容" href="/admin/details/{{$v->id}}" class="btn btn-info btn-small"><i  class="fa fa-th-large"></i></a>
                                 <a href="/admin/details/{{$v->id}}/edit" title="修改" class="btn btn-info btn-small"><i class="glyphicon glyphicon-edit"></i></a>
                                 <a href="/admin/lists?id={{$v->id}}" class="btn btn-danger btn-small del" title="删除"><i class="glyphicon glyphicon-trash"></i></a>
@@ -156,7 +156,7 @@
                 success: function (data) {
                     if (data == 20) {
                         sta.attr('title', '禁用');
-                        sta.find('i').attr('class', 'fa fa-times-circle-o');
+                        sta.find('i').attr('class', 'fa fa-ban');
                         swal("恭喜你!", "禁用成功!", "success");
                     } else if(data == 10) {
                         sta.attr('title', '启用');
