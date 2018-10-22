@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!-- HTML 5 -->
 <html lang="zh-CN">
     <meta charset="UTF-8" />
@@ -16,6 +16,8 @@
         <link rel="stylesheet" href="/admins/js/plugins/layer/skin/layer.css" id="layui_layer_skinlayercss" style="">
 
         <script src="/homes/js/sweetalert.min.js"></script>
+
+        <script type="text/javascript" src="/homes/js/autoptimize_22c3799c14ce37e2988fb6e1676bb4df.js">
 
         </script>
         <!--[if lt IE 9]>
@@ -235,65 +237,68 @@
             </script>
             <!-- banner stop -->
             <div id="wrap" class="container clearfix">
-                @php
-                    $details =App\Model\Admin\Details::with('details_content', 'lists')->where('status', '<>', '1')->get();
-                    $lid = [];
-                    foreach ($details as $k => $v) {
-                        $lid[] = $v -> lists['id'];
-                    }
-                    $details = App\Model\Admin\Details::with('details_content', 'lists')->whereIn('id', $lid)->orderBy('id', 'asc')->paginate(10);
-                @endphp
                 <section id="content" class="primary" role="main">
-                    @foreach($details as $k => $v)
+                    @php
+                        $hottest = DB::table('praise')->select(DB::raw('count(*) as d_c_count, d_c_id'))->groupBy('d_c_id')->orderBy('d_c_count', 'desc')->get();
+
+                        foreach ($hottest as $k => $v) {
+                            $d_c[] = $v->d_c_id;
+                        }
+                        
+                        $details =\App\Model\Admin\Details::with('details_content', 'lists')->whereIn('id', $d_c)->orderBy('id', 'desc')->where('status', '<>', '1')->get();
+
+                        $lid = [];
+                        foreach ($details as $k => $v) {
+                            if ($v -> lists['status'] == 0) {
+                                $lid['id'] = $v -> lists['id'];
+                            }
+                        }
+                        session(['lid' => $lid]);
+                        
+                        $d_content = \App\Model\Admin\DetailsContent::whereIn('id', $lid)->first();
+                    @endphp
                     <article class="content-excerpt post-13827 post type-post status-publish format-standard has-post-thumbnail sticky hentry category-nomusic tag-t">
                         <h2 class="post-title entry-title">
-                            <a href="https://www.mtyyw.com/13827/" rel="bookmark">
-                                {{$v->details_content->title}}
+                            <a href="/home/details/{{$d_content->id}}" rel="bookmark">
+                                {{$d_content->title}}
                             </a>
                         </h2>
                         <div class="postmeta">
-                            {{date('Y-m-d',$v->details_content->addtime)}}
+                            {{date('Y-m-d',$d_content->addtime)}}
                         </div>
                         <div class="entry clearfix">
                             <blockquote>
                                 <p>
-                                    {{$v->details_content->saying}}
+                                    {{$d_content->saying}}
                                 </p>
                             </blockquote>
                             <p>
-                                <img class="" src="{{$v->details_content->picstream}}"
-                                align="absmiddle" />
-                                <br />
-                                简介:{{$v->details_content->describe}}
+                                <a href="/home/details/{{$d_content->id}}" title="{{$d_content->title}}">
+                                    <img src="{{$d_content->picstream}}"
+                                    align="absmiddle" />
+                                    <br />
+                                    简介:{{$d_content->describe}}
+                                </a>
                             </p>
-                            <a href="/home/details/{{$v->id}}" class="more-link">
+                            <a href="/home/details/{{$d_content->id}}" class="more-link">
                                 查看全部
                             </a>
-                        </div>
-                        <div class="postinfo clearfix">
-                            <span class="meta-category">
-                                <ul class="post-categories">
-                                    <li>
-                                        <a href="https://www.mtyyw.com/nomusic/" rel="category tag">
-                                            无关音乐
-                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
-                                            小众音乐
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.mtyyw.com/wenzi/" rel="category tag">
-                                            文字
-                                        </a>
-                                    </li>
-                                </ul>
-                            </span>
                         </div>
                     </article>
-                    
-                    
+                    @php
+                        $details =\App\Model\Admin\Details::with('details_content', 'lists')->get();
+                        $lid = [];
+                        foreach ($details as $k => $v) {
+                            if ($v -> lists['status'] == 0) {
+                                $lid['id'] = $v -> lists['id'];
+                            }
+                        }
+                        $details = \App\Model\Admin\Details::with('details_content', 'lists')->whereIn('id', $lid)->where('status', '<>', '1')->whereNotIn('id', session('lid'))->orderBy('id', 'asc')->paginate(10);
+                    @endphp
+                    @foreach ($details as $k =>$v)
                     <article class="content-excerpt post-19689 post type-post status-publish format-standard has-post-thumbnail hentry category-video category-popmusic tag-2853 tag-3298 tag-3472"><h2 class="post-title entry-title">
                         <h2 class="post-title entry-title">
-                            <a href="https://www.mtyyw.com/13827/" rel="bookmark">
+                            <a href="/home/details/{{$v->details_content->id}}" rel="bookmark">
                                 {{$v->details_content->title}}
                             </a>
                         </h2>
@@ -307,32 +312,17 @@
                                 </p>
                             </blockquote>
                             <p>
-                                <img class="" src="{{$v->details_content->picstream}}"
-                                align="absmiddle" />
-                                <br />
-                                简介:{{$v->details_content->describe}}
+                                <a href="/home/details/{{$v->
+                                    id}}" title="{{$v->details_content->title}}">
+                                    <img class="" src="{{$v->details_content->picstream}}"
+                                    align="absmiddle" />
+                                    <br />
+                                    简介:{{$v->details_content->describe}}
+                                </a>
                             </p>
                             <a href="/home/details/{{$v->id}}" class="more-link">
                                 查看全部
                             </a>
-                        </div>
-                        <div class="postinfo clearfix">
-                            <span class="meta-category">
-                                <ul class="post-categories">
-                                    <li>
-                                        <a href="https://www.mtyyw.com/nomusic/" rel="category tag">
-                                            无关音乐
-                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
-                                            小众音乐
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.mtyyw.com/wenzi/" rel="category tag">
-                                            文字
-                                        </a>
-                                    </li>
-                                </ul>
-                            </span>
                         </div>
                     </article>
                     @endforeach
@@ -392,11 +382,6 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#dynamicnews_tabbed_content-6-tabbed-2">
-                                            最新评论
-                                        </a>
-                                    </li>
-                                    <li>
                                         <a href="#dynamicnews_tabbed_content-6-tabbed-3">
                                             热门主题
                                         </a>
@@ -405,222 +390,75 @@
                             </div>
                             <div id="dynamicnews_tabbed_content-6-tabbed-1" class="tabdiv">
                                 <ul>
+                                    @php
+                                        $details =\App\Model\Admin\Details::with('details_content', 'lists')->where('status', '<>', '1')->get();
+                                        $lid = [];
+                                        foreach ($details as $k => $v) {
+                                            if ($v -> lists['status'] == 0) {
+                                                $lid[] = $v -> lists['id'];
+                                            }
+                                        }
+                                        // dd($lid);
+
+                                        $newest = \App\Model\Admin\DetailsContent::orderBy('addtime', 'desc')->whereIn('id',$lid)->limit(5)->get();
+                                    @endphp
+                                    @foreach ($newest as $k => $v)
                                     <li class="widget-thumb">
-                                        <a href="https://www.mtyyw.com/19564/" title="只要现在欢乐，赵照《舍不得过》唱到你心里">
-                                        </a>
-                                        <a href="https://www.mtyyw.com/19564/" title="只要现在欢乐，赵照《舍不得过》唱到你心里">
-                                            只要现在欢乐，赵照《舍不得过》唱到你心里
-                                        </a>
-                                        <div class="widget-postmeta">
-                                            <span class="widget-date">
-                                                2018-09-26
-                                            </span>
-                                        </div>
-                                    </li>
-                                    <li class="widget-thumb">
-                                        <a href="https://www.mtyyw.com/19561/" title="我沉迷于秋日 &#8211; 纣王老胡">
-                                            <img width="75" height="75" src="/homes/images/fengshou-fangao-75x75.jpg"
+                                        <a href="/home/details/{{$v->id}}" title="{{$v->title}}">
+                                            <img width="75" height="75" src="{{$v->picstream}}"
                                             class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
-                                            alt="丰收©️文森特·梵高"
                                             sizes="(max-width: 75px) 100vw, 75px" />
                                         </a>
-                                        <a href="https://www.mtyyw.com/19561/" title="我沉迷于秋日 &#8211; 纣王老胡">
-                                            我沉迷于秋日 &#8211; 纣王老胡
+                                        <a href="/home/details/{{$v->id}}" title="{{$v->title}}">
+                                            {{$v->title}}
                                         </a>
                                         <div class="widget-postmeta">
                                             <span class="widget-date">
-                                                2018-09-25
+                                                {{date('Y-m-d', $v->addtime)}}
                                             </span>
                                         </div>
                                     </li>
-                                    <li class="widget-thumb">
-                                        <a href="https://www.mtyyw.com/19558/" title="秋天的老狼 | 李志">
-                                            <img width="75" height="75" src="homes/images/A-token-of-friendship©️Arthur-Collingridge-75x75.jpg"
-                                            class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
-                                            alt="A token of friendship©️Arthur Collingridge" 
-                                            sizes="(max-width: 75px) 100vw, 75px" />
-                                        </a>
-                                        <a href="https://www.mtyyw.com/19558/" title="秋天的老狼 | 李志">
-                                            秋天的老狼 | 李志
-                                        </a>
-                                        <div class="widget-postmeta">
-                                            <span class="widget-date">
-                                                2018-09-23
-                                            </span>
-                                        </div>
-                                    </li>
-                                    <li class="widget-thumb">
-                                        <a href="https://www.mtyyw.com/19556/" title="吉他发烧曲《那些花儿》">
-                                            <img width="75" height="75" src="/homes/images/Undergrowth-with-Two-Figures-75x75.jpg"
-                                            class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
-                                            alt="Undergrowth with Two Figures©️梵高"
-                                            sizes="(max-width: 75px) 100vw, 75px" />
-                                        </a>
-                                        <a href="https://www.mtyyw.com/19556/" title="吉他发烧曲《那些花儿》">
-                                            吉他发烧曲《那些花儿》
-                                        </a>
-                                        <div class="widget-postmeta">
-                                            <span class="widget-date">
-                                                2018-09-21
-                                            </span>
-                                        </div>
-                                    </li>
-                                    <li class="widget-thumb">
-                                        <a href="https://www.mtyyw.com/19553/" title="天色未暗 夜已不远 Not Dark Yet &#8211; Bob Dylan">
-                                            <img width="75" height="75" src="/homes/images/The-Passing-of-the-Train-700px-75x75.jpg"
-                                            class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
-                                            alt="The Passing of the Train©️Darío de Regoyos" 
-                                            sizes="(max-width: 75px) 100vw, 75px" />
-                                        </a>
-                                        <a href="https://www.mtyyw.com/19553/" title="天色未暗 夜已不远 Not Dark Yet &#8211; Bob Dylan">
-                                            天色未暗 夜已不远 Not Dark Yet &#8211; Bob Dylan
-                                        </a>
-                                        <div class="widget-postmeta">
-                                            <span class="widget-date">
-                                                2018-09-20
-                                            </span>
-                                        </div>
-                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
-                            <div id="dynamicnews_tabbed_content-6-tabbed-2" class="tabdiv">
-                                <ul class="widget-tabbed-comments">
-                                    <li class="widget-avatar">
-                                        <a href="https://www.mtyyw.com/guestbook/comment-page-74/#comment-88587">
-                                            <img alt='' src='/homes/images/f39d6848fa2f97b4944f99f1f9ad70f4.jpg' class='avatar avatar-55 photo' height='55' width='55' />
-                                        </a>
-                                        袁辉 on
-                                        <a href="https://www.mtyyw.com/guestbook/comment-page-74/#comment-88587">
-                                            留言本
-                                        </a>
-                                    </li>
-                                    <li class="widget-avatar">
-                                        <a href="https://www.mtyyw.com/19350/comment-page-1/#comment-88586">
-                                            <img alt='' src=''
-                                            class='avatar avatar-55 photo' height='55' width='55' />
-                                        </a>
-                                        可可 on
-                                        <a href="https://www.mtyyw.com/19350/comment-page-1/#comment-88586">
-                                            2018北京麦田音乐节地点、门票、时间表、阵容(薛之谦、吴青峰、陈粒等)
-                                        </a>
-                                    </li>
-                                    <li class="widget-avatar">
-                                        <a href="https://www.mtyyw.com/19350/comment-page-1/#comment-88585">
-                                            <img alt='' src=''                                        
-                                            class='avatar avatar-55 photo' height='55' width='55' />
-                                        </a>
-                                        杨超 on
-                                        <a href="https://www.mtyyw.com/19350/comment-page-1/#comment-88585">
-                                            2018北京麦田音乐节地点、门票、时间表、阵容(薛之谦、吴青峰、陈粒等)
-                                        </a>
-                                    </li>
-                                    <li class="widget-avatar">
-                                        <a href="https://www.mtyyw.com/guestbook/comment-page-74/#comment-88584">
-                                            <img alt='' src=''
-                                            class='avatar avatar-55 photo' height='55' width='55' />
-                                        </a>
-                                        张张 on
-                                        <a href="https://www.mtyyw.com/guestbook/comment-page-74/#comment-88584">
-                                            留言本
-                                        </a>
-                                    </li>
-                                    <li class="widget-avatar">
-                                        <a href="https://www.mtyyw.com/19350/comment-page-1/#comment-88583">
-                                            <img alt='' src=''
-                                            class='avatar avatar-55 photo' height='55' width='55' />
-                                        </a>
-                                        高明月 on
-                                        <a href="https://www.mtyyw.com/19350/comment-page-1/#comment-88583">
-                                            2018北京麦田音乐节地点、门票、时间表、阵容(薛之谦、吴青峰、陈粒等)
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                            
+                            @php
+                                $hottest = DB::table('praise')->select(DB::raw('count(*) as d_c_count, d_c_id'))->groupBy('d_c_id')->orderBy('d_c_count', 'desc')->limit(5)->get();
+                                $d_c = [];
+                                foreach ($hottest as $k => $v) {
+                                    $d_c[] = $v -> d_c_id;
+                                }
+                                $details =\App\Model\Admin\Details::with('details_content', 'lists')->where('status', '<>', '1')->whereIn('id', $d_c)->get();
+                                        $lid = [];
+                                        foreach ($details as $k => $v) {
+                                            if ($v -> lists['status'] == 0) {
+                                                $lid[] = $v -> lists['id'];
+                                            }
+                                        }
+                                // dd($d_c);
+                                $d_content = \App\Model\Admin\DetailsContent::whereIn('id', $lid)->get();
+                            @endphp
                             <div id="dynamicnews_tabbed_content-6-tabbed-3" class="tabdiv">
                                 <ul>
+                                    @foreach ($d_content as $k => $v)
                                     <li class="widget-thumb">
-                                        <a href="https://www.mtyyw.com/8911/" title="十大气势背景音乐，小心脏颤抖了！">
-                                            <img width="75" height="75" src="/homes/images/Of_Fire_by_FallingToPieces_500-75x75.jpg"
-                                            class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
-                                            alt="" 
-                                            sizes="(max-width: 75px) 100vw, 75px" />
+                                        <a href="/home/details/{{$v->id}}" title="{{$v->title}}">
+                                            <img width="75" height="75" src="{{$v->picstream}}" class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image" sizes="(max-width: 75px) 100vw, 75px" />
                                         </a>
-                                        <a href="https://www.mtyyw.com/8911/" title="十大气势背景音乐，小心脏颤抖了！">
-                                            十大气势背景音乐，小心脏颤抖了！
+                                        <a href="home/details/{{$v->id}}" title="{{$v->title}}">
+                                            {{$v->title}}
                                         </a>
                                         <div class="widget-postmeta">
                                             <span class="widget-date">
-                                                2014-09-19
+                                                {{date('Y-m-d', $v->addtime)}}
                                             </span>
                                         </div>
                                     </li>
-                                    <li class="widget-thumb">
-                                        <a href="https://www.mtyyw.com/6694/" title="麦田的T恤，你会买账吗 (“拖延症”趣味T恤上架)">
-                                            <img width="75" height="47" src="/homes/images/yinbi.jpg"
-                                            class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
-                                            sizes="(max-width: 75px) 100vw, 75px" />
-                                        </a>
-                                        <a href="https://www.mtyyw.com/6694/" title="麦田的T恤，你会买账吗 (“拖延症”趣味T恤上架)">
-                                            麦田的T恤，你会买账吗 (“拖延症”趣味T恤上架)
-                                        </a>
-                                        <div class="widget-postmeta">
-                                            <span class="widget-date">
-                                                2013-03-21
-                                            </span>
-                                        </div>
-                                    </li>
-                                    <li class="widget-thumb">
-                                        <a href="https://www.mtyyw.com/353/" title="世界三大禁曲之《黑色星期天》">
-                                            <img width="75" height="54" src="/homes/images/Gloomy-Sunday_2.jpg"
-                                            class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
-                                            alt="黑色星期天原版"
-                                            sizes="(max-width: 75px) 100vw, 75px" />
-                                        </a>
-                                        <a href="https://www.mtyyw.com/353/" title="世界三大禁曲之《黑色星期天》">
-                                            世界三大禁曲之《黑色星期天》
-                                        </a>
-                                        <div class="widget-postmeta">
-                                            <span class="widget-date">
-                                                2008-01-25
-                                            </span>
-                                        </div>
-                                    </li>
-                                    <li class="widget-thumb">
-                                        <a href="https://www.mtyyw.com/7013/" title="寒门再难出贵子">
-                                            <img width="60" height="75" src="/homes/images/12-91616-0.png"
-                                            class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
-                                            alt="寒门再难出贵子"
-                                            sizes="(max-width: 60px) 100vw, 60px" />
-                                        </a>
-                                        <a href="https://www.mtyyw.com/7013/" title="寒门再难出贵子">
-                                            寒门再难出贵子
-                                        </a>
-                                        <div class="widget-postmeta">
-                                            <span class="widget-date">
-                                                2013-07-11
-                                            </span>
-                                        </div>
-                                    </li>
-                                    <li class="widget-thumb">
-                                        <a href="https://www.mtyyw.com/615/" title="大话西游片尾曲-一生所爱">
-                                            <img width="75" height="75" src="/homes/images/dhxy22-75x75.jpg"
-                                            class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
-                                            sizes="(max-width: 75px) 100vw, 75px" />
-                                        </a>
-                                        <a href="https://www.mtyyw.com/615/" title="大话西游片尾曲-一生所爱">
-                                            大话西游片尾曲-一生所爱
-                                        </a>
-                                        <div class="widget-postmeta">
-                                            <span class="widget-date">
-                                                2008-07-01
-                                            </span>
-                                        </div>
-                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
                     </aside>
-                    
                      @php 
                       $advertising = \App\Model\Home\Advertising::AdverTising();
            
@@ -1322,9 +1160,9 @@
         @php
             $flag = '0';
             if (!empty(session('unique'))) {
-                echo $flag = session('unique');
+                $flag = session('unique');
             } else {
-                echo $flag = '0';
+                $flag = '0';
             }
 
             echo "<script type='text/javascript'>

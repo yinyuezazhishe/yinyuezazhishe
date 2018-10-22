@@ -10,11 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// 后台管理主页
-Route::any('admin','Admin\IndexController@init');
+
 
 Route::group(['middleware'=>['adminlogin']], function ()
 {
+
+	// 后台管理主页
+Route::any('admin','Admin\IndexController@init');
 	
 	// Route::group(['middleware'=>'u_r_p'], function ()
 // {

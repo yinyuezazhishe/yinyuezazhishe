@@ -1,4 +1,4 @@
-﻿@extends('Home.Public.layout')
+@extends('Home.Public.layout')
 
 @section('title',$title)
 
@@ -30,9 +30,6 @@
                     <a href="https://www.mtyyw.com/17838/#comments">
                         2 评论
                     </a>
-                </span>
-                <span class="meta-comments sep">
-                    1,019次
                 </span>
             </div>
             <div class="entry clearfix">
@@ -92,45 +89,21 @@
                 </h4>
             </div>
             <div class="yuzo_wraps">
+                @foreach ($detail as $k => $v)
                 <div class="relatedthumb relatedpost-18577" style="width: 230px; float: left; overflow: hidden; height: 202px;">
                     <span class="equalizer-inner" style="display:block;">
-                        <a href="https://www.mtyyw.com/18577/">
+                        <a href="/home/details/{{$v->id}}" title="{{$v->title}}">
                             <div class="yuzo-img-wrap ">
-                                <div class="yuzo-img" style="background:url('https://www.mtyyw.com/wp-content/uploads/2018/03/Cfl817XZ8YRTAuxaPjR_xw3D3D2F6666339000125434-1-360x360.jpg') 50% 50% no-repeat;width: 230px;;max-width:100%;height:160px;margin-bottom: 5px;background-size: cover; ">
+                                <div class="yuzo-img" style="background:url('{{$v->picstream}}') 50% 50% no-repeat;width: 230px;;max-width:100%;height:160px;margin-bottom: 5px;background-size: cover; ">
                                 </div>
                             </div>
                             <span class="yuzo__text--title" style="font-size:13px;">
-                                “诗魔”洛夫去世。我走了，走了一半又停住……...
+                                {{$v->title}}
                             </span>
                         </a>
                     </span>
                 </div>
-                <div class="relatedthumb relatedpost-18492" style="width: 230px; float: left; overflow: hidden; height: 202px;">
-                    <span class="equalizer-inner" style="display:block;">
-                        <a href="https://www.mtyyw.com/18492/">
-                            <div class="yuzo-img-wrap ">
-                                <div class="yuzo-img" style="background:url('https://www.mtyyw.com/wp-content/uploads/2018/02/0BesfgoyjLhIH9aowbw6bg3D3D2F2532175279873656-360x360.jpg') 50% 50% no-repeat;width: 230px;;max-width:100%;height:160px;margin-bottom: 5px;background-size: cover; ">
-                                </div>
-                            </div>
-                            <span class="yuzo__text--title" style="font-size:13px;">
-                                别爱上像我这样的人
-                            </span>
-                        </a>
-                    </span>
-                </div>
-                <div class="relatedthumb relatedpost-18468" style="width: 230px; float: left; overflow: hidden; height: 202px;">
-                    <span class="equalizer-inner" style="display:block;">
-                        <a href="https://www.mtyyw.com/18468/">
-                            <div class="yuzo-img-wrap ">
-                                <div class="yuzo-img" style="background:url('https://www.mtyyw.com/wp-content/uploads/2018/02/71jdIcEuQYL._SL1200_-360x360.jpg') 50% 50% no-repeat;width: 230px;;max-width:100%;height:160px;margin-bottom: 5px;background-size: cover; ">
-                                </div>
-                            </div>
-                            <span class="yuzo__text--title" style="font-size:13px;">
-                                深夜，陈旧的事物会发光
-                            </span>
-                        </a>
-                    </span>
-                </div>
+                @endforeach
             </div>
             <!-- end wrap -->
         </div>
