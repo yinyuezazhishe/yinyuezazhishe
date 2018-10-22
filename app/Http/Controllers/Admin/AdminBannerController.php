@@ -48,10 +48,10 @@ class AdminBannerController extends Controller
     {
     	$rs = Banner::select(DB::raw('*,concat(title,id) as title'))->
             orderBy('picture')->get();
+            // dd($rs);
     	return view('Admin.banner.add',[
     		'title'=>'轮播图添加',
-    		'rs'=>$rs
-            
+    		'rs'=>$rs      
     	]);
     }
 

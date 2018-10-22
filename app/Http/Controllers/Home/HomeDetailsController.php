@@ -19,8 +19,6 @@ class HomeDetailsController extends Controller
     	$d_content = DetailsContent::where('id', $id)->first();
 
     	$details = Details::with('details_content', 'lists') ->  orderBy('id', 'asc') -> paginate(10);
-    	// dd($d_content);
-
     	return view('Home.Details.index', ['d_content'=>$d_content, 'details' => $details, 'title' => '音乐杂志社']);
 
     }

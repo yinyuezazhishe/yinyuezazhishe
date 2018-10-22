@@ -9,6 +9,8 @@ use App\Mail\NewMessage; #留言提醒
 use App\Model\Home\HomeUser;
 use Illuminate\Support\Facades\Mail;
 use DB;
+use App\Model\Admin\Details;
+
 class MessageController extends Controller
 {
 	/**
@@ -19,14 +21,17 @@ class MessageController extends Controller
     public function index(Request $request)
     {
     	//获取全部留言
-        $messages = Message::with('homeuser','remessages')->orderBy('addtime','desc')->paginate(5);
+        $messages = Message::with('homeuser','remessages')->orderBy('addtime','desc')->paginate(10);
+
+        $details = Details::with('details_content', 'lists') ->orderBy('id', 'asc') ->  paginate(10);
 
         // dd($messages);
 
         return view('Home.message.index',[
             'messages' => $messages,
             'title'=>'音乐杂志社--留言板',
-            'request'=>$request
+            'request'=>$request,
+            'details'=>$details
         ]);
     }
 
@@ -43,7 +48,7 @@ class MessageController extends Controller
         }
         if (empty($request -> content)) {
             return 3;
-        } else if(!preg_match_all("/^[\x{4e00}-\x{9fa5}\S\-]{3,120}$/u",$request -> content)) {
+        } else if(!preg_match_all("/^[\x{4e00}-\x{9fa5}\S\-]{10,}$/u",$request -> content)) {
             return 4;
         }
         // $message['user_id'] = session('homeusers')->id;
@@ -60,5 +65,17 @@ class MessageController extends Controller
             return 1;
 
         }
+    }
+    public function show(Request $request,$id)
+    {
+        $paging = Message::with('homeuser','remessages')->orderBy('addtime','desc')->paginate();
+         $details = Details::with('details_content', 'lists') ->orderBy('id', 'asc') -> paginate(10);
+
+        return view('Home.message.paging',[
+            'request'=>$request,
+            'title'=>'音乐杂志社--留言板',
+            'paging'=>$paging,
+            'details'=>$details
+        ]);
     }
 }
