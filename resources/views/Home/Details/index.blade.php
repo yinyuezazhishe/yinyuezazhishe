@@ -28,7 +28,7 @@
                 </span>
                 <span class="meta-comments sep">
                     <a href="https://www.mtyyw.com/17838/#comments">
-                        2 评论
+                        <span class="nums">{{$num}}</span>评论
                     </a>
                 </span>
                 <span class="meta-comments sep">
@@ -101,140 +101,301 @@
                     <!-- End Yuzo :) -->
                     <div id="comments">
                         <h3 class="comments-title">
-                            <span>
-                                2 条评论
-                            </span>
+                            <span id="nums" class="nums">{{$num}}</span>条评论
+                            
                         </h3>
                         <ul class="commentlist">
-                            <li class="comment even thread-even depth-1" id="comment-86498">
-                                <div id="div-comment-86498" class="comment-body">
+                            <!-- #comment-## -->
+                            @foreach($user as $k=>$v)
+                            
+                            <li class="comment even thread-odd thread-alt depth-1" id="comment">
+                                <div class="comment-body">
                                     <div class="comment-author vcard clearfix">
                                         <span class="fn">
-                                            batooblessed
+                                            {{$v->users['username']}}
                                         </span>
                                         <div class="comment-meta commentmetadata">
-                                            <a href="https://www.mtyyw.com/17838/#comment-86498">
-                                                2017-09-20 11:05 下午
-                                            </a>
+                                                {{date('Y-m-d H:i:s A',$v->addtime)}}
                                         </div>
                                     </div>
                                     <div class="comment-content clearfix">
-                                        <img alt='' src='https://secure.gravatar.com/avatar/bde67f3bb62ffcec7ed18c6a0703daa3?s=72&#038;d=monsterid&#038;r=g'
-                                        srcset='https://secure.gravatar.com/avatar/bde67f3bb62ffcec7ed18c6a0703daa3?s=144&#038;d=monsterid&#038;r=g 2x'
-                                        class='avatar avatar-72 photo' height='72' width='72' />
-                                        <p>
-                                            配图好看
+                                        <img alt="" src="{{$v->users['face']}}"class="avatar avatar-72 photo" height="72" width="72">
+                                        <p class="con">
+                                            {{$v->content}}
                                         </p>
                                     </div>
                                     <div class="reply">
-                                        <a rel='nofollow' class='comment-reply-link' href='https://www.mtyyw.com/17838/?replytocom=86498#respond'
-                                        onclick='return addComment.moveForm( "comment-86498", "86498", "respond", "17838" )'
-                                        aria-label='回复给batooblessed'>
+                                        <a rel="nofollow"  cid="{{$v->id}}" class="comment-reply-link" href="javascript:void(0)">
+                                            回复
+                                        </a>
+                                    </div>
+                                </div>
+                                @foreach($reply as $kk=>$vv)
+                                    @if($vv->cid == $v->id)
+                                        <ul class="children">
+                                            <li class="comment even 2 depth-2">
+                                                <div class="comment-body">
+                                                    <div class="comment-author vcard clearfix">
+                                                        <span class="fn">
+                                                            {{$vv->users['username']}}
+                                                        </span>
+                                                        <div class="comment-meta commentmetadata">
+                                                                 {{date('Y-m-d H:i:s A',$vv->addtime)}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="comment-content clearfix">
+                                                        <img alt="" src="{{$vv->users['face']}}"class="avatar avatar-72 photo" height="72" width="72">
+                                                        <p class="con">
+                                                            {{$vv->content}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    @endif
+                                @endforeach
+                            </li>
+                            @endforeach
+                            <li class="comment even depth-1" id="centent_clone" style="display: none">
+                                <div class="comment-body">
+                                    <div class="comment-author vcard clearfix">
+                                        <span class="fn">
+                                            
+                                        </span>
+                                        <div class="comment-meta commentmetadata">
+                                                
+                                        </div>
+                                    </div>
+                                    <div class="comment-content clearfix">
+                                        <img alt="" src="" class="avatar avatar-72 photo" height="72" width="72">
+                                        <p class="con">
+                                            
+                                        </p>
+                                    </div>
+                                    <div class="reply">
+                                        <a rel="nofollow"  cid="" class="comment-reply-link" href="javascript:void(0)">
                                             回复
                                         </a>
                                     </div>
                                 </div>
                             </li>
-                            <!-- #comment-## -->
-                            <li class="comment odd alt thread-odd thread-alt depth-1" id="comment-86132">
-                                <div id="div-comment-86132" class="comment-body">
+                            <ul class="children_clone" style="display: none;">
+                                <li class="comment even depth-1">
+                                <div class="comment-body">
                                     <div class="comment-author vcard clearfix">
                                         <span class="fn">
-                                            蓝月光
+                                            
                                         </span>
                                         <div class="comment-meta commentmetadata">
-                                            <a href="https://www.mtyyw.com/17838/#comment-86132">
-                                                2017-07-29 8:56 上午
-                                            </a>
+                                                
                                         </div>
                                     </div>
                                     <div class="comment-content clearfix">
-                                        <img alt='' src='https://secure.gravatar.com/avatar/9dc0f2c8aa46b7eaf8c6aefb2a940b01?s=72&#038;d=monsterid&#038;r=g'
-                                        srcset='https://secure.gravatar.com/avatar/9dc0f2c8aa46b7eaf8c6aefb2a940b01?s=144&#038;d=monsterid&#038;r=g 2x'
-                                        class='avatar avatar-72 photo' height='72' width='72' />
-                                        <p>
-                                            好听！希望来一场清清扬扬的小雨
+                                        <img alt="" src=""class="avatar avatar-72 photo" height="72" width="72">
+                                        <p class="con">
+                                            
                                         </p>
                                     </div>
-                                    <div class="reply">
-                                        <a rel='nofollow' class='comment-reply-link' href='https://www.mtyyw.com/17838/?replytocom=86132#respond'
-                                        onclick='return addComment.moveForm( "comment-86132", "86132", "respond", "17838" )'
-                                        aria-label='回复给蓝月光'>
-                                            回复
-                                        </a>
-                                    </div>
                                 </div>
-                            </li>
-                            <!-- #comment-## -->
+                                </li>
+                            </ul>
                         </ul>
                         <div id="respond" class="comment-respond">
                             <h3 id="reply-title" class="comment-reply-title">
-                                发表评论
+                                <span class="as">发表评论</span>
                                 <small>
-                                    <a rel="nofollow" id="cancel-comment-reply-link" href="/17838/#respond"
+                                    <a rel="nofollow" id="cancel-comment-reply-link" href=""
                                     style="display:none;">
                                         取消回复
                                     </a>
                                 </small>
                             </h3>
-                            <form action="https://www.mtyyw.com/wp-comments-post.php" method="post"
-                            id="commentform" class="comment-form">
-                                <p class="comment-notes">
-                                    <span id="email-notes">
-                                        电子邮件地址不会被公开。
-                                    </span>
-                                    必填项已用
-                                    <span class="required">
-                                        *
-                                    </span>
-                                    标注
-                                </p>
+                            <form action="" method="post"id="commentform" class="comment-form">
                                 <p class="comment-form-comment">
                                     <label for="comment">
                                         评论
                                     </label>
-                                    <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525"
-                                    required="required">
-                                    </textarea>
-                                </p>
-                                <p class="comment-form-author">
-                                    <label for="author">
-                                        姓名
-                                        <span class="required">
-                                            *
-                                        </span>
-                                    </label>
-                                    <input id="author" name="author" type="text" value="" size="30" maxlength="245"
-                                    required='required' />
-                                </p>
-                                <p class="comment-form-email">
-                                    <label for="email">
-                                        电子邮件
-                                        <span class="required">
-                                            *
-                                        </span>
-                                    </label>
-                                    <input id="email" name="email" type="text" value="" size="30" maxlength="100"
-                                    aria-describedby="email-notes" required='required' />
+                                    <textarea id="discuss" name="comment" cols="45"  onkeydown="checknum(100)" onkeyup="checknum(100)"  rows="8" maxlength="65525"
+                                    required="required"></textarea>
+                                    <span id="in"/>
+                                    </span>
                                 </p>
                                 <p class="form-submit">
-                                    <input name="submit" type="submit" id="submit" class="submit" value="发表评论"
-                                    />
-                                    <input type='hidden' name='comment_post_ID' value='17838' id='comment_post_ID'
-                                    />
-                                    <input type='hidden' name='comment_parent' id='comment_parent' value='0'
-                                    />
+                                    <input name="submit" type="submit" id="submit" class="submit" value="发表评论">
+                                    <input type="hidden" id="did" value="{{$d_content->id}}">
+                                    <input type="hidden" name="uid" value="{{session('homeuser')->id}}" id="uid">
                                 </p>
                                 <p style="display: none;">
-                                    <input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce"
-                                    value="ba2adcdaff" />
                                 </p>
                                 <p style="display: none;">
-                                    <input type="hidden" id="ak_js" name="ak_js" value="22" />
                                 </p>
                             </form>
                         </div>
                         <!-- #respond -->
-
+                    </div>
+                    
     </section>
+@stop
+
+@section('js')
+    
+    <script type="text/javascript">
+
+        var id
+
+        var cid = '';
+
+        var flag = 'comment';
+
+        $('#submit').click(function(){
+
+            var sub = $(this);
+
+            var comment = $('#discuss').val();
+
+            if (comment == '') {return false}
+
+            $('#discuss').val('');
+
+            var uid = $('#uid').val();
+
+            var did = $('#did').val();
+
+            if(flag == 'comment'){
+
+                $.post('/home/comment',{'content':comment,'hid':uid,'did':did,'_token':'{{ csrf_token() }}'},
+
+                function(data){
+
+                    console.log(data);
+
+                    checknum(100);
+
+                    var New_li = $('#centent_clone').clone(true);
+
+                    New_li.attr('id','');
+
+                    New_li.css('display','block');
+
+                    New_li.find('.commentmetadata').text(data.addtime);
+
+                    New_li.find('.fn').text(data.username);
+
+                    New_li.find('.avatar').attr('src',data.face);
+
+                    New_li.find('.con').text(comment);
+
+                    New_li.find('.comment-reply-link').attr('cid',data.id);
+
+                    $('.commentlist').prepend(New_li);
+
+                    num();
+
+                },'json');
+
+                return false;
+
+            } else {
+
+                $.post('/home/reply',{'content':comment,'hid':uid,'cid':cid,'did':did,'_token':'{{ csrf_token() }}'},
+
+                function(data){
+                    checknum(100);
+                    // var flag = true;
+                    // console.log(data);
+                    var New_ul = $('.children_clone').clone(true);
+
+                    New_ul.removeClass('children_clone');
+
+                    New_ul.css('display','block');
+
+                    New_ul.find('.commentmetadata').text(data.addtime);
+
+                    New_ul.find('.fn').text(data.username);
+
+                    New_ul.find('.avatar').attr('src',data.face);
+
+                    New_ul.find('.con').text(comment);
+
+                    New_ul.find('.comment-reply-link').attr('cid',data.id);
+
+                    sub.parents('li').eq(0).append(New_ul);
+
+                    flag = 'comment';
+
+                    $('#cancel-comment-reply-link').css('display','none');
+
+                    $('.as').text('发布评论');
+
+                    num();
+
+                },'json');
+
+            }
+                
+        });
+
+
+        $('.comment-reply-link').click(function(){
+            
+            flag = 'reply';
+
+            var name = '';
+
+            rid = $(this).prev().val();
+
+            cid = $(this).attr('cid');
+
+            $('#cancel-comment-reply-link').css('display','block');
+
+            $respond = $('#respond');
+
+            $(this).after($respond);
+
+            name = $(this).parent().prev().prev().find('.fn').text();
+
+            $('.as').text('回复'+name);
+
+            return false;
+        });
+       
+
+        $('#cancel-comment-reply-link').click(function(){
+
+            flag = 'comment';
+
+            cid = '';
+
+            $(this).css('display','none');
+
+            $('.commentlist').after($('#respond'));
+
+            $('.as').text('发布评论');
+
+            return false;
+        });
+
+
+        function checknum(num){
+            var nMax = num;
+            var textDom =  document.getElementById("discuss");
+            var len =textDom.value.length;    
+            if(len>nMax){
+                textDom.value = textDom.value.substring(0,nMax);
+                return;
+            }
+            document.getElementById("in").innerHTML="你还可以输入<span style='color:red'>"+(nMax-len)+"</span>个字";
+        }
+        checknum(100);
+
+
+        function num() {
+            $nums = Number($('#nums').text()) + 1;
+
+            $('.nums').text($nums);
+
+            $('.commentlist').after($('#respond'));
+        }
+    </script>
+
 @stop

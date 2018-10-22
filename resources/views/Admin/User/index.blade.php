@@ -191,8 +191,8 @@
         },function(){
             
         })
-    return false;
-    })
+        return false;
+    });
 
     //改变导航条样式
     var show_user = $('.show_user').parents('li');

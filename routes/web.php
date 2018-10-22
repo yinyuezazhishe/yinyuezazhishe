@@ -93,8 +93,11 @@ Route::resource('admin/lists', 'Admin\AdminListsController');
 // 列表状态
 Route::get('admin/lists/{id}/edit_status', 'Admin\AdminListsController@edit_status');
 
+//后台评论管理
+Route::get('/admin/comment','Admin\CommentController@index');
 
-
+//删除评论
+Route::delete('/admin/comment/{id}','Admin\CommentController@distory');
 
 // 前台主页
 Route::any('/', 'Home\HomeIndexController@index');
@@ -148,8 +151,11 @@ Route::any('home/lists/{id}', 'Home\HomeListsController@index');
 // 前台详情显示
 Route::any('home/details/{id}', 'Home\HomeDetailsController@index');
 
-//评论
-Route::resource('home/comment','Home\CommentController');
+//前台评论评论
+Route::any('/home/comment','Home\HomeDetailsController@comment');
+
+//前台回复
+Route::any('/home/reply','Home\HomeDetailsController@reply');
 
 // 生成验证码
 Route::any('/code', 'Admin\LoginAdminController@verify');	
