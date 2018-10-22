@@ -6,13 +6,24 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Home\HomeUser;
 use App\Model\Home\HomeUserMusic;
+use App\Model\Admin\AdminSentence;
+use App\Model\Admin\Message;
+use DB;
+
 
 class HomeUsersController extends Controller
 {
     //会员中心
     public function index()
     {
-    	return view('Home.Homeuser.index');
+        $sentence = DB::table('homeuser_sentence')->where('uid',session('homeuser')->id)->orderBy('addtime','desc')->get()->toArray();
+        if(!empty($sentence)){
+            foreach($sentence as $k=>$v){
+                $sentence[$k]->heart_sentence = AdminSentence::where('id',$v->sentence_id)->pluck('heart_sentence')->toArray()[0];
+            }
+        }
+        $message = Message::where('user_id',session('homeuser')->id)->get()->toArray();
+    	return view('Home.Homeuser.index',['sentence'=>$sentence,'message'=>$message]);
     }
     //会员个性签名
     public function sdasd(Request $request){
@@ -35,10 +46,20 @@ class HomeUsersController extends Controller
     //保存个人中心设置
     public function saveinfo(Request $request){
     	$userinfo = $request->except('_token');
-    	// dd($userinfo);
+    	$username = $request->input('username');
+        if($username == $request->input('check_name')){
+            unset($userinfo['username']);
+            unset($userinfo['check_name']);
+        }else{
+            $isHaveUserName = HomeUser::where('username',$username)->first();
+            if($isHaveUserName->username  == $username){
+                return 2;
+            }
+        }
     	try{
     		$rs = HomeUser::where('id',$request->input('id'))->update($userinfo);
     		$user = HomeUser::where('id',$request->input('id'))->first();
+            $user->right = 1;
     		if($rs){
     			session(['homeuser'=>$user]);
     			session(['sdasd'=>$user->sdasd]);
@@ -56,7 +77,7 @@ class HomeUsersController extends Controller
     	$name = time().rand(1000,9999);
 		if(!empty($request->input('image'))){
 			//如果旧图片不为空
-			if(!empty($request->input('oldface')) && file_exists('.'.$request->input('oldface'))){
+			if(!empty($request->input('oldface')) && file_exists('.'.$request->input('oldface')) && $request->input('oldface') != '/homes/Public_face/01.jpg'){
 				unlink('.'.$request->input('oldface'));	
 			}
 			//调用函数拿到路径
@@ -80,41 +101,115 @@ class HomeUsersController extends Controller
    	public function music(Request $request)
    	{
    		$uid = $request->input('uid');
-   		$music = $request->except(['_token','music','thumb_music']);
-   		if($request->hasFile('music') && $request->hasFile('thumb_music')){
-            $name = time().rand(1000,9999).str_random(6);
-            //定义路径
-	   		$userpath = './homes/user/';
-	   		//检查路径是否存在
-	   		if(!is_dir($userpath)){
-	   			mkdir($userpath,"0700");
-	   		}
-            //获取后缀
-            $suffixMusic = $request->file('music')->getClientOriginalExtension();
-            $suffixThumb = $request->file('thumb_music')->getClientOriginalExtension();
-            //移动
-            $request->file('music')->move(ltrim($userpath,'./'),$name.'.'.$suffixMusic);     
-            $request->file('thumb_music')->move(ltrim($userpath,'./'),$name.'.'.$suffixThumb);
-            //拼接地址
-            $music['music'] = ltrim($userpath,'.').$name.'.'.$suffixMusic;      
-            $music['thumb_music'] = ltrim($userpath,'.').$name.'.'.$suffixThumb;      
-        }  
-   		//查找音乐设置表中是否有记录
-   		$user = HomeUserMusic::where('uid',$uid)->first();
-   		if(empty($user)){
-   			$rs = HomeUserMusic::create($music);
-   			if($rs){
-   				return redirect('/home/user/center')->with('success','上传成功,下次登录即可聆听');
-   			}else{
-   				return back()->with('error','上传失败,请稍后再试');
-   			}
-   		}else{
-   			$rs = HomeUserMusic::where('uid',$uid)->update($music);
-   			if($rs){
-   				return redirect('/home/user/center')->with('success','修改成功,下次登录即可聆听');
-   			}else{
-   				return back()->with('error','上传失败,请稍后再试');
-   			}
-   		}
-   	}
+   		$music = $request->except(['_token','music','thumb_music','oldmusic','oldthumb_music']);
+        try{
+     		if($request->hasFile('music') && $request->hasFile('thumb_music')){
+                $name = time().rand(1000,9999).str_random(6);
+                  //定义路径
+      	   		$userpath = './homes/user/'.$uid.'/';
+      	   		//检查路径是否存在
+      	   		if(!is_dir($userpath)){
+      	   			mkdir($userpath,"0700");
+      	   		}
+                //获取后缀
+                $suffixMusic = $request->file('music')->getClientOriginalExtension();
+                $suffixThumb = $request->file('thumb_music')->getClientOriginalExtension();
+                //移动
+                $request->file('music')->move(ltrim($userpath,'./'),$name.'.'.$suffixMusic);     
+                $request->file('thumb_music')->move(ltrim($userpath,'./'),$name.'.'.$suffixThumb);
+                //拼接地址
+                $music['music'] = ltrim($userpath,'.').$name.'.'.$suffixMusic;      
+                $music['thumb_music'] = ltrim($userpath,'.').$name.'.'.$suffixThumb;      
+            }  
+     		//查找音乐设置表中是否有记录
+     		$user = HomeUserMusic::where('uid',$uid)->first();
+     		if(empty($user)){
+     			$rs = HomeUserMusic::create($music);
+     			if($rs){
+     				return redirect('/home/user/center')->with('success','上传成功,下次登录即可聆听');
+     			}else{
+     				return back()->with('error','上传失败,请稍后再试');
+     			}
+     		}else{
+     			$rs = HomeUserMusic::where('uid',$uid)->update($music);
+     			if($rs){
+                    if($request->input('oldmusic') != '/homes/user/Public/nice.mp3' && $request->input('oldthumb_music') !="/homes/user/Public/nice.jpg"){
+                        unlink('.'.$request->input('oldmusic'));
+                        unlink('.'.$request->input('oldthumb_music'));
+                    }
+     				return redirect('/home/user/center')->with('success','修改成功,下次登录即可聆听');
+     			}else{
+     				return back()->with('error','修改失败,请稍后再试');
+     			}
+     		}
+        }catch(\Exception $e){
+          return back()->with('error','上传失败,请稍后再试');
+        }
+    }
+    //每日一语设置
+    public function sentence(Request $request){
+        //设置返回数组
+        $returnSentence = [];
+        //获取数据
+        $sentence = $request->except('_token');
+        //当前时间
+        $now = time();
+        try{
+            //代表当天次数
+            $rs = DB::table('homeuser_sentence')->where('sentence_time','>=',$now)->where('uid',$request->input('uid'))->get()->toArray();
+            if(count($rs) >= 6){
+              return 101;//代表当天时间已经有6次了
+            }else{
+                $get_sentence_num = count($rs);
+            }
+            //查询已有一语id
+            $rs = DB::table('homeuser_sentence')->where('uid',$request->input('uid'))->get()->toArray();
+            if(!empty($rs)){
+                $in = [];
+                foreach($rs as $k=>$v){
+                   $in[] =  $v->sentence_id;
+                }
+            }else{
+                $in =  ['0'=>0];
+            }    
+            //查询用户没有的 每日一语id
+            $senId  = AdminSentence::whereNotIn('id',$in)->pluck('id')->toArray();
+            //翻转id
+            $senId = array_flip($senId);
+            //随机取id
+            $sentence['sentence_id'] = array_rand($senId);
+            // 查询获得一语id的一语
+            $returnSentence['heart_sentence'] = AdminSentence::where('id',$sentence['sentence_id'])->pluck('heart_sentence')->toArray()[0];
+            //用户获得时间
+            $sentence['addtime'] = $now;
+            $sentence_year = date('Y',$sentence['addtime']);//当前年
+            $sentence_month = date('m',$sentence['addtime']);//当前月
+            $sentence_day = date('d',$sentence['addtime']);//当前日
+            $sentence['sentence_time'] = mktime(0,0,0,$sentence_month,$sentence_day+1,$sentence_year);
+            $userSentenceInsert =  DB::table('homeuser_sentence')->insert($sentence);
+            if($userSentenceInsert){
+                //获取当前积分
+                $now_integral = HomeUser::where('id',$request->input('uid'))->pluck('integral')[0];
+                if($now_integral == '0'){
+                    return 100;
+                }
+                //扣除积分
+                $minus_integral = HomeUser::where('id',$request->input('uid'))->update(['integral'=>$now_integral-1]);
+                if($minus_integral){
+                    $returnSentence['integral'] =  $now_integral-1;
+                    session(['integral'=>$returnSentence['integral']]);
+                }else{
+                    return 1;
+                }
+                $returnSentence['addtime'] =$sentence['addtime'];
+                session(['get_sentence_num'=>$get_sentence_num+1]);
+                $returnSentence['get_sentence_num'] = $get_sentence_num+1;
+                return  $returnSentence;
+            }else{
+                return 1;//获取失败
+            }
+        }catch(\Exception $e){
+                return 1;//获取失败
+        }
+    }
 }

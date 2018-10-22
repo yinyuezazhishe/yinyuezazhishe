@@ -33,6 +33,8 @@
 					            </div>
 					        </div>
 					        <div class="col-sm-3">
+					        </div>
+					        <div class="col-sm-3">
 		                        <div class="input-group">
 		                            <input type="text" placeholder="请输入链接名称" class="input-sm form-control" name="title" value="{{$request->title}}"> <span class="input-group-btn">
 		                                <button type="submit" class="btn btn-sm btn-primary"> 搜索</button> </span>
@@ -81,7 +83,7 @@
 	                        <td>{{$v->links}}</td>	                        
 	                        <td>
 	                        	<a href="/admin/blogroll/{{$v->id}}/edit" class="btn btn-info btn-small">修改</a>
-	                        	<!-- <form action="/Admin/Blogroll/{{--$v->id--}}" method="post" class="del"  style="display: inline;"> -->
+	                        	<!-- <form action="/admin/Blogroll/{{--$v->id--}}" method="post" class="del"  style="display: inline;"> -->
 	                        		{{--csrf_field()--}}
 	                        		{{--method_field('DELETE')--}}
 	                        		<input type="hidden" name="oldpicture" value="{{$v->picture}}"/>
@@ -158,7 +160,7 @@
 			var oldpicture = $(this).prev().val();
 			console.log(oldpicture);
 			layer.confirm('你确定删除吗',{btn:['确定','取消'],title:'提示',icon:'3'},function(){
-				$.post('/Admin/Blogroll/'+id,{'oldpicture':oldpicture,'_token':'{{ csrf_token() }}','_method':'DELETE'},function(data){
+				$.post('/admin/blogroll/'+id,{'oldpicture':oldpicture,'_token':'{{ csrf_token() }}','_method':'DELETE'},function(data){
 					if(data){
 						location.reload(true);
 					}

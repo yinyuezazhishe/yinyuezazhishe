@@ -100,6 +100,7 @@ $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('conten
                             $modal.modal('close');
                             $('#oldface').attr('src',data.face);
                             $('#image').attr('src',data.face);
+                            $('.face').attr('src',data.face);
                             $('#doc-modal-1').removeClass('am-modal-active');
                             $('#doc-modal-1').addClass('am-modal-out');
                             $('#doc-modal-1').css({"display":"none"});

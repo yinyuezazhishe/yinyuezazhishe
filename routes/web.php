@@ -13,5 +13,6 @@
 include 'admin.php';
 include 'home.php';
 
+
 // 生成验证码
 Route::any('/code', 'Admin\LoginAdminController@verify');	

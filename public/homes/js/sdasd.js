@@ -5,13 +5,21 @@ $('.select-sdasd').click(function(){
 function mysdsad(flag)
 {
 	resdasd = $('.sdasd').attr('data-sdasd');
-	sdasdtext = $('#sdasd').text();
+	sdasdtext = $('#sdasd').text().trim(' ');
   	id = $('.select-sdasd').attr('data-id');
+    if(sdasdtext.length >= 40){
+        swal('个性签名文字长度超过40个');
+    }
 	if(sdasdtext != resdasd && sdasdtext.length <= 40 && flag){
 		$.get('/home/user/sdasd',{'id':id,'sdasd':sdasdtext},function(data){
 				if(data == '1'){
-					$('.sdasd').attr('data-sdasd',sdasdtext);
-					$('.sdasd span').text(sdasdtext);
+                    if(sdasdtext == ''){
+                        $('.sdasd').attr('data-sdasd','这家伙很懒,什么都没留下。');
+                        $('.sdasd span').text('这家伙很懒,什么都没留下。');
+                    }else{
+                       $('.sdasd').attr('data-sdasd',sdasdtext);
+                        $('.sdasd span').text(sdasdtext); 
+                    }
 					swal('个性签名更新成功');
 				}else{
 					swal('个性签名更新失败');
@@ -19,9 +27,6 @@ function mysdsad(flag)
 		})
         wa = true;
 	}
-    if(sdasdtext.length >= 40){
-        swal('个性签名文字长度超过40个');
-    }
 }
 var wa = true;
 $('#sdasd').blur(function(){
@@ -33,6 +38,8 @@ $('#sdasd').on('keypress',function(event){
         wa = false;
     	$('#sdasd').removeAttr('contenteditable');   
 		mysdsad(true);
+        window.getSelection().removeAllRanges();
+        // document.selection.empty();
         event.preventDefault();  
     }
 })

@@ -10,6 +10,7 @@ use App\Model\Home\HomeUserMusic;
 use App\Model\Admin\Integral;
 use Illuminate\Support\Facades\Mail;
 use Cookie;
+use DB;
 
 class HomeLoginController extends Controller
 {
@@ -62,7 +63,7 @@ class HomeLoginController extends Controller
     	} else {
     		return redirect('/')->with('error','用户名或密码错误');
     	}
-        if($music){
+        if(!empty($music)){
             session(["homeuserMusic"=>$music]);
         }
     	session(['homeuser' => $user]);
@@ -94,13 +95,16 @@ class HomeLoginController extends Controller
             Integral::where('hid',$user->id)->update(['hid_num'=>5,'futuretime'=>$futureday]);
             HomeUsers::where('id',$user->id)->update(['integral'=>$user->integral+5]);
         }
+        $integral = HomeUsers::where('id', $user->id)->get()->pluck('integral')[0];
+        $sentence = DB::table('homeuser_sentence')->where('sentence_time','>=',$now)->where('uid',$user->id)->get()->toArray();
+        session(['get_sentence_num'=>count($sentence)]);
+        session(['integral'=>$integral]);
 
-        $uri = empty(session('back')) ? '/' : session('back');
+    	$uri = empty(session('back')) ? '/' : session('back');
 
         $request->session()->forget('back');
 
-    	return redirect($uri)->with('success','登录成功');
-
+        return redirect($uri)->with('success','登录成功');
     	// dd($res);
     }
 
@@ -158,7 +162,11 @@ class HomeLoginController extends Controller
 
         $req['password'] = Hash::make($request->password);
 
+<<<<<<< HEAD:app/Http/Controllers/Home/HomeLoginController.php
         $req['face'] = '/homes/uploads/01.jpg';
+=======
+        $req['face'] = '/homes/Public_face/01.jpg';
+>>>>>>> ljh:app/Http/Controllers/Home/LoginHomeController.php
 
         $req['status'] = '2';
 
@@ -166,7 +174,7 @@ class HomeLoginController extends Controller
 
         $req['token'] = str_random(60);
 
-        $rs = HomeUser::insertGetId($req);
+        $rs = HomeUsers::insertGetId($req);
 
         if (!$rs) {
 
@@ -175,6 +183,7 @@ class HomeLoginController extends Controller
 
         if($rs){
             Integral::insert(['hid'=>$rs]);
+            HomeUserMusic::insert(['uid'=>$rs]);
     		//发送邮件
         	Mail::send('home.email.emessage', ['id'=>$rs,'req'=>$req,'token'=>$req['token']], function ($msg) use ($req){
         		//从哪发的邮件
@@ -233,7 +242,11 @@ class HomeLoginController extends Controller
     {
         $request->session()->forget('homeuser');
         session()->forget('sdasd');
-        session()->forget('homeuserMusic');
+        session()->forget('integral');
+        session()->forget('get_sentence_num');
+        if(session('homeuserMusic')){
+            session()->forget('homeuserMusic');
+        } 
     	session()->forget('homeface');
 
     	return redirect('/') -> with('success', '退出登录成功!');

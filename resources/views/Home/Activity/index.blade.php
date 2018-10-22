@@ -1,6 +1,6 @@
 @extends('Home.Public.layout')
 
-@section('yield','活动中心')
+@section('yield','音乐杂志社活动中心')
 
 @section('content')
 <div class="mymusicActivity" style="width:100%;height:700px;background-image: url('/homes/images/banner3.jpg');">
@@ -115,7 +115,7 @@
                             <p>
                                 <img class="" src="/homes/images/TB2uFTbg7OWBuNjSsppXXXPgpXa_!!13533312.jpg" align="absmiddle">
                                 <br>
-                                2018年音悦杂志社。
+                                {{date('Y')}}年音悦杂志社。
                             </p>
                             <a class="mymusicActivity_get more-link" href="javascript:void(0);" id="activity" @if(session('homeuser')) myid="{{session('homeuser')->id}}" @endif myactivity="{{$activityid}}" flag="{{$flag}}">点击获取积分</a>
                         </div>
@@ -125,31 +125,40 @@
                     <aside id="search-8" class="widget widget_search clearfix">
                         <h3 class="widgettitle">
                             <span>
-                                搜索
+                                音悦杂志社
                             </span>
                         </h3>
-                        <form role="search" method="get" class="search-form" action="">
-                            <label>
+                        <div class="textwidget" style="text-indent:20px;">
+	                       音乐杂志社建立于2018，该社由四个年轻的小伙合力写成。集合了我们对音、悦、杂志的一些想法。该社的建成目的就是希望你能在这浮躁、喧嚣的互联网中，静下心来安心的享受这短暂的音悦时刻。
+                    	</div>
+                    </aside>
 
-                            </label>
-                            <button type="submit" class="search-submit">
-                                <span class="fa fa-search" style="color: #aaa;">
-                                </span>
-                            </button>
-                        </form>
-                    </aside>
-                    </aside>
                     <aside id="text-8" class="widget widget_text clearfix">
                         <h3 class="widgettitle">
                             <span>
-                                麦田车载CD
+                                音悦节
                             </span>
                         </h3>
-                        <div class="textwidget">
-                            <a href="https://www.mtyyw.com/18639/" rel="nofollow" target="_blank">
-                                <img src="" alt="麦田音乐CD" width="350" height="337" class="alignnone size-full wp-image-11045">
-                            </a>
-                        </div>
+				        <div class="widget-tabbed">
+						    <div id="dynamicnews_tabbed_content-6-tabbed-1" class="tabdiv" style="display: block;">
+						        <ul>
+						            <li class="widget-thumb">
+						            	<p style="text-indent:20px;">
+							                    <img width="75" height="75" src="/homes/images/about_1.jpg" class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
+							                    alt="" srcset="/homes/images/about_1.jpg" sizes="(max-width: 75px) 100vw, 75px">
+							                <a href="" style="font-size:12px;">
+							                    音悦节是指本站的活动节日。在本活动中,你不仅能获得积分，还可以抛下烦恼,安静的倾听每一首歌曲哦。积分还可用于获得每日一语。
+							                </a>
+						           		</p>
+						                <div class="widget-postmeta">
+						                    <span class="widget-date">
+						                        {{$begintime}}
+						                    </span>
+						                </div>
+						            </li>
+						        </ul>
+						    </div>
+						</div>							    
                     </aside>
                 </section>
             </div>

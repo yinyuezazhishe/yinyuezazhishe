@@ -49,6 +49,8 @@ Route::group(['middleware'=>'homelogin'],function ()
 	Route::post('home/user/uploadface','Home\HomeUsersController@uploadface');
 	//用户音乐设置
 	Route::post('home/user/music',"Home\HomeUsersController@music");
+	//每日一语设置
+	Route::post('home/user/sentence','Home\HomeUsersController@sentence');
 });
 
 //前台活动页面展示

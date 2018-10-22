@@ -280,6 +280,19 @@
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-heart"></i> 
+                            <span class="nav-label">每日一语</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li class="createSentence"><a  href="/admin/sentence/create">添加一语</a>
+                            </li>
+                            <li class="showSentence"><a  href="/admin/sentence">查看一语</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -428,12 +441,12 @@
         //接收返回信息
         $(function(){
             @if(session('success'))
-                layer.msg("{{session('success')}}");
+                layer.alert("{{session('success')}}",{title:'温馨提示',icon:'6'});
                 {{session()->forget('success')}}
             @endif
 
             @if(session('error'))
-                layer.msg("{{session('error')}}");
+                layer.alert("{{session('error')}}",{title:'温馨提示',icon:'5'});
                 {{session()->forget('error')}}
             @endif  
 
@@ -449,6 +462,7 @@
 
             theme =  $.session.get('theme');
             // console.log(theme);
+
 
             if (theme == undefined){
                 theme = theme1;
