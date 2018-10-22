@@ -191,11 +191,8 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="404.html">404页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="500.html">500页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="empty_page.html">空白页</a>
+                            <li>
+                                <a class="" href="/admin/comment">浏览评论</a>
                             </li>
                         </ul>
                     </li>

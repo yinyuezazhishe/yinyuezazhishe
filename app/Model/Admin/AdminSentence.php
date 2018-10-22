@@ -30,4 +30,10 @@ class AdminSentence extends Model
 	 * @var array
 	 */
 	protected $guarded = [];
+
+
+    public function users()
+    {
+        return $this->belongsTo('App\Model\Home\HomeUser','hid','id');
+    }
 }

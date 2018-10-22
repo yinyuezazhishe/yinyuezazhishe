@@ -53,10 +53,10 @@
         <form action="" method="post"id="commentform" class="comment-form">
             <p class="comment-form-comment">
                 <label for="comment">
-                    评论
-                </label>
-                <textarea id="discuss" name="comment" cols="45" rows="8" maxlength="65525"
-                required="required"></textarea>
+                    评论s
+                </label><input id="in" type="text" disabled="disabled" />
+                <textarea id="discuss" name="comment"  onkeydown="checknum()" onkeyup="checknum()" cols="45" rows="8" maxlength="65525"required="required"></textarea>
+                
             </p>
             <p class="form-submit">
                 <input name="submit" type="submit" id="submit" class="submit" value="发表评论">
@@ -78,7 +78,18 @@
     
     <script type="text/javascript">
 
-        var flag = false;
+
+        function checknum(){
+            var nMax = 10;
+            var textDom =  document.getElementById("discuss");
+            var len =textDom.value.length;    
+            if(len>nMax){
+                textDom.value = textDom.value.substring(0,nMax);
+                return;
+            }
+            document.getElementById("in").value="你还可以输入"+(nMax-len)+"个字";
+        }
+        checknum();
 
         $('#submit').click(function(){
             var comment = $('#discuss').val();
