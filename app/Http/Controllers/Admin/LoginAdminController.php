@@ -28,7 +28,7 @@ class LoginAdminController extends Controller
      */
     public function verify()
     {
-		$phrase = new PhraseBuilder;
+		    $phrase = new PhraseBuilder;
         // 设置验证码位数
         $code = $phrase->build(4);
         // 生成验证码图片的Builder对象，配置相应属性
@@ -57,22 +57,22 @@ class LoginAdminController extends Controller
      */
     public function dologin(Request $request)
     {
-		// dd($user);
+		    // dd($user);
 
-    	// echo session('code');
+    	  // echo session('code');
 
-  //   	if ($request -> code != session('code')) {
+        if ($request -> code != session('code')) {
 
-		// 	return redirect('/admin/login')->with('error','验证码错误') -> withInput();
-		// }
+			      return redirect('/admin/login')->with('error','验证码错误') -> withInput();
+		    }
 
-    	$user = AdminUsers::where('username', $request -> username) -> first();
+    	  $user = AdminUsers::where('username', $request -> username) -> first();
 
-    	if ($user) {
+    	  if ($user) {
 
-    		if ($user -> username != $request -> username) {
+    		  if ($user -> username != $request -> username) {
 
-	    		return redirect('/admin/login')->with('error','用户名或密码错误') -> withInput();
+	    		  return redirect('/admin/login')->with('error','用户名或密码错误') -> withInput();
 	    	}
 
 	    	// echo $request -> password;
@@ -88,7 +88,7 @@ class LoginAdminController extends Controller
     		return redirect('/admin/login')->with('error','用户名或密码错误') -> withInput();
     	}
 
-    	// dump($user) ;
+    	// dump($user);
       //用户名
       session(['adminusers'=>$user]);
       //用户头像路径

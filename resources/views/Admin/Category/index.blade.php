@@ -81,7 +81,7 @@
                             {{$v->catename}}
                         </td>
 						<td class=" ">
-                            {{cname($v->pid)}}
+                            {{$v->pid}}
 						</td>
                         <td class=" ">
                             {{$v->path}}

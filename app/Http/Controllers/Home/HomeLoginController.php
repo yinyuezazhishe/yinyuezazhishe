@@ -93,7 +93,12 @@ class HomeLoginController extends Controller
             Integral::where('hid',$user->id)->update(['hid_num'=>5,'futuretime'=>$futureday]);
             HomeUsers::where('id',$user->id)->update(['integral'=>$user->integral+5]);
         }
-    	return redirect('/')->with('success','登录成功');
+
+        $uri = empty(session('back')) ? '/' : session('back');
+
+        $request->session()->forget('back');
+
+    	return redirect($uri)->with('success','登录成功');
 
     	// dd($res);
     }
@@ -284,11 +289,6 @@ class HomeLoginController extends Controller
         $res = $request -> except('_token', 'repassword');
 
         $user = HomeUsers::where('email' ,$res['email']) -> first();
-
-        // echo $res['code'].'<br>';
-        // echo Cookie::get('homecode');
-        if (strtolower($res['code']) != strtolower(Cookie::get('homecode'))) {
-
 
         if (strtolower($res['code']) != strtolower(Cookie::get('homecode'))) {
             // echo $res['code'].'<br>';

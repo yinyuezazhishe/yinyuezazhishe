@@ -161,17 +161,17 @@ class RoleAdminController extends Controller
      */
     public function destroy($id)
     {
-        /*try{
+        try{
             $data= Role::where('id',$id)->delete();
 
             if($data){
 
-                return back()->with('succes','删除角色成功');
+                return 0;
             }
 
         }catch(\Exception $e){
 
-            return back()->with('errors','删除角色失败');
-        }*/
+            return 1;
+        }
     }
 }

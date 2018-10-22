@@ -58,7 +58,7 @@
         <script src="/homes/js/menu.js" type="text/javascript"></script>
 
         <!-- advertising 样式  -->
-        <link rel="stylesheet" type="text/css" href="/homes/css/advertising.css">
+        <!-- <link rel="stylesheet" type="text/css" href="/homes/css/advertising.css"> -->
         <!-- banner 样式  -->
         <link rel="stylesheet" type="text/css" href="/homes/css/banner.css">
         
@@ -125,7 +125,6 @@
         @endif
             <?php
                 $cate = \App\Model\Home\CateGory::getSubCates();
-                // dd($cate);
             ?>
         <div id="wrapper" class="hfeed">
             <!-- 代码 开始 -->
@@ -161,11 +160,16 @@
                     <img title="MIUI" class="miui_logo" src="/admins/img/yinyuelogo.png" width="200" alt="网站logo" /></a>
                 @if(empty(session('homeuser')))
                 <p class="language">
-                    <a style="display: inline;" class="weidengru1 lgtanchu shenyinclick">登录</a>
+                    <a style="display: inline;" href="Javascript:;" class="weidengru1 lgtanchu shenyinclick">登录</a>
                     <span>|</span>
                     <a style="display: inline;" class="weidengru2 mf_zhucetan shenyinclick" href="Javascript:;" rel="nofollow">注册</a>
                 </p>
                 @else
+                <p class="language">
+                    <a style="display: inline;" href="/home/user/center" id="indexuser">{{session('homeuser')->username}}</a>
+                    <span>|</span>
+                    <a style="display: inline;" href="/home/logout" rel="nofollow">退出登录</a>
+                </p>    
                 @endif
             </div>
             <!-- 代码 结束 -->
@@ -194,10 +198,6 @@
                     <li><a>{{$i}}</a></li>
                     @endfor
                 </ol>
-<<<<<<< HEAD
-=======
-
->>>>>>> c3d1091a0638bf8f97bc2a0ed4e33733110249f3
             </div>
              
             <script src="/homes/js/slider.js"></script>
@@ -225,9 +225,63 @@
             </script>
             <!-- banner stop -->
             <div id="wrap" class="container clearfix">
+                @php
+                    $details =App\Model\Admin\Details::with('details_content', 'lists')->where('status', '<>', '1')->get();
+                    $lid = [];
+                    foreach ($details as $k => $v) {
+                        $lid[] = $v -> lists['id'];
+                    }
+                    $details = App\Model\Admin\Details::with('details_content', 'lists')->whereIn('id', $lid)->orderBy('id', 'asc')->paginate(10);
+                @endphp
                 <section id="content" class="primary" role="main">
                     @foreach($details as $k => $v)
-                    <article id="post-13827" class="content-excerpt post-13827 post type-post status-publish format-standard has-post-thumbnail sticky hentry category-nomusic tag-t">
+                    <article class="content-excerpt post-13827 post type-post status-publish format-standard has-post-thumbnail sticky hentry category-nomusic tag-t">
+                        <h2 class="post-title entry-title">
+                            <a href="https://www.mtyyw.com/13827/" rel="bookmark">
+                                {{$v->details_content->title}}
+                            </a>
+                        </h2>
+                        <div class="postmeta">
+                            {{date('Y-m-d',$v->details_content->addtime)}}
+                        </div>
+                        <div class="entry clearfix">
+                            <blockquote>
+                                <p>
+                                    {{$v->details_content->saying}}
+                                </p>
+                            </blockquote>
+                            <p>
+                                <img class="" src="{{$v->details_content->picstream}}"
+                                align="absmiddle" />
+                                <br />
+                                简介:{{$v->details_content->describe}}
+                            </p>
+                            <a href="/home/details/{{$v->id}}" class="more-link">
+                                查看全部
+                            </a>
+                        </div>
+                        <div class="postinfo clearfix">
+                            <span class="meta-category">
+                                <ul class="post-categories">
+                                    <li>
+                                        <a href="https://www.mtyyw.com/nomusic/" rel="category tag">
+                                            无关音乐
+                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
+                                            小众音乐
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.mtyyw.com/wenzi/" rel="category tag">
+                                            文字
+                                        </a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                    </article>
+                    
+                    
+                    <article class="content-excerpt post-19689 post type-post status-publish format-standard has-post-thumbnail hentry category-video category-popmusic tag-2853 tag-3298 tag-3472"><h2 class="post-title entry-title">
                         <h2 class="post-title entry-title">
                             <a href="https://www.mtyyw.com/13827/" rel="bookmark">
                                 {{$v->details_content->title}}
@@ -272,6 +326,8 @@
                         </div>
                     </article>
                     @endforeach
+                   
+
                     <div class="post-pagination clearfix">
                         <span aria-current='page' class='page-numbers current'>
                             1
@@ -742,35 +798,34 @@
         </script>
         <!-- 7 queries in 0.088 seconds. -->
              
-<!-- 右边展开代码开始 -->
+        <!-- 右边展开代码开始 -->
+        <script src="/homes/public/templates/default/js/JCheck.js" tppabs="http://www.mfdemo.cn/public/templates/default/js/JCheck.js"></script>
+        <script>
+            $(function () {
+                $('.u-checkbox').jCheckbox();
 
-<script src="/homes/public/templates/default/js/JCheck.js" tppabs="http://www.mfdemo.cn/public/templates/default/js/JCheck.js"></script>
-<script>
-    $(function () {
-        $('.u-checkbox').jCheckbox();
+                if ($('#is_remember').val() == '') {
+                    $('#remember').attr('checked', 'checked');
+                    $('#remember').val('1');
+                }
 
-        if ($('#is_remember').val() == '') {
-            $('#remember').attr('checked', 'checked');
-            $('#remember').val('1');
-        }
+                $('#remember').click(function () {
 
-        $('#remember').click(function () {
+                    if ($(this).attr('checked')) {
+                        $(this).val('1');
+                    } else {
+                        $(this).val('2');
+                    }
+                });
 
-            if ($(this).attr('checked')) {
-                $(this).val('1');
-            } else {
-                $(this).val('2');
-            }
-        });
+            });
+        </script>
 
-    });
-</script>
+        <!-- 右边展开代码结束 -->
 
-<!-- 右边展开代码结束 -->
+        <!-- 左边模板展示代码 结束 -->
 
-<!-- 左边模板展示代码 结束 -->
-
-<!--登录代码开始 -->
+        <!--登录代码开始 -->
         <div class="mf_dengluzhezhao"></div>
 
         <div class="mf_denglu">
@@ -812,25 +867,11 @@
                                 <img src="/code" style="border-radius:8px; position:fixed; left:280px; top:291px;" onclick="this.src='/code?rand='+Math.random();">
                                 <div class="Validform_checktip"></div>
                             </div>
-
-
                         </div>
 
                         <div class="from-an">
                             <p><button type="submit" class="button--wayra mf_denglutijiao shenyinclick lgtanchu" id="denglutijiao">登录</button></p>
                         </div>
-
-                        <!-- <div class="mf_denglu1-3-4">
-                            <p><label class="u-checkbox z-checked">
-
-                                <input id="remember" name="mf_login_remember" type="checkbox" value="1" checked="checked">
-                                
-                                <input type="hidden" id="is_remember" value="">
-                                <i class="icon shenyinclick"></i>
-
-                            </label></p>
-                            <span style="margin-top: 7px;">在此计算机上记住密码</span>
-                        </div> -->
                     </form>
 
                 </div>
@@ -1001,14 +1042,35 @@
 
         </div>
 
+        <script type="text/javascript" src="/homes/js/jquerysession.js"></script>
 
         <script type="text/javascript">
 
-             $.ajaxSetup({
+            $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
+            //设置cookie
+                function setCookie(name, value, days) { 
+                    var d = new Date();
+                    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+                    var expires = "expires=" + d.toUTCString();
+                    document.cookie = name + "=" + value + "; " + expires;
+                }
+
+                //读取cookies 
+                function getCookie(name) 
+                { 
+                    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+                 
+                    if(arr=document.cookie.match(reg))
+                 
+                        return unescape(arr[2]); 
+                    else 
+                        return null; 
+                }
 
             $(function () {
 
@@ -1092,27 +1154,7 @@
 
                 //获取重置密码的短信验证码
                 var validCode = true;
-                var flag=true;
-
-                //设置cookie
-                function setCookie(name, value, days) { 
-                    var d = new Date();
-                    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-                    var expires = "expires=" + d.toUTCString();
-                    document.cookie = name + "=" + value + "; " + expires;
-                }
-
-                //读取cookies 
-                function getCookie(name) 
-                { 
-                    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
-                 
-                    if(arr=document.cookie.match(reg))
-                 
-                        return unescape(arr[2]); 
-                    else 
-                        return null; 
-                }
+                var flag=true;  
 
                 function verify()
                 {
@@ -1206,7 +1248,6 @@
                     $('.mf_dengluzhezhao').fadeIn(300);
                     $('.zhuce').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
                 });
-                //弹出登录
 
                 //弹出注册
                 $(".mf_denglu2-2 a").live("click", function () {
@@ -1253,10 +1294,49 @@
                         $('.mf_chongzhi').addClass('bounceOutUp').fadeOut();
                     });
                 });
-
             });
+
         </script>
         <!-- 登录提示代码结束 --><!-- 登录提示代码结束 -->
+
+        @php
+            $flag = '0';
+            if (!empty(session('unique'))) {
+                echo $flag = session('unique');
+            } else {
+                echo $flag = '0';
+            }
+
+            echo "<script type='text/javascript'>
+                var flag = '0';
+                flag = ".$flag."
+                if (flag == '1') {
+                    $('.zhuce').addClass('bounceOutUp').fadeOut();
+                    setTimeout(function () {
+                        $('.mf_denglu').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+                    }, 1500);
+                    $.ajax({
+                        url: '/home/resession',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data == 0) {
+                                console.log('删除成功');
+                            } else if (data == 1) {
+                                console.log('删除失败');
+                            }
+                        },
+                        error: function(){
+                            console.log('删除失败');
+                        },
+                        // timeout:3000,
+                        async: true
+                    });
+                    console.log(flag);
+                }
+            </script>";
+           
+         @endphp
 
         <!-- 表单验证插件代码开始 -->
         <script type="text/javascript"  src="/homes/public/templates/default/js/Validform_v5.3.2_min.js" tppabs="http://www.mfdemo.cn/public/templates/default/js/Validform_v5.3.2_min.js"></script>
