@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!-- HTML 5 -->
 <html lang="zh-CN">
     <meta charset="UTF-8" />
@@ -10,7 +10,7 @@
         />
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <link rel="shortcut icon" href="/admins/`/logo.ico">
+        <link rel="shortcut icon" href="/admins/img/logo.ico">
         <link type="text/css" media="all" href="/homes/css/autoptimize_92080519133b963b934f14202138607c.css" rel="stylesheet" />
 
         <link rel="stylesheet" href="/admins/js/plugins/layer/skin/layer.css" id="layui_layer_skinlayercss" style="">
@@ -95,9 +95,6 @@
                 width: 100%;
                 margin-bottom: 20px;
             }
-            body {
-                /*background-color: #eee ; */
-            }
             .language {
                 
             }
@@ -108,6 +105,19 @@
             .weidengru2 {
                 width: 50%;
                 float: none;
+            }
+            .WB_row_line a {
+                display: block;
+                margin: 0 0 0 1px;
+                padding: 1px 0;
+                text-align: center;
+            }
+            .S_txt2, .W_input, .W_btn_b_disable, .W_btn_b_disable:hover {
+                color: #808080;
+                text-decoration: none;
+            }
+            a, .S_link1, a.S_txt1:hover, a.current .S_txt1, a.S_txt2:hover, .SW_fun:hover .S_func1 {
+                color: #32a2d5;
             }
         </style>
     </head>    

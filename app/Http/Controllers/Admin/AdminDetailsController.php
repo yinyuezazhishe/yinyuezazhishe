@@ -141,6 +141,8 @@ class AdminDetailsController extends Controller
 
         $rs['addtime'] = time();
 
+        $rs['is_praise'] = '1';
+
         // dd($rs);
 
         //添加数据

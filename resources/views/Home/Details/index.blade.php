@@ -1,4 +1,4 @@
-@extends('Home.Public.layout')
+﻿@extends('Home.Public.layout')
 
 @section('title',$title)
 
@@ -8,13 +8,13 @@
     <section id="content" class="primary" role="main">
         <article class="post-17838 post type-post status-publish format-standard has-post-thumbnail hentry category-feizhuliuyinyue category-wenzi tag-bebe tag-1393 tag-2716 tag-3091 tag-1194">
             <h2 class="post-title entry-title">
-                {{$d_content->title}}
+                {{$details->details_content->title}}
             </h2>
             <div class="postmeta">
                 <span class="meta-date">
                     <a href="https://www.mtyyw.com/17838/" title="8:57 下午" rel="bookmark">
                         <time class="entry-date published updated" datetime="2017-07-25T20:57:38+00:00">
-                            {{date('Y-m-d',$d_content->addtime)}}
+                            {{date('Y-m-d',$details->details_content->addtime)}}
                         </time>
                     </a>
                 </span>
@@ -22,7 +22,7 @@
                     <span class="author vcard">
                         <a class="fn" href="https://www.mtyyw.com/author/admin/" title="View all posts by 林中有鬼"
                         rel="author">
-                            {{$d_content->author}}
+                            {{$details->details_content->author}}
                         </a>
                     </span>
                 </span>
@@ -38,19 +38,19 @@
             <div class="entry clearfix">
                 <blockquote>
                     <p>
-                        {{$d_content->saying}}
+                        {{$details->details_content->saying}}
                     </p>
                 </blockquote>
                 <p>
-                    <img src="{{$d_content->picstream}}" alt="bebe"
+                    <img src="{{$details->details_content->picstream}}" alt="bebe"
                     width="400" height="400" class="alignnone size-full wp-image-17840" sizes="(max-width: 400px) 100vw, 400px" />
                     <br />
-                    简介:{{$d_content->describe}}
+                    简介:{{$details->details_content->describe}}
                     <br />
                 </p>
-                {!!$d_content->content!!}
+                {!!$details->details_content->content!!}
                 <!-- 百度分享开始 -->
-                <div class="bdsharebuttonbox">
+                <div class="bdsharebuttonbox" style="float: left">
                     <a href="#" class="bds_more" data-cmd="more">
                     </a>
                     <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">
@@ -63,8 +63,24 @@
                     </a>
                     <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">
                     </a>
+                    
                 </div>
                 <!-- 百度分享结束 -->
+                <!-- 点赞开始 -->
+                <div style="text-align: right;">
+                    <a style="margin-right: 2px;" href="{{$details->details_content->id}}" id="praise" action-type="fl_like" action-data="version=mini&amp;qid=heart&amp;mid=4295726709690699&amp;loc=profile&amp;cuslike=1" title="赞" suda-uatrack="key=profile_feed&amp; value=like">
+                        <span class="pos">
+                            <span class="line S_line1">
+                                <span node-type="like_status" class="">
+                                    喜欢点个赞吧
+                                    <em @if(!empty($pr)) @if($pr->u_id != session('homeuser')->id) class="fa fa-thumbs-o-up" @elseif($pr->u_id == session('homeuser')->id) class="fa fa-thumbs-up" @endif @endif class="fa fa-thumbs-o-up"></em>
+                                    <span id="sum" value="{{count($praise)}}">{{count($praise)}}</span>
+                                </span>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+                <!-- 点赞结束 -->
             </div>
         </article>
         <!-- Begin Yuzo -->
@@ -878,6 +894,13 @@
 @stop
 
 @section('js')
+@php
+    if (session('homeuser') && !$pr == '') {
+        echo "<script type='text/javascript'>
+            $('#praise').find('em').removeClass('fa-thumbs-o-up');
+        </script>";
+    }
+@endphp
 <!-- 百度分享 js 开始 -->
 <script>
     window._bd_share_config = {
@@ -902,6 +925,53 @@
         }
     };
     with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~ ( - new Date() / 36e5)];
+    $('#praise').click(function ()
+    {
+        var id = $(this).attr('href');
+        // var praise = '';
+        // if ($(this).find('.fa-thumbs-o-up').attr('class') == 'fa fa-thumbs-o-up') {
+        //     praise = 0;
+        // } else {
+        //     praise = 1;
+        // }
+
+        var pr = $(this);
+
+        // console.log(praise);
+
+        $.ajax({
+            url: "/home/praise",
+            data: {id: id},
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                if (data == 0) {
+                    swal("恭喜你!", "点赞成功!", "success");
+                    pr.find('em').removeClass('fa fa-thumbs-o-up');
+                    pr.find('em').addClass('fa fa-thumbs-up');
+                    pr.find('#sum').html(parseInt(pr.find('#sum').html()) + 1);
+                } else if (data == 1) {
+                    swal("对不起!", "点赞失败!", "error");
+                } else if (data == 2) {
+                    swal("恭喜你!", "取消点赞成功!", "success");
+                    pr.find('em').removeClass('fa fa-thumbs-up');
+                    pr.find('em').addClass('fa fa-thumbs-o-up');
+                    pr.find('#sum').html(parseInt(pr.find('#sum').html()) - 1);
+                    // console.log($('#sum').attr('value'));
+                } else if (data == 3) {
+                    swal("对不起!", "取消点赞失败!", "error");
+                } else if (data == 4) {
+                    swal("对不起!", "您还未登陆, 请登陆后再点赞!", "error");
+                }
+            },
+            error: function(){
+                swal("对不起!", "点赞失败!", "error");
+            },
+            async: true
+        });
+
+        return false;
+    })
 </script>
 <!-- 百度分享 js 结束 -->
 

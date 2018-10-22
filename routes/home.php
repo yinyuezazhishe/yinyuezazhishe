@@ -66,6 +66,8 @@ Route::any('home/lists/{id}', 'Home\HomeListsController@index');
 
 // 前台详情显示
 Route::any('home/details/{id}', 'Home\HomeDetailsController@index');
+// 详情点赞
+Route::get('home/praise', 'Home\HomeDetailsController@praise');
 
 //评论
 Route::resource('home/comment','Home\CommentController');
