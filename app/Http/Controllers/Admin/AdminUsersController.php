@@ -183,7 +183,6 @@ class AdminUsersController extends Controller
                 
                 session(['adminusers_face' => $res['face']]);
             }
-            session(['adminusers_face' => $res['face']]);
         }
 
             

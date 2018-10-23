@@ -65,8 +65,6 @@ class HomeDetailsController extends Controller
 
         $detail = DetailsContent::where('id', $lid)->limit(3)->get();
 
-
-
         return view('Home.Details.index', ['d_content'=>$d_content,'pr'=>$pr, 'praise' => $praise, 'details' => $details, 'title' => '音乐杂志社','user'=>$user,'num'=>$num,'reply'=>$reply]);
 
 
@@ -124,7 +122,7 @@ class HomeDetailsController extends Controller
             }
         }  
 
-
+    }
     /**
      *  添加评论
      *
