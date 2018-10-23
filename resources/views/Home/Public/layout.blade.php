@@ -325,16 +325,23 @@
                                     简介:{{$v->details_content->describe}}
                                 </a>
                             </p>
-                            <a href="/home/details/{{$v->id}}" class="more-link">
+                            <a href="/home/details/{{$v->details_content->did}}" class="more-link">
                                 查看全部
                             </a>
                         </div>
                     </article>
                     @endforeach
-                   
-                    <div class="post-pagination clearfix">
-                            {{$details->links()}}
-                    </div>
+                   <style>
+                        /*分页样式*/  
+                        .pagination{text-align:center;margin-bottom: 20px; line-height:37px;}  
+                        .pagination li{margin:0px 10px; width:41.75px; height:40px; border:1px solid #ddd;display: inline-block;; cursor: pointer;}
+                        .pagination .active{margin-top: 20px;background-color: #0e90d2;color: #fff;border-radius: 5px} 
+                        .pagination .active:hover{background-color: #23abf0;color: #fff;} 
+                        .pagination li:hover{background-color:#ddd;}
+                        .pagination a{width:41.75px; height:40px;display:block; text-decoration:none;}
+                    </style>
+                    <div> {{$details->links()}} </div>
+                    <div style='clear:both;'></div>
                 </section>
                 @show
 
@@ -390,12 +397,12 @@
                                     @endphp
                                     @foreach ($newest as $k => $v)
                                     <li class="widget-thumb">
-                                        <a href="/home/details/{{$v->id}}" title="{{$v->title}}">
+                                        <a href="/home/details/{{$v->did}}" title="{{$v->title}}">
                                             <img width="75" height="75" src="{{$v->picstream}}"
                                             class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
                                             sizes="(max-width: 75px) 100vw, 75px" />
                                         </a>
-                                        <a href="/home/details/{{$v->id}}" title="{{$v->title}}">
+                                        <a href="/home/details/{{$v->did}}" title="{{$v->title}}">
                                             {{$v->title}}
                                         </a>
                                         <div class="widget-postmeta">
@@ -446,10 +453,10 @@
                                 <ul>
                                     @foreach ($d_content as $k => $v)
                                     <li class="widget-thumb">
-                                        <a href="/home/details/{{$v->id}}" title="{{$v->title}}">
+                                        <a href="/home/details/{{$v->did}}" title="{{$v->title}}">
                                             <img width="75" height="75" src="{{$v->picstream}}" class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image" sizes="(max-width: 75px) 100vw, 75px" />
                                         </a>
-                                        <a href="home/details/{{$v->id}}" title="{{$v->title}}">
+                                        <a href="home/details/{{$v->did}}" title="{{$v->title}}">
                                             {{$v->title}}
                                         </a>
                                         <div class="widget-postmeta">
@@ -476,12 +483,13 @@
                         </h3>
                          @foreach ($advertising as $k=>$v)
                         <div class="textwidget" id="divs">
+                            <img width="25px" style="position: absolute; right: 100px; cursor:pointer;" src="/admins/uploads/gg/gg1.png" onclick="closed();" />
                             <a href="{{$v->links}}" rel="nofollow" target="_blank">
                                 <img src="{{$v->picture}}"
                                  width="350" height="337" class="alignnone size-full wp-image-11045"
                                 />
                             </a>
-                            <img width="25px" src="/admins/uploads/gg/gg1.png" onclick="closed();" />
+                            
                         </div>
                          @endforeach
                     </aside>
@@ -492,8 +500,8 @@
                function closed()
                {
                 
-                var divs = document.getElementById('divs');
-                divs.style.display = 'none';
+                // var divs = document.getElementById('divs');
+                $('#divs').fadeOut(1000);
                }
 
             </script>

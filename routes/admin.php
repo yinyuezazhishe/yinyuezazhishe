@@ -14,91 +14,91 @@
 
 Route::group(['middleware'=>'adminlogin'], function ()
 {
-		// åå°ç®¡ç†ä¸»é¡µ
-Route::any('admin','Admin\IndexController@init');
-	// Route::group(['middleware'=>'u_r_p'], function ()
-// {
-	// åå°è§’è‰²ç®¡ç†
-	Route::resource('admin/role', 'Admin\RoleAdminController');
-// });
+	// ºóÌ¨¹ÜÀíÖ÷Ò³
+	Route::any('admin','Admin\IndexController@init');
 
+	Route::group(['middleware'=>'u_r_p'], function ()
+	{
+		// ºóÌ¨½ÇÉ«¹ÜÀí
+		Route::resource('admin/role', 'Admin\RoleAdminController');
 
-	// åå°æƒé™ç®¡ç†
-	Route::resource('admin/permission', 'Admin\PermissionAdminController');
+		// ºóÌ¨È¨ÏŞ¹ÜÀí
+		Route::resource('admin/permission', 'Admin\PermissionAdminController');
 
-	/* åå°ç”¨æˆ·è§’è‰²æƒé™ */
-	// ä¸ºç”¨æˆ·æ·»åŠ è§’è‰²
-	Route::get('admin/user_role/{id}/u_r_edit', 'Admin\User_Role_Permission@u_r_edit');
-	// å¤„ç†ç”¨æˆ·æ·»åŠ è§’è‰²
-	Route::post('admin/u_r_update', 'Admin\User_Role_Permission@u_r_update');
-	// ä¸ºè§’è‰²æ·»åŠ æƒé™
-	Route::get('admin/role_permission/{id}/r_p_edit', 'Admin\User_Role_Permission@r_p_edit');
-	// å¤„ç†è§’è‰²æ·»åŠ æƒé™
-	Route::post('admin/r_p_update', 'Admin\User_Role_Permission@r_p_update');
+		/* ºóÌ¨ÓÃ»§½ÇÉ«È¨ÏŞ */
+		// ÎªÓÃ»§Ìí¼Ó½ÇÉ«
+		Route::get('admin/user_role/{id}/u_r_edit', 'Admin\User_Role_Permission@u_r_edit');
+		// ´¦ÀíÓÃ»§Ìí¼Ó½ÇÉ«
+		Route::post('admin/u_r_update', 'Admin\User_Role_Permission@u_r_update');
+		// Îª½ÇÉ«Ìí¼ÓÈ¨ÏŞ
+		Route::get('admin/role_permission/{id}/r_p_edit', 'Admin\User_Role_Permission@r_p_edit');
+		// ´¦Àí½ÇÉ«Ìí¼ÓÈ¨ÏŞ
+		Route::post('admin/r_p_update', 'Admin\User_Role_Permission@r_p_update');
 
-	//åå°ç”¨æˆ·ä¿®æ”¹å¤´åƒ
-	Route::get('/admin/user/setFace','Admin\AdminUsersController@setFace');
-	Route::post('/admin/user/do_setFace','Admin\AdminUsersController@do_setFace');
+		//ºóÌ¨ÓÃ»§ĞŞ¸ÄÍ·Ïñ
+		Route::get('/admin/user/setFace','Admin\AdminUsersController@setFace');
+		Route::post('/admin/user/do_setFace','Admin\AdminUsersController@do_setFace');
 
-	//åå°ç”¨æˆ·ä¸»é¢˜ä¿®æ”¹
-	Route::get('/admin/setTheme','Admin\AdminUsersController@setTheme');
-	//åå°ç”¨æˆ·ä¿®æ”¹å¯†ç 
-	Route::get('/admin/setPass','Admin\AdminUsersController@setPass');
-	Route::post('/admin/doPass','Admin\AdminUsersController@doPass');
+		//ºóÌ¨ÓÃ»§Ö÷ÌâĞŞ¸Ä
+		Route::get('/admin/setTheme','Admin\AdminUsersController@setTheme');
+		//ºóÌ¨ÓÃ»§ĞŞ¸ÄÃÜÂë
+		Route::get('/admin/setPass','Admin\AdminUsersController@setPass');
+		Route::post('/admin/doPass','Admin\AdminUsersController@doPass');
 
-	//åå°ç”¨æˆ·
-	Route::get('/admin/user/getName','Admin\AdminUsersController@getName');
-	Route::resource('/admin/user','Admin\AdminUsersController');
+		//ºóÌ¨ÓÃ»§
+		Route::get('/admin/user/getName','Admin\AdminUsersController@getName');
+		Route::resource('/admin/user','Admin\AdminUsersController');
 
-	// åå°ç±»åˆ«ç®¡ç†
-	Route::resource('Admin/category', 'Admin\AdminCategoryController');
+		// ºóÌ¨Àà±ğ¹ÜÀí
+		Route::resource('Admin/category', 'Admin\AdminCategoryController');
 
-	// åå°è½®æ’­å›¾ç®¡ç†
-	Route::resource('Admin/banner', 'Admin\AdminBannerController');
+		// ºóÌ¨ÂÖ²¥Í¼¹ÜÀí
+		Route::resource('Admin/banner', 'Admin\AdminBannerController');
 
-	// åå°å¹¿å‘Šç®¡ç†
-	Route::resource('Admin/advertising', 'Admin\AdminAdvertisingController');
+		// ºóÌ¨¹ã¸æ¹ÜÀí
+		Route::resource('Admin/advertising', 'Admin\AdminAdvertisingController');
 
-	// åå°ç•™è¨€æ¿ç®¡ç†
-	Route::resource('Admin/message', 'Admin\AdminMessageController');
+		// ºóÌ¨ÁôÑÔ°å¹ÜÀí
+		Route::resource('Admin/message', 'Admin\AdminMessageController');
 
-	// åå°è¯¦æƒ…ç®¡ç†
-	Route::resource('admin/details', 'Admin\AdminDetailsController');
-	// åå°è¯¦æƒ…çŠ¶æ€
-	Route::get('admin/details/{id}/edit_status', 'Admin\AdminDetailsController@edit_status');
+		// ºóÌ¨ÏêÇé¹ÜÀí
+		Route::resource('admin/details', 'Admin\AdminDetailsController');
+		// ºóÌ¨ÏêÇé×´Ì¬
+		Route::get('admin/details/{id}/edit_status', 'Admin\AdminDetailsController@edit_status');
 
-	// åå°åˆ—è¡¨ç®¡ç†
-	Route::resource('admin/lists', 'Admin\AdminListsController');
-	// åå°åˆ—è¡¨çŠ¶æ€
-	Route::get('admin/lists/{id}/edit_status', 'Admin\AdminListsController@edit_status');
+		// ºóÌ¨ÁĞ±í¹ÜÀí
+		Route::resource('admin/lists', 'Admin\AdminListsController');
+		// ºóÌ¨ÁĞ±í×´Ì¬
+		Route::get('admin/lists/{id}/edit_status', 'Admin\AdminListsController@edit_status');
 
-	//åå°é“¾æ¥ç®¡ç†
-	Route::prefix('admin')->group(function(){
-		Route::get('blogroll/rank','Admin\AdminBlogrollController@rank');
-		Route::resource('blogroll','Admin\AdminBlogrollController');
-		//ä¼šå‘˜ç®¡ç†
-		Route::get('homeusers/index','Admin\HomeUsersController@index');
-		//ä¼šå‘˜çŠ¶æ€
-		Route::get('homeusers','Admin\HomeUsersController@status');
-		//ä¼šå‘˜åˆ é™¤
-		Route::delete('homeusers/{id}','Admin\HomeUsersController@distory');
+		//ºóÌ¨Á´½Ó¹ÜÀí
+		Route::prefix('admin')->group(function(){
+			Route::get('blogroll/rank','Admin\AdminBlogrollController@rank');
+			Route::resource('blogroll','Admin\AdminBlogrollController');
+			//»áÔ±¹ÜÀí
+			Route::get('homeusers/index','Admin\HomeUsersController@index');
+			//»áÔ±×´Ì¬
+			Route::get('homeusers','Admin\HomeUsersController@status');
+			//»áÔ±É¾³ı
+			Route::delete('homeusers/{id}','Admin\HomeUsersController@distory');
 
-		// åå°æ´»åŠ¨ç®¡ç†
-		Route::resource('activity','Admin\AdminActivityController');
-		//ç”¨æˆ·ç§¯åˆ†
-		Route::get('integral/index','Admin\HomeIntegralController@index');
-		Route::get('integral/{id}/show','Admin\HomeIntegralController@show');
+			// ºóÌ¨»î¶¯¹ÜÀí
+			Route::resource('activity','Admin\AdminActivityController');
+			//ÓÃ»§»ı·Ö
+			Route::get('integral/index','Admin\HomeIntegralController@index');
+			Route::get('integral/{id}/show','Admin\HomeIntegralController@show');
 
-		//åå°æ¯æ—¥ä¸€è¯­ç®¡ç†
-	Route::resource('sentence','Admin\AdminSentenceController');
+			//ºóÌ¨Ã¿ÈÕÒ»Óï¹ÜÀí
+			Route::resource('sentence','Admin\AdminSentenceController');
+		});
 	});
 });
 
-// åå°ç™»å½•
+// ºóÌ¨µÇÂ¼
 Route::get('admin/login', 'Admin\LoginAdminController@login');
 
-// åå°ç™»å½•éªŒè¯
+// ºóÌ¨µÇÂ¼ÑéÖ¤
 Route::post('admin/dologin', 'Admin\LoginAdminController@dologin');
 
-//åå°é€€å‡ºç™»å½•
+//ºóÌ¨ÍË³öµÇÂ¼
 Route::get('/admin/Exitlogon','Admin\LoginAdminController@Exitlogon');

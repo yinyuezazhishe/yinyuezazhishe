@@ -28,7 +28,7 @@
                     <br />
                     简介:{{$v->describe}}
                 </p>
-                <a href="/home/details/{{$v->id}}" class="more-link">
+                <a href="/home/details/{{$v->did}}" class="more-link">
                     查看全部
                 </a>
             </div>

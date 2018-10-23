@@ -65,7 +65,7 @@ class U_R_P
             
         } else {
 
-            // return redirect('/admin');
+            return redirect('/admin')->with('error','您权限不够, 请联系管理员');
         }
     }
 }

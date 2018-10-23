@@ -29,7 +29,7 @@ class HomeDetailsController extends Controller
 
         $num = $user -> count() + $reply -> count();
 
-        $d_content = DetailsContent::where('id', $id)->first();
+        $d_content = DetailsContent::where('did', $id)->first();
 
         $details = Details::with('details_content')->where('id', $id)->first();
 
@@ -41,7 +41,6 @@ class HomeDetailsController extends Controller
         if (!empty(session('homeuser'))) {
             $pr = DB::table('praise')->where([['d_c_id', $id], ['u_id', session('homeuser')->id]]) -> first();
         }
-
 
         // 猜你喜欢
         $lists = Lists::with('category')->where('id', $id)->first();
@@ -64,7 +63,9 @@ class HomeDetailsController extends Controller
 
         // dd($lid);
 
-        $detail = DetailsContent::where('id', $lid)->limit(3)->get();
+        $detail = DetailsContent::whereIn('did', $lid)->limit(3)->get();
+
+        // dd($detail);
 
 
         return view('Home.Details.init', ['d_content'=>$d_content,'pr'=>$pr, 'praise' => $praise, 'details' => $details, 'detail' => $detail, 'title' => '音乐杂志社','user'=>$user,'num'=>$num,'reply'=>$reply]);

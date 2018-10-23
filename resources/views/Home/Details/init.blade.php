@@ -132,7 +132,7 @@
                     </p>
                     <p class="form-submit" style="text-align: right;">
                         <input name="submit" type="submit" id="submit" class="submit" value="发表评论" style="display: inline;">
-                        <input type="hidden" id="did" value="{{$d_content->id}}">
+                        <input type="hidden" id="did" value="{{$d_content->did}}">
                         <input type="hidden" name="uid" value=" @if(!empty(session('homeuser'))) {{session('homeuser')->id}} @endif" id="uid">
                     </p>
                     <p style="display: none;">
