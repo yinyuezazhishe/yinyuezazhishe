@@ -136,7 +136,6 @@ class AdminBannerController extends Controller
         //判断是否有文化上传
         if ($request -> hasFile('picture')) {
 
-           
             //自定义名字
             $gname = time().rand(1111,9999);
 

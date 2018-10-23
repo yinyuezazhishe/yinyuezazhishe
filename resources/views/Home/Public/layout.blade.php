@@ -153,7 +153,7 @@
                             <dt></dt>
                             @foreach ($v->sub as $kk=>$vv)
 
-                            <dd style="margin:0px; padding: 0px;"><a href="home/lists/{{$vv->id}}" target="_self"><span>{{$vv -> catename}}</span></a></dd>
+                            <dd style="margin:0px; padding: 0px;"><a href="/home/lists/{{$vv->id}}" target="_self"><span>{{$vv -> catename}}</span></a></dd>
                            
                             @endforeach
                         </dl>
@@ -253,9 +253,14 @@
                                 $lid['id'] = $v -> lists['id'];
                             }
                         }
-                        session(['lid' => $lid]);
+                        if (empty($lid)) {
+                            $id = \App\Model\Admin\Details::whereNotIn('id', $d_c)->orderBy('id', 'desc')->where('status', '<>', '1')->first();
+                            $lid = [];
+                            $lid[] = $id -> id;  
+                        }
                         
-                        $d_content = \App\Model\Admin\DetailsContent::whereIn('id', $lid)->first();
+                        session(['lid' => $lid]);
+                        $d_content = \App\Model\Admin\DetailsContent::whereIn('did', $lid)->first();
                     @endphp
                     <article class="content-excerpt post-13827 post type-post status-publish format-standard has-post-thumbnail sticky hentry category-nomusic tag-t">
                         <h2 class="post-title entry-title">
@@ -290,10 +295,10 @@
                         $lid = [];
                         foreach ($details as $k => $v) {
                             if ($v -> lists['status'] == 0) {
-                                $lid['id'] = $v -> lists['id'];
+                                $lid[] = $v -> lists['id'];
                             }
                         }
-                        $details = \App\Model\Admin\Details::with('details_content', 'lists')->whereIn('id', $lid)->where('status', '<>', '1')->whereNotIn('id', session('lid'))->orderBy('id', 'asc')->paginate(10);
+                        $details = \App\Model\Admin\Details::with('details_content', 'lists')->whereIn('id', $lid)->where('status', '<>', '1')->whereNotIn('id', session('lid'))->orderBy('id', 'desc')->paginate(10);
                     @endphp
                     @foreach ($details as $k =>$v)
                     <article class="content-excerpt post-19689 post type-post status-publish format-standard has-post-thumbnail hentry category-video category-popmusic tag-2853 tag-3298 tag-3472"><h2 class="post-title entry-title">
@@ -327,26 +332,8 @@
                     </article>
                     @endforeach
                    
-
                     <div class="post-pagination clearfix">
-                        <span aria-current='page' class='page-numbers current'>
-                            1
-                        </span>
-                        <a class='page-numbers' href='https://www.mtyyw.com/page/2/'>
-                            2
-                        </a>
-                        <a class='page-numbers' href='https://www.mtyyw.com/page/3/'>
-                            3
-                        </a>
-                        <span class="page-numbers dots">
-                            &hellip;
-                        </span>
-                        <a class='page-numbers' href='https://www.mtyyw.com/page/530/'>
-                            530
-                        </a>
-                        <a class="next page-numbers" href="https://www.mtyyw.com/page/2/">
-                            &raquo;
-                        </a>
+                            {{$details->links()}}
                     </div>
                 </section>
                 @show
@@ -358,17 +345,16 @@
                                 搜索
                             </span>
                         </h3>
-                        <form role="search" method="get" class="search-form" action="https://www.mtyyw.com/">
+                        <form role="search" method="get" class="search-form" action="/home/search">
                             <label>
                                 <span class="screen-reader-text">
                                     Search for:
                                 </span>
-                                <input type="search" class="search-field" placeholder="Search &hellip;"
-                                value="" name="s">
+                                <input type="search" class="search-field" placeholder="Search &hellip;" value="" name="title">
                             </label>
                             <button type="submit" class="search-submit">
-                                <span class="fa fa-search" style="color: #aaa;">
-                                </span>
+                                <i class="fa fa-search" style="color: #aaa; font-size: 18px;">
+                                </i>
                             </button>
                         </form>
                     </aside>
@@ -400,7 +386,7 @@
                                         }
                                         // dd($lid);
 
-                                        $newest = \App\Model\Admin\DetailsContent::orderBy('addtime', 'desc')->whereIn('id',$lid)->limit(5)->get();
+                                        $newest = \App\Model\Admin\DetailsContent::orderBy('addtime', 'desc')->whereIn('did',$lid)->limit(5)->get();
                                     @endphp
                                     @foreach ($newest as $k => $v)
                                     <li class="widget-thumb">
@@ -429,14 +415,32 @@
                                     $d_c[] = $v -> d_c_id;
                                 }
                                 $details =\App\Model\Admin\Details::with('details_content', 'lists')->where('status', '<>', '1')->whereIn('id', $d_c)->get();
-                                        $lid = [];
-                                        foreach ($details as $k => $v) {
-                                            if ($v -> lists['status'] == 0) {
-                                                $lid[] = $v -> lists['id'];
-                                            }
+                                
+                                $lid = [];
+                                foreach ($details as $k => $v) {
+                                    if ($v -> lists['status'] == 0) {
+                                        $lid[] = $v -> lists['id'];
+                                    }
+                                }
+
+                                if (count($details) < 6) {
+                                    $details =\App\Model\Admin\Details::with('details_content', 'lists')->where('status', '<>', '1')->get();
+
+                                    $lid = [];
+                                    foreach ($details as $k => $v) {
+                                        if ($v -> lists['status'] == 0) {
+                                            $lid[] = $v -> lists['id'];
                                         }
-                                // dd($d_c);
-                                $d_content = \App\Model\Admin\DetailsContent::whereIn('id', $lid)->get();
+                                    }
+
+                                    // dd($lid);
+
+                                    $d_content = \App\Model\Admin\DetailsContent::whereIn('did', $lid)->get();
+                                    // dd($d_c);
+                                } else {
+                                    $d_content = \App\Model\Admin\DetailsContent::whereIn('did', $lid)->get();
+                                }
+                                
                             @endphp
                             <div id="dynamicnews_tabbed_content-6-tabbed-3" class="tabdiv">
                                 <ul>
@@ -701,20 +705,21 @@
                 <div class="mf_denglu1-2">音悦杂志社</div>
 
                 <div class="mf_denglu1-3">
-
+                    @php
+                        session(['uri' => $_SERVER['REQUEST_URI']]);
+                    @endphp
                     <form id="form1" name="form1" action="/home/dologin"  class="denglufrom" method="post">
                         {{csrf_field()}}
 
                         <div class="zhuce1-3-1">
                             <label> </label>
-                            <input type="text" name="username" class="tel form-put" nullmsg="请输入您的用户名!" errormsg="中文、数字、字母,且不能少三多十!" datatype="u3" placeholder="输入您的用户名">
+                            <input type="text" name="username" class="tel form-put" nullmsg="请输入您的用户名!" value="{{old('username')}}" errormsg="中文、数字、字母,且不能少三多十!" datatype="u3" placeholder="输入您的用户名">
                             <div class="Validform_checktip"></div>
                         </div>
 
                         <div class="zhuce1-3-2">
                             <label></label>
-                            <input type="password" name="password" class="mima form-put" placeholder="输入您的登录密码"
-                                   datatype="z6" nullmsg="请填写登录密码！" errormsg="必须有数字字母,且不能少六多十六！"/>
+                            <input type="password" value="{{old('password')}}" name="password" class="mima form-put" placeholder="输入您的登录密码" datatype="z6" nullmsg="请填写登录密码！" errormsg="必须有数字字母,且不能少六多十六！"/>
                             <div class="Validform_checktip"></div>
                         </div>
 
@@ -773,25 +778,24 @@
 
                         <div class="zhuce1-3-1">
                             <label> </label>
-                            <input id="reg_tel" type="text" name="username" class="tel form-put" nullmsg="请输入您的用户名!" errormsg="中文、数字、字母,且不能少三多十!" datatype="u3" placeholder="输入您的用户名">
+                            <input id="reg_tel" type="text" value="{{old('username')}}" name="username" class="tel form-put" nullmsg="请输入您的用户名!" errormsg="中文、数字、字母,且不能少三多十!" datatype="u3" placeholder="输入您的用户名">
                             <div class="Validform_checktip"></div>
                         </div>
 
                         <div class="zhuce1-3-1">
                             <label> </label>
-                            <input type="tex" id="reg_yzm" name="email" class="tel form-put" errormsg="邮箱格式不正确!" placeholder="输入邮箱" datatype="e" nullmsg="请填写邮箱！"/>
+                            <input type="tex" id="reg_yzm" name="email" value="{{old('email')}}" class="tel form-put" errormsg="邮箱格式不正确!" placeholder="输入邮箱" datatype="e" nullmsg="请填写邮箱！"/>
                                 <div class="Validform_checktip"></div>
                         </div>
 
                         <div class="zhuce1-3-2">
                             <label></label>
-                            <input type="password" id="reg_mima" name="password" class="mima form-put" placeholder="输入您的登录密码"
-                                   datatype="z6" nullmsg="请填写登录密码！" errormsg="必须有数字字母,且不能少六多十六！"/>
+                            <input type="password" id="reg_mima" name="password" value="{{old('password')}}" class="mima form-put" placeholder="输入您的登录密码" datatype="z6" nullmsg="请填写登录密码！" errormsg="必须有数字字母,且不能少六多十六！"/>
                             <div class="Validform_checktip"></div>
                         </div>
 
                         <div class="zhuce1-3-2"><label></label>
-                            <input type="password" id="reg_mima2" name="repassword" class="mima2 form-put" placeholder="重复登录密码"
+                            <input type="password" id="reg_mima2" name="repassword" value="{{old('repassword')}}" class="mima2 form-put" placeholder="重复登录密码"
                                    datatype="*" recheck="password" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！"/>
                             <div class="Validform_checktip"></div>
                         </div>
@@ -855,13 +859,13 @@
 
                         <div class="zhuce1-3-1">
                             <label> </label>
-                            <input type="tex" id="cz_email" name="email" class="tel form-put" errormsg="邮箱格式不正确!" placeholder="输入邮箱" datatype="e" nullmsg="请填写邮箱！"/>
+                            <input type="tex" id="cz_email" name="email" value="{{old('email')}}" class="tel form-put" errormsg="邮箱格式不正确!" placeholder="输入邮箱" datatype="e" nullmsg="请填写邮箱！"/>
                             <div class="Validform_checktip"></div>
                         </div>
 
                         <div class="mf_chongzhi1-3-3 yy_chongzhi">
                            <div class="mf_chongzhi1-3-3-1"><label></label>
-                                <input type="text" name="code" class="yzm form-put" placeholder="输入验证码" datatype="*" nullmsg="请填写验证码！" errormsg="验证码错误">
+                                <input type="text" name="code" value="{{old('code')}}" class="yzm form-put" placeholder="输入验证码" datatype="*" nullmsg="请填写验证码！" errormsg="验证码错误">
                                 <div class="Validform_checktip"></div>
                             </div>
                             <i class="button--wayra">获取</i>
@@ -869,13 +873,13 @@
 
                         <div class="mf_chongzhi1-3-2">
                             <label></label>
-                            <input type="password" name="password" class="mima form-put" placeholder="输入您的新密码" datatype="z6" nullmsg="请填写新密码！" errormsg="必须有数字字母,且不能少六多十六！"/>
+                            <input type="password" name="password" value="{{old('password')}}" class="mima form-put" placeholder="输入您的新密码" datatype="z6" nullmsg="请填写新密码！" errormsg="必须有数字字母,且不能少六多十六！"/>
                             <div class="Validform_checktip"></div>
                         </div>
 
                         <div class="mf_chongzhi1-3-2">
                             <label></label>
-                            <input type="password" name="repassword" class="mima2 form-put" placeholder="重复新密码" datatype="*" recheck="password" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！"/>
+                            <input type="password" name="repassword" class="mima2 form-put" placeholder="重复新密码" value="{{old('repassword')}}" datatype="*" recheck="password" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！"/>
                             <div class="Validform_checktip"></div>
                         </div>
 
@@ -888,16 +892,6 @@
             </div>
 
             <div class="mf_chongzhi2"></div>
-        </div>
-
-        <div class="chongzhichenggong">
-            <div class="chongzhichenggong1"><img src="/homes/public/templates/default/images/gou.png" tppabs="http://www.mfdemo.cn/public/templates/default/images/gou.png" width="30" height="29"/>
-            </div>
-
-            <div class="chongzhichenggong2">重置成功</div>
-
-            <div class="chongzhichenggong3"><p>3</p><span>s后返回登录</span></div>
-
         </div>
 
         <script type="text/javascript" src="/homes/js/jquerysession.js"></script>
@@ -1179,13 +1173,13 @@
                         dataType: 'json',
                         success: function (data) {
                             if (data == 0) {
-                                console.log('删除成功');
+                                // console.log('删除成功');
                             } else if (data == 1) {
-                                console.log('删除失败');
+                                // console.log('删除失败');
                             }
                         },
                         error: function(){
-                            console.log('删除失败');
+                            // console.log('删除失败');
                         },
                         // timeout:3000,
                         async: true
@@ -1193,8 +1187,41 @@
                     console.log(flag);
                 }
             </script>";
-           
+
+            if (!empty(session('login'))) {
+                echo "<script type='text/javascript'>
+                        $('.zhuce').addClass('bounceOutUp').fadeOut();
+                        setTimeout(function () {
+                            $('.mf_denglu').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+                        }, 1500);
+                    </script>";
+
+                session(['login' => null]);
+           }
+
+           if (!empty(session('register'))) {
+                echo "<script type='text/javascript'>
+                        $('.mf_denglu').addClass('bounceOutUp').fadeOut();
+                    setTimeout(function () {
+                        $('.zhuce').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+                    }, 1500);
+                    </script>";
+
+                session(['register' => null]);
+           }
+
+           if (!empty(session('forgetpass'))) {
+                echo "<script type='text/javascript'>
+                    $('.mf_denglu').addClass('bounceOutUp').fadeOut();
+                    setTimeout(function () {
+                        $('.mf_chongzhi').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+                    }, 1500);
+                    </script>";
+
+                session(['forgetpass' => null]);
+           }
          @endphp
+
 
         <!-- 表单验证插件代码开始 -->
         <script type="text/javascript"  src="/homes/public/templates/default/js/Validform_v5.3.2_min.js" tppabs="http://www.mfdemo.cn/public/templates/default/js/Validform_v5.3.2_min.js"></script>

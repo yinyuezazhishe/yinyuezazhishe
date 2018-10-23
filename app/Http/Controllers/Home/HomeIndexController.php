@@ -16,7 +16,7 @@ class HomeIndexController extends Controller
 	 *
 	 *  @return \Illuminate\Http\Response.
 	 */
-    public function index()
+    public function index(Request $request)
     {
         // $details = Details::with('details_content', 'lists')->where('status', '<>', '1')->get();
 
@@ -31,7 +31,7 @@ class HomeIndexController extends Controller
 
         // $details = Details::with('details_content', 'lists')->whereIn('id', $lid)->orderBy('id', 'asc')->paginate(10);
 
-    	return view('home/index');
+    	return view('home/index', ['request'=> $request]);
     }
 
     /**

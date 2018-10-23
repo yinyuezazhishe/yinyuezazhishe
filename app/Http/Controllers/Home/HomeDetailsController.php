@@ -22,8 +22,7 @@ class HomeDetailsController extends Controller
 	 *  @return \Illuminate\Http\Response.
 	 */
     public function index(Request $request, $id)
-
-    {   
+    {
         $user = Comment::where('did',$id) -> with('users') -> orderBy('addtime','desc') -> get();
 
         $reply = Reply::with('users') -> get();
@@ -50,10 +49,10 @@ class HomeDetailsController extends Controller
         // echo $lists->category->path;
         $cid = trim(strstr($lists->category->path, ','), ',');
 
-        // dd();
+        // dd($id);
 
         $category = CateGory::with('lists')->where('pid', $cid)->get();
-
+        // dd($category);
         foreach ($category as $k => $v) {
             foreach ($v -> lists as $k => $v) {
                 if ($id != $v -> id) {
@@ -63,13 +62,12 @@ class HomeDetailsController extends Controller
             // $v -> lists;
         }
 
+        // dd($lid);
+
         $detail = DetailsContent::where('id', $lid)->limit(3)->get();
 
 
-
-        return view('Home.Details.index', ['d_content'=>$d_content,'pr'=>$pr, 'praise' => $praise, 'details' => $details, 'title' => '音乐杂志社','user'=>$user,'num'=>$num,'reply'=>$reply]);
-
-
+        return view('Home.Details.init', ['d_content'=>$d_content,'pr'=>$pr, 'praise' => $praise, 'details' => $details, 'detail' => $detail, 'title' => '音乐杂志社','user'=>$user,'num'=>$num,'reply'=>$reply]);
     }
 
     /**
@@ -124,6 +122,7 @@ class HomeDetailsController extends Controller
             }
         }  
 
+    }
 
     /**
      *  添加评论
@@ -171,7 +170,6 @@ class HomeDetailsController extends Controller
      *
      *  @return \Illuminate\Http\Response.
      */
-
      public function reply(Request $request)
      {
         $res = $request->except('_token');
@@ -199,10 +197,6 @@ class HomeDetailsController extends Controller
         } else {
 
             return 0;
-
         }
-        
-     }
-
-
+    }
 }

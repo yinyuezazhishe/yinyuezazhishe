@@ -133,7 +133,7 @@
                     <p class="form-submit" style="text-align: right;">
                         <input name="submit" type="submit" id="submit" class="submit" value="发表评论" style="display: inline;">
                         <input type="hidden" id="did" value="{{$d_content->id}}">
-                        <input type="hidden" name="uid" value="{{session('homeuser')->id}}" id="uid">
+                        <input type="hidden" name="uid" value=" @if(!empty(session('homeuser'))) {{session('homeuser')->id}} @endif" id="uid">
                     </p>
                     <p style="display: none;">
                     </p>
@@ -321,6 +321,10 @@
                     swal("对不起!", "取消点赞失败!", "error");
                 } else if (data == 4) {
                     swal("对不起!", "您还未登陆, 请登陆后再点赞!", "error");
+                    $('.zhuce').addClass('bounceOutUp').fadeOut();
+                    setTimeout(function () {
+                        $('.mf_denglu').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+                    }, 1500);
                 }
             },
             error: function(){
@@ -333,168 +337,165 @@
     })
 </script>
 <!-- 百度分享 js 结束 -->                  
-</section>
+   
+<script type="text/javascript">
 
-    
-    <script type="text/javascript">
+    var id
 
-        var id
+    var cid = '';
 
-        var cid = '';
+    var flag = 'comment';
 
-        var flag = 'comment';
+    $('#submit').click(function(){
 
-        $('#submit').click(function(){
+        var sub = $(this);
 
-            var sub = $(this);
+        var comment = $('#discuss').val();
 
-            var comment = $('#discuss').val();
+        if (comment == '') {return false}
 
-            if (comment == '') {return false}
+        $('#discuss').val('');
 
-            $('#discuss').val('');
+        var uid = $('#uid').val();
 
-            var uid = $('#uid').val();
+        var did = $('#did').val();
 
-            var did = $('#did').val();
+        if(flag == 'comment'){
 
-            if(flag == 'comment'){
+            $.post('/home/comment',{'content':comment,'hid':uid,'did':did,'_token':'{{ csrf_token() }}'},
 
-                $.post('/home/comment',{'content':comment,'hid':uid,'did':did,'_token':'{{ csrf_token() }}'},
+            function(data){
 
-                function(data){
+                swal("恭喜你!", "评论成功!", "success");
 
-                    swal("恭喜你!", "评论成功!", "success");
+                checknum(100);
 
-                    checknum(100);
+                var New_li = $('#centent_clone').clone(true);
 
-                    var New_li = $('#centent_clone').clone(true);
+                New_li.attr('id','');
 
-                    New_li.attr('id','');
+                New_li.css('display','block');
 
-                    New_li.css('display','block');
+                New_li.find('.commentmetadata').text(data.addtime);
 
-                    New_li.find('.commentmetadata').text(data.addtime);
+                New_li.find('.fn').text(data.username);
 
-                    New_li.find('.fn').text(data.username);
+                New_li.find('.avatar').attr('src',data.face);
 
-                    New_li.find('.avatar').attr('src',data.face);
+                New_li.find('.con').text(comment);
 
-                    New_li.find('.con').text(comment);
+                New_li.find('.comment-reply-link').attr('cid',data.id);
 
-                    New_li.find('.comment-reply-link').attr('cid',data.id);
+                $('.commentlist').prepend(New_li);
 
-                    $('.commentlist').prepend(New_li);
+                num();
 
-                    num();
+            },'json');
 
-                },'json');
+            return false;
 
-                return false;
+        } else {
 
-            } else {
+            $.post('/home/reply',{'content':comment,'hid':uid,'cid':cid,'did':did,'_token':'{{ csrf_token() }}'},
 
-                $.post('/home/reply',{'content':comment,'hid':uid,'cid':cid,'did':did,'_token':'{{ csrf_token() }}'},
+            function(data){
+                checknum(100);
 
-                function(data){
-                    checknum(100);
+                swal("恭喜你!", "回复成功!", "success");
 
-                    swal("恭喜你!", "回复成功!", "success");
+                var New_ul = $('.children_clone').clone(true);
 
-                    var New_ul = $('.children_clone').clone(true);
+                New_ul.removeClass('children_clone');
 
-                    New_ul.removeClass('children_clone');
+                New_ul.css('display','block');
 
-                    New_ul.css('display','block');
+                New_ul.find('.commentmetadata').text(data.addtime);
 
-                    New_ul.find('.commentmetadata').text(data.addtime);
+                New_ul.find('.fn').text(data.username);
 
-                    New_ul.find('.fn').text(data.username);
+                New_ul.find('.avatar').attr('src',data.face);
 
-                    New_ul.find('.avatar').attr('src',data.face);
+                New_ul.find('.con').text(comment);
 
-                    New_ul.find('.con').text(comment);
+                New_ul.find('.comment-reply-link').attr('cid',data.id);
 
-                    New_ul.find('.comment-reply-link').attr('cid',data.id);
+                sub.parents('li').eq(0).append(New_ul);
 
-                    sub.parents('li').eq(0).append(New_ul);
+                flag = 'comment';
 
-                    flag = 'comment';
+                $('#cancel-comment-reply-link').css('display','none');
 
-                    $('#cancel-comment-reply-link').css('display','none');
+                $('.as').text('发布评论');
 
-                    $('.as').text('发布评论');
+                num();
 
-                    num();
+            },'json');
 
-                },'json');
-
-            }
-                
-        });
-
-
-        $('.comment-reply-link').click(function(){
+        }
             
-            flag = 'reply';
-
-            var name = '';
-
-            rid = $(this).prev().val();
-
-            cid = $(this).attr('cid');
-
-            $('#cancel-comment-reply-link').css('display','block');
-
-            $respond = $('#respond');
-
-            $(this).after($respond);
-
-            name = $(this).parent().prev().prev().find('.fn').text();
-
-            $('.as').text('回复'+name);
-
-            return false;
-        });
-       
-
-        $('#cancel-comment-reply-link').click(function(){
-
-            flag = 'comment';
-
-            cid = '';
-
-            $(this).css('display','none');
-
-            $('.commentlist').after($('#respond'));
-
-            $('.as').text('发布评论');
-
-            return false;
-        });
+    });
 
 
-        function checknum(num){
-            var nMax = num;
-            var textDom =  document.getElementById("discuss");
-            var len =textDom.value.length;    
-            if(len>nMax){
-                textDom.value = textDom.value.substring(0,nMax);
-                return;
-            }
-            document.getElementById("in").innerHTML="你还可以输入<span style='color:red'>"+(nMax-len)+"</span>个字";
+    $('.comment-reply-link').click(function(){
+        
+        flag = 'reply';
+
+        var name = '';
+
+        rid = $(this).prev().val();
+
+        cid = $(this).attr('cid');
+
+        $('#cancel-comment-reply-link').css('display','block');
+
+        $respond = $('#respond');
+
+        $(this).after($respond);
+
+        name = $(this).parent().prev().prev().find('.fn').text();
+
+        $('.as').text('回复'+name);
+
+        return false;
+    });
+   
+
+    $('#cancel-comment-reply-link').click(function(){
+
+        flag = 'comment';
+
+        cid = '';
+
+        $(this).css('display','none');
+
+        $('.commentlist').after($('#respond'));
+
+        $('.as').text('发布评论');
+
+        return false;
+    });
+
+
+    function checknum(num){
+        var nMax = num;
+        var textDom =  document.getElementById("discuss");
+        var len =textDom.value.length;    
+        if(len>nMax){
+            textDom.value = textDom.value.substring(0,nMax);
+            return;
         }
-        checknum(100);
+        document.getElementById("in").innerHTML="你还可以输入<span style='color:red'>"+(nMax-len)+"</span>个字";
+    }
+    checknum(100);
 
 
-        function num() {
-            $nums = Number($('#nums').text()) + 1;
+    function num() {
+        $nums = Number($('#nums').text()) + 1;
 
-            $('.nums').text($nums);
+        $('.nums').text($nums);
 
-            $('.commentlist').after($('#respond'));
-        }
-    </script>
-
+        $('.commentlist').after($('#respond'));
+    }
+</script>
 
 @stop

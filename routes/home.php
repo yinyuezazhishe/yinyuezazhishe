@@ -62,6 +62,8 @@ Route::get('home/noactivity','Home\HomeActivityController@noactivity');
 
 // 前台列表显示
 Route::any('home/lists/{id}', 'Home\HomeListsController@index');
+// 搜索
+Route::get('home/search', 'Home\HomeListsController@search');
 
 // 前台详情显示
 Route::any('home/details/{id}', 'Home\HomeDetailsController@index');
