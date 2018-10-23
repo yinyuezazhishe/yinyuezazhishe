@@ -1075,7 +1075,7 @@
                                 </p>
                                 <p class="form-submit">
                                     <input name="submit" type="submit" id="submit" class="submit" value="发表评论">
-                                    <input type="hidden" id="did" value="{{$d_content->id}}">
+                                    <input type="hidden" id="did" value="{{$details->details_content->id}}">
                                     <input type="hidden" name="uid" value="{{session('homeuser')->id}}" id="uid">
                                 </p>
                                 <p style="display: none;">

@@ -21,24 +21,28 @@ class HomeLoginController extends Controller
 	 */
     public function dologin(Request $request)
     {
+        session(['login' => '1']);
+
+        $uri = empty(session('uri')) ? '/' : session('uri');
+
     	$res = $request -> except('_token');
 
     	if (!preg_match_all("/^[\x{4e00}-\x{9fa5}A-Za-z0-9_\-]{3,10}$/u",$res['username'])) {
-            return redirect('/')->with('error','用户名里含有字母、数字、下划线、中文以外的非法字符且必须最少3位, 最多十位！');
+            return redirect($uri)->with('error','用户名里含有字母、数字、下划线、中文以外的非法字符且必须最少3位, 最多十位！')-> withInput();
         }
 
         if (empty($res['password'])) {
-            return redirect('/') -> with('error', '密码不能为空！');
+            return redirect($uri) -> with('error', '密码不能为空！')-> withInput();
         }
 
         if (!preg_match('/^(?![0-9]+$)(?![a-zA-Z]+$)[\S]{6,16}$/', $res['password'])) {
-            return redirect('/') -> with('error', '必须有数字和字母, 且必须要六位, 不能超过十六位！');
+            return redirect($uri) -> with('error', '必须有数字和字母, 且必须要六位, 不能超过十六位！')-> withInput();
         }
 
         if (strtolower($res['code']) != strtolower(session('code'))) {
         	// echo $res['code'];
         	// echo session('code');
-			return redirect('/')->with('error','验证码错误');
+			return redirect($uri)->with('error','验证码错误');
 		}
 
         $user = HomeUsers::where('username', $res['username']) -> first();
@@ -46,22 +50,22 @@ class HomeLoginController extends Controller
         if ($user) {
             $music = HomeUserMusic::where('uid',$user->id)->first();
             if ($user -> status == 1) {
-                return redirect('/')->with('error','您的账户已被禁用, 请联系网站管理员!');
+                return redirect($uri)->with('error','您的账户已被禁用, 请联系网站管理员!')-> withInput();
 
             } else if ($user -> status == 2) {
-                return redirect('/')->with('error','您输入的的邮箱未在本网站注册验证成功, 请前往您注册时的邮箱进行验证再进行登录!');
+                return redirect($uri)->with('error','您输入的的邮箱未在本网站注册验证成功, 请前往您注册时的邮箱进行验证再进行登录!')-> withInput();
             }
 
     		if ($user -> username != $res['username']) {
-	    		return redirect('/')->with('error','用户名或密码错误');
+	    		return redirect($uri)->with('error','用户名或密码错误')-> withInput();
 	    	}
 
 	    	if (!Hash::check($res['password'], $user -> password)) {
-			    return redirect('/')->with('error','用户名或密码错误');
+			    return redirect($uri)->with('error','用户名或密码错误')-> withInput();
 			}
 
     	} else {
-    		return redirect('/')->with('error','用户名或密码错误');
+    		return redirect($uri)->with('error','用户名或密码错误')-> withInput();
     	}
         if(!empty($music)){
             session(["homeuserMusic"=>$music]);
@@ -96,15 +100,16 @@ class HomeLoginController extends Controller
             HomeUsers::where('id',$user->id)->update(['integral'=>$user->integral+5]);
         }
         $integral = HomeUsers::where('id', $user->id)->get()->pluck('integral')[0];
-        $sentence = DB::table('homeuser_sentence')->where('sentence_time','>=',$now)->where('uid',$user->id)->get()->toArray();
-        session(['get_sentence_num'=>count($sentence)]);
+        // $sentence = DB::table('homeuser_sentence')->where('sentence_time','>=',$now)->where('uid',$user->id)->get()->toArray();
+        // session(['get_sentence_num'=>count($sentence)]);
         session(['integral'=>$integral]);
 
-    	$uri = empty(session('back')) ? '/' : session('back');
+    	$uris = empty(session('back')) ? $uri : session('back');
 
         $request->session()->forget('back');
+        $request->session()->forget('login');
 
-        return redirect($uri)->with('success','登录成功');
+        return redirect($uris)->with('success','登录成功');
     	// dd($res);
     }
 
@@ -116,6 +121,10 @@ class HomeLoginController extends Controller
 
     public function doregister(Request $request)
     {
+        session(['register' => '1']);
+
+        $uri = empty(session('uri')) ? '/' : session('uri');
+
     	$req = $request -> except('_token', 'repassword');
 
         $users = HomeUsers::get();
@@ -124,12 +133,12 @@ class HomeLoginController extends Controller
 
             if ($req['username'] == $v -> username ) {
 
-                 return redirect('/')->with('error', '您注册的用户名重复, 请重新输入！');
+                 return redirect($uri)->with('error', '您注册的用户名重复, 请重新输入！')-> withInput();
             }
 
             if ($req['email'] == $v -> email ) {
 
-                 return redirect('/')->with('error', '您注册的邮箱重复, 请重新输入！');
+                 return redirect($uri)->with('error', '您注册的邮箱重复, 请重新输入！')-> withInput();
             }
         }
 
@@ -137,36 +146,32 @@ class HomeLoginController extends Controller
 
     	if (!preg_match_all("/^[\x{4e00}-\x{9fa5}A-Za-z0-9_\-]{3,10}$/u",$req['username'])) {
 
-            return redirect('/')->with('error','用户名里含有字母、数字、下划线、中文以外的非法字符且必须最少3位, 最多十位！');
+            return redirect($uri)->with('error','用户名里含有字母、数字、下划线、中文以外的非法字符且必须最少3位, 最多十位！')-> withInput();
         }
 
         if (empty($req['password'])) {
 
-            return redirect('/') -> with('error', '密码不能为空！');
+            return redirect($uri) -> with('error', '密码不能为空！')-> withInput();
         }
 
         if($req['password'] !== $request -> repassword) {
 
-            return redirect('/') -> with('error', '两次密码不一致！');
+            return redirect($uri) -> with('error', '两次密码不一致！')-> withInput();
         }
 
         if (!preg_match('/^(?![0-9]+$)(?![a-zA-Z]+$)[\S]{6,16}$/', $req['password'])) {
 
-            return redirect('/') -> with('error', '必须有数字和字母, 且必须要六位, 不能超过十六位！');
+            return redirect($uri) -> with('error', '必须有数字和字母, 且必须要六位, 不能超过十六位！')-> withInput();
         }
 
         if (!preg_match("/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/", $req['email'])) {
 
-            return redirect('/') -> with('error', '您输入的邮箱格式不正确');
+            return redirect($uri) -> with('error', '您输入的邮箱格式不正确')-> withInput();
         }
 
         $req['password'] = Hash::make($request->password);
 
-<<<<<<< HEAD:app/Http/Controllers/Home/HomeLoginController.php
-        $req['face'] = '/homes/uploads/01.jpg';
-=======
         $req['face'] = '/homes/Public_face/01.jpg';
->>>>>>> ljh:app/Http/Controllers/Home/LoginHomeController.php
 
         $req['status'] = '2';
 
@@ -240,6 +245,8 @@ class HomeLoginController extends Controller
      */
     public function logout(Request $request)
     {
+        $uri = empty(session('uri')) ? '/' : session('uri');
+
         $request->session()->forget('homeuser');
         session()->forget('sdasd');
         session()->forget('integral');
@@ -249,7 +256,7 @@ class HomeLoginController extends Controller
         } 
     	session()->forget('homeface');
 
-    	return redirect('/') -> with('success', '退出登录成功!');
+    	return redirect($uri) -> with('success', '退出登录成功!');
     }
 
     /**
@@ -299,6 +306,11 @@ class HomeLoginController extends Controller
      */
     public function forgetpass(Request $request)
     {
+        session(['forgetpass' => '1']);
+
+        $uri = $request -> input('uri');
+
+        $uri = empty($uri) ? '/' : $uri;
 
         $res = $request -> except('_token', 'repassword');
 
@@ -307,27 +319,27 @@ class HomeLoginController extends Controller
         if (strtolower($res['code']) != strtolower(Cookie::get('homecode'))) {
             // echo $res['code'].'<br>';
             // echo Cookie::get('homecode');
-            return redirect('/') -> with('error', '您输入的验证码有误, 请确认输入验证码与邮箱验证码一致!');
+            return redirect($uri) -> with('error', '您输入的验证码有误, 请确认输入验证码与邮箱验证码一致!') -> withInput();
         }
 
         if (!preg_match("/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/", $res['email'])) {
-            return redirect('/') -> with('error', '您输入的邮箱格式不正确!');
+            return redirect($uri) -> with('error', '您输入的邮箱格式不正确!')-> withInput();
         }
 
         if (empty($res['password'])) {
-            return redirect('/') -> with('error', '密码不能为空!');
+            return redirect($uri) -> with('error', '密码不能为空!') -> withInput();
         }
 
         if (!preg_match('/^(?![0-9]+$)(?![a-zA-Z]+$)[\S]{6,16}$/', $res['password'])) {
-            return redirect('/') -> with('error', '必须有数字和字母, 且必须要六位, 不能超过十六位!');
+            return redirect($uri) -> with('error', '必须有数字和字母, 且必须要六位, 不能超过十六位!') -> withInput();
         }
 
         if($res['password'] !== $request -> input('repassword')) {
-            return redirect('/') -> with('error', '两次密码不一致!');
+            return redirect($uri) -> with('error', '两次密码不一致!') -> withInput();
         }
 
         if (Hash::check($res['password'], $user -> password)) {
-            return redirect('/') -> with('error', '不能与最近密码一致, 请更换密码!');
+            return redirect($uri) -> with('error', '不能与最近密码一致, 请更换密码!') -> withInput();
         }
 
         $pass['password'] = Hash::make($res['password']);
@@ -340,7 +352,7 @@ class HomeLoginController extends Controller
 
             if($rs){
 
-                return redirect('/')->with('success','修改密码成功');
+                return redirect($uri)->with('success','修改密码成功');
             }
 
         }catch(\Exception $e){
@@ -348,7 +360,7 @@ class HomeLoginController extends Controller
             // echo $e -> getCode();
             // echo $e -> getMessage();
 
-            return back()->with('error','修改密码失败');
+            return back()->with('error','修改密码失败') -> withInput();
         }
     }
 }

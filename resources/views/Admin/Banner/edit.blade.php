@@ -50,7 +50,8 @@
                                 </div>
                             </div>
                           <div class="hr-line-dashed"></div>
-                        {{ csrf_field() }}
+                        {{csrf_field()}}
+                        {{method_field('PUT')}}
                          <div class="form-group">
                             <div class="col-sm-10 col-md-offset-2">
                                 <button class="btn btn-primary" id="sub" type="submit">修改</button>

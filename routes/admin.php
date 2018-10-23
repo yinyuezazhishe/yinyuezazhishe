@@ -12,12 +12,10 @@
 */
 
 
-Route::group(['middleware'=>['adminlogin']], function ()
+Route::group(['middleware'=>'adminlogin'], function ()
 {
-
-	// 后台管理主页
+		// 后台管理主页
 Route::any('admin','Admin\IndexController@init');
-	
 	// Route::group(['middleware'=>'u_r_p'], function ()
 // {
 	// 后台角色管理
