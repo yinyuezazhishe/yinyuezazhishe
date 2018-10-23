@@ -35,11 +35,11 @@ class HomeLoginController extends Controller
             return redirect('/') -> with('error', '必须有数字和字母, 且必须要六位, 不能超过十六位！');
         }
 
-        if (strtolower($res['code']) != strtolower(session('code'))) {
-        	// echo $res['code'];
-        	// echo session('code');
-			return redirect('/')->with('error','验证码错误');
-		}
+  //       if (strtolower($res['code']) != strtolower(session('code'))) {
+  //       	// echo $res['code'];
+  //       	// echo session('code');
+		// 	return redirect('/')->with('error','验证码错误');
+		// }
 
         $user = HomeUsers::where('username', $res['username']) -> first();
 
@@ -162,11 +162,7 @@ class HomeLoginController extends Controller
 
         $req['password'] = Hash::make($request->password);
 
-<<<<<<< HEAD:app/Http/Controllers/Home/HomeLoginController.php
-        $req['face'] = '/homes/uploads/01.jpg';
-=======
         $req['face'] = '/homes/Public_face/01.jpg';
->>>>>>> ljh:app/Http/Controllers/Home/LoginHomeController.php
 
         $req['status'] = '2';
 

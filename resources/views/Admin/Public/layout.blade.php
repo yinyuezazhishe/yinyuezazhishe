@@ -203,11 +203,8 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="404.html">404页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="500.html">500页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="empty_page.html">空白页</a>
+                            <li>
+                                <a class="" href="/admin/reply">浏览回复</a>
                             </li>
                         </ul>
                     </li>
@@ -381,21 +378,21 @@
                             <div class="title">皮肤选择</div>
                             <div class="setings-item default-skin nb">
                                 <span class="skin-name ">
-                         <a href="#" class="s-skin-0 default">
+                         <a href="#" class="s-skin-0 default_theme">
                              默认皮肤
                          </a>
                     </span>
                             </div>
                             <div class="setings-item blue-skin nb">
                                 <span class="skin-name ">
-                        <a href="#" class="s-skin-1 blue">
+                        <a href="#" class="s-skin-1 blue_theme">
                             蓝色主题
                         </a>
                     </span>
                             </div>
                             <div class="setings-item yellow-skin nb">
                                 <span class="skin-name ">
-                        <a href="#" class="s-skin-3 yellow">
+                        <a href="#" class="s-skin-3 yellow_theme">
                             黄色/紫色主题
                         </a>
                     </span>
@@ -482,7 +479,7 @@
 
         })
 
-        $('.blue').click(function(){
+        $('.blue_theme').click(function(){
 
             $.session.set('theme','skin-1');
 
@@ -494,7 +491,7 @@
             setTheme('skin-1');
         });
 
-        $('.yellow').click(function(){
+        $('.yellow_theme').click(function(){
 
             $.session.set('theme','skin-3');
            
@@ -506,7 +503,7 @@
             setTheme('skin-3');
         });
 
-        $('.default').click(function(){
+        $('.default_theme').click(function(){
 
             $.session.set('theme','default');
             

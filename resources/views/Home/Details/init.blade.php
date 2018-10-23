@@ -108,759 +108,140 @@
             <!-- end wrap -->
         </div>
         <!-- End Yuzo :) -->
-        <div id="comments">
-            <h3 class="comments-title">
-                <span>
-                    22 条评论
-                </span>
-            </h3>
-            <ul class="commentlist">
-                <li class="comment even thread-even depth-1" id="comment-87724">
-                    <div id="div-comment-87724" class="comment-body">
-                        <div class="comment-author vcard clearfix">
-                            <span class="fn">
-                                修行者
-                            </span>
-                            <div class="comment-meta commentmetadata">
-                                <a href="https://www.mtyyw.com/7/#comment-87724">
-                                    2018-04-14 8:11 下午
-                                </a>
-                            </div>
-                        </div>
-                        <div class="comment-content clearfix">
-                            <img alt="" src="https://secure.gravatar.com/avatar/3bd651f897d1ca6ee32a8ca3363bc726?s=72&amp;d=monsterid&amp;r=g"
-                            srcset="https://secure.gravatar.com/avatar/3bd651f897d1ca6ee32a8ca3363bc726?s=144&amp;d=monsterid&amp;r=g 2x"
-                            class="avatar avatar-72 photo" height="72" width="72">
-                            <p>
-                                慢慢开始，有下载也是极好的；
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <a rel="nofollow" class="comment-reply-link" href="https://www.mtyyw.com/7/?replytocom=87724#respond"
-                            onclick="return addComment.moveForm( &quot;comment-87724&quot;, &quot;87724&quot;, &quot;respond&quot;, &quot;7&quot; )"
-                            aria-label="回复给修行者">
-                                回复
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <!-- #comment-## -->
-                <li class="comment odd alt thread-odd thread-alt depth-1" id="comment-72242">
-                    <div id="div-comment-72242" class="comment-body">
-                        <div class="comment-author vcard clearfix">
-                            <span class="fn">
-                                萍果味幸福
-                            </span>
-                            <div class="comment-meta commentmetadata">
-                                <a href="https://www.mtyyw.com/7/#comment-72242">
-                                    2016-01-28 4:56 下午
-                                </a>
-                            </div>
-                        </div>
-                        <div class="comment-content clearfix">
-                            <img alt="" src="https://secure.gravatar.com/avatar/?s=72&amp;d=monsterid&amp;r=g"
-                            srcset="https://secure.gravatar.com/avatar/?s=144&amp;d=monsterid&amp;r=g 2x"
-                            class="avatar avatar-72 photo avatar-default" height="72" width="72">
-                            <p>
-                                第一次听麦田的歌就喜欢上了这里，喜欢的东西，就在继续！
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <a rel="nofollow" class="comment-reply-link" href="https://www.mtyyw.com/7/?replytocom=72242#respond"
-                            onclick="return addComment.moveForm( &quot;comment-72242&quot;, &quot;72242&quot;, &quot;respond&quot;, &quot;7&quot; )"
-                            aria-label="回复给萍果味幸福">
-                                回复
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <!-- #comment-## -->
-                <li class="comment even thread-even depth-1" id="comment-70729">
-                    <div id="div-comment-70729" class="comment-body">
-                        <div class="comment-author vcard clearfix">
-                            <span class="fn">
-                                lijinchen6502
-                            </span>
-                            <div class="comment-meta commentmetadata">
-                                <a href="https://www.mtyyw.com/7/#comment-70729">
-                                    2015-09-19 11:19 下午
-                                </a>
-                            </div>
-                        </div>
 
-                        <div class="comment-content clearfix">
-                            <img alt="" src="https://secure.gravatar.com/avatar/?s=72&amp;d=monsterid&amp;r=g"
-                            srcset="https://secure.gravatar.com/avatar/?s=144&amp;d=monsterid&amp;r=g 2x"
-                            class="avatar avatar-72 photo avatar-default" height="72" width="72">
-                            <p>
-                                我决定从头翻一遍
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <a rel="nofollow" class="comment-reply-link" href="https://www.mtyyw.com/7/?replytocom=70729#respond"
-                            onclick="return addComment.moveForm( &quot;comment-70729&quot;, &quot;70729&quot;, &quot;respond&quot;, &quot;7&quot; )"
-                            aria-label="回复给lijinchen6502">
-                                回复
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <!-- #comment-## -->
-                <li class="comment odd alt thread-odd thread-alt depth-1" id="comment-62905">
-                    <div id="div-comment-62905" class="comment-body">
-                        <div class="comment-author vcard clearfix">
-                            <span class="fn">
-                                在路上的娃
-                            </span>
-                            <div class="comment-meta commentmetadata">
-                                <a href="https://www.mtyyw.com/7/#comment-62905">
-                                    2014-08-28 9:07 上午
-                                </a>
-                            </div>
-                        </div>
-                        <div class="comment-content clearfix">
-                            <img alt="" src="https://secure.gravatar.com/avatar/92e590fdac7b35715adf516705649b2c?s=72&amp;d=monsterid&amp;r=g"
-                            srcset="https://secure.gravatar.com/avatar/92e590fdac7b35715adf516705649b2c?s=144&amp;d=monsterid&amp;r=g 2x"
-                            class="avatar avatar-72 photo" height="72" width="72">
-                            <p>
-                                很早就想从头开始翻起，主要是为了听歌，文字，共鸣的是大多是悲和凉~受老鬼大哥启发，决定也开个摄影主题的博客，记录成长的路径
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <a rel="nofollow" class="comment-reply-link" href="https://www.mtyyw.com/7/?replytocom=62905#respond"
-                            onclick="return addComment.moveForm( &quot;comment-62905&quot;, &quot;62905&quot;, &quot;respond&quot;, &quot;7&quot; )"
-                            aria-label="回复给在路上的娃">
-                                回复
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <!-- #comment-## -->
-                <li class="comment even thread-even depth-1" id="comment-56211">
-                    <div id="div-comment-56211" class="comment-body">
-                        <div class="comment-author vcard clearfix">
-                            <span class="fn">
-                                王淑葶
-                            </span>
-                            <div class="comment-meta commentmetadata">
-                                <a href="https://www.mtyyw.com/7/#comment-56211">
-                                    2013-08-08 10:04 上午
-                                </a>
-                            </div>
-                        </div>
-                        <div class="comment-content clearfix">
-                            <img alt="" src="https://secure.gravatar.com/avatar/?s=72&amp;d=monsterid&amp;r=g"
-                            srcset="https://secure.gravatar.com/avatar/?s=144&amp;d=monsterid&amp;r=g 2x"
-                            class="avatar avatar-72 photo avatar-default" height="72" width="72">
-                            <p>
-                                呼呼，我以为只有自己，原来好多人都从第一页看起了。最近心情不好，决定周末出去走走，喜欢这个网站好久了，断断续续一直到今天，老鬼很棒的说
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <a rel="nofollow" class="comment-reply-link" href="https://www.mtyyw.com/7/?replytocom=56211#respond"
-                            onclick="return addComment.moveForm( &quot;comment-56211&quot;, &quot;56211&quot;, &quot;respond&quot;, &quot;7&quot; )"
-                            aria-label="回复给王淑葶">
-                                回复
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <!-- #comment-## -->
-                <li class="comment odd alt thread-odd thread-alt depth-1" id="comment-54550">
-                    <div id="div-comment-54550" class="comment-body">
-                        <div class="comment-author vcard clearfix">
-                            <span class="fn">
-                                夜神月
-                            </span>
-                            <div class="comment-meta commentmetadata">
-                                <a href="https://www.mtyyw.com/7/#comment-54550">
-                                    2013-05-03 1:48 下午
-                                </a>
-                            </div>
-                        </div>
-                        <div class="comment-content clearfix">
-                            <img alt="" src="https://secure.gravatar.com/avatar/89fdc50f4ea7003ba72a7722fa273a1b?s=72&amp;d=monsterid&amp;r=g"
-                            srcset="https://secure.gravatar.com/avatar/89fdc50f4ea7003ba72a7722fa273a1b?s=144&amp;d=monsterid&amp;r=g 2x"
-                            class="avatar avatar-72 photo" height="72" width="72">
-                            <p>
-                                喜欢麦田很久了，最近有空，决定把所有歌都听一遍
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <a rel="nofollow" class="comment-reply-link" href="https://www.mtyyw.com/7/?replytocom=54550#respond"
-                            onclick="return addComment.moveForm( &quot;comment-54550&quot;, &quot;54550&quot;, &quot;respond&quot;, &quot;7&quot; )"
-                            aria-label="回复给夜神月">
-                                回复
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <!-- #comment-## -->
-                <li class="comment even thread-even depth-1" id="comment-38029">
-                    <div id="div-comment-38029" class="comment-body">
-                        <div class="comment-author vcard clearfix">
-                            <span class="fn">
-                                已凉
-                            </span>
-                            <div class="comment-meta commentmetadata">
-                                <a href="https://www.mtyyw.com/7/#comment-38029">
-                                    2011-03-07 9:02 上午
-                                </a>
-                            </div>
-                        </div>
-                        <div class="comment-content clearfix">
-                            <img alt="" src="https://secure.gravatar.com/avatar/625e4ba83dcb94fc2a3cdb6f54969e69?s=72&amp;d=monsterid&amp;r=g"
-                            srcset="https://secure.gravatar.com/avatar/625e4ba83dcb94fc2a3cdb6f54969e69?s=144&amp;d=monsterid&amp;r=g 2x"
-                            class="avatar avatar-72 photo" height="72" width="72">
-                            <p>
-                                总有些歌会让你想起一些人，回忆一些事，从第一首歌开始听，是因为无意间闯进了这片独自的麦田。
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <a rel="nofollow" class="comment-reply-link" href="https://www.mtyyw.com/7/?replytocom=38029#respond"
-                            onclick="return addComment.moveForm( &quot;comment-38029&quot;, &quot;38029&quot;, &quot;respond&quot;, &quot;7&quot; )"
-                            aria-label="回复给已凉">
-                                回复
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <!-- #comment-## -->
-                <li class="comment odd alt thread-odd thread-alt depth-1" id="comment-37495">
-                    <div id="div-comment-37495" class="comment-body">
-                        <div class="comment-author vcard clearfix">
-                            <span class="fn">
-                                偏执狂人
-                            </span>
-                            <div class="comment-meta commentmetadata">
-                                <a href="https://www.mtyyw.com/7/#comment-37495">
-                                    2011-02-02 11:27 上午
-                                </a>
-                            </div>
-                        </div>
-                        <div class="comment-content clearfix">
-                            <img alt="" src="https://secure.gravatar.com/avatar/0d1ded5b8d92603af044bd1cab34fc4a?s=72&amp;d=monsterid&amp;r=g"
-                            srcset="https://secure.gravatar.com/avatar/0d1ded5b8d92603af044bd1cab34fc4a?s=144&amp;d=monsterid&amp;r=g 2x"
-                            class="avatar avatar-72 photo" height="72" width="72">
-                            <p>
-                                认识这网站一年了，今天从第一首开始，在电脑上开个文件夹，就叫麦田
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <a rel="nofollow" class="comment-reply-link" href="https://www.mtyyw.com/7/?replytocom=37495#respond"
-                            onclick="return addComment.moveForm( &quot;comment-37495&quot;, &quot;37495&quot;, &quot;respond&quot;, &quot;7&quot; )"
-                            aria-label="回复给偏执狂人">
-                                回复
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <!-- #comment-## -->
-                <li class="comment even thread-even depth-1" id="comment-35420">
-                    <div id="div-comment-35420" class="comment-body">
-                        <div class="comment-author vcard clearfix">
-                            <span class="fn">
-                                时尚老太太
-                            </span>
-                            <div class="comment-meta commentmetadata">
-                                <a href="https://www.mtyyw.com/7/#comment-35420">
-                                    2010-10-10 7:23 下午
-                                </a>
-                            </div>
-                        </div>
-                        <div class="comment-content clearfix">
-                            <img alt="" src="https://secure.gravatar.com/avatar/d526f2adb8c08ccc02d604139431b048?s=72&amp;d=monsterid&amp;r=g"
-                            srcset="https://secure.gravatar.com/avatar/d526f2adb8c08ccc02d604139431b048?s=144&amp;d=monsterid&amp;r=g 2x"
-                            class="avatar avatar-72 photo" height="72" width="72">
-                            <p>
-                                偶然路过，听了，非常喜欢，于是从第一叶翻起
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <a rel="nofollow" class="comment-reply-link" href="https://www.mtyyw.com/7/?replytocom=35420#respond"
-                            onclick="return addComment.moveForm( &quot;comment-35420&quot;, &quot;35420&quot;, &quot;respond&quot;, &quot;7&quot; )"
-                            aria-label="回复给时尚老太太">
-                                回复
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <!-- #comment-## -->
-                <li class="comment odd alt thread-odd thread-alt depth-1" id="comment-32598">
-                    <div id="div-comment-32598" class="comment-body">
-                        <div class="comment-author vcard clearfix">
-                            <span class="fn">
-                                kevinstar
-                            </span>
-                            <div class="comment-meta commentmetadata">
-                                <a href="https://www.mtyyw.com/7/#comment-32598">
-                                    2010-06-18 9:48 下午
-                                </a>
-                            </div>
-                        </div>
-                        <div class="comment-content clearfix">
-                            <img alt="" src="https://secure.gravatar.com/avatar/c712b68fb75489d30302bd49b37dccd1?s=72&amp;d=monsterid&amp;r=g"
-                            srcset="https://secure.gravatar.com/avatar/c712b68fb75489d30302bd49b37dccd1?s=144&amp;d=monsterid&amp;r=g 2x"
-                            class="avatar avatar-72 photo" height="72" width="72">
-                            <p>
-                                原来大家都是这么好奇的从第一首歌曲开始啊~
-                                <br>
-                                我也准备好从第一页开始了~
-                                <br>
-                                谢谢老鬼~
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <a rel="nofollow" class="comment-reply-link" href="https://www.mtyyw.com/7/?replytocom=32598#respond"
-                            onclick="return addComment.moveForm( &quot;comment-32598&quot;, &quot;32598&quot;, &quot;respond&quot;, &quot;7&quot; )"
-                            aria-label="回复给kevinstar">
-                                回复
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <!-- #comment-## -->
-                <li class="comment even thread-even depth-1" id="comment-31198">
-                    <div id="div-comment-31198" class="comment-body">
-                        <div class="comment-author vcard clearfix">
-                            <span class="fn">
-                                CarrieJ
-                            </span>
-                            <div class="comment-meta commentmetadata">
-                                <a href="https://www.mtyyw.com/7/#comment-31198">
-                                    2010-05-05 6:21 下午
-                                </a>
-                            </div>
-                        </div>
-                        <div class="comment-content clearfix">
-                            <img alt="" src="https://secure.gravatar.com/avatar/ed450aebc7e8acedab5974d318fadaaf?s=72&amp;d=monsterid&amp;r=g"
-                            srcset="https://secure.gravatar.com/avatar/ed450aebc7e8acedab5974d318fadaaf?s=144&amp;d=monsterid&amp;r=g 2x"
-                            class="avatar avatar-72 photo" height="72" width="72">
-                            <p>
-                                一共103页，那么。。好吧。。
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <a rel="nofollow" class="comment-reply-link" href="https://www.mtyyw.com/7/?replytocom=31198#respond"
-                            onclick="return addComment.moveForm( &quot;comment-31198&quot;, &quot;31198&quot;, &quot;respond&quot;, &quot;7&quot; )"
-                            aria-label="回复给CarrieJ">
-                                回复
-                            </a>
-                        </div>
-                    </div>
-                    <ul class="children">
-                        <li class="comment byuser comment-author-admin bypostauthor odd alt depth-2"
-                        id="comment-31201">
-                            <div id="div-comment-31201" class="comment-body">
-                                <div class="comment-author vcard clearfix">
-                                    <span class="fn">
-                                        林中有鬼
-                                    </span>
-                                    <div class="comment-meta commentmetadata">
-                                        <a href="https://www.mtyyw.com/7/#comment-31201">
-                                            2010-05-05 7:15 下午
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="comment-content clearfix">
-                                    <img alt="" src="https://secure.gravatar.com/avatar/e8b72ebfb96ee1338d96713342e1aa13?s=72&amp;d=monsterid&amp;r=g"
-                                    srcset="https://secure.gravatar.com/avatar/e8b72ebfb96ee1338d96713342e1aa13?s=144&amp;d=monsterid&amp;r=g 2x"
-                                    class="avatar avatar-72 photo" height="72" width="72">
-                                    <p>
-                                        好奇心很强嘛
-                                    </p>
-                                </div>
-                                <div class="reply">
-                                    <a rel="nofollow" class="comment-reply-link" href="https://www.mtyyw.com/7/?replytocom=31201#respond"
-                                    onclick="return addComment.moveForm( &quot;comment-31201&quot;, &quot;31201&quot;, &quot;respond&quot;, &quot;7&quot; )"
-                                    aria-label="回复给林中有鬼">
-                                        回复
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
-                        <!-- #comment-## -->
-                    </ul>
-                    <!-- .children -->
-                </li>
-                <!-- #comment-## -->
-                <li class="comment even thread-odd thread-alt depth-1" id="comment-29850">
-                    <div id="div-comment-29850" class="comment-body">
-                        <div class="comment-author vcard clearfix">
-                            <span class="fn">
-                                128绿123
-                            </span>
-                            <div class="comment-meta commentmetadata">
-                                <a href="https://www.mtyyw.com/7/#comment-29850">
-                                    2010-04-02 8:18 下午
-                                </a>
-                            </div>
-                        </div>
-                        <div class="comment-content clearfix">
-                            <img alt="" src="https://secure.gravatar.com/avatar/9d066b9068752e531fe1f66addb2837e?s=72&amp;d=monsterid&amp;r=g"
-                            srcset="https://secure.gravatar.com/avatar/9d066b9068752e531fe1f66addb2837e?s=144&amp;d=monsterid&amp;r=g 2x"
-                            class="avatar avatar-72 photo" height="72" width="72">
-                            <p>
-                                无意中发现的网站，总体浏览了一下，很是喜欢。
-                                <br>
-                                从第一首歌开始听。
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <a rel="nofollow" class="comment-reply-link" href="https://www.mtyyw.com/7/?replytocom=29850#respond"
-                            onclick="return addComment.moveForm( &quot;comment-29850&quot;, &quot;29850&quot;, &quot;respond&quot;, &quot;7&quot; )"
-                            aria-label="回复给128绿123">
-                                回复
-                            </a>
-                        </div>
-                    </div>
-                    <ul class="children">
-                        <li class="comment odd alt depth-2" id="comment-29854">
-                            <div id="div-comment-29854" class="comment-body">
-                                <div class="comment-author vcard clearfix">
-                                    <span class="fn">
-                                        林中有鬼
-                                    </span>
-                                    <div class="comment-meta commentmetadata">
-                                        <a href="https://www.mtyyw.com/7/#comment-29854">
-                                            2010-04-02 9:41 下午
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="comment-content clearfix">
-                                    <img alt="" src="https://secure.gravatar.com/avatar/c7aa99b7c1ed9b602eec8f8930531bfa?s=72&amp;d=monsterid&amp;r=g"
-                                    srcset="https://secure.gravatar.com/avatar/c7aa99b7c1ed9b602eec8f8930531bfa?s=144&amp;d=monsterid&amp;r=g 2x"
-                                    class="avatar avatar-72 photo" height="72" width="72">
-                                    <p>
-                                        哈哈，真会挖掘啊
-                                    </p>
-                                </div>
-                                <div class="reply">
-                                    <a rel="nofollow" class="comment-reply-link" href="https://www.mtyyw.com/7/?replytocom=29854#respond"
-                                    onclick="return addComment.moveForm( &quot;comment-29854&quot;, &quot;29854&quot;, &quot;respond&quot;, &quot;7&quot; )"
-                                    aria-label="回复给林中有鬼">
-                                        回复
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
-                        <!-- #comment-## -->
-                    </ul>
-                    <!-- .children -->
-                </li>
-                <!-- #comment-## -->
-                <li class="comment even thread-even depth-1" id="comment-26037">
-                    <div id="div-comment-26037" class="comment-body">
-                        <div class="comment-author vcard clearfix">
-                            <span class="fn">
-                                JK
-                            </span>
-                            <div class="comment-meta commentmetadata">
-                                <a href="https://www.mtyyw.com/7/#comment-26037">
-                                    2009-11-15 9:27 下午
-                                </a>
-                            </div>
-                        </div>
-                        <div class="comment-content clearfix">
-                            <img alt="" src="https://secure.gravatar.com/avatar/0ac108bcd5e67cb1715fafdeeb9178fb?s=72&amp;d=monsterid&amp;r=g"
-                            srcset="https://secure.gravatar.com/avatar/0ac108bcd5e67cb1715fafdeeb9178fb?s=144&amp;d=monsterid&amp;r=g 2x"
-                            class="avatar avatar-72 photo" height="72" width="72">
-                            <p>
-                                喜欢麦田的界面和颜色 喜欢这里的音乐 喜欢这里的气氛 也喜欢这里的人 一直订阅 打开reader 听麦田里的旋律 有些是再熟悉不过的 有些是生命中错过的
-                                有些是带有惊喜的 更多是给生活带来美好的~~~喜欢音乐:-)
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <a rel="nofollow" class="comment-reply-link" href="https://www.mtyyw.com/7/?replytocom=26037#respond"
-                            onclick="return addComment.moveForm( &quot;comment-26037&quot;, &quot;26037&quot;, &quot;respond&quot;, &quot;7&quot; )"
-                            aria-label="回复给JK">
-                                回复
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <!-- #comment-## -->
-                <li class="comment odd alt thread-odd thread-alt depth-1" id="comment-22669">
-                    <div id="div-comment-22669" class="comment-body">
-                        <div class="comment-author vcard clearfix">
-                            <span class="fn">
-                                小小番茄
-                            </span>
-                            <div class="comment-meta commentmetadata">
-                                <a href="https://www.mtyyw.com/7/#comment-22669">
-                                    2009-08-09 9:54 上午
-                                </a>
-                            </div>
-                        </div>
-                        <div class="comment-content clearfix">
-                            <img alt="" src="https://secure.gravatar.com/avatar/fac8e10b908ea3ff645e6c0f62422f06?s=72&amp;d=monsterid&amp;r=g"
-                            srcset="https://secure.gravatar.com/avatar/fac8e10b908ea3ff645e6c0f62422f06?s=144&amp;d=monsterid&amp;r=g 2x"
-                            class="avatar avatar-72 photo" height="72" width="72">
-                            <p>
-                                不知不觉，麦田有3年了。谢谢老鬼一直默默的给我们的paradise.
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <a rel="nofollow" class="comment-reply-link" href="https://www.mtyyw.com/7/?replytocom=22669#respond"
-                            onclick="return addComment.moveForm( &quot;comment-22669&quot;, &quot;22669&quot;, &quot;respond&quot;, &quot;7&quot; )"
-                            aria-label="回复给小小番茄">
-                                回复
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <!-- #comment-## -->
-                <li class="comment even thread-even depth-1" id="comment-20467">
-                    <div id="div-comment-20467" class="comment-body">
-                        <div class="comment-author vcard clearfix">
-                            <span class="fn">
-                                king
-                            </span>
-                            <div class="comment-meta commentmetadata">
-                                <a href="https://www.mtyyw.com/7/#comment-20467">
-                                    2009-06-21 2:23 上午
-                                </a>
-                            </div>
-                        </div>
-                        <div class="comment-content clearfix">
-                            <img alt="" src="https://secure.gravatar.com/avatar/eb2bcfa60dcd891d4a9707ac9fc3176c?s=72&amp;d=monsterid&amp;r=g"
-                            srcset="https://secure.gravatar.com/avatar/eb2bcfa60dcd891d4a9707ac9fc3176c?s=144&amp;d=monsterid&amp;r=g 2x"
-                            class="avatar avatar-72 photo" height="72" width="72">
-                            <p>
-                                真的很喜歡麥田，所以決定重新從第一首歌開始聽，哈哈~
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <a rel="nofollow" class="comment-reply-link" href="https://www.mtyyw.com/7/?replytocom=20467#respond"
-                            onclick="return addComment.moveForm( &quot;comment-20467&quot;, &quot;20467&quot;, &quot;respond&quot;, &quot;7&quot; )"
-                            aria-label="回复给king">
-                                回复
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <!-- #comment-## -->
-                <li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10934">
-                    <div id="div-comment-10934" class="comment-body">
-                        <div class="comment-author vcard clearfix">
-                            <span class="fn">
-                                vivian
-                            </span>
-                            <div class="comment-meta commentmetadata">
-                                <a href="https://www.mtyyw.com/7/#comment-10934">
-                                    2008-12-13 11:18 下午
-                                </a>
-                            </div>
-                        </div>
-                        <div class="comment-content clearfix">
-                            <img alt="" src="https://secure.gravatar.com/avatar/81ddea3b82dd54c87d1da7ebe8ec5896?s=72&amp;d=monsterid&amp;r=g"
-                            srcset="https://secure.gravatar.com/avatar/81ddea3b82dd54c87d1da7ebe8ec5896?s=144&amp;d=monsterid&amp;r=g 2x"
-                            class="avatar avatar-72 photo" height="72" width="72">
-                            <p>
-                                thanks soooooo much for giving us sooooooo many wonderful songs .....xoxo
-                                <br>
-                                i love it
-                                <br>
-                                嘿嘿嘿
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <a rel="nofollow" class="comment-reply-link" href="https://www.mtyyw.com/7/?replytocom=10934#respond"
-                            onclick="return addComment.moveForm( &quot;comment-10934&quot;, &quot;10934&quot;, &quot;respond&quot;, &quot;7&quot; )"
-                            aria-label="回复给vivian">
-                                回复
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <!-- #comment-## -->
-                <li class="comment even thread-even depth-1" id="comment-9339">
-                    <div id="div-comment-9339" class="comment-body">
-                        <div class="comment-author vcard clearfix">
-                            <span class="fn">
-                                流浪麦田
-                            </span>
-                            <div class="comment-meta commentmetadata">
-                                <a href="https://www.mtyyw.com/7/#comment-9339">
-                                    2008-11-08 9:05 下午
-                                </a>
-                            </div>
-                        </div>
-                        <div class="comment-content clearfix">
-                            <img alt="" src="https://secure.gravatar.com/avatar/1e8fd3850b80405daba396da7c14e718?s=72&amp;d=monsterid&amp;r=g"
-                            srcset="https://secure.gravatar.com/avatar/1e8fd3850b80405daba396da7c14e718?s=144&amp;d=monsterid&amp;r=g 2x"
-                            class="avatar avatar-72 photo" height="72" width="72">
-                            <p>
-                                天使的婚礼，不够浪漫和甜蜜
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <a rel="nofollow" class="comment-reply-link" href="https://www.mtyyw.com/7/?replytocom=9339#respond"
-                            onclick="return addComment.moveForm( &quot;comment-9339&quot;, &quot;9339&quot;, &quot;respond&quot;, &quot;7&quot; )"
-                            aria-label="回复给流浪麦田">
-                                回复
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <!-- #comment-## -->
-                <li class="comment odd alt thread-odd thread-alt depth-1" id="comment-7420">
-                    <div id="div-comment-7420" class="comment-body">
-                        <div class="comment-author vcard clearfix">
-                            <span class="fn">
-                                小Q
-                            </span>
-                            <div class="comment-meta commentmetadata">
-                                <a href="https://www.mtyyw.com/7/#comment-7420">
-                                    2008-09-15 9:33 下午
-                                </a>
-                            </div>
-                        </div>
-                        <div class="comment-content clearfix">
-                            <img alt="" src="https://secure.gravatar.com/avatar/27aac2101dd6f419a6a509b77849a047?s=72&amp;d=monsterid&amp;r=g"
-                            srcset="https://secure.gravatar.com/avatar/27aac2101dd6f419a6a509b77849a047?s=144&amp;d=monsterid&amp;r=g 2x"
-                            class="avatar avatar-72 photo" height="72" width="72">
-                            <p>
-                                今天很有收获哦 挖到一个好网站
-                                <br>
-                                谢谢老鬼
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <a rel="nofollow" class="comment-reply-link" href="https://www.mtyyw.com/7/?replytocom=7420#respond"
-                            onclick="return addComment.moveForm( &quot;comment-7420&quot;, &quot;7420&quot;, &quot;respond&quot;, &quot;7&quot; )"
-                            aria-label="回复给小Q">
-                                回复
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <!-- #comment-## -->
-                <li class="comment even thread-even depth-1" id="comment-3400">
-                    <div id="div-comment-3400" class="comment-body">
-                        <div class="comment-author vcard clearfix">
-                            <span class="fn">
-                                笑呵呵
-                            </span>
-                            <div class="comment-meta commentmetadata">
-                                <a href="https://www.mtyyw.com/7/#comment-3400">
-                                    2008-05-27 3:20 下午
-                                </a>
-                            </div>
-                        </div>
-                        <div class="comment-content clearfix">
-                            <img alt="" src="https://secure.gravatar.com/avatar/9a07b7cd0c8c8e41b7d434b49cd8fe57?s=72&amp;d=monsterid&amp;r=g"
-                            srcset="https://secure.gravatar.com/avatar/9a07b7cd0c8c8e41b7d434b49cd8fe57?s=144&amp;d=monsterid&amp;r=g 2x"
-                            class="avatar avatar-72 photo" height="72" width="72">
-                            <p>
-                                这音乐听起来让人有点紧张，难道天使的婚礼是这个气氛的？
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <a rel="nofollow" class="comment-reply-link" href="https://www.mtyyw.com/7/?replytocom=3400#respond"
-                            onclick="return addComment.moveForm( &quot;comment-3400&quot;, &quot;3400&quot;, &quot;respond&quot;, &quot;7&quot; )"
-                            aria-label="回复给笑呵呵">
-                                回复
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <!-- #comment-## -->
-                <li class="comment odd alt thread-odd thread-alt depth-1" id="comment-3038">
-                    <div id="div-comment-3038" class="comment-body">
-                        <div class="comment-author vcard clearfix">
-                            <span class="fn">
-                                三门岛主
-                            </span>
-                            <div class="comment-meta commentmetadata">
-                                <a href="https://www.mtyyw.com/7/#comment-3038">
-                                    2008-05-13 1:49 下午
-                                </a>
-                            </div>
-                        </div>
-                        <div class="comment-content clearfix">
-                            <img alt="" src="https://secure.gravatar.com/avatar/ce051971a8a57547a892af512c462c8a?s=72&amp;d=monsterid&amp;r=g"
-                            srcset="https://secure.gravatar.com/avatar/ce051971a8a57547a892af512c462c8a?s=144&amp;d=monsterid&amp;r=g 2x"
-                            class="avatar avatar-72 photo" height="72" width="72">
-                            <p>
-                                音乐很好听
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <a rel="nofollow" class="comment-reply-link" href="https://www.mtyyw.com/7/?replytocom=3038#respond"
-                            onclick="return addComment.moveForm( &quot;comment-3038&quot;, &quot;3038&quot;, &quot;respond&quot;, &quot;7&quot; )"
-                            aria-label="回复给三门岛主">
-                                回复
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <!-- #comment-## -->
-            </ul>
+        <div id="comments">
             <div id="respond" class="comment-respond">
                 <h3 id="reply-title" class="comment-reply-title">
-                    发表评论
+                    <span class="as">发表评论</span>
                     <small>
-                        <a rel="nofollow" id="cancel-comment-reply-link" href="/7/#respond" style="display:none;">
+                        <a rel="nofollow" id="cancel-comment-reply-link" href=""
+                        style="display:none;">
                             取消回复
                         </a>
                     </small>
                 </h3>
-                <form action="https://www.mtyyw.com/wp-comments-post.php" method="post"
-                id="commentform" class="comment-form">
-                    <p class="comment-notes">
-                        <span id="email-notes">
-                            电子邮件地址不会被公开。
-                        </span>
-                        必填项已用
-                        <span class="required">
-                            *
-                        </span>
-                        标注
-                    </p>
+                <form action="" method="post"id="commentform" class="comment-form">
                     <p class="comment-form-comment">
                         <label for="comment">
                             评论
                         </label>
-                        <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525"
-                        required="required">
-                        </textarea>
+                        <textarea id="discuss" name="comment" cols="45"  onkeydown="checknum(100)" onkeyup="checknum(100)"  rows="8" maxlength="65525"
+                        required="required"></textarea>
+                        <span id="in"/>
+                        </span>
                     </p>
-                    <p class="comment-form-author">
-                        <label for="author">
-                            姓名
-                            <span class="required">
-                                *
-                            </span>
-                        </label>
-                        <input id="author" name="author" type="text" value="" size="30" maxlength="245"
-                        required="required">
-                    </p>
-                    <p class="comment-form-email">
-                        <label for="email">
-                            电子邮件
-                            <span class="required">
-                                *
-                            </span>
-                        </label>
-                        <input id="email" name="email" type="text" value="" size="30" maxlength="100"
-                        aria-describedby="email-notes" required="required">
-                    </p>
-                    <p class="form-submit">
-                        <input name="submit" type="submit" id="submit" class="submit" value="发表评论">
-                        <input type="hidden" name="comment_post_ID" value="7" id="comment_post_ID">
-                        <input type="hidden" name="comment_parent" id="comment_parent" value="0">
-                    </p>
-                    <p style="display: none;">
-                        <input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce"
-                        value="ebf58f7e8c">
+                    <p class="form-submit" style="text-align: right;">
+                        <input name="submit" type="submit" id="submit" class="submit" value="发表评论" style="display: inline;">
+                        <input type="hidden" id="did" value="{{$d_content->id}}">
+                        <input type="hidden" name="uid" value="{{session('homeuser')->id}}" id="uid">
                     </p>
                     <p style="display: none;">
                     </p>
-                    <input type="hidden" id="ak_js" name="ak_js" value="1539912618917">
+                    <p style="display: none;">
+                    </p>
                 </form>
             </div>
-            <!-- #respond -->
+            
+            <ul class="commentlist">
+                <!-- #comment-## -->
+                @foreach($user as $k=>$v)
+                
+                <li class="comment even thread-odd thread-alt depth-1" id="comment">
+                    <div class="comment-body">
+                        <div class="comment-author vcard clearfix">
+                            <span class="fn">
+                                {{$v->users['username']}}
+                            </span>
+                            <div class="comment-meta commentmetadata">
+                                    {{date('Y-m-d H:i:s A',$v->addtime)}}
+                            </div>
+                        </div>
+                        <div class="comment-content clearfix">
+                            <img alt="" src="{{$v->users['face']}}"class="avatar avatar-72 photo" height="72" width="72">
+                            <p class="con">
+                                {{$v->content}}
+                            </p>
+                        </div>
+                        <div class="reply">
+                            <a rel="nofollow"  cid="{{$v->id}}" class="comment-reply-link" href="javascript:void(0)">
+                                回复
+                            </a>
+                        </div>
+                    </div>
+                    @foreach($reply as $kk=>$vv)
+                        @if($vv->cid == $v->id)
+                            <ul class="children">
+                                <li class="comment even 2 depth-2">
+                                    <div class="comment-body">
+                                        <div class="comment-author vcard clearfix">
+                                            <span class="fn">
+                                                {{$vv->users['username']}}
+                                            </span>
+                                            <div class="comment-meta commentmetadata">
+                                                     {{date('Y-m-d H:i:s A',$vv->addtime)}}
+                                            </div>
+                                        </div>
+                                        <div class="comment-content clearfix">
+                                            <img alt="" src="{{$vv->users['face']}}"class="avatar avatar-72 photo" height="72" width="72">
+                                            <p class="con">
+                                                {{$vv->content}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        @endif
+                    @endforeach
+                </li>
+                @endforeach
+                <li class="comment even depth-1" id="centent_clone" style="display: none">
+                    <div class="comment-body">
+                        <div class="comment-author vcard clearfix">
+                            <span class="fn">
+                                
+                            </span>
+                            <div class="comment-meta commentmetadata">
+                                    
+                            </div>
+                        </div>
+                        <div class="comment-content clearfix">
+                            <img alt="" src="" class="avatar avatar-72 photo" height="72" width="72">
+                            <p class="con">
+                                
+                            </p>
+                        </div>
+                        <div class="reply">
+                            <a rel="nofollow"  cid="" class="comment-reply-link" href="javascript:void(0)">
+                                回复
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <ul class="children_clone" style="display: none;">
+                    <li class="comment even depth-1">
+                    <div class="comment-body">
+                        <div class="comment-author vcard clearfix">
+                            <span class="fn">
+                                
+                            </span>
+                            <div class="comment-meta commentmetadata">
+                                    
+                            </div>
+                        </div>
+                        <div class="comment-content clearfix">
+                            <img alt="" src=""class="avatar avatar-72 photo" height="72" width="72">
+                            <p class="con">
+                                
+                            </p>
+                        </div>
+                    </div>
+                    </li>
+                </ul>
+            </ul>
+            <h3 class="comments-title">
+                <span id="nums" class="nums">{{$num}}</span>条评论
+                
+            </h3>
         </div>        
         <!-- #respond -->
     </section>
@@ -868,6 +249,7 @@
 @stop
 
 @section('js')
+
 @php
     if (session('homeuser') && !$pr == '') {
         echo "<script type='text/javascript'>
@@ -899,8 +281,11 @@
         }
     };
     with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~ ( - new Date() / 36e5)];
+
+    console.log($('#praise'));
     $('#praise').click(function ()
     {
+
         var id = $(this).attr('href');
         // var praise = '';
         // if ($(this).find('.fa-thumbs-o-up').attr('class') == 'fa fa-thumbs-o-up') {
@@ -947,150 +332,9 @@
         return false;
     })
 </script>
-<!-- 百度分享 js 结束 -->
+<!-- 百度分享 js 结束 -->                  
+</section>
 
-                        <!-- end wrap -->
-                    </div>
-                    <!-- End Yuzo :) -->
-                    <div id="comments">
-                        <h3 class="comments-title">
-                            <span id="nums" class="nums">{{$num}}</span>条评论
-                            
-                        </h3>
-                        <ul class="commentlist">
-                            <!-- #comment-## -->
-                            @foreach($user as $k=>$v)
-                            
-                            <li class="comment even thread-odd thread-alt depth-1" id="comment">
-                                <div class="comment-body">
-                                    <div class="comment-author vcard clearfix">
-                                        <span class="fn">
-                                            {{$v->users['username']}}
-                                        </span>
-                                        <div class="comment-meta commentmetadata">
-                                                {{date('Y-m-d H:i:s A',$v->addtime)}}
-                                        </div>
-                                    </div>
-                                    <div class="comment-content clearfix">
-                                        <img alt="" src="{{$v->users['face']}}"class="avatar avatar-72 photo" height="72" width="72">
-                                        <p class="con">
-                                            {{$v->content}}
-                                        </p>
-                                    </div>
-                                    <div class="reply">
-                                        <a rel="nofollow"  cid="{{$v->id}}" class="comment-reply-link" href="javascript:void(0)">
-                                            回复
-                                        </a>
-                                    </div>
-                                </div>
-                                @foreach($reply as $kk=>$vv)
-                                    @if($vv->cid == $v->id)
-                                        <ul class="children">
-                                            <li class="comment even 2 depth-2">
-                                                <div class="comment-body">
-                                                    <div class="comment-author vcard clearfix">
-                                                        <span class="fn">
-                                                            {{$vv->users['username']}}
-                                                        </span>
-                                                        <div class="comment-meta commentmetadata">
-                                                                 {{date('Y-m-d H:i:s A',$vv->addtime)}}
-                                                        </div>
-                                                    </div>
-                                                    <div class="comment-content clearfix">
-                                                        <img alt="" src="{{$vv->users['face']}}"class="avatar avatar-72 photo" height="72" width="72">
-                                                        <p class="con">
-                                                            {{$vv->content}}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    @endif
-                                @endforeach
-                            </li>
-                            @endforeach
-                            <li class="comment even depth-1" id="centent_clone" style="display: none">
-                                <div class="comment-body">
-                                    <div class="comment-author vcard clearfix">
-                                        <span class="fn">
-                                            
-                                        </span>
-                                        <div class="comment-meta commentmetadata">
-                                                
-                                        </div>
-                                    </div>
-                                    <div class="comment-content clearfix">
-                                        <img alt="" src="" class="avatar avatar-72 photo" height="72" width="72">
-                                        <p class="con">
-                                            
-                                        </p>
-                                    </div>
-                                    <div class="reply">
-                                        <a rel="nofollow"  cid="" class="comment-reply-link" href="javascript:void(0)">
-                                            回复
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
-                            <ul class="children_clone" style="display: none;">
-                                <li class="comment even depth-1">
-                                <div class="comment-body">
-                                    <div class="comment-author vcard clearfix">
-                                        <span class="fn">
-                                            
-                                        </span>
-                                        <div class="comment-meta commentmetadata">
-                                                
-                                        </div>
-                                    </div>
-                                    <div class="comment-content clearfix">
-                                        <img alt="" src=""class="avatar avatar-72 photo" height="72" width="72">
-                                        <p class="con">
-                                            
-                                        </p>
-                                    </div>
-                                </div>
-                                </li>
-                            </ul>
-                        </ul>
-                        <div id="respond" class="comment-respond">
-                            <h3 id="reply-title" class="comment-reply-title">
-                                <span class="as">发表评论</span>
-                                <small>
-                                    <a rel="nofollow" id="cancel-comment-reply-link" href=""
-                                    style="display:none;">
-                                        取消回复
-                                    </a>
-                                </small>
-                            </h3>
-                            <form action="" method="post"id="commentform" class="comment-form">
-                                <p class="comment-form-comment">
-                                    <label for="comment">
-                                        评论
-                                    </label>
-                                    <textarea id="discuss" name="comment" cols="45"  onkeydown="checknum(100)" onkeyup="checknum(100)"  rows="8" maxlength="65525"
-                                    required="required"></textarea>
-                                    <span id="in"/>
-                                    </span>
-                                </p>
-                                <p class="form-submit">
-                                    <input name="submit" type="submit" id="submit" class="submit" value="发表评论">
-                                    <input type="hidden" id="did" value="{{$d_content->id}}">
-                                    <input type="hidden" name="uid" value="{{session('homeuser')->id}}" id="uid">
-                                </p>
-                                <p style="display: none;">
-                                </p>
-                                <p style="display: none;">
-                                </p>
-                            </form>
-                        </div>
-                        <!-- #respond -->
-                    </div>
-                    
-    </section>
-@stop
-
-@section('js')
     
     <script type="text/javascript">
 
@@ -1120,7 +364,7 @@
 
                 function(data){
 
-                    console.log(data);
+                    swal("恭喜你!", "评论成功!", "success");
 
                     checknum(100);
 
@@ -1154,8 +398,9 @@
 
                 function(data){
                     checknum(100);
-                    // var flag = true;
-                    // console.log(data);
+
+                    swal("恭喜你!", "回复成功!", "success");
+
                     var New_ul = $('.children_clone').clone(true);
 
                     New_ul.removeClass('children_clone');
