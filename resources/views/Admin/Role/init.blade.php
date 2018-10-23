@@ -79,12 +79,12 @@
                             <td>{{$v->id}}</td>
                             <td>{{$v->role_name}}</td>                        
                             <td>
-                                <a style="width: 40px" href="/admin/role_permission/{{$v->id}}/r_p_edit" class="btn btn-info btn-small"><i  class="fa fa-user-secret"></i></a>
-                                <a href="/admin/role/{{$v->id}}/edit" class="btn btn-info btn-small"><i class="glyphicon glyphicon-edit"></i></a>
-                                <form action="/admin/role/{{$v->id}}" method="post" class="del"  style="display: inline;">
-                                    {{csrf_field()}}
-                                    {{method_field('DELETE')}}
-                                    <button class="btn btn-danger btn-small del" data-id="{{$v->id}}"><i class="glyphicon glyphicon-trash"></i></button>
+                                <a style="width: 40px" href="/admin/role_permission/{{$v->id}}/r_p_edit" title="添加角色权限" class="btn btn-info btn-small"><i  class="fa fa-user-secret"></i></a>
+                                <a href="/admin/role/{{$v->id}}/edit" title="修改" class="btn btn-info btn-small"><i class="glyphicon glyphicon-edit"></i></a>
+                                <form action="/admin/role/{{$v->id}}" method="post" class="dels"  style="display: inline;">
+                                    {{--csrf_field()--}}
+                                    {{--method_field('DELETE')--}}
+                                    <button class="btn btn-danger btn-small del" title="删除" data-id="{{$v->id}}"><i class="glyphicon glyphicon-trash"></i></button>
                                 </form>
                             </td>
                         </tr>
@@ -110,19 +110,52 @@
 
 @stop
 
-@section('js')
+@section('js')  
+    <script src="/homes/js/sweetalert.min.js"></script>
 	<script type="text/javascript">
 		//改变导航条样式
 		var show_role = $('.show_role').parents('li');
 		$('.show_role a').css({'color':'#fff'});
 		show_role.attr('class','active');
-	</script>
 
-    <!-- <script src="/admins/js/content.min.js?v=1.0.0"></script> -->
-    <script src="/admins/js/plugins/validate/jquery.validate.min.js"></script>
-    <script src="/admins/js/plugins/validate/messages_zh.min.js"></script>
-    <script src="/admins/js/demo/form-validate-demo.min.js"></script>
-    <script src="/homes/js/sweetalert.min.js"></script>
+        $('.dels').click(function ()
+        {
+            var hrefs= $(this).attr('action');
+            // console.log(hrefs)
+            swal({
+                title: "您确定要删除此条角色吗?",
+                text: "点击OK将会删除此条角色, 请谨慎操作!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) =>{
+                if (willDelete) {
+                    $.ajax({
+                        url: hrefs,
+                        data: {"_method" : "DELETE"},
+                        type: "POST",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data == 0) {
+                                location.reload(true);
+                                swal("恭喜您!", "删除角色成功!", "success");
+                                
+                            } else if (data == 1) {
+                                swal("对不起!", "删除角色失败!", "error");
+                            }
+                        },
+                        error: function(){
+                            swal("对不起!", "删除角色失败!", "error");
+                        },
+                        async: true
+                    });
+                }
+            });
+
+            return false;
+        })
+
+	</script>
 
 	@if(session('succes'))  
     <script type="text/javascript">

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!-- HTML 5 -->
 <html lang="zh-CN">
 <head>
@@ -110,7 +110,7 @@
             }
         </style>
     </head>    
-    <body class="home blog" style="padding-right:0px !important;">        
+<body class="home blog">        
         @if(session('error'))  
         <script type="text/javascript">
             swal("对不起!", "{{session('error')}}", "error");
@@ -120,11 +120,10 @@
         @if(session('success'))
         <script type="text/javascript">
             swal("恭喜你!", "{{session('success')}}", "success");
-        </script>
+        </script>      
         @endif
             <?php
                 $cate = \App\Model\Home\CateGory::getSubCates();
-                // dd($cate);
             ?>
         <div id="wrapper" class="hfeed">
             <!-- 代码 开始 -->
@@ -136,26 +135,33 @@
                     </li>
                     @foreach ($cate as $k => $v)
                     <li class="li_3">
-                        <a class="noclick" href="#" target="_blank">{{$v -> catename}}</a>
+                        <a class="noclick" href="/home/lists/{{$v->id}}" target="_self">{{$v -> catename}}</a>
                         <dl style="margin:0px; padding: 0px;" class="li_3_content">
                             <dt></dt>
                             @foreach ($v->sub as $kk=>$vv)
 
-                            <dd style="margin:0px; padding: 0px;"><a href="http://sc.chinaz.com/" target="_blank"><span>{{$vv -> catename}}</span></a></dd>
+                            <dd style="margin:0px; padding: 0px;"><a href="/home/lists/{{$vv->id}}" target="_self"><span>{{$vv -> catename}}</span></a></dd>
                            
                             @endforeach
                         </dl>
                     </li>
                     @endforeach
+
+                    <li class="li_3">
+                        <a class="noclick" href="/Home/message" target="_blank">留言板</a>
+                        <dl style="margin:0px; padding: 0px;" class="li_3_content">
+                            <dt></dt>
+                        </dl>
+                    </li>
                 </ul>
-            
-                <a href="/">
+                
+                <a href="http://sc.chinaz.com/">
                     <img title="MIUI" class="miui_logo" src="/admins/img/yinyuelogo.png" width="200" alt="网站logo" /></a>
                 @if(empty(session('homeuser')))
                 <p class="language">
-                    <a style="display: inline;" href="javascript:void(0)" class="weidengru1 lgtanchu shenyinclick">登录</a>
+                    <a style="display: inline;" href="Javascript:;" class="weidengru1 lgtanchu shenyinclick">登录</a>
                     <span>|</span>
-                    <a style="display: inline;" class="weidengru2 mf_zhucetan shenyinclick" href="javascript:void(0)" rel="nofollow">注册</a>
+                    <a style="display: inline;" class="weidengru2 mf_zhucetan shenyinclick" href="Javascript:;" rel="nofollow">注册</a>
                 </p>
                 @else
                 <p class="language">
@@ -166,8 +172,9 @@
                 @endif
             </div>
             <!-- 代码 结束 -->
-
+            @section('contents')
             @section('content')
+
             <?php
                 $pictures = \App\Model\Home\Banner::BanNer();
              ?>
@@ -192,7 +199,6 @@
                     <li><a>{{$i}}</a></li>
                     @endfor
                 </ol>
-
             </div>
              
             <script src="/homes/js/slider.js"></script>
@@ -220,24 +226,38 @@
             </script>
             <!-- banner stop -->
             <div id="wrap" class="container clearfix">
+                @php
+                    $details =App\Model\Admin\Details::with('details_content', 'lists')->where('status', '<>', '1')->get();
+                    $lid = [];
+                    foreach ($details as $k => $v) {
+                        $lid[] = $v -> lists['id'];
+                    }
+                    $details = App\Model\Admin\Details::with('details_content', 'lists')->whereIn('id', $lid)->orderBy('id', 'asc')->paginate(10);
+                @endphp
                 <section id="content" class="primary" role="main">
-                    <article id="post-13827" class="content-excerpt post-13827 post type-post status-publish format-standard has-post-thumbnail sticky hentry category-nomusic tag-t">
+                    @foreach($details as $k => $v)
+                    <article class="content-excerpt post-13827 post type-post status-publish format-standard has-post-thumbnail sticky hentry category-nomusic tag-t">
                         <h2 class="post-title entry-title">
                             <a href="https://www.mtyyw.com/13827/" rel="bookmark">
-                                2018年T恤上新：我真的喜欢做一些让人喜欢的东西
+                                {{$v->details_content->title}}
                             </a>
                         </h2>
                         <div class="postmeta">
-                            2016-3-10
+                            {{date('Y-m-d',$v->details_content->addtime)}}
                         </div>
                         <div class="entry clearfix">
+                            <blockquote>
+                                <p>
+                                    {{$v->details_content->saying}}
+                                </p>
+                            </blockquote>
                             <p>
-                                <img class="" src="/homes/images/TB2uFTbg7OWBuNjSsppXXXPgpXa_!!13533312.jpg"
+                                <img class="" src="{{$v->details_content->picstream}}"
                                 align="absmiddle" />
                                 <br />
-                                2018年麦田T恤上新中。
+                                简介:{{$v->details_content->describe}}
                             </p>
-                            <a href="https://www.mtyyw.com/13827/" class="more-link">
+                            <a href="/home/details/{{$v->id}}" class="more-link">
                                 查看全部
                             </a>
                         </div>
@@ -247,49 +267,6 @@
                                     <li>
                                         <a href="https://www.mtyyw.com/nomusic/" rel="category tag">
                                             无关音乐
-                                        </a>
-                                    </li>
-                                </ul>
-                            </span>
-                        </div>
-                    </article>
-                    <article id="post-19564" class="content-excerpt post-19564 post type-post status-publish format-standard hentry category-feizhuliuyinyue category-wenzi tag-minyao tag-1933">
-                        <h2 class="post-title entry-title">
-                            <a href="https://www.mtyyw.com/19564/" rel="bookmark">
-                                只要现在欢乐，赵照《舍不得过》唱到你心里
-                            </a>
-                        </h2>
-                        <div class="postmeta">
-                            2018-9-26
-                        </div>
-                        <div class="entry clearfix">
-                            <blockquote>
-                                <p>
-                                    与人交往要守住态度，值得的我一定真心相待不辜负，不值得的一笑而过不再多说。没有必要也没有可能与所有人成为好朋友，要做一个有原则的人，不亏待每一份热情，也绝不讨好任何的冷漠。——苑子文
-                                </p>
-                            </blockquote>
-                            <p>
-                                <img class="alignnone size-full wp-image-19565" src="/homes/images/shebudeguo.jpg"
-                                alt="舍不得过 - 赵照" width="400" height="400" />
-                                <br />
-                                曲名：舍不得过
-                                <br />
-                                歌手：赵照
-                                <br />
-                                发行年代：2015
-                                <br />
-                                风格：民谣
-                                <br />
-                                介绍：舍不得过这首歌创作于2013年夏末，这是一个简洁的弹唱版本，气质慵懒，风格老旧。因为制作上的反反复复，一直拖到今天才勉强发表。赵照表示如果说《当你老了》对于我是一个问题，那《舍不得过》像一个答案。然而答案是引发另外一个问题的开始……
-                            </p>
-                            <a href="https://www.mtyyw.com/19564/" class="more-link">
-                                查看全部
-                            </a>
-                        </div>
-                        <div class="postinfo clearfix">
-                            <span class="meta-category">
-                                <ul class="post-categories">
-                                    <li>
                                         <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
                                             小众音乐
                                         </a>
@@ -303,43 +280,30 @@
                             </span>
                         </div>
                     </article>
-                    <article id="post-19561" class="content-excerpt post-19561 post type-post status-publish format-standard has-post-thumbnail hentry category-feizhuliuyinyue category-wenzi tag-2146 tag-minyao tag-2851 tag-2831">
+                    
+                    
+                    <article class="content-excerpt post-19689 post type-post status-publish format-standard has-post-thumbnail hentry category-video category-popmusic tag-2853 tag-3298 tag-3472"><h2 class="post-title entry-title">
                         <h2 class="post-title entry-title">
-                            <a href="https://www.mtyyw.com/19561/" rel="bookmark">
-                                我沉迷于秋日 &#8211; 纣王老胡
+                            <a href="https://www.mtyyw.com/13827/" rel="bookmark">
+                                {{$v->details_content->title}}
                             </a>
                         </h2>
                         <div class="postmeta">
-                            2018-9-25
+                            {{date('Y-m-d',$v->details_content->addtime)}}
                         </div>
                         <div class="entry clearfix">
                             <blockquote>
                                 <p>
-                                    我的生命不过是温柔的疯狂。眼里一片海，我却不肯蓝。——兰波
+                                    {{$v->details_content->saying}}
                                 </p>
                             </blockquote>
                             <p>
-                                <img src="/homes/images/qiuri-mtyyw.jpg"
-                                alt="我沉迷于秋日" width="500" height="333" class="alignnone size-full wp-image-19563"
-                                />
+                                <img class="" src="{{$v->details_content->picstream}}"
+                                align="absmiddle" />
                                 <br />
-                                曲名：我沉迷于秋日
-                                <br />
-                                歌手：纣王老胡
-                                <br />
-                                作曲：纣王老胡
-                                <br />
-                                作词：林清
-                                <br />
-                                所属专辑：沉迷于秋日
-                                <br />
-                                发行时间：2018-09-01
-                                <br />
-                                风格：民谣
-                                <br />
-                                介绍：我沉迷于秋日 / 沉迷于你目光所致 / 我沉迷于放肆 / 沉迷于你眼神所视 / 这世界花花的也不过如此。
+                                简介:{{$v->details_content->describe}}
                             </p>
-                            <a href="https://www.mtyyw.com/19561/" class="more-link">
+                            <a href="/home/details/{{$v->id}}" class="more-link">
                                 查看全部
                             </a>
                         </div>
@@ -347,6 +311,8 @@
                             <span class="meta-category">
                                 <ul class="post-categories">
                                     <li>
+                                        <a href="https://www.mtyyw.com/nomusic/" rel="category tag">
+                                            无关音乐
                                         <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
                                             小众音乐
                                         </a>
@@ -360,205 +326,9 @@
                             </span>
                         </div>
                     </article>
-                    <article id="post-19558" class="content-excerpt post-19558 post type-post status-publish format-standard has-post-thumbnail hentry category-feizhuliuyinyue category-wenzi tag-3448 tag-rock tag-1336 tag-minyao">
-                        <h2 class="post-title entry-title">
-                            <a href="https://www.mtyyw.com/19558/" rel="bookmark">
-                                秋天的老狼 | 李志
-                            </a>
-                        </h2>
-                        <div class="postmeta">
-                            2018-9-23
-                        </div>
-                        <div class="entry clearfix">
-                            <blockquote>
-                                <p>
-                                    你需要的伴侣，最好是那能够和你并肩立在船头，浅斟低唱两岸风光，同时更能在惊涛骇浪中紧紧握住你的手不放的人。换句话说，最好她本身不是你必须应付的惊涛骇浪。——龙应台
-                                </p>
-                            </blockquote>
-                            <p>
-                                <img src="/homes/images/lizhibb.jpg"
-                                alt="李志《你好，郑州》" width="400" height="400" class="alignnone size-full wp-image-19559"
-                                />
-                                <br />
-                                曲名：秋天的老狼
-                                <br />
-                                歌手：李志
-                                <br />
-                                所属专辑：你好，郑州
-                                <br />
-                                发行年代：2010
-                                <br />
-                                风格：摇滚，民谣
-                            </p>
-                            <a href="https://www.mtyyw.com/19558/" class="more-link">
-                                查看全部
-                            </a>
-                        </div>
-                        <div class="postinfo clearfix">
-                            <span class="meta-category">
-                                <ul class="post-categories">
-                                    <li>
-                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
-                                            小众音乐
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.mtyyw.com/wenzi/" rel="category tag">
-                                            文字
-                                        </a>
-                                    </li>
-                                </ul>
-                            </span>
-                        </div>
-                    </article>
-                    <article id="post-19556" class="content-excerpt post-19556 post type-post status-publish format-standard has-post-thumbnail hentry category-feizhuliuyinyue tag-3447 tag-3446 tag-jita tag-chunyinyue tag-3138">
-                        <h2 class="post-title entry-title">
-                            <a href="https://www.mtyyw.com/19556/" rel="bookmark">
-                                吉他发烧曲《那些花儿》
-                            </a>
-                        </h2>
-                        <div class="postmeta">
-                            2018-9-21
-                        </div>
-                        <div class="entry clearfix">
-                            <blockquote>
-                                <p>
-                                    我想和你在一起，几天也好。在某个地方，某个时候。——电影《广岛之恋》
-                                </p>
-                            </blockquote>
-                            <p>
-                                <img src="/homes/images/post-432298-1145330675.jpg"
-                                alt="彻夜未眠" width="357" height="328" class="alignnone size-full wp-image-18050"
-                                />
-                                <br />
-                                曲名：那些花儿
-                                <br />
-                                歌手：陈小平
-                                <br />
-                                所属专辑：彻夜未眠
-                                <br />
-                                发行年代：2005
-                                <br />
-                                风格：纯音乐，发烧音乐，吉他
-                                <br />
-                                介绍：这是一套在网上广为流传的吉他发烧碟，首张发行于2005年。无可挑剔的技术、出神入化的演奏、华丽亲切的音乐气氛、清晰明亮的音色、以及层次感丰富的配器，无不令人耳目一新，是一张不折不扣的原声吉他发烧录音，而专辑中所选曲目，多为我们所熟悉，这更增加了我们聆听时的亲切感。
-                            </p>
-                            <a href="https://www.mtyyw.com/19556/" class="more-link">
-                                查看全部
-                            </a>
-                        </div>
-                        <div class="postinfo clearfix">
-                            <span class="meta-category">
-                                <ul class="post-categories">
-                                    <li>
-                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
-                                            小众音乐
-                                        </a>
-                                    </li>
-                                </ul>
-                            </span>
-                        </div>
-                    </article>
-                    <article id="post-19553" class="content-excerpt post-19553 post type-post status-publish format-standard has-post-thumbnail hentry category-feizhuliuyinyue category-wenzi tag-bob-dylan tag-minyao tag-2225">
-                        <h2 class="post-title entry-title">
-                            <a href="https://www.mtyyw.com/19553/" rel="bookmark">
-                                天色未暗 夜已不远 Not Dark Yet &#8211; Bob Dylan
-                            </a>
-                        </h2>
-                        <div class="postmeta">
-                            2018-9-20
-                        </div>
-                        <div class="entry clearfix">
-                            <blockquote>
-                                <p>
-                                    我的名字并不能提供任何有关我这个人的线索，我的生活也不能暗示我的本质。——安吉拉·卡特
-                                </p>
-                            </blockquote>
-                            <p>
-                                <img src="/homes/images/The-Best-of-Bob-Dylan.jpg"
-                                alt="The Best of Bob Dylan" width="400" height="400" class="alignnone size-full wp-image-19554"
-                                />
-                                <br />
-                                曲名：Not Dark Yet
-                                <br />
-                                歌手：Bob Dylan
-                                <br />
-                                所属专辑：The Best of Bob Dylan
-                                <br />
-                                发行年代：2005
-                                <br />
-                                风格：民谣
-                            </p>
-                            <a href="https://www.mtyyw.com/19553/" class="more-link">
-                                查看全部
-                            </a>
-                        </div>
-                        <div class="postinfo clearfix">
-                            <span class="meta-category">
-                                <ul class="post-categories">
-                                    <li>
-                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
-                                            小众音乐
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.mtyyw.com/wenzi/" rel="category tag">
-                                            文字
-                                        </a>
-                                    </li>
-                                </ul>
-                            </span>
-                        </div>
-                    </article>
-                    <article id="post-19547" class="content-excerpt post-19547 post type-post status-publish format-standard hentry category-feizhuliuyinyue category-wenzi tag-tiny-harvest tag-3444 tag-3445 tag-3443 tag-2010">
-                        <h2 class="post-title entry-title">
-                            <a href="https://www.mtyyw.com/19547/" rel="bookmark">
-                                美好的一天 Beautiful Day &#8211; Tiny Harvest
-                            </a>
-                        </h2>
-                        <div class="postmeta">
-                            2018-9-19
-                        </div>
-                        <div class="entry clearfix">
-                            <blockquote>
-                                <p>
-                                    看清楚这个世界，并不能让这个世界变更好。但可能让你在看清楚这个世界是个怎样的世界后，把自己变得比较好。——朱德庸
-                                </p>
-                            </blockquote>
-                            <p>
-                                <img class="alignnone size-full wp-image-19548" src="/homes/images/TAS-The-Absolute-Sound-2006.jpg"
-                                alt="TAS- The Absolute Sound 2006" width="400" height="400" />
-                            </p>
-                            <p>
-                                曲名：Beautiful Day
-                                <br />
-                                歌手：Tiny Harvest
-                                <br />
-                                所属专辑：TAS：The Absolute Sound 2006
-                                <br />
-                                专辑中文名：绝对的声音 2006
-                            </p>
-                            <a href="https://www.mtyyw.com/19547/" class="more-link">
-                                查看全部
-                            </a>
-                        </div>
-                        <div class="postinfo clearfix">
-                            <span class="meta-category">
-                                <ul class="post-categories">
-                                    <li>
-                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
-                                            小众音乐
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.mtyyw.com/wenzi/" rel="category tag">
-                                            文字
-                                        </a>
-                                    </li>
-                                </ul>
-                            </span>
-                        </div>
-                    </article>
+                    @endforeach
+                   
+
                     <div class="post-pagination clearfix">
                         <span aria-current='page' class='page-numbers current'>
                             1
@@ -580,6 +350,8 @@
                         </a>
                     </div>
                 </section>
+                @show
+
                 <section id="sidebar" class="secondary clearfix" role="complementary">
                     <aside id="search-8" class="widget widget_search clearfix">
                         <h3 class="widgettitle">
@@ -839,22 +611,41 @@
                             </div>
                         </div>
                     </aside>
+                    
+                     @php 
+                      $advertising = \App\Model\Home\Advertising::AdverTising();
+           
+                     @endphp
+                    
                     <aside id="text-8" class="widget widget_text clearfix">
-                        <h3 class="widgettitle">
+                         <h3 class="widgettitle">
                             <span>
-                                麦田车载CD
+                                广告牌
                             </span>
                         </h3>
-                        <div class="textwidget">
-                            <a href="https://www.mtyyw.com/18639/" rel="nofollow" target="_blank">
-                                <img src=""
-                                alt="麦田音乐CD" width="350" height="337" class="alignnone size-full wp-image-11045"
+                         @foreach ($advertising as $k=>$v)
+                        <div class="textwidget" id="divs">
+                            <a href="{{$v->links}}" rel="nofollow" target="_blank">
+                                <img src="{{$v->picture}}"
+                                 width="350" height="337" class="alignnone size-full wp-image-11045"
                                 />
                             </a>
+                            <img width="25px" src="/admins/uploads/gg/gg1.png" onclick="closed();" />
                         </div>
+                         @endforeach
                     </aside>
+                   
                 </section>
             </div>
+            <script>
+               function closed()
+               {
+                
+                var divs = document.getElementById('divs');
+                divs.style.display = 'none';
+               }
+
+            </script>
             @show
             <div id="footer-widgets-bg">
                 <div id="footer-widgets-wrap" class="container">
@@ -994,8 +785,8 @@
                 </footer>
             </div>
         </div>
+
         <!-- end #wrapper -->
-        @section('homeuser')
         <script>
             (function(i, s, o, g, r, a, m) {
                 i['GoogleAnalyticsObject'] = r;
@@ -1015,35 +806,34 @@
         </script>
         <!-- 7 queries in 0.088 seconds. -->
              
-<!-- 右边展开代码开始 -->
+        <!-- 右边展开代码开始 -->
+        <script src="/homes/public/templates/default/js/JCheck.js" tppabs="http://www.mfdemo.cn/public/templates/default/js/JCheck.js"></script>
+        <script>
+            $(function () {
+                $('.u-checkbox').jCheckbox();
 
-<script src="/homes/public/templates/default/js/JCheck.js" tppabs="http://www.mfdemo.cn/public/templates/default/js/JCheck.js"></script>
-<script>
-    $(function () {
-        $('.u-checkbox').jCheckbox();
+                if ($('#is_remember').val() == '') {
+                    $('#remember').attr('checked', 'checked');
+                    $('#remember').val('1');
+                }
 
-        if ($('#is_remember').val() == '') {
-            $('#remember').attr('checked', 'checked');
-            $('#remember').val('1');
-        }
+                $('#remember').click(function () {
 
-        $('#remember').click(function () {
+                    if ($(this).attr('checked')) {
+                        $(this).val('1');
+                    } else {
+                        $(this).val('2');
+                    }
+                });
 
-            if ($(this).attr('checked')) {
-                $(this).val('1');
-            } else {
-                $(this).val('2');
-            }
-        });
+            });
+        </script>
 
-    });
-</script>
+        <!-- 右边展开代码结束 -->
 
-<!-- 右边展开代码结束 -->
+        <!-- 左边模板展示代码 结束 -->
 
-<!-- 左边模板展示代码 结束 -->
-
-<!--登录代码开始 -->
+        <!--登录代码开始 -->
         <div class="mf_dengluzhezhao"></div>
 
         <div class="mf_denglu">
@@ -1085,25 +875,11 @@
                                 <img src="/code" style="border-radius:8px; position:fixed; left:280px; top:291px;" onclick="this.src='/code?rand='+Math.random();">
                                 <div class="Validform_checktip"></div>
                             </div>
-
-
                         </div>
 
                         <div class="from-an">
                             <p><button type="submit" class="button--wayra mf_denglutijiao shenyinclick lgtanchu" id="denglutijiao">登录</button></p>
                         </div>
-
-                        <!-- <div class="mf_denglu1-3-4">
-                            <p><label class="u-checkbox z-checked">
-
-                                <input id="remember" name="mf_login_remember" type="checkbox" value="1" checked="checked">
-                                
-                                <input type="hidden" id="is_remember" value="">
-                                <i class="icon shenyinclick"></i>
-
-                            </label></p>
-                            <span style="margin-top: 7px;">在此计算机上记住密码</span>
-                        </div> -->
                     </form>
 
                 </div>
@@ -1114,8 +890,8 @@
             <div class="mf_denglu2">
                 <div class="mf_denglu2-1">
 
-                    <p><a class=" fa fa-qq" href=""  target="_blank"></a></p>
-                    <span><a class="fa fa-wechat" href="" tppabs=""></a></span>
+                    <p><a class=" fa fa-qq" href="javascript:if(confirm(%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/qq/callback/"  target="_blank"></a></p>
+                    <span><a class="fa fa-wechat" href="javascript:if(confirm(%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/weixin/callback/"></a></span>
 
                 </div>
 
@@ -1182,8 +958,8 @@
 
                 <div class="mf_denglu2-1">
 
-                    <p><a class=" fa fa-qq" href=""  target="_blank"></a></p>
-                    <span><a class="fa fa-wechat" href="" ></a></span> 
+                    <p><a class=" fa fa-qq" href="javascript:if(confirm(%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/qq/callback/"  target="_blank"></a></p>
+                    <span><a class="fa fa-wechat" href="javascript:if(confirm(%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/weixin/callback/"></a></span> 
 
                 </div>
 
@@ -1212,9 +988,9 @@
         <div class="mf_chongzhi">
             <div class="mf_chongzhihuo"></div>
 
-            <!-- <div class="mf_chongzhiguan shenyinclick">
+            <div class="mf_chongzhiguan shenyinclick">
                 <svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23px" height="23px" viewBox="175.364 -61.823 23 23" enable-background="new 175.364 -61.823 23 23" tppabs="http://www.mfdemo.cn/new 175.364 -61.823 23 23" xml:space="preserve"><path fill="#846045" d="M186.88-49.493l-3.995,3.995l-0.407,0.407l-0.813-0.813l0.406-0.407l3.995-3.997l-3.995-3.997l-0.406-0.406 l0.813-0.813l0.407,0.406l3.995,3.996l3.996-3.996l0.407-0.406l0.813,0.813l-0.407,0.406l-3.995,3.997l3.995,3.997l0.407,0.407 l-0.813,0.813l-0.407-0.407L186.88-49.493z M186.864-38.823c6.351,0,11.5-5.149,11.5-11.5s-5.149-11.5-11.5-11.5 s-11.5,5.149-11.5,11.5S180.514-38.823,186.864-38.823z"></path></svg>
-            </div> -->
+            </div>
 
             <div class="mf_chongzhi1">
 
@@ -1265,7 +1041,7 @@
         </div>
 
         <div class="chongzhichenggong">
-            <div class="chongzhichenggong1"><img src="/homes/public/templates/default/images/gou.png"  width="30" height="29"/>
+            <div class="chongzhichenggong1"><img src="/homes/public/templates/default/images/gou.png" tppabs="http://www.mfdemo.cn/public/templates/default/images/gou.png" width="30" height="29"/>
             </div>
 
             <div class="chongzhichenggong2">重置成功</div>
@@ -1274,13 +1050,35 @@
 
         </div>
 
+        <script type="text/javascript" src="/homes/js/jquerysession.js"></script>
+
         <script type="text/javascript">
 
-             $.ajaxSetup({
+            $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
+            //设置cookie
+                function setCookie(name, value, days) { 
+                    var d = new Date();
+                    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+                    var expires = "expires=" + d.toUTCString();
+                    document.cookie = name + "=" + value + "; " + expires;
+                }
+
+                //读取cookies 
+                function getCookie(name) 
+                { 
+                    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+                 
+                    if(arr=document.cookie.match(reg))
+                 
+                        return unescape(arr[2]); 
+                    else 
+                        return null; 
+                }
 
             $(function () {
 
@@ -1364,27 +1162,7 @@
 
                 //获取重置密码的短信验证码
                 var validCode = true;
-                var flag=true;
-
-                //设置cookie
-                function setCookie(name, value, days) { 
-                    var d = new Date();
-                    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-                    var expires = "expires=" + d.toUTCString();
-                    document.cookie = name + "=" + value + "; " + expires;
-                }
-
-                //读取cookies 
-                function getCookie(name) 
-                { 
-                    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
-                 
-                    if(arr=document.cookie.match(reg))
-                 
-                        return unescape(arr[2]); 
-                    else 
-                        return null; 
-                }
+                var flag=true;  
 
                 function verify()
                 {
@@ -1478,7 +1256,6 @@
                     $('.mf_dengluzhezhao').fadeIn(300);
                     $('.zhuce').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
                 });
-                //弹出登录
 
                 //弹出注册
                 $(".mf_denglu2-2 a").live("click", function () {
@@ -1525,12 +1302,52 @@
                         $('.mf_chongzhi').addClass('bounceOutUp').fadeOut();
                     });
                 });
-
             });
+
         </script>
         <!-- 登录提示代码结束 --><!-- 登录提示代码结束 -->
+
+        @php
+            $flag = '0';
+            if (!empty(session('unique'))) {
+                 $flag = session('unique');
+            } else {
+                 $flag = '0';
+            }
+
+            echo "<script type='text/javascript'>
+                var flag = '0';
+                flag = ".$flag."
+                if (flag == '1') {
+                    $('.zhuce').addClass('bounceOutUp').fadeOut();
+                    setTimeout(function () {
+                        $('.mf_denglu').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+                    }, 1500);
+                    $.ajax({
+                        url: '/home/resession',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data == 0) {
+                                console.log('删除成功');
+                            } else if (data == 1) {
+                                console.log('删除失败');
+                            }
+                        },
+                        error: function(){
+                            console.log('删除失败');
+                        },
+                        // timeout:3000,
+                        async: true
+                    });
+                    console.log(flag);
+                }
+            </script>";
+           
+         @endphp
+
         <!-- 表单验证插件代码开始 -->
-        <script type="text/javascript"  src="/homes/public/templates/default/js/Validform_v5.3.2_min.js"></script>
+        <script type="text/javascript"  src="/homes/public/templates/default/js/Validform_v5.3.2_min.js" tppabs="http://www.mfdemo.cn/public/templates/default/js/Validform_v5.3.2_min.js"></script>
         <script type="text/javascript">
             $(function(){
                 var demo=$(".registerform").Validform({
@@ -1592,12 +1409,12 @@
                 });
 
             });
+            $('.li_3').find('dl dd:last-child').addClass('lastItem');
         </script>
         <!-- 表单验证插件代码结束 -->
-        @show
-    </body>
-    <script type="text/javascript" src="/layer/layer.js"></script>
-    @section('js')
+        @section('js')
 
-    @show
+        @show
+
+    </body>
 </html>

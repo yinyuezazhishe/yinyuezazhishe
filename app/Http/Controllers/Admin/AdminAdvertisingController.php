@@ -49,6 +49,7 @@ class AdminAdvertisingController extends Controller
     {
     	$rs = Advertising::select(DB::raw('*,concat(title,id) as title'))->
             orderBy('picture')->get();
+            // dd($rs);   
         return view('Admin.advertising.add',[
         	'title'=>'广告添加',
         	'rs'=>$rs
@@ -73,9 +74,11 @@ class AdminAdvertisingController extends Controller
 
             $suffix = $files->getClientOriginalExtension();
 
-            $files->move(Config::get('app.uploads').'/advertising/', $gname.'.'.$suffix);
+            // dd(Config::get('app.uploads'));
 
-            $rs['picture'] = '/uploads/advertising/'.$gname.'.'.$suffix;
+            $files->move('admins/uploads/advertising/', $gname.'.'.$suffix);
+
+            $rs['picture'] = Config::get('app.uploads').'/advertising/'.$gname.'.'.$suffix;
         }
 
         //添加数据
@@ -135,10 +138,10 @@ class AdminAdvertisingController extends Controller
             $suffix = $request->file('picture')->getClientOriginalExtension(); 
 
             //移动
-            $request -> file('picture') -> move('uploads/advertising/',$gname.'.'.$suffix);
+            $request -> file('picture') -> move('admins/uploads/advertising/',$gname.'.'.$suffix);
 
-             //头像文件路径
-            $res['picture'] = '/uploads/advertising/'.$gname.'.'.$suffix;
+             
+            $res['picture'] = Config::get('app.uploads').'/advertising/'.$gname.'.'.$suffix;
 
             
         }  

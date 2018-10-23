@@ -25,7 +25,6 @@ class U_R_P
         $role = $user->roles;
 
         //有了角色之后我就知道我有哪些权限
-
         $arr = [];
         foreach($role as $rl){
             
@@ -33,7 +32,7 @@ class U_R_P
 
             foreach($per as $url){
 
-               $arr[] = $url->per_url;
+               $arr[] = $url->urls;
             }
 
         }
@@ -47,7 +46,17 @@ class U_R_P
 
         $uls = \Request::getRequestUri();
 
-        // dump($uls);
+        // dd($uls);
+
+        $uls = preg_replace('/\/\d\//','/$id/',$uls);
+
+        $uls = preg_replace('/\/\d{1,}/','/$id',$uls);
+
+        $uls = preg_replace('/\?\S{0,}/','',$uls);
+
+        // echo $uls;
+
+        // dump($arrs);
 
         //判断
         if(in_array($uls,$arrs)){
@@ -56,7 +65,7 @@ class U_R_P
             
         } else {
 
-            return redirect('/admin/login');
+            // return redirect('/admin');
         }
     }
 }

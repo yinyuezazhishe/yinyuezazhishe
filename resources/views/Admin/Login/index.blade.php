@@ -24,7 +24,7 @@
 	<meta name="twitter:card" content="" />
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="shortcut icon" href="/admins/img/logo.ico">
 
 	<link rel="stylesheet" href="/admins/login/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/admins/login/css/animate.css">
@@ -278,7 +278,7 @@
 			    (function(){
 			        iBase.SetOpacity(elem, val);
 			        val -= 10;
-			        console.log(opacity)
+			        // console.log(opacity)
 			        if (val >= opacity) {
 			            setTimeout(arguments.callee, speed);
 			        }else if (val < 0) {

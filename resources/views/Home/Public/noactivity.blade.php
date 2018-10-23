@@ -3,7 +3,7 @@
 @section('title','该活动已结束或页面不存在')
 
 
-@section('content')
+@section('contents')
 <style type="text/css">
 	
 	.panel {

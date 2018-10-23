@@ -97,7 +97,7 @@ class AdminCategoryController extends Controller
            
             $info =  Category::create($rs);
 
-
+            
             if($info){
 
                 return redirect('/Admin/category')->with('success','添加成功');

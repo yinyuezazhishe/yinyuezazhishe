@@ -38,4 +38,7 @@ class AdminUsers extends Model
     {
         return $this->belongsToMany('App\Model\Admin\Role', 'user_role', 'user_id', 'role_id');
     }
+
+    
+
 }

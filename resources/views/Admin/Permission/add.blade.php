@@ -9,11 +9,11 @@
         <h5>{{$title}}</h5>
     </div>
     <div class="ibox-content">
-        <form class="form-horizontal m-t" id="signupForm" action="/admin/permission" novalidate="novalidate" id="uploadForm" enctype='multipart/form-data' method="post">
+        <form class="form-horizontal m-t" id="signupForm" action="/admin/permission" novalidate="novalidate" id="uploadForm" method="post">
             <div class="form-group">
                 <label class="col-sm-3 control-label">权限名称：</label>
                 <div class="col-sm-3">
-                    <input id="per_name" name="per_name" aria-required="true" aria-invalid="true" class="form-control" type="text" class="error">
+                    <input id="per_name" name="per_name" value="{{old('per_name')}}" aria-required="true" aria-invalid="true" class="form-control" type="text" class="error">
                     <span class="help-block m-b-none mytitle">
                     	<i class="fa fa-info-circle"></i>请输入权限名称
                     </span>
@@ -22,7 +22,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label">url地址：</label>
                 <div class="col-sm-3">
-                    <input id="urls" name="urls" aria-required="true" aria-invalid="true" class="form-control" type="text" class="error">
+                    <input id="urls" name="urls" value="{{old('urls')}}" aria-required="true" aria-invalid="true" class="form-control" type="text" class="error">
                     <span class="help-block m-b-none mytitle">
                         <i class="fa fa-info-circle"></i>请输入url地址
                     </span>
@@ -54,6 +54,12 @@
     <script src="/admins/js/demo/form-validate-demo.min.js"></script>
     <script src="/homes/js/sweetalert.min.js"></script>
 	
+    @if(session('errors'))  
+    <script type="text/javascript">
+        swal("对不起!", "{{session('errors')}}", "error");
+    </script>
+    @endif
+
 	@if (count($errors) > 0)
     	@foreach ($errors->all() as $error)
             <script type="text/javascript">
@@ -61,11 +67,5 @@
 			</script>
         @endforeach
 	@endif
-
-	@if(session('errors'))  
-    <script type="text/javascript">
-        swal("对不起!", "{{session('errors')}}", "error");
-    </script>
-    @endif
 
 @stop

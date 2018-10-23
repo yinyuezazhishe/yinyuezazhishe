@@ -4,16 +4,10 @@
 
 @section('content')
 <div class="col-sm-12">
-
-        <span>
-            <i class="icon-table">
-            </i>
-            {{$title}}
-        </span>
     
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>查看链接</h5>                        
+            <h5>{{$title}}</h5>                        
         </div>  
         <div class="ibox-content">
             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
@@ -81,7 +75,7 @@
                             {{$v->catename}}
                         </td>
 						<td class=" ">
-                            {{cname($v->pid)}}
+                            {{$v->pid}}
 						</td>
                         <td class=" ">
                             {{$v->path}}

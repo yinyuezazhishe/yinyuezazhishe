@@ -29,12 +29,12 @@
 	                            欢迎使用音悦杂志社重置密码功能，请将验证码填写到重置密码的验证码处。
 	                        </p>
 	                        <p>
-	                            验证码：{{$code}}
+	                            验证码：{{$code}} 本次验证码有效期为300秒, 请在有效期内输入并验证。
 	                        </p>
 	                    </div>
 	                </div>
 	                <div class="footer">
-	                    音悦杂志社&nbsp;&nbsp;&nbsp;&nbsp;@yinyue.com
+	                    音悦杂志社&nbsp;&nbsp;&nbsp;&nbsp;@www.yinyue.cn
 	                    <div class="pull-right">
 	                    </div>
 	                </div>

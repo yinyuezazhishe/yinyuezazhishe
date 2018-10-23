@@ -20,7 +20,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-3 col-sm-offset-3">
+                <div class="col-sm-1 col-sm-offset-3">
+                    <a class="btn btn-primary" href="javascript:history.go(-1)" type="submit" >返回上一步</a>
+                </div>
+                <div class="col-sm-3" style="margin-left: 30px;">
                 	{{csrf_field()}}
                     {{method_field('PUT')}}
                     <button class="btn btn-primary" type="submit">修改</button>
@@ -46,6 +49,12 @@
     <script src="/admins/js/demo/form-validate-demo.min.js"></script>
     <script src="/homes/js/sweetalert.min.js"></script>
 	
+    @if(session('errors'))  
+    <script type="text/javascript">
+        swal("对不起!", "{{session('errors')}}", "error");
+    </script>
+    @endif
+
 	@if (count($errors) > 0)
     	@foreach ($errors->all() as $error)
             <script type="text/javascript">
@@ -53,11 +62,5 @@
 			</script>
         @endforeach
 	@endif
-
-	@if(session('errors'))  
-    <script type="text/javascript">
-        swal("对不起!", "{{session('errors')}}", "error");
-    </script>
-    @endif
 
 @stop

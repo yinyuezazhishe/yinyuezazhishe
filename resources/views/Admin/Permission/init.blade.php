@@ -81,11 +81,11 @@
                             <td>{{$v->per_name}}</td>
                             <td>{{$v->urls}}</td>
                             <td>
-                                <a href="/admin/permission/{{$v->id}}/edit" class="btn btn-info btn-small"><i class="glyphicon glyphicon-edit"></i></a>
-                                <form action="/admin/permission/{{$v->id}}" method="post" class="del"  style="display: inline;">
-                                    {{csrf_field()}}
-                                    {{method_field('DELETE')}}
-                                    <button class="btn btn-danger btn-small del" data-id="{{$v->id}}"><i class="glyphicon glyphicon-trash"></i></button>
+                                <a href="/admin/permission/{{$v->id}}/edit" title="修改" class="btn btn-info btn-small"><i class="glyphicon glyphicon-edit"></i></a>
+                                <form action="/admin/permission/{{$v->id}}" method="post" class="dels"  style="display: inline;">
+                                    {{--csrf_field()--}}
+                                    {{--method_field('DELETE')--}}
+                                    <button class="btn btn-danger btn-small del" title="删除" data-id="{{$v->id}}"><i class="glyphicon glyphicon-trash"></i></button>
                                 </form>
                             </td>
                         </tr>
@@ -112,23 +112,56 @@
 @stop
 
 @section('js')
+    <script src="/homes/js/sweetalert.min.js"></script>
 	<script type="text/javascript">
 		//改变导航条样式
 		var show_permission = $('.show_permission').parents('li');
 		$('.show_permission a').css({'color':'#fff'});
 		show_permission.attr('class','active');
-	</script>
 
-    <!-- <script src="/admins/js/content.min.js?v=1.0.0"></script> -->
-    <script src="/admins/js/plugins/validate/jquery.validate.min.js"></script>
-    <script src="/admins/js/plugins/validate/messages_zh.min.js"></script>
-    <script src="/admins/js/demo/form-validate-demo.min.js"></script>
-    <script src="/homes/js/sweetalert.min.js"></script>
+        $('.dels').click(function ()
+        {
+            var hrefs= $(this).attr('action');
+            
+            swal({
+                title: "您确定要删除此条权限吗?",
+                text: "点击OK将会删除此条权限, 请谨慎操作!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) =>{
+                if (willDelete) {
+                    $.ajax({
+                        url: hrefs,
+                        data: {"_method" : "DELETE"},
+                        type: "POST",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data == 0) {
+                                swal("恭喜您!", "删除权限成功!", "success");
+                                location.reload(true);
+                            } else if (data == 1) {
+                                swal("对不起!", "删除权限失败!", "error");
+                            }
+                        },
+                        error: function(){
+                            swal("对不起!", "删除权限失败!", "error");
+                        },
+                        async: true
+                    });
+                }
+            });
+
+            return false;
+        })
+	</script>
 
 	@if(session('succes'))  
     <script type="text/javascript">
         swal("恭喜您!", "{{session('succes')}}", "success");
     </script>
     @endif
+
+
 
 @stop

@@ -12,6 +12,8 @@
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
     <link rel="shortcut icon" href="/admins/img/logo.ico">
+    <link rel="stylesheet" type="text/css" href="/admins/css/plugins/webuploader/webuploader.css">
+    <link rel="stylesheet" type="text/css" href="/admins/css/demo/webuploader-demo.min.css">
     <link href="/admins/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
     <link href="/admins/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <link href="/admins/css/animate.min.css" rel="stylesheet">
@@ -23,9 +25,14 @@
     <link href="/admins/css/style.min.css?v=4.0.0" rel="stylesheet">
     <link href="/admins/layer/mobile/need/layer.css" rel="stylesheet">
     <link href="/admins/layer/theme/default/layer.css" rel="stylesheet">
-    <meta name="csrf-token" content="{{ csrf_token() }}"> 
+    <script src="/admins/js/jquery.min.js?v=2.1.4"></script>
+    <script src="/admins/js/bootstrap.min.js?v=3.3.5"></script>
+    <script src="/admins/js/bootstrap-fileinput.js"></script>    
+    <script src="/admins/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <meta name="csrf-token" content="{{csrf_token()}}"> 
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+        <input type="hidden" name="" class="theme" value="{{session('adminusers')->theme}}">
     <div id="wrapper">
         <!--左侧导航开始-->
         <nav class="navbar-default navbar-static-side" role="navigation">
@@ -163,11 +170,10 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="404.html">404页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="500.html">500页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="empty_page.html">空白页</a>
+                            <li class="show_lists">
+                                <a href="/admin/lists">
+                                    <span class="nav-label">浏览列表</span>
+                                </a>
                             </li>
                         </ul>
                     </li>
@@ -178,11 +184,9 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="404.html">404页面</a>
+                            <li class="create_details"><a href="/admin/details/create">添加详情</a>
                             </li>
-                            <li><a class="J_menuItem" href="500.html">500页面</a>
-                            </li>
-                            <li><a class="J_menuItem" href="empty_page.html">空白页</a>
+                            <li class="show_details"><a href="/admin/details">浏览详情</a>
                             </li>
                         </ul>
                     </li>
@@ -237,10 +241,7 @@
                         </a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="404.html">添加留言</a>
-                            </li>
-                            <li>
-                                <a href="500.html">浏览留言</a>
+                                <a href="/Admin/message">浏览留言</a>
                             </li>
                         </ul>
                     </li>
@@ -414,24 +415,18 @@
 
             </div>
         </div>
-    <script src="/admins/js/jquery.min.js?v=2.1.4"></script>
-    <script src="/admins/js/bootstrap.min.js?v=3.3.5"></script>
-    <script src="/admins/js/bootstrap-fileinput.js"></script>    
-    <script src="/admins/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="/admins/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="/admins/js/plugins/layer/layer.min.js"></script>
-    <script src="/admins/js/hplus.min.js?v=4.0.0"></script>
-    <script type="text/javascript" src="/admins/js/contabs.min.js"></script>
-    <script src="/admins/js/plugins/pace/pace.min.js"></script>
-    <script src="/admins/layer/layer.js"></script>
-    <script type="text/javascript" src="/admins/js/contabs.min.js"></script>
-    <script src="/admins/js/plugins/pace/pace.min.js"></script>
-    <script src="/admins/js/jquerysession.js"></script>
-
     <script type="text/javascript">
+        
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         var theme = '';
         var id = $('.uid').val();
 
+        // console.log(id);
         //接收返回信息
         $(function(){
             @if(session('success'))
@@ -444,6 +439,10 @@
                 {{session()->forget('error')}}
             @endif  
 
+            var theme1 = $('.theme').val();
+
+            theme =  $.session.get('theme');
+            
             @if(session('activity'))
                 layer.alert("{{session('activity')}}",{title:'温馨提示',icon:'7'});
                 {{session()->forget('activity')}}
@@ -451,12 +450,11 @@
             var theme1 = $('.theme').val();
 
             theme =  $.session.get('theme');
-
+            // console.log(theme);
+            $('.gohome').find('a').attr('href','/');
 
             if (theme == undefined){
-
                 theme = theme1;
-
             }
 
             $('body').eq(0).addClass(theme);
@@ -542,4 +540,16 @@
 
     @show
 </body>
+    <script src="/admins/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="/admins/js/plugins/layer/layer.min.js"></script>
+    <script src="/admins/js/hplus.min.js?v=4.0.0"></script>
+    <script type="text/javascript" src="/admins/js/contabs.min.js"></script>
+    <script src="/admins/js/plugins/pace/pace.min.js"></script>
+    <script src="/admins/layer/layer.js"></script>
+    <script type="text/javascript" src="/admins/js/contabs.min.js"></script>
+    <script src="/admins/js/plugins/pace/pace.min.js"></script>
+    <script src="/admins/js/jquerysession.js"></script>
+    <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="/ueditor/ueditor.all.min.js"></script>
+    <script type="text/javascript" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
 </html>
