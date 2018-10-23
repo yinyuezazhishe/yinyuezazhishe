@@ -15,7 +15,10 @@ class CommentController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
 
+=======
+>>>>>>> ljh
         $user = Comment::where('did',1) -> with('users') -> orderBy('id','desc') -> get();
         $num = $user -> count();
         // dd($num);
@@ -40,9 +43,12 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
 
         return json_encode($request->content);
 
+=======
+>>>>>>> ljh
         $user = [];
 
         $res = $request -> except('_token');

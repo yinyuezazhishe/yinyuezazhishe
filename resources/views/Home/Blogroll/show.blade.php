@@ -1,7 +1,7 @@
 @extends('Home.Public.layout')
 
 
-@section('content')
+@section('contents')
 <!-- <link href="/admins/css/bootstrap.min.css" rel="stylesheet">
 <link href="/admins/css/bootstrap-fileinput.css" rel="stylesheet"> -->
 <div id="wrap" class="container clearfix template-fullwidth">

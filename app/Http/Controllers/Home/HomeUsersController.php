@@ -8,6 +8,8 @@ use App\Model\Home\HomeUser;
 use App\Model\Home\HomeUserMusic;
 use App\Model\Admin\AdminSentence;
 use App\Model\Admin\Message;
+use App\Model\Admin\DetailsContent;
+use App\Model\Home\Comment;
 use DB;
 
 
@@ -16,14 +18,41 @@ class HomeUsersController extends Controller
     //会员中心
     public function index()
     {
+        //我的一语
         $sentence = DB::table('homeuser_sentence')->where('uid',session('homeuser')->id)->orderBy('addtime','desc')->get()->toArray();
         if(!empty($sentence)){
             foreach($sentence as $k=>$v){
-                $sentence[$k]->heart_sentence = AdminSentence::where('id',$v->sentence_id)->pluck('heart_sentence')->toArray()[0];
+                $isHave = AdminSentence::where('id',$v->sentence_id)->get()->toArray();
+                if(empty($isHave)){
+                    $sentence[$k]->heart_sentence = '该一语不存在或已被删除';
+                    $sentence[$k]->status = 0;
+                }else{
+                    $sentence[$k]->heart_sentence = AdminSentence::where('id',$v->sentence_id)->pluck('heart_sentence')->toArray()[0];
+                     $sentence[$k]->status =  AdminSentence::where('id',$v->sentence_id)->pluck('status')->toArray()[0];
+                }
             }
         }
+        //我的喜欢
+        $likes = DB::table('praise')->where('u_id',session('homeuser')->id)->get()->toArray();
+        if(!empty($likes)){
+            $infolike = [];
+            //我的主页
+            foreach ($likes as $k => $v) {
+                $infolike[] = DetailsContent::where('id',$v->d_c_id)->first()->toArray();
+            }
+            if(empty($infolike)){
+                $infolike = [];
+            }
+        }else{
+            $likes = [];
+            $infolike = []; 
+        } 
+        // dd($infolike);
+        //我的留言
         $message = Message::where('user_id',session('homeuser')->id)->get()->toArray();
-    	return view('Home.Homeuser.index',['sentence'=>$sentence,'message'=>$message]);
+        //我的评论
+        $discuss = Comment::where('hid',session('homeuser')->id)->get()->toArray(); 
+    	return view('Home.Homeuser.index',['sentence'=>$sentence,'message'=>$message,'like'=>count($likes),'infolike'=>$infolike,'discuss'=>$discuss]);
     }
     //会员个性签名
     public function sdasd(Request $request){

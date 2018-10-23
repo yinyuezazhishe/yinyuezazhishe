@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!-- HTML 5 -->
 <html lang="zh-CN">
     <meta charset="UTF-8" />
@@ -123,7 +123,11 @@
             }
         </style>
     </head>    
+<<<<<<< HEAD
     <body class="home blog">        
+=======
+<body class="home blog">        
+>>>>>>> ljh
         @if(session('error'))  
         <script type="text/javascript">
             swal("对不起!", "{{session('error')}}", "error");
@@ -185,7 +189,12 @@
                 @endif
             </div>
             <!-- 代码 结束 -->
+<<<<<<< HEAD
+=======
+            @section('contents')
+>>>>>>> ljh
             @section('content')
+
             <?php
                 $pictures = \App\Model\Home\Banner::BanNer();
              ?>
@@ -237,7 +246,16 @@
             </script>
             <!-- banner stop -->
             <div id="wrap" class="container clearfix">
+                @php
+                    $details =App\Model\Admin\Details::with('details_content', 'lists')->where('status', '<>', '1')->get();
+                    $lid = [];
+                    foreach ($details as $k => $v) {
+                        $lid[] = $v -> lists['id'];
+                    }
+                    $details = App\Model\Admin\Details::with('details_content', 'lists')->whereIn('id', $lid)->orderBy('id', 'asc')->paginate(10);
+                @endphp
                 <section id="content" class="primary" role="main">
+<<<<<<< HEAD
                     @php
                         $hottest = DB::table('praise')->select(DB::raw('count(*) as d_c_count, d_c_id'))->groupBy('d_c_id')->orderBy('d_c_count', 'desc')->get();
 
@@ -270,10 +288,22 @@
                         </h2>
                         <div class="postmeta">
                             {{date('Y-m-d',$d_content->addtime)}}
+=======
+                    @foreach($details as $k => $v)
+                    <article class="content-excerpt post-13827 post type-post status-publish format-standard has-post-thumbnail sticky hentry category-nomusic tag-t">
+                        <h2 class="post-title entry-title">
+                            <a href="https://www.mtyyw.com/13827/" rel="bookmark">
+                                {{$v->details_content->title}}
+                            </a>
+                        </h2>
+                        <div class="postmeta">
+                            {{date('Y-m-d',$v->details_content->addtime)}}
+>>>>>>> ljh
                         </div>
                         <div class="entry clearfix">
                             <blockquote>
                                 <p>
+<<<<<<< HEAD
                                     {{$d_content->saying}}
                                 </p>
                             </blockquote>
@@ -304,6 +334,45 @@
                     <article class="content-excerpt post-19689 post type-post status-publish format-standard has-post-thumbnail hentry category-video category-popmusic tag-2853 tag-3298 tag-3472"><h2 class="post-title entry-title">
                         <h2 class="post-title entry-title">
                             <a href="/home/details/{{$v->details_content->id}}" rel="bookmark">
+=======
+                                    {{$v->details_content->saying}}
+                                </p>
+                            </blockquote>
+                            <p>
+                                <img class="" src="{{$v->details_content->picstream}}"
+                                align="absmiddle" />
+                                <br />
+                                简介:{{$v->details_content->describe}}
+                            </p>
+                            <a href="/home/details/{{$v->id}}" class="more-link">
+                                查看全部
+                            </a>
+                        </div>
+                        <div class="postinfo clearfix">
+                            <span class="meta-category">
+                                <ul class="post-categories">
+                                    <li>
+                                        <a href="https://www.mtyyw.com/nomusic/" rel="category tag">
+                                            无关音乐
+                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
+                                            小众音乐
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.mtyyw.com/wenzi/" rel="category tag">
+                                            文字
+                                        </a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                    </article>
+                    
+                    
+                    <article class="content-excerpt post-19689 post type-post status-publish format-standard has-post-thumbnail hentry category-video category-popmusic tag-2853 tag-3298 tag-3472"><h2 class="post-title entry-title">
+                        <h2 class="post-title entry-title">
+                            <a href="https://www.mtyyw.com/13827/" rel="bookmark">
+>>>>>>> ljh
                                 {{$v->details_content->title}}
                             </a>
                         </h2>
@@ -317,6 +386,7 @@
                                 </p>
                             </blockquote>
                             <p>
+<<<<<<< HEAD
                                 <a href="/home/details/{{$v->
                                     id}}" title="{{$v->details_content->title}}">
                                     <img class="" src="{{$v->details_content->picstream}}"
@@ -324,14 +394,45 @@
                                     <br />
                                     简介:{{$v->details_content->describe}}
                                 </a>
+=======
+                                <img class="" src="{{$v->details_content->picstream}}"
+                                align="absmiddle" />
+                                <br />
+                                简介:{{$v->details_content->describe}}
+>>>>>>> ljh
                             </p>
                             <a href="/home/details/{{$v->id}}" class="more-link">
                                 查看全部
                             </a>
                         </div>
+<<<<<<< HEAD
                     </article>
                     @endforeach
                    
+=======
+                        <div class="postinfo clearfix">
+                            <span class="meta-category">
+                                <ul class="post-categories">
+                                    <li>
+                                        <a href="https://www.mtyyw.com/nomusic/" rel="category tag">
+                                            无关音乐
+                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
+                                            小众音乐
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.mtyyw.com/wenzi/" rel="category tag">
+                                            文字
+                                        </a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                    </article>
+                    @endforeach
+                   
+
+>>>>>>> ljh
                     <div class="post-pagination clearfix">
                             {{$details->links()}}
                     </div>
@@ -463,6 +564,10 @@
                             </div>
                         </div>
                     </aside>
+<<<<<<< HEAD
+=======
+                    
+>>>>>>> ljh
                      @php 
                       $advertising = \App\Model\Home\Advertising::AdverTising();
            
@@ -497,6 +602,10 @@
                }
 
             </script>
+<<<<<<< HEAD
+=======
+            @show
+>>>>>>> ljh
             <div id="footer-widgets-bg">
                 <div id="footer-widgets-wrap" class="container">
                     <div id="footer-widgets" class="clearfix">
@@ -640,6 +749,7 @@
                 </footer>
             </div>
         </div>
+
         <!-- end #wrapper -->
         <script>
             (function(i, s, o, g, r, a, m) {
@@ -893,6 +1003,20 @@
 
             <div class="mf_chongzhi2"></div>
         </div>
+
+<<<<<<< HEAD
+        <script type="text/javascript" src="/homes/js/jquerysession.js"></script>
+=======
+        <div class="chongzhichenggong">
+            <div class="chongzhichenggong1"><img src="/homes/public/templates/default/images/gou.png" tppabs="http://www.mfdemo.cn/public/templates/default/images/gou.png" width="30" height="29"/>
+            </div>
+
+            <div class="chongzhichenggong2">重置成功</div>
+
+            <div class="chongzhichenggong3"><p>3</p><span>s后返回登录</span></div>
+
+        </div>
+>>>>>>> ljh
 
         <script type="text/javascript" src="/homes/js/jquerysession.js"></script>
 
@@ -1154,9 +1278,15 @@
         @php
             $flag = '0';
             if (!empty(session('unique'))) {
+<<<<<<< HEAD
                 $flag = session('unique');
             } else {
                 $flag = '0';
+=======
+                 $flag = session('unique');
+            } else {
+                 $flag = '0';
+>>>>>>> ljh
             }
 
             echo "<script type='text/javascript'>
@@ -1173,6 +1303,7 @@
                         dataType: 'json',
                         success: function (data) {
                             if (data == 0) {
+<<<<<<< HEAD
                                 // console.log('删除成功');
                             } else if (data == 1) {
                                 // console.log('删除失败');
@@ -1180,6 +1311,15 @@
                         },
                         error: function(){
                             // console.log('删除失败');
+=======
+                                console.log('删除成功');
+                            } else if (data == 1) {
+                                console.log('删除失败');
+                            }
+                        },
+                        error: function(){
+                            console.log('删除失败');
+>>>>>>> ljh
                         },
                         // timeout:3000,
                         async: true
@@ -1187,6 +1327,7 @@
                     console.log(flag);
                 }
             </script>";
+<<<<<<< HEAD
 
             if (!empty(session('login'))) {
                 echo "<script type='text/javascript'>
@@ -1223,6 +1364,11 @@
          @endphp
 
 
+=======
+           
+         @endphp
+
+>>>>>>> ljh
         <!-- 表单验证插件代码开始 -->
         <script type="text/javascript"  src="/homes/public/templates/default/js/Validform_v5.3.2_min.js" tppabs="http://www.mfdemo.cn/public/templates/default/js/Validform_v5.3.2_min.js"></script>
         <script type="text/javascript">
@@ -1286,6 +1432,7 @@
                 });
 
             });
+            $('.li_3').find('dl dd:last-child').addClass('lastItem');
         </script>
         <!-- 表单验证插件代码结束 -->
         @section('js')

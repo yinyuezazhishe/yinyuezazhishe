@@ -40,6 +40,7 @@ class HomeListsController extends Controller
 	        }
 	        // dd($l_id);
 
+<<<<<<< HEAD
 	        $d_content = DetailsContent::whereIn('did', $l_id)->orderBy('id', 'asc')->paginate(10);
 	        // dd($d_content);
         }
@@ -56,6 +57,18 @@ class HomeListsController extends Controller
     {
         $d_content = DetailsContent::where('title','like','%'.$request->title.'%')->orderBy('id', $request->input('sort', 'asc'))->paginate($request->input('num',10));
 
+=======
+	        $d_content = DetailsContent::whereIn('id', $l_id)->orderBy('id', 'asc')->paginate(10);
+	        // dd($d_content);
+
+        } else  if (!empty($request->title)) {	// 如果传详情标题
+
+        	// $title = $request->title;
+
+         //    $condition[] = ['title', 'like', '%'.$title.'%'];
+        }
+        
+>>>>>>> ljh
         return view('Home.Lists.index', ['title' => '音乐杂志社', 'd_content' => $d_content]);
     }
 }

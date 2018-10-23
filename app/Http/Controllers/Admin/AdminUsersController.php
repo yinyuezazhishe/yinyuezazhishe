@@ -81,7 +81,9 @@ class AdminUsersController extends Controller
             //移动
             $request -> file('face') -> move('admins/uploads/face',$name.'.'.$suffix);
              //头像文件路径
+
             $res['face'] = '/admins/uploads/face/'.$name.'.'.$suffix;
+
         } else {
 
             $res['face'] = '/admins/uploads/face/default.jpg';
@@ -220,7 +222,6 @@ class AdminUsersController extends Controller
                 
                 // 删除用户头像
                 if ($oldface) {
-
                    unlink('.'.$oldface);
                 }
                 session(['success'=>'删除成功']);

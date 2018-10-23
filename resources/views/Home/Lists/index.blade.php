@@ -7,7 +7,11 @@
 <div id="wrap" class="container clearfix">
     <section id="content" class="primary" role="main">
         @foreach($d_content as $k => $v)
+<<<<<<< HEAD
         <article id="post-13827" class="content-excerpt post-19689 post type-post status-publish format-standard has-post-thumbnail hentry category-video category-popmusic tag-2853 tag-3298 tag-3472">
+=======
+        <article id="post-13827" class="content-excerpt post-13827 post type-post status-publish format-standard has-post-thumbnail sticky hentry category-nomusic tag-t">
+>>>>>>> ljh
             <h2 class="post-title entry-title">
                 <a href="https://www.mtyyw.com/13827/" rel="bookmark">
                     {{$v->title}}

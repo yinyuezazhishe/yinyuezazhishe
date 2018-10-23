@@ -11,10 +11,12 @@
 |
 */
 
-
 Route::group(['middleware'=>'adminlogin'], function ()
 {
 		// 后台管理主页
+Route::group(['middleware'=>['adminlogin']], function ()
+{
+	// 后台管理主页
 Route::any('admin','Admin\IndexController@init');
 	// Route::group(['middleware'=>'u_r_p'], function ()
 // {
@@ -88,9 +90,8 @@ Route::any('admin','Admin\IndexController@init');
 		//用户积分
 		Route::get('integral/index','Admin\HomeIntegralController@index');
 		Route::get('integral/{id}/show','Admin\HomeIntegralController@show');
-
 		//后台每日一语管理
-	Route::resource('sentence','Admin\AdminSentenceController');
+		Route::resource('sentence','Admin\AdminSentenceController');
 	});
 });
 

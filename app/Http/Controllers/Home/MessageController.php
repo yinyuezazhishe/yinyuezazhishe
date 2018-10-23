@@ -69,7 +69,11 @@ class MessageController extends Controller
     public function show(Request $request,$id)
     {
         $paging = Message::with('homeuser','remessages')->orderBy('addtime','desc')->paginate();
+<<<<<<< HEAD
          $details = Details::with('details_content', 'lists') ->orderBy('id', 'asc') -> paginate(10);
+=======
+        $details = Details::with('details_content', 'lists') ->orderBy('id', 'asc') -> paginate(10);
+>>>>>>> ljh
 
         return view('Home.message.paging',[
             'request'=>$request,

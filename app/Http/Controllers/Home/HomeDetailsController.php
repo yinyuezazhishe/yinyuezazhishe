@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Admin\DetailsContent;
 use App\Model\Admin\Details;
+<<<<<<< HEAD
 use App\Model\Admin\Lists;
 use App\Model\Home\CateGory;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +14,9 @@ use App\Model\Home\Comment;
 use App\Model\Home\HomeUser;
 use App\Model\Home\Reply;
 
+=======
+use Illuminate\Support\Facades\DB;
+>>>>>>> ljh
 
 class HomeDetailsController extends Controller
 {
@@ -23,6 +27,7 @@ class HomeDetailsController extends Controller
 	 */
     public function index(Request $request, $id)
     {
+<<<<<<< HEAD
         $user = Comment::where('did',$id) -> with('users') -> orderBy('addtime','desc') -> get();
 
         $reply = Reply::with('users') -> get();
@@ -34,6 +39,11 @@ class HomeDetailsController extends Controller
         $details = Details::with('details_content')->where('id', $id)->first();
 
         // dd($details);
+=======
+        $details = Details::with('details_content')->where('id', $id)->first();
+
+    	// dd($details);
+>>>>>>> ljh
 
         $praise = DB::table('praise')->where('d_c_id', $id) -> get();
 
@@ -42,6 +52,7 @@ class HomeDetailsController extends Controller
             $pr = DB::table('praise')->where([['d_c_id', $id], ['u_id', session('homeuser')->id]]) -> first();
         }
 
+<<<<<<< HEAD
 
         // 猜你喜欢
         $lists = Lists::with('category')->where('id', $id)->first();
@@ -68,6 +79,10 @@ class HomeDetailsController extends Controller
 
 
         return view('Home.Details.init', ['d_content'=>$d_content,'pr'=>$pr, 'praise' => $praise, 'details' => $details, 'detail' => $detail, 'title' => '音乐杂志社','user'=>$user,'num'=>$num,'reply'=>$reply]);
+=======
+    	return view('Home.Details.index', ['details' => $details, 'praise' => $praise, 'pr' => $pr, 'title' => '音乐杂志社']);
+
+>>>>>>> ljh
     }
 
     /**
@@ -121,6 +136,7 @@ class HomeDetailsController extends Controller
                 return 1;
             }
         }  
+<<<<<<< HEAD
 
     }
 
@@ -198,5 +214,7 @@ class HomeDetailsController extends Controller
 
             return 0;
         }
+=======
+>>>>>>> ljh
     }
 }

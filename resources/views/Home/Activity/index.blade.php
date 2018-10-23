@@ -2,7 +2,7 @@
 
 @section('yield','音乐杂志社活动中心')
 
-@section('content')
+@section('contents')
 <div class="mymusicActivity" style="width:100%;height:700px;background-image: url('/homes/images/banner3.jpg');">
 	
 </div>
@@ -101,67 +101,67 @@
 </div>
 <!-- 左侧播放器 结束-->
 <div id="wrap" class="container clearfix">
-                <section id="content" class="primary" role="main">
-                    <article id="post-13827" class="content-excerpt post-13827 post type-post status-publish format-standard has-post-thumbnail sticky hentry category-nomusic tag-t">
-                        <h2 class="post-title entry-title">
-                            <a href="javascript:void(0)" rel="bookmark">
-                                2018年：我真的喜欢做一些让人喜欢的东西
-                            </a>
-                        </h2>
-                        <div class="postmeta">
-                            {{$begintime}}
-                        </div>
-                        <div class="entry clearfix">
-                            <p>
-                                <img class="" src="/homes/images/TB2uFTbg7OWBuNjSsppXXXPgpXa_!!13533312.jpg" align="absmiddle">
-                                <br>
-                                {{date('Y')}}年音悦杂志社。
-                            </p>
-                            <a class="mymusicActivity_get more-link" href="javascript:void(0);" id="activity" @if(session('homeuser')) myid="{{session('homeuser')->id}}" @endif myactivity="{{$activityid}}" flag="{{$flag}}">点击获取积分</a>
-                        </div>
-                    </article>
-                </section>
-                <section id="sidebar" class="secondary clearfix" role="complementary">
-                    <aside id="search-8" class="widget widget_search clearfix">
-                        <h3 class="widgettitle">
-                            <span>
-                                音悦杂志社
-                            </span>
-                        </h3>
-                        <div class="textwidget" style="text-indent:20px;">
-	                       音乐杂志社建立于2018，该社由四个年轻的小伙合力写成。集合了我们对音、悦、杂志的一些想法。该社的建成目的就是希望你能在这浮躁、喧嚣的互联网中，静下心来安心的享受这短暂的音悦时刻。
-                    	</div>
-                    </aside>
-
-                    <aside id="text-8" class="widget widget_text clearfix">
-                        <h3 class="widgettitle">
-                            <span>
-                                音悦节
-                            </span>
-                        </h3>
-				        <div class="widget-tabbed">
-						    <div id="dynamicnews_tabbed_content-6-tabbed-1" class="tabdiv" style="display: block;">
-						        <ul>
-						            <li class="widget-thumb">
-						            	<p style="text-indent:20px;">
-							                    <img width="75" height="75" src="/homes/images/about_1.jpg" class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
-							                    alt="" srcset="/homes/images/about_1.jpg" sizes="(max-width: 75px) 100vw, 75px">
-							                <a href="" style="font-size:12px;">
-							                    音悦节是指本站的活动节日。在本活动中,你不仅能获得积分，还可以抛下烦恼,安静的倾听每一首歌曲哦。积分还可用于获得每日一语。
-							                </a>
-						           		</p>
-						                <div class="widget-postmeta">
-						                    <span class="widget-date">
-						                        {{$begintime}}
-						                    </span>
-						                </div>
-						            </li>
-						        </ul>
-						    </div>
-						</div>							    
-                    </aside>
-                </section>
+    <section id="content" class="primary" role="main">
+        <article id="post-13827" class="content-excerpt post-13827 post type-post status-publish format-standard has-post-thumbnail sticky hentry category-nomusic tag-t">
+            <h2 class="post-title entry-title">
+                <a href="javascript:void(0)" rel="bookmark">
+                    {{$wishes}}
+                </a>
+            </h2>
+            <div class="postmeta">
+                {{$begintime}}
             </div>
+            <div class="entry clearfix">
+                <p>
+                    <img class="" src="/homes/images/TB2uFTbg7OWBuNjSsppXXXPgpXa_!!13533312.jpg" align="absmiddle">
+                    <br>
+                    {{date('Y')}}年音悦杂志社。
+                </p>
+                <a class="mymusicActivity_get more-link" href="javascript:void(0);" id="activity" @if(session('homeuser')) myid="{{session('homeuser')->id}}" @endif myactivity="{{$activityid}}" flag="{{$flag}}">点击获取积分</a>
+            </div>
+        </article>
+    </section>
+    <section id="sidebar" class="secondary clearfix" role="complementary">
+        <aside id="search-8" class="widget widget_search clearfix">
+            <h3 class="widgettitle">
+                <span>
+                    音悦杂志社
+                </span>
+            </h3>
+            <div class="textwidget" style="text-indent:20px;">
+               音乐杂志社建立于2018，该社由四个年轻的小伙合力写成。集合了我们对音、悦、杂志的一些想法。该社的建成目的就是希望你能在这浮躁、喧嚣的互联网中，静下心来安心的享受这短暂的音悦时刻。
+        	</div>
+        </aside>
+
+        <aside id="text-8" class="widget widget_text clearfix">
+            <h3 class="widgettitle">
+                <span>
+                    音悦节
+                </span>
+            </h3>
+	        <div class="widget-tabbed">
+			    <div id="dynamicnews_tabbed_content-6-tabbed-1" class="tabdiv" style="display: block;">
+			        <ul>
+			            <li class="widget-thumb">
+			            	<p style="text-indent:20px;">
+				                    <img width="75" height="75" src="/homes/images/about_1.jpg" class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
+				                    alt="" srcset="/homes/images/about_1.jpg" sizes="(max-width: 75px) 100vw, 75px">
+				                <a href="" style="font-size:12px;">
+				                    音悦节是指本站的活动节日。在本活动中,你不仅能获得积分，还可以抛下烦恼,安静的倾听每一首歌曲哦。积分还可用于获得每日一语。
+				                </a>
+			           		</p>
+			                <div class="widget-postmeta">
+			                    <span class="widget-date">
+			                        {{$begintime}}
+			                    </span>
+			                </div>
+			            </li>
+			        </ul>
+			    </div>
+			</div>							    
+        </aside>
+    </section>
+</div>
 @stop
 
 @section('js')

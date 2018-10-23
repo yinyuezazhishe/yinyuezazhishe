@@ -205,6 +205,4 @@
         @endforeach
     @endif
 
-	
-
 @stop

@@ -6,7 +6,7 @@
 	<link href="/homes/css/setting.css" rel="stylesheet"/>
 @stop
 
-@section('content')
+@section('contents')
 	<div class="post-11062 page type-page status-publish hentry">
             <h2 class="page-title">
                 <span>

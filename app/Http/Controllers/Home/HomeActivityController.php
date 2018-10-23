@@ -23,7 +23,7 @@ class HomeActivityController extends Controller
             }
     	}
     	if($proceeding){
-    		return view('Home.Activity.index',['activityid'=>$proceeding->id,'begintime'=>$begintime,'flag'=>$flag]);
+    		return view('Home.Activity.index',['activityid'=>$proceeding->id,'begintime'=>$begintime,'flag'=>$flag,'wishes'=>$proceeding->wishes]);
     	}else{
     		return redirect('/home/noactivity');
     	}

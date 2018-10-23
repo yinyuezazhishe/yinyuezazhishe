@@ -81,7 +81,7 @@
 <link rel="stylesheet" href="/homes/css/custom_up_img.css">
 <link rel="stylesheet" href="/homes/css/setting.css"/>
 @stop 
-@section('content')
+@section('contents')
 <div class="lmlblog-member-bg" style="">
     <div class="lmlblog-member-content" style="padding:0px;">
     	<div style="background: url('/homes/picture/infobanner/1.jpg') no-repeat top center;background-size:100% 100%;width:100%;height:auto;" class="setting-set">
@@ -170,22 +170,27 @@
     	   		</a>
     		</div>
     	</div>
-        <div class="lmlblog-member-menu clear border-line">
+        <div class="lmlblog-member-menu clear border-line tab-control">
             <li class="on">
                 <a href="javascript:void(0)">我的主页</a>
             </li>
             <li>
-                <a href="javascript:void(0)" target="_blank">
+                <a href="javascript:void(0)">
                     我的留言
                 </a>
             </li>
             <li>
-                <a href="javascript:void(0)" target="_blank">
+                <a href="javascript:void(0)">
+                    我的评论
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
                     我的一语
                 </a>
             </li>
             <li>
-                <a href="javascript:void(0)" target="_blank">
+                <a href="javascript:void(0)">
                     我的背景音乐
                 </a>
             </li>
@@ -193,38 +198,30 @@
         <div class="lmlblog-member-content-list clear">
             <div class="lmlblog-member-left">
                 <div class="lmlblog-member-left-follow clear border-line">
-                    <li>
+                    <li style="width:33%;">
                         <strong>
-                            168
+                            {{$like}}
                         </strong>
                         <span>
-                            喜欢
+                           <i class="fa fa-heart-o"></i>我的喜欢
                         </span>
                     </li>
-                   <!--  <li>
-                       <strong>
-                           666
+                    <li style="width:33%;">
+                       <strong class="bigintegral">
+                            {{session('integral')}}
                        </strong>
                        <span>
-                           粉丝
+                           <i class="fa fa-diamond"></i>我的积分
                        </span>
                    </li>
-                   <li>
+                   <li style="width:33%;">
                        <strong>
-                           888
+                           {{count($discuss)}}
                        </strong>
                        <span>
-                           喜欢
+                           <i class="fa fa-commenting-o"></i>我的评论
                        </span>
                    </li>
-                   <li>
-                       <strong>
-                           888888
-                       </strong>
-                       <span>
-                           人气
-                       </span>
-                   </li> -->
                 </div>
                 <div class="lmlblog-member-left-bg-music clear border-line">
                     <h3>
@@ -345,136 +342,59 @@
                 </div>
             </div>
             <div class="lmlblog-member-right show">
+                @if(!empty($infolike))
+                @foreach($infolike as $k=>$v)
                 <div class="lmlblog-post-list">
                     <div class="lmlblog-posts-list words border-line" style="background-image:url(/homes/images/058.png); "
                     data="4197">
                         <!-- 动态内容部分，包括列表 -->
                         <div class="lmlblog-post-user-info">
                             <div class="lmlblog-post-user-info-avatar" user-data="1">
-                                <a href="#1" style="display: inline-block;">
+                                <a href="javascript:void(0)" style="display: inline-block;">
                                     <span class="lmlblog-vip-icon">
                                     </span>
                                     <img src="{{session('homeface')}}" class="avatar face">
                                     <i class="lmlblog-verify lmlblog-verify-a" title="{{session('homeuser')->username}}">
                                     </i>
                                 </a>
-                                <div class="lmlblog-user-info-card">
+                                <!-- <div class="lmlblog-user-info-card">
                                     <div class="info_card_loading">
                                         <img src="/homes/picture/chat-loading.gif">
                                         <p>
                                             资料加载中...
                                         </p>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="lmlblog-post-user-info-name">
-                                <a href="#1">
+                                <a href="javascript:void(0)">
                                     <font style="color:#333;font-weight:600" class="indexuser">
                                         {{session('homeuser')->username}}
                                     </font>
                                 </a>
-                                <span class="lmlblog-mark lmlblog-lv" title="经验：3815">
-                                    Lv.6
-                                </span>
-                                <span class="lmlblog-mark lmlblog-vip">
-                                    VIP 6
-                                </span>
                             </div>
-                            <div class="lmlblog-post-user-info-time" title="2017-12-14 05:25">
-                               {{date("Y-m-d H:i:s",session('homeuser')->addtime)}}
+                            <div class="lmlblog-post-user-info-time" title="{{date('Y-m-d H:i:s',$v['addtime'])}}">
+                               {{date('Y-m-d H:i:s',$v['addtime'])}}
                             </div>
                         </div>
                         <div class="lmlblog-post-content ">
-                            <a class="post_list_link" href="javascript:void(0)">
+                            <a class="post_list_link" href="/home/details/{{$v['id']}}">
                                 <p>
-                                    　　疏星淡月，紫陌曲岸，持觞游赏，神移长川。一片彀纹，溶溶泄泄，忽而烟靡云敛。睹一丽人，缦立青水，云蒸雾霭，花衬善睐。荧荧兮若北辰之荣现，扰扰兮若紫玉之生烟。颜如舜华，迫闻素腰华琚摇;和颜静志，远望渌水呈雾绡。戏流光之夜蝶，采舞雪之琼花，流眷眷之眸光，润荣曜之笑靥。
+                                    {{$v['title']}}
                                 </p>
                                 <p>
-                                    　　偶得美人回顾，思之朝朝暮暮。采芝兰以明愫，寄琼琚以作妆。余咏永慕叹道长，彼应影独愿偕芳。才知世有解语，不过琪语溯光。
-                                    <img src="/homes/images/66.png" alt="[s-65]" class="wp-smiley">
-                                    <img src="/homes/images/8.png" alt="[s-65]" class="wp-smiley">
+                                    {{$v['saying']}}
                                 </p>
                             </a>
                         </div>
                         <div class="lmlblog-post-images-list clear">
-                            <a href="/homes/images/qi01.jpg" data-fancybox="gallery" data-caption="<i class=&quot;fa fa-copyright&quot;></i> 音悦杂志社">
-                                <img src="/homes/images/qi01.jpg" alt="司空琪吧十一月壁纸">
-                            </a>
-                            <a href="/homes/images/qi02.jpg" data-fancybox="gallery" data-caption="<i class=&quot;fa fa-copyright&quot;></i> 音悦杂志社">
-                                <img src="/homes/images/qi02.jpg" alt="司空琪吧十一月壁纸">
-                            </a>
-                            <a href="/homes/images/qi03.jpg" data-fancybox="gallery" data-caption="<i class=&quot;fa fa-copyright&quot;></i> 音悦杂志社">
-                                <img src="/homes/images/qi03.jpg" alt="司空琪吧十一月壁纸">
-                            </a>
-                        </div>
-                        <div class="lmlblog-post-bar">
-                            <li class="lmlblog-no-like" onclick="lmlblog_like_posts(4197,this,&quot;post&quot;);">
-                                <i class="lmlblog-icon">
-                                    
-                                </i>
-                                <span>
-                                    5
-                                </span>
-                            </li>
-                            <li onclick="list_comments_show(this);">
-                                <i class="lmlblog-icon">
-                                    
-                                </i>
-                                <span>
-                                    5
-                                </span>
-                            </li>
-                            <li onclick="lmlblog_pop_login_style();">
-                                <i class="lmlblog-icon">
-                                </i>
-                                评论
-                                <span>
-                                    0
-                                </span>
-                            </li>
-                            <li>
-                                <i class="lmlblog-icon">
-                                    
-                                </i>
-                                <span>
-                                    1.2w
-                                </span>
-                            </li>
-                            <li class="tag clear">
-                                <i class="lmlblog-icon">
-                                    
-                                </i>
-                                <a href="#2" title="司空琪壁纸">
-                                    # 司空琪壁纸
-                                </a>
-                            </li>
-                        </div>
-                        <div class="lmlblog-post-like-list">
-                            <a href="#17" id="had_like_11788">
-                                <img src="/homes/picture/11.gif" class="avatar">
-                            </a>
-                            <a href="#18" id="had_like_11499">
-                                <img src="/homes/picture/12.gif" class="avatar">
-                            </a>
-                            <a href="#22" id="had_like_11488">
-                                <img src="/homes/picture/20.png" class="avatar">
-                                <i class="lmlblog-verify lmlblog-verify-a" title="认证信息：作者许仙白">
-                                </i>
-                            </a>
-                            <a href="#22" id="had_like_11477">
-                                <img src="/homes/picture/13.gif" class="avatar">
-                                <i class="lmlblog-verify lmlblog-verify-a" title="认证信息：168号计师">
-                                </i>
-                            </a>
-                            <a href="#22" id="had_like_1">
-                                <img src="/homes/images/tx2.jpg" class="avatar">
-                                <i class="lmlblog-verify lmlblog-verify-a" title="司空琪">
-                                </i>
+                            <a href="{{$v['picstream']}}" data-fancybox="gallery" data-caption="<i class=&quot;fa fa-copyright&quot;></i> 音悦杂志社">
+                                <img src="{{$v['picstream']}}" alt="{{$v['title']}}">
                             </a>
                         </div>
                         <div class="lmlblog-post-footer-bar">
-                            <span title="2017-12-14 05:25:48">
-                                12月14日 05:25
+                            <span title="{{date('Y-m-d H:i:s',$v['addtime'])}}" style="display: inline;">
+                                {{date('Y-m-d H:i:s',$v['addtime'])}}
                             </span>
                             <span>
                                 电脑端
@@ -485,6 +405,15 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
+                @else
+                    <div class="border-line" style="width:100%;height:500px;margin-bottom:10px;padding:18px 0px 5px;">
+                        <p style="text-align: center;padding-top: 96px;">还没有点赞的文章,赶快去点赞吧!</p>
+                        <p style="text-align: center;padding-top: 20px;width:100%;">
+                            <a href="/" style="border-radius: 2px;font-size: 15px;padding: 6px 20px;background-color: #fa7d3c;border: 1px solid #fa7d3c;color:#fff;">Let's go like</a>
+                        </p>
+                    </div>
+                @endif
             </div>
             <!--我的留言--> 
             <div class="lmlblog-member-right  hide">
@@ -534,6 +463,42 @@
                     </div>
                 @endif
             </div>
+            <!--我的评论--> 
+            <div class="lmlblog-member-right  hide">
+                <ul class="commentlist" style="margin:0px;">
+                    @if(!empty($discuss))
+                    @foreach($discuss as $k=>$v)
+                    <li class="comment even thread-even depth-1 " style="margin:0px;margin-bottom: 10px;">
+                        <div class="comment-body">
+                            <div class="comment-author vcard clearfix">
+                                <span class="fn">
+                                    {{session('homeuser')->username}}
+                                </span>
+                                <div class="comment-meta commentmetadata">
+                                    <a href="javascript:void(0)">
+                                       {{date('Y-m-d H:i:s',$v['addtime'])}}
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="comment-content clearfix">
+                                <img alt="{{session('home')}}" src="{{session('homeface')}}" class="avatar avatar-72 photo face" height="72" width="72">
+                                <p>
+                                    {{$v['content']}}
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                    @endforeach
+                    @else
+                    <div class="border-line" style="width:100%;height:500px;margin-bottom:10px;padding:18px 0px 5px;">
+                        <p style="text-align: center;padding-top: 96px;">还没有评论,赶快去发表你的评论吧!</p>
+                        <p style="text-align: center;padding-top: 20px;width:100%;">
+                            <a href="/Home/message" style="border-radius: 2px;font-size: 15px;padding: 6px 20px;background-color: #fa7d3c;border: 1px solid #fa7d3c;color:#fff;">发表评论</a>
+                        </p>
+                    </div>                       
+                    @endif
+                </ul>
+            </div>
             <!--我的一语-->  
             <div class="lmlblog-member-right hide" id="mySentence">
                 @foreach($sentence as $k=>$v)
@@ -566,7 +531,11 @@
                     <div class="lmlblog-post-content ">
                         <a class="post_list_link" href="javascript:void(0)">
                             <p>
+                                @if($v->status == 1)
+                                该每日一语已被禁用
+                                @else
                                 {{$v->heart_sentence}}
+                                @endif                               
                             </p>
                         </a>
                     </div>
@@ -618,7 +587,7 @@
                                 <div class="zhuce1-3-1" style="margin-bottom:10px;">
                                     <label>
                                         <h6 style="padding:10px;padding-left:0px;">音乐名:</h6>
-                                        <input type="text" id="reg_yzm" value="{{session('homeuserMusic')->music_name}}" name="music_name" style="box-sizing: border-box;text-align: left;" autocomplete="off" class="tel form-put" placeholder="音乐名">
+                                        <input type="text" value="{{session('homeuserMusic')->music_name}}" name="music_name" style="box-sizing: border-box;text-align: left;" autocomplete="off" class="tel form-put" placeholder="音乐名">
                                     </label>
                                 </div>                 
                                 <div class="zhuce1-3-1" style="margin-bottom:10px;position: relative;">
@@ -680,9 +649,7 @@
 </div>
 @stop
 
-@section('homeuser')
-<!-- 不需要登录模块 -->
-@stop
+
 
 @section('js')
 	<!-- 返回顶部 -->
@@ -710,6 +677,9 @@ function returnTop() {
 <script>
 jQuery(document).ready(function($) {
     //转换时间搓
+    $('.lmlblog-member-left .lmlblog-member-left-follow li').click(function(){
+        return false;
+    })
     function timestampToTime(timestamp) {
         var date = new Date();
         var Y = date.getFullYear() + '-';
@@ -727,9 +697,9 @@ jQuery(document).ready(function($) {
 	})
     var musicFlag = true;
     $('.am-popover-inner').css({"fontSize":"10px"});
-    $('.border-line li a:odd').css({"color":"#555"});
+    $('.tab-control li a:odd').css({"color":"#555"});
     //选项卡
-    $('.border-line li').click(function(){
+    $('.tab-control li').click(function(){
         $(this).each(function(){
             index = $(this).index();
             $(this).addClass('on').siblings().removeClass('on');
@@ -808,43 +778,6 @@ jQuery(document).ready(function($) {
         }
         return musicFlag;
     })
-	//推荐用户悬浮设置
-    $.fn.smartFloat = function() {
-        var position = function(element) {
-            var top = element.position().top,
-            pos = element.css("position");
-            $(window).scroll(function() {
-                var scrolls = $(this).scrollTop();
-                webH = $(document).height();
-				webT = $(document).scrollTop();
-                if(webT+950 > webH){
-                	element.css({
-                         // position: "absolute",
-                         // top: top
-                    })
-                }else if(scrolls > top) {
-                    element.css({
-                        position: "fixed",
-                        top: 0
-                    })
-                }else {
-                    // element.css({
-                    //     position: "absolute",
-                    //     top: top
-                    // })
-                }
-                // } else {
-                //     element.css({
-                //         position: "absolute",
-                //         top: top
-                //     })
-                // }
-            })
-        };
-        return $(this).each(function() {
-            position($(this))
-        })
-    };
     //每日一语
     var id = $('input[name="uid"]').attr('value');
     $('#sentence').click(function(){
@@ -871,13 +804,13 @@ jQuery(document).ready(function($) {
                     myElement.find('.sentence-time').attr('title',timestampToTime(data.addtime));
                     myElement.find('p').html(data.heart_sentence);
                     $('.integral').html('<i class="fa fa-diamond"></i>'+data.integral);
+                    $('.bigintegral').html(data.integral);
                     myElement.find('.integral').html('<i class="fa fa-diamond"></i>'+data.integral);
                     $('#mySentence').prepend(myElement);
                 }
             })
         }
     })
-    $(".lmlblog-member-left-bg-xg").smartFloat();
 });
 </script>	
 @stop

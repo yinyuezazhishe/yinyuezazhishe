@@ -36,8 +36,11 @@ class AdminDetailsController extends Controller
         } else {
 
             $details = Details::with('details_content', 'lists') -> orderBy('id', $request->input('sort', 'asc')) -> paginate($request -> input('num',5));
+<<<<<<< HEAD
 
             // dd($details);
+=======
+>>>>>>> ljh
         }
 
         $cate = Category::get();
@@ -143,6 +146,11 @@ class AdminDetailsController extends Controller
 
         $rs['addtime'] = time();
 
+<<<<<<< HEAD
+=======
+        $rs['is_praise'] = '1';
+
+>>>>>>> ljh
         // dd($rs);
 
         //添加数据

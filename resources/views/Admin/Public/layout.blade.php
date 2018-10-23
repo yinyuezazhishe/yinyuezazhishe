@@ -12,6 +12,8 @@
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
     <link rel="shortcut icon" href="/admins/img/logo.ico">
+    <link rel="stylesheet" type="text/css" href="/admins/css/plugins/webuploader/webuploader.css">
+    <link rel="stylesheet" type="text/css" href="/admins/css/demo/webuploader-demo.min.css">
     <link href="/admins/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
     <link href="/admins/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <link href="/admins/css/animate.min.css" rel="stylesheet">
@@ -419,7 +421,6 @@
     <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
     <script type="text/javascript" src="/ueditor/ueditor.all.min.js"></script>
     <script type="text/javascript" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
-
     <script type="text/javascript">
         
         $.ajaxSetup({
@@ -456,7 +457,6 @@
 
             theme =  $.session.get('theme');
             // console.log(theme);
-
 
             if (theme == undefined){
                 theme = theme1;
@@ -545,4 +545,16 @@
 
     @show
 </body>
+    <script src="/admins/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="/admins/js/plugins/layer/layer.min.js"></script>
+    <script src="/admins/js/hplus.min.js?v=4.0.0"></script>
+    <script type="text/javascript" src="/admins/js/contabs.min.js"></script>
+    <script src="/admins/js/plugins/pace/pace.min.js"></script>
+    <script src="/admins/layer/layer.js"></script>
+    <script type="text/javascript" src="/admins/js/contabs.min.js"></script>
+    <script src="/admins/js/plugins/pace/pace.min.js"></script>
+    <script src="/admins/js/jquerysession.js"></script>
+    <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="/ueditor/ueditor.all.min.js"></script>
+    <script type="text/javascript" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
 </html>
