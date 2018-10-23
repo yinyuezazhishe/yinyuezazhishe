@@ -32,7 +32,6 @@ class HomeDetailsController extends Controller
         $d_content = DetailsContent::where('did', $id)->first();
 
         $details = Details::with('details_content')->where('id', $id)->first();
-
         // dd($details);
 
         $praise = DB::table('praise')->where('d_c_id', $id) -> get();
@@ -43,18 +42,17 @@ class HomeDetailsController extends Controller
         }
 
         // 猜你喜欢
-        $lists = Lists::with('category')->where('id', $id)->first();
+        $lists = Lists::with('category')->where([['id', $id], ['status', '<>', '1']])->first();
 
         // echo $lists->category->path;
         $cid = trim(strstr($lists->category->path, ','), ',');
-
         // dd($id);
 
         $category = CateGory::with('lists')->where('pid', $cid)->get();
         // dd($category);
         foreach ($category as $k => $v) {
             foreach ($v -> lists as $k => $v) {
-                if ($id != $v -> id) {
+                if ($id != $v -> id && $v -> status == 0) {
                     $lid[] = $v -> id;
                 }
             }
@@ -62,11 +60,12 @@ class HomeDetailsController extends Controller
         }
 
         // dd($lid);
-
-        $detail = DetailsContent::whereIn('did', $lid)->limit(3)->get();
-
+        if (empty($lid)) {
+            $detail = DetailsContent::limit(3)->get();
+        } else {
+            $detail = DetailsContent::whereIn('did', $lid)->limit(3)->get();
+        }
         // dd($detail);
-
 
         return view('Home.Details.init', ['d_content'=>$d_content,'pr'=>$pr, 'praise' => $praise, 'details' => $details, 'detail' => $detail, 'title' => '音乐杂志社','user'=>$user,'num'=>$num,'reply'=>$reply]);
     }

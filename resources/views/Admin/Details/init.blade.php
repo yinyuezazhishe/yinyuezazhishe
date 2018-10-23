@@ -124,6 +124,7 @@
 @stop
 
 @section('js')
+    <script src="/homes/js/sweetalert.min.js"></script>
 	<script type="text/javascript">
 		//改变导航条样式
 		var show_details = $('.show_details').parents('li');
@@ -207,6 +208,5 @@
     </script>
     @endif
 
-    <script src="/homes/js/sweetalert.min.js"></script>
 
 @stop

@@ -497,12 +497,10 @@
                 </section>
             </div>
             <script>
-               function closed()
-               {
-                
-                // var divs = document.getElementById('divs');
-                $('#divs').fadeOut(1000);
-               }
+                function closed()
+                {
+                    $('#divs').fadeOut(1000);
+                }
 
             </script>
             <div id="footer-widgets-bg">

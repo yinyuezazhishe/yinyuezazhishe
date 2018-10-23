@@ -186,7 +186,7 @@
 
     <script src="/admins/js/plugins/validate/jquery.validate.min.js"></script>
     <script src="/admins/js/plugins/validate/messages_zh.min.js"></script>
-    <script src="/admins/js/demo/form-validate-demo.min.js"></script>
+    <!-- <script src="/admins/js/demo/form-validate-demo.min.js"></script> -->
     <script src="/homes/js/sweetalert.min.js"></script>
 	
 
