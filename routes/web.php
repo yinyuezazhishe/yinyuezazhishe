@@ -102,6 +102,12 @@ Route::get('/admin/comment','Admin\CommentController@index');
 //删除评论
 Route::delete('/admin/comment/{id}','Admin\CommentController@distory');
 
+//后台回复
+Route::get('/admin/reply','Admin\AdminReplyController@index');
+
+//删除回复
+Route::delete('/admin/reply/{id}','Admin\AdminReplyController@distory');
+
 // 前台主页
 Route::any('/', 'Home\HomeIndexController@index');
 

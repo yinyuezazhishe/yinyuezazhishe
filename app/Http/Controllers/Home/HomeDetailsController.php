@@ -23,10 +23,18 @@ class HomeDetailsController extends Controller
 	 */
     public function index(Request $request, $id)
 
-    {
+    {   
+        $user = Comment::where('did',$id) -> with('users') -> orderBy('addtime','desc') -> get();
+
+        $reply = Reply::with('users') -> get();
+
+        $num = $user -> count() + $reply -> count();
+
+        $d_content = DetailsContent::where('id', $id)->first();
+
         $details = Details::with('details_content')->where('id', $id)->first();
 
-    	// dd($details);
+        // dd($details);
 
         $praise = DB::table('praise')->where('d_c_id', $id) -> get();
 
@@ -35,7 +43,8 @@ class HomeDetailsController extends Controller
             $pr = DB::table('praise')->where([['d_c_id', $id], ['u_id', session('homeuser')->id]]) -> first();
         }
 
-    	return view('Home.Details.index', ['details' => $details, 'praise' => $praise, 'pr' => $pr, 'title' => '音乐杂志社']);
+
+        return view('Home.Details.index', ['d_content'=>$d_content,'pr'=>$pr, 'praise' => $praise, 'details' => $details, 'title' => '音乐杂志社','user'=>$user,'num'=>$num,'reply'=>$reply]);
 
     }
 
@@ -90,21 +99,6 @@ class HomeDetailsController extends Controller
                 return 1;
             }
         }  
-
-    {   
-        $user = Comment::where('did',$id) -> with('users') -> orderBy('addtime','desc') -> get();
-
-        $reply = Reply::with('users') -> get();
-
-        $num = $user -> count() + $reply -> count();
-
-    	$d_content = DetailsContent::where('id', $id)->first();
-
-    	$details = Details::with('details_content', 'lists') ->  orderBy('id', 'asc') -> paginate(10);
-    	// dd($d_content->id);
-
-    	return view('Home.Details.index', ['d_content'=>$d_content, 'details' => $details, 'title' => '音乐杂志社','user'=>$user,'num'=>$num,'reply'=>$reply]);
-
     }
 
     /**

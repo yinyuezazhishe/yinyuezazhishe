@@ -61,10 +61,10 @@ class LoginAdminController extends Controller
 
     	  // echo session('code');
 
-        if ($request -> code != session('code')) {
+      //   if ($request -> code != session('code')) {
 
-			      return redirect('/admin/login')->with('error','验证码错误') -> withInput();
-		    }
+			   //    return redirect('/admin/login')->with('error','验证码错误') -> withInput();
+		    // }
 
     	  $user = AdminUsers::where('username', $request -> username) -> first();
 
