@@ -152,7 +152,7 @@ class AdminListsController extends Controller
 
         try{
             //使用模型关联向详情内容表删除数据
-            $d_content = DetailsContent::find($id);
+            $d_content = DetailsContent::where('did', $id)->first();
 
             unlink('.'.$d_content->picstream);
 

@@ -123,11 +123,7 @@
             }
         </style>
     </head>    
-<<<<<<< HEAD
-    <body class="home blog">        
-=======
-<body class="home blog">        
->>>>>>> ljh
+    <body class="home blog">       
         @if(session('error'))  
         <script type="text/javascript">
             swal("对不起!", "{{session('error')}}", "error");
@@ -189,10 +185,8 @@
                 @endif
             </div>
             <!-- 代码 结束 -->
-<<<<<<< HEAD
-=======
+
             @section('contents')
->>>>>>> ljh
             @section('content')
 
             <?php
@@ -255,7 +249,6 @@
                     $details = App\Model\Admin\Details::with('details_content', 'lists')->whereIn('id', $lid)->orderBy('id', 'asc')->paginate(10);
                 @endphp
                 <section id="content" class="primary" role="main">
-<<<<<<< HEAD
                     @php
                         $hottest = DB::table('praise')->select(DB::raw('count(*) as d_c_count, d_c_id'))->groupBy('d_c_id')->orderBy('d_c_count', 'desc')->get();
 
@@ -288,7 +281,6 @@
                         </h2>
                         <div class="postmeta">
                             {{date('Y-m-d',$d_content->addtime)}}
-=======
                     @foreach($details as $k => $v)
                     <article class="content-excerpt post-13827 post type-post status-publish format-standard has-post-thumbnail sticky hentry category-nomusic tag-t">
                         <h2 class="post-title entry-title">
@@ -298,12 +290,10 @@
                         </h2>
                         <div class="postmeta">
                             {{date('Y-m-d',$v->details_content->addtime)}}
->>>>>>> ljh
                         </div>
                         <div class="entry clearfix">
                             <blockquote>
                                 <p>
-<<<<<<< HEAD
                                     {{$d_content->saying}}
                                 </p>
                             </blockquote>
@@ -334,7 +324,6 @@
                     <article class="content-excerpt post-19689 post type-post status-publish format-standard has-post-thumbnail hentry category-video category-popmusic tag-2853 tag-3298 tag-3472"><h2 class="post-title entry-title">
                         <h2 class="post-title entry-title">
                             <a href="/home/details/{{$v->details_content->id}}" rel="bookmark">
-=======
                                     {{$v->details_content->saying}}
                                 </p>
                             </blockquote>
@@ -367,75 +356,23 @@
                             </span>
                         </div>
                     </article>
-                    
-                    
-                    <article class="content-excerpt post-19689 post type-post status-publish format-standard has-post-thumbnail hentry category-video category-popmusic tag-2853 tag-3298 tag-3472"><h2 class="post-title entry-title">
-                        <h2 class="post-title entry-title">
-                            <a href="https://www.mtyyw.com/13827/" rel="bookmark">
->>>>>>> ljh
-                                {{$v->details_content->title}}
-                            </a>
-                        </h2>
-                        <div class="postmeta">
-                            {{date('Y-m-d',$v->details_content->addtime)}}
-                        </div>
-                        <div class="entry clearfix">
-                            <blockquote>
-                                <p>
-                                    {{$v->details_content->saying}}
-                                </p>
-                            </blockquote>
-                            <p>
-<<<<<<< HEAD
-                                <a href="/home/details/{{$v->
-                                    id}}" title="{{$v->details_content->title}}">
-                                    <img class="" src="{{$v->details_content->picstream}}"
-                                    align="absmiddle" />
-                                    <br />
-                                    简介:{{$v->details_content->describe}}
-                                </a>
-=======
-                                <img class="" src="{{$v->details_content->picstream}}"
-                                align="absmiddle" />
-                                <br />
-                                简介:{{$v->details_content->describe}}
->>>>>>> ljh
-                            </p>
-                            <a href="/home/details/{{$v->id}}" class="more-link">
-                                查看全部
-                            </a>
-                        </div>
-<<<<<<< HEAD
-                    </article>
                     @endforeach
-                   
-=======
-                        <div class="postinfo clearfix">
-                            <span class="meta-category">
-                                <ul class="post-categories">
-                                    <li>
-                                        <a href="https://www.mtyyw.com/nomusic/" rel="category tag">
-                                            无关音乐
-                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
-                                            小众音乐
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.mtyyw.com/wenzi/" rel="category tag">
-                                            文字
-                                        </a>
-                                    </li>
-                                </ul>
-                            </span>
-                        </div>
-                    </article>
-                    @endforeach
-                   
 
->>>>>>> ljh
                     <div class="post-pagination clearfix">
                             {{$details->links()}}
                     </div>
+
+                   <style>
+                        /*分页样式*/  
+                        .pagination{text-align:center;margin-bottom: 20px; line-height:37px;}  
+                        .pagination li{margin:0px 10px; width:41.75px; height:40px; border:1px solid #ddd;display: inline-block;; cursor: pointer;}
+                        .pagination .active{margin-top: 20px;background-color: #0e90d2;color: #fff;border-radius: 5px} 
+                        .pagination .active:hover{background-color: #23abf0;color: #fff;} 
+                        .pagination li:hover{background-color:#ddd;}
+                        .pagination a{width:41.75px; height:40px;display:block; text-decoration:none;}
+                    </style>
+                    <div> {{$details->links()}} </div>
+                    <div style='clear:both;'></div>
                 </section>
                 @show
 
@@ -491,12 +428,12 @@
                                     @endphp
                                     @foreach ($newest as $k => $v)
                                     <li class="widget-thumb">
-                                        <a href="/home/details/{{$v->id}}" title="{{$v->title}}">
+                                        <a href="/home/details/{{$v->did}}" title="{{$v->title}}">
                                             <img width="75" height="75" src="{{$v->picstream}}"
                                             class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image"
                                             sizes="(max-width: 75px) 100vw, 75px" />
                                         </a>
-                                        <a href="/home/details/{{$v->id}}" title="{{$v->title}}">
+                                        <a href="/home/details/{{$v->did}}" title="{{$v->title}}">
                                             {{$v->title}}
                                         </a>
                                         <div class="widget-postmeta">
@@ -547,10 +484,10 @@
                                 <ul>
                                     @foreach ($d_content as $k => $v)
                                     <li class="widget-thumb">
-                                        <a href="/home/details/{{$v->id}}" title="{{$v->title}}">
+                                        <a href="/home/details/{{$v->did}}" title="{{$v->title}}">
                                             <img width="75" height="75" src="{{$v->picstream}}" class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image" sizes="(max-width: 75px) 100vw, 75px" />
                                         </a>
-                                        <a href="home/details/{{$v->id}}" title="{{$v->title}}">
+                                        <a href="home/details/{{$v->did}}" title="{{$v->title}}">
                                             {{$v->title}}
                                         </a>
                                         <div class="widget-postmeta">
@@ -564,12 +501,9 @@
                             </div>
                         </div>
                     </aside>
-<<<<<<< HEAD
-=======
-                    
->>>>>>> ljh
-                     @php 
-                      $advertising = \App\Model\Home\Advertising::AdverTising();
+
+                    @php 
+                    $advertising = \App\Model\Home\Advertising::AdverTising();
            
                      @endphp
                     
@@ -581,12 +515,13 @@
                         </h3>
                          @foreach ($advertising as $k=>$v)
                         <div class="textwidget" id="divs">
+                            <img width="25px" style="position: absolute; right: 100px; cursor:pointer;" src="/admins/uploads/gg/gg1.png" onclick="closed();" />
                             <a href="{{$v->links}}" rel="nofollow" target="_blank">
                                 <img src="{{$v->picture}}"
                                  width="350" height="337" class="alignnone size-full wp-image-11045"
                                 />
                             </a>
-                            <img width="25px" src="/admins/uploads/gg/gg1.png" onclick="closed();" />
+                            
                         </div>
                          @endforeach
                     </aside>
@@ -594,18 +529,13 @@
                 </section>
             </div>
             <script>
-               function closed()
-               {
-                
-                var divs = document.getElementById('divs');
-                divs.style.display = 'none';
-               }
+                function closed()
+                {
+                    $('#divs').fadeOut(1000);
+                }
 
             </script>
-<<<<<<< HEAD
-=======
-            @show
->>>>>>> ljh
+
             <div id="footer-widgets-bg">
                 <div id="footer-widgets-wrap" class="container">
                     <div id="footer-widgets" class="clearfix">
@@ -1004,9 +934,6 @@
             <div class="mf_chongzhi2"></div>
         </div>
 
-<<<<<<< HEAD
-        <script type="text/javascript" src="/homes/js/jquerysession.js"></script>
-=======
         <div class="chongzhichenggong">
             <div class="chongzhichenggong1"><img src="/homes/public/templates/default/images/gou.png" tppabs="http://www.mfdemo.cn/public/templates/default/images/gou.png" width="30" height="29"/>
             </div>
@@ -1016,9 +943,6 @@
             <div class="chongzhichenggong3"><p>3</p><span>s后返回登录</span></div>
 
         </div>
->>>>>>> ljh
-
-        <script type="text/javascript" src="/homes/js/jquerysession.js"></script>
 
         <script type="text/javascript">
 
@@ -1278,17 +1202,10 @@
         @php
             $flag = '0';
             if (!empty(session('unique'))) {
-<<<<<<< HEAD
                 $flag = session('unique');
             } else {
                 $flag = '0';
-=======
-                 $flag = session('unique');
-            } else {
-                 $flag = '0';
->>>>>>> ljh
             }
-
             echo "<script type='text/javascript'>
                 var flag = '0';
                 flag = ".$flag."
@@ -1303,7 +1220,6 @@
                         dataType: 'json',
                         success: function (data) {
                             if (data == 0) {
-<<<<<<< HEAD
                                 // console.log('删除成功');
                             } else if (data == 1) {
                                 // console.log('删除失败');
@@ -1311,23 +1227,12 @@
                         },
                         error: function(){
                             // console.log('删除失败');
-=======
-                                console.log('删除成功');
-                            } else if (data == 1) {
-                                console.log('删除失败');
-                            }
                         },
-                        error: function(){
-                            console.log('删除失败');
->>>>>>> ljh
-                        },
-                        // timeout:3000,
                         async: true
                     });
                     console.log(flag);
                 }
             </script>";
-<<<<<<< HEAD
 
             if (!empty(session('login'))) {
                 echo "<script type='text/javascript'>
@@ -1363,12 +1268,6 @@
            }
          @endphp
 
-
-=======
-           
-         @endphp
-
->>>>>>> ljh
         <!-- 表单验证插件代码开始 -->
         <script type="text/javascript"  src="/homes/public/templates/default/js/Validform_v5.3.2_min.js" tppabs="http://www.mfdemo.cn/public/templates/default/js/Validform_v5.3.2_min.js"></script>
         <script type="text/javascript">

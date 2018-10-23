@@ -132,7 +132,7 @@
                     </p>
                     <p class="form-submit" style="text-align: right;">
                         <input name="submit" type="submit" id="submit" class="submit" value="发表评论" style="display: inline;">
-                        <input type="hidden" id="did" value="{{$d_content->id}}">
+                        <input type="hidden" id="did" value="{{$d_content->did}}">
                         <input type="hidden" name="uid" value=" @if(!empty(session('homeuser'))) {{session('homeuser')->id}} @endif" id="uid">
                     </p>
                     <p style="display: none;">
@@ -242,9 +242,21 @@
                 <span id="nums" class="nums">{{$num}}</span>条评论
                 
             </h3>
-        </div>        
+        </div>
+
         <!-- #respond -->
     </section>
+
+    <style type="text/css">
+        #footer-wrap {
+            margin: 0px;
+            padding: 0px;
+        }
+        #footer-widgets-bg {
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
 
 @stop
 
@@ -282,7 +294,7 @@
     };
     with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~ ( - new Date() / 36e5)];
 
-    console.log($('#praise'));
+    // console.log($('#praise'));
     $('#praise').click(function ()
     {
 
