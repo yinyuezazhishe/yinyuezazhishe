@@ -90,9 +90,9 @@
             </div>
             <div class="yuzo_wraps">
                 @foreach ($detail as $k => $v)
-                <div class="relatedthumb relatedpost-18577" style="width: 230px; float: left; overflow: hidden; height: 202px;">
+                <div class="relatedthumb relatedpost-18577" style="width: 230px; margin: 10px; float: left; overflow: hidden; height: 202px;">
                     <span class="equalizer-inner" style="display:block;">
-                        <a href="/home/details/{{$v->id}}" title="{{$v->title}}">
+                        <a href="/home/details/{{$v->did}}" title="{{$v->title}}">
                             <div class="yuzo-img-wrap ">
                                 <div class="yuzo-img" style="background:url('{{$v->picstream}}') 50% 50% no-repeat;width: 230px;;max-width:100%;height:160px;margin-bottom: 5px;background-size: cover; ">
                                 </div>
@@ -132,8 +132,8 @@
                     </p>
                     <p class="form-submit" style="text-align: right;">
                         <input name="submit" type="submit" id="submit" class="submit" value="发表评论" style="display: inline;">
-                        <input type="hidden" id="did" value="{{$d_content->did}}">
-                        <input type="hidden" name="uid" value=" @if(!empty(session('homeuser'))) {{session('homeuser')->id}} @endif" id="uid">
+                        <input type="hidden" id="did" value="{{$d_content->id}}">
+                        <input type="hidden" name="uid" value="@if(!empty(session('homeuser'))) {{session('homeuser')->id}} @endif" id="uid">
                     </p>
                     <p style="display: none;">
                     </p>
@@ -238,25 +238,13 @@
                     </li>
                 </ul>
             </ul>
-            <h3 class="comments-title">
+            <h3 class="comments-title" style="text-align: right;">
                 <span id="nums" class="nums">{{$num}}</span>条评论
                 
             </h3>
-        </div>
-
+        </div>        
         <!-- #respond -->
     </section>
-
-    <style type="text/css">
-        #footer-wrap {
-            margin: 0px;
-            padding: 0px;
-        }
-        #footer-widgets-bg {
-            margin: 0px;
-            padding: 0px;
-        }
-    </style>
 
 @stop
 
@@ -269,8 +257,9 @@
         </script>";
     }
 @endphp
-<!-- 百度分享 js 开始 -->
+
 <script>
+    // 百度分享 js 开始 
     window._bd_share_config = {
         "common": {
             "bdSnsKey": {},
@@ -293,11 +282,11 @@
         }
     };
     with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~ ( - new Date() / 36e5)];
+    // 百度分享 js 结束
 
     // console.log($('#praise'));
     $('#praise').click(function ()
     {
-
         var id = $(this).attr('href');
         // var praise = '';
         // if ($(this).find('.fa-thumbs-o-up').attr('class') == 'fa fa-thumbs-o-up') {
@@ -348,8 +337,9 @@
         return false;
     })
 </script>
-<!-- 百度分享 js 结束 -->                  
-   
+                
+</section>
+
 <script type="text/javascript">
 
     var id
@@ -364,45 +354,63 @@
 
         var comment = $('#discuss').val();
 
-        if (comment == '') {return false}
-
         $('#discuss').val('');
 
         var uid = $('#uid').val();
 
         var did = $('#did').val();
 
+        if (uid == '') {
+
+            swal("温馨提示!", "请您先登录", "error");
+
+            $('.zhuce').addClass('bounceOutUp').fadeOut();
+
+            setTimeout(function () {
+                $('.mf_denglu').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+            }, 1500);
+            return false;
+        }
+
+        if (comment == '') {
+
+            swal("温馨提示!", "内容不能为空", "error");
+            return false;
+        }
+
         if(flag == 'comment'){
 
             $.post('/home/comment',{'content':comment,'hid':uid,'did':did,'_token':'{{ csrf_token() }}'},
 
-            function(data){
+                function(data){
 
-                swal("恭喜你!", "评论成功!", "success");
+                    console.log(uid);
 
-                checknum(100);
+                    swal("恭喜你!", "评论成功!", "success");
 
-                var New_li = $('#centent_clone').clone(true);
+                    checknum(100);
 
-                New_li.attr('id','');
+                    var New_li = $('#centent_clone').clone(true);
 
-                New_li.css('display','block');
+                    New_li.attr('id','');
 
-                New_li.find('.commentmetadata').text(data.addtime);
+                    New_li.css('display','block');
 
-                New_li.find('.fn').text(data.username);
+                    New_li.find('.commentmetadata').text(data.addtime);
 
-                New_li.find('.avatar').attr('src',data.face);
+                    New_li.find('.fn').text(data.username);
 
-                New_li.find('.con').text(comment);
+                    New_li.find('.avatar').attr('src',data.face);
 
-                New_li.find('.comment-reply-link').attr('cid',data.id);
+                    New_li.find('.con').text(comment);
 
-                $('.commentlist').prepend(New_li);
+                    New_li.find('.comment-reply-link').attr('cid',data.id);
 
-                num();
+                    $('.commentlist').prepend(New_li);
 
-            },'json');
+                    num();
+
+                },'json');
 
             return false;
 
@@ -462,7 +470,7 @@
 
         $respond = $('#respond');
 
-        $(this).after($respond);
+        $(this).before($respond);
 
         name = $(this).parent().prev().prev().find('.fn').text();
 
@@ -480,7 +488,7 @@
 
         $(this).css('display','none');
 
-        $('.commentlist').after($('#respond'));
+        $('.commentlist').before($('#respond'));
 
         $('.as').text('发布评论');
 
@@ -506,7 +514,7 @@
 
         $('.nums').text($nums);
 
-        $('.commentlist').after($('#respond'));
+        $('.commentlist').before($('#respond'));
     }
 </script>
 

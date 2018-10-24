@@ -67,8 +67,11 @@ class AdminAdvertisingController extends Controller
     	$rs = $request->except('_token','picture');
 
     	$gm = [];
-         if($request->hasFile('picture')){
+        if($request->hasFile('picture')){
+
             $files = $request->file('picture');
+
+
 
             $gname = time().rand(1111,9999);
 
@@ -81,17 +84,20 @@ class AdminAdvertisingController extends Controller
             $rs['picture'] = Config::get('app.uploads').'/advertising/'.$gname.'.'.$suffix;
         }
 
+        // dd($rs);
+
         //添加数据
         try{
             //关联模型
             $cds = Advertising::create($rs);
 
             if($cds){
-
-                return redirect('/Admin/advertising')->with('success','添加成功');
-
+                return redirect('/admin/advertising')->with('success','添加成功');
             }
+
         }catch(\Exception $e){
+
+            // echo $e -> getMessage();
 
             return back()->with('error','添加失败');
 
@@ -149,7 +155,7 @@ class AdminAdvertisingController extends Controller
             $rs = Advertising::where('id',$id) -> update($res);
 
             if($rs){
-                return redirect('/Admin/advertising')->with('success','修改成功');
+                return redirect('/admin/advertising')->with('success','修改成功');
             } else {
                 return back() -> with('error','未做任何修改');
             }
@@ -170,7 +176,7 @@ class AdminAdvertisingController extends Controller
 
             if ($rs) {
 
-                return redirect('/Admin/advertising') -> with('success','删除成功');
+                return redirect('/admin/advertising') -> with('success','删除成功');
             }
         }catch(\Exception $e){
             

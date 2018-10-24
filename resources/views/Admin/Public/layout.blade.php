@@ -44,15 +44,12 @@
                                 <span class="clear">
                                <span class="block m-t-xs"><strong class="font-bold">{{session("adminusers")->username}}</strong></span>
                                 <span class="text-muted text-xs block">
-                                    @if(session('power') == '0')
-                                        普通群众
-                                    @elseif(session('power') == '1')
-                                        中级管理员
-                                    @elseif(session('power') == '2')
-                                        高级管理员
-                                    @elseif(session('power') == '3')
-                                        超级管理员
-                                    @endif
+                                    @php
+                                        $user = \App\Model\Admin\AdminUsers::find(session("adminusers")->id);
+                                        //获取角色信息
+                                        $role = \App\Model\Admin\Role::orderBy('id', 'asc') -> first();
+                                        echo ($role -> role_name);
+                                    @endphp
                                     <b class="caret"></b></span>
                                 </span>
                             </a>
@@ -145,15 +142,15 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li>
-                                <a href="/Admin/category/create"> 
+                            <li class="create_category">
+                                <a href="/admin/category/create"> 
                                     <span class="nav-label">添加类别</span>
                                 </a>                                 
                             </li>                           
                         </ul>
                         <ul class="nav nav-second-level">
-                            <li>
-                                <a href="/Admin/category"> 
+                            <li class="show_category">
+                                <a href="/admin/category"> 
                                     <span class="nav-label">浏览类别</span>
                                 </a>
                             </li>                           
@@ -193,7 +190,7 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li>
+                            <li class="show_comment">
                                 <a class="" href="/admin/comment">浏览评论</a>
                             </li>
                         </ul>
@@ -205,7 +202,7 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li>
+                            <li class="show_reply">
                                 <a class="" href="/admin/reply">浏览回复</a>
                             </li>
                         </ul>
@@ -230,8 +227,8 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li>
-                                <a href="/Admin/message">浏览留言</a>
+                            <li class="show_message">
+                                <a href="/admin/message">浏览留言</a>
                             </li>
                         </ul>
                     </li>
@@ -242,11 +239,11 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li>
-                                <a href="/Admin/banner/create">添加轮播</a>
+                            <li class="create_banner">
+                                <a href="/admin/banner/create">添加轮播</a>
                             </li>
-                            <li>
-                                <a href="/Admin/banner">浏览轮播</a>
+                            <li class="show_banner">
+                                <a href="/admin/banner">浏览轮播</a>
                             </li>
                         </ul>
                     </li>
@@ -257,9 +254,9 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a href="/Admin/advertising/create">添加广告</a>
+                            <li class="create_advertising"><a href="/admin/advertising/create">添加广告</a>
                             </li>
-                            <li><a href="/Admin/advertising">浏览广告</a>
+                            <li class="show_advertising"><a href="/admin/advertising">浏览广告</a>
                             </li>
                         </ul>
                     </li>
@@ -301,14 +298,6 @@
                         <a class="minimalize-styl-2" href="javascript:void(0)" style="margin:0px;padding:0px;padding-left:5px;">
                             <img src='/admins/img/yinyuelogo.png' style="height:60px;"/>
                         </a>
-                        <a class=" minimalize-styl-2 btn btn-primary" href="#" style="float:right">
-                            <i class="fa fa-search"></i> 
-                        </a>
-                        <form role="search" class="navbar-form-custom" method="post" style="float:right" action="search_results.html">
-                            <div class="form-group">
-                                <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search" id="top-search">
-                            </div>
-                        </form>
                     </div>
                     <ul class="nav navbar-top-links navbar-right">
                         <li class="dropdown hidden-xs">
@@ -419,7 +408,7 @@
     <script src="/admins/js/plugins/pace/pace.min.js"></script>
     <script src="/admins/js/jquerysession.js"></script>
     <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
-    <script type="text/javascript" src="/ueditor/ueditor.all.min.js"></script>
+    <script type="text/javascript" src="/ueditor/ueditor.all.js"></script>
     <script type="text/javascript" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
     <script type="text/javascript">
         
@@ -527,13 +516,10 @@
                 dataType:'json',
                 type:'GET',
                 success:function(data){
-                    if (data){
-                        
-                        location.reload(true);
-                    }
+                    location.reload(true);
                 },
                 error:function(){
-                    
+                    layer.alert("主题修改失败",{title:'温馨提示',icon:'5'});
                 },
                 timeout:3000,
                 async:false
@@ -545,16 +531,4 @@
 
     @show
 </body>
-    <script src="/admins/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="/admins/js/plugins/layer/layer.min.js"></script>
-    <script src="/admins/js/hplus.min.js?v=4.0.0"></script>
-    <script type="text/javascript" src="/admins/js/contabs.min.js"></script>
-    <script src="/admins/js/plugins/pace/pace.min.js"></script>
-    <script src="/admins/layer/layer.js"></script>
-    <script type="text/javascript" src="/admins/js/contabs.min.js"></script>
-    <script src="/admins/js/plugins/pace/pace.min.js"></script>
-    <script src="/admins/js/jquerysession.js"></script>
-    <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
-    <script type="text/javascript" src="/ueditor/ueditor.all.min.js"></script>
-    <script type="text/javascript" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
 </html>

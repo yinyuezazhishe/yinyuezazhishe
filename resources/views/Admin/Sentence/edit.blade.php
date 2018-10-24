@@ -57,13 +57,13 @@
 		}
 	}
 	$('#heart_sentence').keyup(function(){
-		sentence($('#heart_sentence'));
+		// sentence($('#heart_sentence'));
 	})
 	$('#heart_sentence').keydown(function(){
-		sentence($('#heart_sentence'));
+		// sentence($('#heart_sentence'));
 	})
-	$('#heart_sentence').focus(function(){
-		sentence($('#heart_sentence'));
+	$('#heart_sentence').blur(function(){
+		// sentence($('#heart_sentence'));
 	})
 	$('form').submit(function(){
 		sentence($('#heart_sentence'));

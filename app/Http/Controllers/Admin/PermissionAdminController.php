@@ -116,6 +116,8 @@ class PermissionAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $uri = empty(session('permissionuri')) ? '/admin/permission' : session('permissionuri');
+
         // 表单验证
         $permission = Validator::make($request->all(), [
                 'per_name' => 'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_\-]{2,}$/u',
@@ -138,7 +140,7 @@ class PermissionAdminController extends Controller
 
         if ($rs['per_name'] == $role -> per_name && $rs['urls'] == $role -> urls ) {
 
-            return redirect('/admin/permission')->with('succes','修改权限成功');
+            return redirect($uri)->with('succes','修改权限成功');
         }
        
         try{
@@ -147,10 +149,12 @@ class PermissionAdminController extends Controller
 
             if($data){
 
-                return redirect('/admin/permission')->with('succes','修改权限成功');
+                return redirect($uri)->with('succes','修改权限成功');
             }
 
         }catch(\Exception $e){
+
+            $request -> session() -> forget('permissionuri'); 
 
             return back()->with('errors','修改权限失败');
         }

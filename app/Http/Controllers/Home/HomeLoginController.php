@@ -21,6 +21,11 @@ class HomeLoginController extends Controller
 	 */
     public function dologin(Request $request)
     {
+        // dd($request -> method());
+        if ($request -> method() == 'GET') {
+            abort('404');
+        }
+
         session(['login' => '1']);
 
         $uri = empty(session('uri')) ? '/' : session('uri');
@@ -28,21 +33,21 @@ class HomeLoginController extends Controller
     	$res = $request -> except('_token');
 
     	if (!preg_match_all("/^[\x{4e00}-\x{9fa5}A-Za-z0-9_\-]{3,10}$/u",$res['username'])) {
-            return redirect($uri)->with('error','用户名里含有字母、数字、下划线、中文以外的非法字符且必须最少3位, 最多十位！')-> withInput();
+            return redirect($uri)->with('error','用户名里含有字母、数字、下划线、中文以外的非法字符且必须最少3位, 最多十位！') -> withInput();
         }
 
         if (empty($res['password'])) {
-            return redirect($uri) -> with('error', '密码不能为空！')-> withInput();
+            return redirect($uri) -> with('error', '密码不能为空！') -> withInput();
         }
 
         if (!preg_match('/^(?![0-9]+$)(?![a-zA-Z]+$)[\S]{6,16}$/', $res['password'])) {
-            return redirect($uri) -> with('error', '必须有数字和字母, 且必须要六位, 不能超过十六位！')-> withInput();
+            return redirect($uri) -> with('error', '必须有数字和字母, 且必须要六位, 不能超过十六位！') -> withInput();
         }
 
         if (strtolower($res['code']) != strtolower(session('code'))) {
         	// echo $res['code'];
         	// echo session('code');
-			return redirect($uri)->with('error','验证码错误');
+			return redirect($uri)->with('error','验证码错误') -> withInput();
 		}
 
         $user = HomeUsers::where('username', $res['username']) -> first();
@@ -50,9 +55,11 @@ class HomeLoginController extends Controller
         if ($user) {
             $music = HomeUserMusic::where('uid',$user->id)->first();
             if ($user -> status == 1) {
+                $request->session()->forget('login');
                 return redirect($uri)->with('error','您的账户已被禁用, 请联系网站管理员!')-> withInput();
 
             } else if ($user -> status == 2) {
+                $request->session()->forget('login');
                 return redirect($uri)->with('error','您输入的的邮箱未在本网站注册验证成功, 请前往您注册时的邮箱进行验证再进行登录!')-> withInput();
             }
 
@@ -100,8 +107,8 @@ class HomeLoginController extends Controller
             HomeUsers::where('id',$user->id)->update(['integral'=>$user->integral+5]);
         }
         $integral = HomeUsers::where('id', $user->id)->get()->pluck('integral')[0];
-        // $sentence = DB::table('homeuser_sentence')->where('sentence_time','>=',$now)->where('uid',$user->id)->get()->toArray();
-        // session(['get_sentence_num'=>count($sentence)]);
+        $sentence = DB::table('homeuser_sentence')->where('sentence_time','>=',$now)->where('uid',$user->id)->get()->toArray();
+        session(['get_sentence_num'=>count($sentence)]);
         session(['integral'=>$integral]);
 
     	$uris = empty(session('back')) ? $uri : session('back');
@@ -121,6 +128,10 @@ class HomeLoginController extends Controller
 
     public function doregister(Request $request)
     {
+        if ($request -> method() == 'GET') {
+            abort('404');
+        }
+
         session(['register' => '1']);
 
         $uri = empty(session('uri')) ? '/' : session('uri');
@@ -196,12 +207,14 @@ class HomeLoginController extends Controller
 	            //发给谁的
 	            $msg->to($req['email'], $req['username'])->subject('感谢注册音悦杂志社');
 	        });
+
+            $request->session()->forget('register');
+
+            //发送邮件成功的提醒
+            return view('Home.email.reminds');
+
+            // dd($rs);
     	}
-
-        //发送邮件成功的提醒
-        return view('Home.email.remind');
-
-    	// dd($rs);
     }
 
     /**
@@ -233,6 +246,8 @@ class HomeLoginController extends Controller
         $data = HomeUsers::where('id', $id)->update($rs);
 
         if($data){
+
+            session(['emaillogin' => '1']);
 
             return redirect('/') -> with('success', '验证邮箱成功, 请点击首页进行登录!');
         }
@@ -266,6 +281,10 @@ class HomeLoginController extends Controller
      */
     public function sendemail(Request $request)
     {
+        if ($request -> method() == 'GET') {
+            abort('404');
+        }
+
         $email = $request -> input('email');
 
         $user = HomeUsers::where('email', $email) -> first();
@@ -306,6 +325,10 @@ class HomeLoginController extends Controller
      */
     public function forgetpass(Request $request)
     {
+        if ($request -> method() == 'GET') {
+            abort('404');
+        }
+
         session(['forgetpass' => '1']);
 
         $uri = empty(session('uri')) ? '/' : session('uri');
@@ -349,6 +372,8 @@ class HomeLoginController extends Controller
             $rs = HomeUsers::where('email' ,$res['email']) -> update($pass);
 
             if($rs){
+
+                $request->session()->forget('forgetpass');
 
                 return redirect($uri)->with('success','修改密码成功');
             }

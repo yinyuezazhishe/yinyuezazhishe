@@ -49,9 +49,9 @@
                 <div class="col-sm-10">
                     <div class="radio">
                     	<label>
-                            <input type="radio" @if($rs->status=='1') checked @endif value="1"  name="status">启用</label>
+                            <input type="radio" @if($rs->status=='0') checked @endif value="0"  name="status">启用</label>
                         <label>
-                            <input type="radio" @if($rs->status=='0') checked @endif value="0"  name="status">禁用</label> 
+                            <input type="radio" @if($rs->status=='1') checked @endif value="1"  name="status">禁用</label> 
                     </div>
                 </div>
             </div>
@@ -95,7 +95,10 @@
 @section('js')
 
 <script type="text/javascript">
-
+     //改变导航条样式
+    var show_user = $('.show_user').parents('li');
+    $('.show_user a').css({'color':'#fff'});
+    show_user.attr('class','active');
     var flag = true;
 
     //获取原本的用户名

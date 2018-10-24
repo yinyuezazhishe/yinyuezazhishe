@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -39,17 +38,7 @@
 	<![endif]-->
 	</head>
 	<body class="style-2">
-
 		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-center">
-					<ul class="menu">
-						<li><a href="index.html"></a></li>
-						<li class="active"><a href="index2.html"></a></li>
-						<li><a href="index3.html"></a></li>
-					</ul>
-				</div>
-			</div>
 			<div class="row">
 				<div  class="col-md-4 col-md-push-8">
 					
@@ -78,16 +67,12 @@
 						</div>
 						<div class="form-group">
 							<label for="password" class="sr-only">密 码</label>
-							<input type="password" class="form-control" name="password" id="password" placeholder="请输入您的密码" autocomplete="off">
+							<input type="password" class="form-control" name="password" value="{{old('password')}}" id="password" placeholder="请输入您的密码" autocomplete="off">
 						</div>
 						<div class="form-group">
 							<label for="code" class="sr-only">验证码</label>
-							<input type="code" id="code" style="width:130px; display: inline;" class="form-control" name="code" id="code" placeholder="请输入您的验证码" autocomplete="off">
+							<input type="code" value="{{old('code')}}" id="code" style="width:130px; display: inline;" class="form-control" name="code" placeholder="请输入您的验证码" autocomplete="off">
 							<img src="/code" style="padding-left: 25px; padding-top: 15px;" onclick="this.src='/code?rand='+Math.random();">
-						</div>
-						<div>
-							<!-- <img src="/admins/login/images/bg_2.jpg" width="120px"> -->
-							
 						</div>
 						<div class="form-group">
 							<input type="submit" value="登录" class="btn btn-primary">

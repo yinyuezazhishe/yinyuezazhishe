@@ -186,14 +186,12 @@
 
     <script src="/admins/js/plugins/validate/jquery.validate.min.js"></script>
     <script src="/admins/js/plugins/validate/messages_zh.min.js"></script>
-    <!-- <script src="/admins/js/demo/form-validate-demo.min.js"></script> -->
+    <script src="/admins/js/demo/form-validate-demo.min.js"></script>
     <script src="/homes/js/sweetalert.min.js"></script>
-	
 
-
-    @if(session('errors'))
+    @if(session('errorss'))
     <script type="text/javascript">
-        swal("对不起!", "{{session('errors')}}", "error");
+        swal("对不起!", "{{session('errorss')}}", "error");
     </script>
     @endif
     

@@ -24,7 +24,7 @@ class HomeDetailsController extends Controller
     {
         $user = Comment::where('did',$id) -> with('users') -> orderBy('addtime','desc') -> get();
 
-        $reply = Reply::with('users') -> get();
+        $reply = Reply::where('did',$id) -> with('users') -> get();
 
         $num = $user -> count() + $reply -> count();
 
@@ -64,9 +64,8 @@ class HomeDetailsController extends Controller
         } else {
             $detail = DetailsContent::whereIn('did', $lid)->limit(3)->get();
         }
-        // dd($detail);
 
-        return view('Home.Details.init', ['d_content'=>$d_content,'pr'=>$pr, 'praise' => $praise, 'details' => $details, 'detail' => $detail, 'title' => '音乐杂志社','user'=>$user,'num'=>$num,'reply'=>$reply]);
+        return view('Home.Details.init', ['d_content'=>$d_content,'pr'=>$pr, 'praise' => $praise, 'details' => $details, 'detail' => $detail, 'title' => "音乐杂志社-".$details->details_content->title,'user'=>$user,'num'=>$num,'reply'=>$reply]);
     }
 
     /**
@@ -83,7 +82,9 @@ class HomeDetailsController extends Controller
         $res = $request -> all();
         $pr['u_id'] = session('homeuser')->id;
         $pr['d_c_id'] = $res['id'];
+        $pr['addtime'] = time();
 
+        // 查询是否点赞
         $praise = DB::table('praise')->where([['u_id', $pr['u_id']], ['d_c_id', $pr['d_c_id']]]) -> first();
 
         // var_dump($pr);die;
@@ -91,7 +92,7 @@ class HomeDetailsController extends Controller
         if (!empty($praise)) {
 
             try{
-
+                // 如果已经点赞就删除
                 $data = DB::table('praise')->where([['u_id', $pr['u_id']], ['d_c_id', $pr['d_c_id']]]) -> delete();
 
                 if($data){
@@ -107,7 +108,7 @@ class HomeDetailsController extends Controller
         } else{
 
             try{
-
+                // 如果没有点赞就添加
                 $data = DB::table('praise')->insert($pr);
 
                 if($data){
@@ -131,7 +132,9 @@ class HomeDetailsController extends Controller
     public function comment(Request $request)
     {
 
+
         $res = $request -> except('_token');
+
 
         $res['addtime'] = time();
 

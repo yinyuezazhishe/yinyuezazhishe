@@ -100,7 +100,7 @@ class AdminCategoryController extends Controller
             
             if($info){
 
-                return redirect('/Admin/category')->with('success','添加成功');
+                return redirect('/admin/category')->with('success','添加成功');
             }
         }catch(\Exception $e){
 
@@ -149,7 +149,7 @@ class AdminCategoryController extends Controller
 
             if($data){
 
-                return redirect('/Admin/category')->with('success','修改成功');
+                return redirect('/admin/category')->with('success','修改成功');
             }
         }catch(\Exception $e){
 
@@ -172,7 +172,7 @@ class AdminCategoryController extends Controller
             // dd($data);
             if($data){
 
-                return redirect('/Admin/category')->with('success','删除成功');
+                return redirect('/admin/category')->with('success','删除成功');
             }
         }catch(\Exception $e){
 

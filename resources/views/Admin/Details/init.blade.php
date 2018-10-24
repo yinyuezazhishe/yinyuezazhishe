@@ -73,7 +73,7 @@
                             <th style="width: 116px;" class="text-center">详情语录</th>   
                             <th style="width: 116px;" class="text-center">详情描述</th>   
                             <th style="width: 106px;" class="text-center">图片欣赏</th>
-                            <th style="width: 180px;" class="text-center">操作</th>
+                            <th style="width: 190px;" class="text-center">操作</th>
                         </tr>
                     </thead>
                     <tbody>    
@@ -97,6 +97,8 @@
                             <td class="st">
                                 <a style="width: 40px;" @if($v->status == 0) title="启用" @elseif($v->status==1) title="禁用" @endif href="/admin/details/{{$v->id}}/edit_status" class="btn status btn-info btn-small"><i style="font-size: 17px;" @if($v->status == 0) class="fa fa-check-circle-o" @elseif($v->status==1) class="fa fa fa-ban" @endif ></i></a>
                                 <a style="width: 40px" title="查看详情内容" href="/admin/details/{{$v->id}}" class="btn btn-info btn-small"><i  class="fa fa-th-large"></i></a>
+                                @php session(['detailsuri'=>$_SERVER['REQUEST_URI']])
+                                @endphp
                                 <a href="/admin/details/{{$v->id}}/edit" title="修改" class="btn btn-info btn-small"><i class="glyphicon glyphicon-edit"></i></a>
                                 <a href="/admin/lists?id={{$v->id}}" class="btn btn-danger btn-small del" title="删除"><i class="glyphicon glyphicon-trash"></i></a>
                             </td>
@@ -195,10 +197,8 @@
                     return false;
                 }
             });
-
             return false;
         })
-    
 
 	</script>
 

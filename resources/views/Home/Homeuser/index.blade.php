@@ -1,4 +1,4 @@
-﻿@extends('Home.Public.layout')
+@extends('Home.Public.layout')
 
 @section('title',session('homeuser')->username."的个人中心")
 
@@ -10,16 +10,16 @@
 />
 <style type="text/css">
     img.wp-smiley, img.emoji {
-		display: inline !important;
-		border: none !important;
-		box-shadow: none !important;
-		height: 1em !important;
-		width: 1em !important;
-		margin: 0 .07em !important;
-		vertical-align: -0.1em !important;
-		background: none !important;
-		padding: 0 !important;
-	}
+        display: inline !important;
+        border: none !important;
+        box-shadow: none !important;
+        height: 1em !important;
+        width: 1em !important;
+        margin: 0 .07em !important;
+        vertical-align: -0.1em !important;
+        background: none !important;
+        padding: 0 !important;
+    }
     .up-img-cover {width: 100px;height: 100px;}
     .up-img-cover img{width: 100%;}
     .show{
@@ -82,45 +82,46 @@
 <link rel="stylesheet" href="/homes/css/setting.css"/>
 @stop 
 @section('contents')
+<script type="text/javascript" src="/homes/public/templates/default/js/jQuery v1.7 .js"></script>
 <div class="lmlblog-member-bg" style="">
     <div class="lmlblog-member-content" style="padding:0px;">
-    	<div style="background: url('/homes/picture/infobanner/1.jpg') no-repeat top center;background-size:100% 100%;width:100%;height:auto;" class="setting-set">
-    		<div style="position:relative;padding:20px 0px;">
-    	        <div class="lmlblog-member-header">
-    	            <div class="lmlblog-member-avatar other up-img-cover"  id="up-img-touch">
-    	                <img src="{{session('homeface')}}" class="avatar am-circle" data-am-popover="{content: '点击上传头像', trigger: 'hover focus'}" id="oldface"/>
-    	                <i class="lmlblog-verify lmlblog-verify-a" title="{{session('homeuser')->username}}">
-    	                </i>
-    	            </div>
-    	            <div class="lmlblog-member-username">
-    	                <h1 id="user-id" user-id="{{session('homeuser')->id}}">
-    	                    {{session('homeuser')->username}}
-    	                </h1>
-    	                <span class="lmlblog-mark 
-    	                @if(session('homeuser')->sex == '0')lmlblog-girl   
-    	                @elseif(session('homeuser')->sex =='1') lmlblog-boy
-    	                @else lmlblog-intersex
-    	                @endif
-    	                ">
-    	                	@if(session('homeuser')->sex =='0' )
-    	                    <i class="fa fa-venus">
-    	                    </i>
-    	                    @elseif( session('homeuser')->sex =='1')
-    	                    <i class="fa fa-mars">
-    	                    </i> 
-    	                    @else
-    	                    	<i class="fa fa-intersex">
-    	                    	</i>
-    	                    @endif
-    	                </span>
-    	                <span class="lmlblog-mark lmlblog-lv integral">
-    	                    <i class="fa fa-diamond"></i>{{session('integral')}}
-    	                </span>
+        <div style="background: url('/homes/picture/infobanner/1.jpg') no-repeat top center;background-size:100% 100%;width:100%;height:auto;" class="setting-set">
+            <div style="position:relative;padding:20px 0px;">
+                <div class="lmlblog-member-header">
+                    <div class="lmlblog-member-avatar other up-img-cover"  id="up-img-touch">
+                        <img src="{{session('homeface')}}" class="avatar am-circle" data-am-popover="{content: '点击上传头像', trigger: 'hover focus'}" id="oldface"/>
+                        <i class="lmlblog-verify lmlblog-verify-a" title="{{session('homeuser')->username}}">
+                        </i>
+                    </div>
+                    <div class="lmlblog-member-username">
+                        <h1 id="user-id" user-id="{{session('homeuser')->id}}">
+                            {{session('homeuser')->username}}
+                        </h1>
+                        <span class="lmlblog-mark 
+                        @if(session('homeuser')->sex == '0')lmlblog-girl   
+                        @elseif(session('homeuser')->sex =='1') lmlblog-boy
+                        @else lmlblog-intersex
+                        @endif
+                        ">
+                            @if(session('homeuser')->sex =='0' )
+                            <i class="fa fa-venus">
+                            </i>
+                            @elseif( session('homeuser')->sex =='1')
+                            <i class="fa fa-mars">
+                            </i> 
+                            @else
+                                <i class="fa fa-intersex">
+                                </i>
+                            @endif
+                        </span>
+                        <span class="lmlblog-mark lmlblog-lv integral ismyintegral">
+                            <i class="fa fa-diamond"></i>{{session('integral')}}
+                        </span>
                         <h2 style="margin:10px;height:30px;line-height: 30px;">
                             <div id="sdasd" style="vertical-align:middle;display:inline-block;">
                             @if(!empty(session('sdasd'))) {{session('sdasd')}} @else 这家伙很懒,什么都没留下。@endif</div><i class="fa fa-edit select-sdasd" data-id="{{session('homeuser')->id}}" style="vertical-align:middle;padding-left:5px;line-height:30px;"></i>
                         </h2>
-    	            </div>
+                    </div>
                     <!--图片上传框-->
                     <div class="am-modal am-modal-no-btn up-frame-bj " tabindex="-1" id="doc-modal-1" style="overflow-y:hidden;">
                       <div class="am-modal-dialog up-frame-parent up-frame-radius">
@@ -155,21 +156,21 @@
                         </div>
                       </div>
                     </div>
-    	            <div class="lmlblog-member-follow-info" style="text-align:center;">
-    	                <a href="javascript:void(0)" id="sentence" rel="{{session('get_sentence_num')}}">
-    	                    <span class="follow no opacity" style="margin-right: 0px;">
-    	                        <i class="lmlblog-icon">
-    	                        </i>
-    	                        每日一语
-    	                    </span>
-    	                </a>
-    	            </div>
-    	        </div>
-    	        <a href="/home/user/setting" class="hidden" style="display: none;">
-    		        <span class="lmlblog-mark fa fa-cog" style="font-size:20px;position:absolute;top:10px;right:10px;" title="设置个人信息"></span>
-    	   		</a>
-    		</div>
-    	</div>
+                    <div class="lmlblog-member-follow-info" style="text-align:center;">
+                        <a href="javascript:void(0)" id="sentence" rel="{{session('get_sentence_num')}}">
+                            <span class="follow no opacity" style="margin-right: 0px;">
+                                <i class="lmlblog-icon">
+                                </i>
+                                每日一语
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <a href="/home/user/setting" class="hidden" style="display: none;">
+                    <span class="lmlblog-mark fa fa-cog" style="font-size:20px;position:absolute;top:10px;right:10px;" title="设置个人信息"></span>
+                </a>
+            </div>
+        </div>
         <div class="lmlblog-member-menu clear border-line tab-control">
             <li class="on">
                 <a href="javascript:void(0)">我的主页</a>
@@ -246,7 +247,7 @@
                         资料简介
                     </h3>
                     <li>
-                    	@if(session('homeuser')->sex =='0' )
+                        @if(session('homeuser')->sex =='0' )
                         <i class="fa fa-female">
                         </i>
                         性别：
@@ -256,7 +257,7 @@
                             </span>
                         </span>
                         @elseif(session('homeuser')->sex =='1' )
-						<i class="fa fa-male">
+                        <i class="fa fa-male">
                         </i>
                         性别：
                         <span>
@@ -265,14 +266,14 @@
                             </span>
                         </span>
                         @else
-						<i class="fa fa-grav">
+                        <i class="fa fa-grav">
                         </i>
                         性别：
                         <span>
                             保密
                             <span>
                             </span>
-                        </span>		
+                        </span>     
                         @endif
                     </li>
                     <li style="line-height:140%" class="sdasd" data-sdasd="{{session('sdasd')}}">
@@ -326,7 +327,7 @@
                         <li>
                             <i class="fa fa-calendar">
                             </i>
-                           	注册时间：
+                            注册时间：
                             <span>
                                 {{date('Y年m月d日',session('homeuser')->addtime)}}
                                 <span>
@@ -341,10 +342,10 @@
                     </div>
                 </div>
             </div>
-            <div class="lmlblog-member-right show">
+            <div class="lmlblog-member-right show" id="insertLike">
                 @if(!empty($infolike))
                 @foreach($infolike as $k=>$v)
-                <div class="lmlblog-post-list">
+                <div class="lmlblog-post-list" mydata="1">
                     <div class="lmlblog-posts-list words border-line" style="background-image:url(/homes/images/058.png); "
                     data="4197">
                         <!-- 动态内容部分，包括列表 -->
@@ -373,7 +374,69 @@
                                     </font>
                                 </a>
                             </div>
-                            <div class="lmlblog-post-user-info-time" title="{{date('Y-m-d H:i:s',$v['addtime'])}}">
+                            <div class="lmlblog-post-user-info-time addtime" title="{{date('Y-m-d H:i:s',$v['addtime'])}}">
+                               {{date('Y-m-d H:i:s',$v['addtime'])}}
+                            </div>
+                        </div>
+                        <div class="lmlblog-post-content ">
+                            <a class="post_list_link" href="/home/details/{{$v['did']}}">
+                                <p>
+                                    {{$v['title']}}
+                                </p>
+                                <p>
+                                    {{$v['saying']}}
+                                </p>
+                            </a>
+                        </div>
+                        <div class="lmlblog-post-images-list clear">
+                            <a href="{{$v['picstream']}}" data-fancybox="gallery" data-caption="<i class=&quot;fa fa-copyright&quot;></i> 音悦杂志社">
+                                <img src="{{$v['picstream']}}" alt="{{$v['title']}}">
+                            </a>
+                        </div>
+                        <div class="lmlblog-post-footer-bar">
+                            <span title="{{date('Y-m-d H:i:s',$v['addtime'])}}" style="display: inline;">
+                                {{date('Y-m-d H:i:s',$v['addtime'])}}
+                            </span>
+                            <span>
+                                电脑端
+                            </span>
+                            <i class="lmlblog-icon" onclick="lmlblog_post_type_open();">
+                                
+                            </i>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                <div class="lmlblog-post-list hide" id="pagelike">
+                    <div class="lmlblog-posts-list words border-line" style="background-image:url(/homes/images/058.png); "
+                    data="4197">
+                        <!-- 动态内容部分，包括列表 -->
+                        <div class="lmlblog-post-user-info">
+                            <div class="lmlblog-post-user-info-avatar" user-data="1">
+                                <a href="javascript:void(0)" style="display: inline-block;">
+                                    <span class="lmlblog-vip-icon">
+                                    </span>
+                                    <img src="{{session('homeface')}}" class="avatar face">
+                                    <i class="lmlblog-verify lmlblog-verify-a" title="{{session('homeuser')->username}}">
+                                    </i>
+                                </a>
+                                <!-- <div class="lmlblog-user-info-card">
+                                    <div class="info_card_loading">
+                                        <img src="/homes/picture/chat-loading.gif">
+                                        <p>
+                                            资料加载中...
+                                        </p>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div class="lmlblog-post-user-info-name">
+                                <a href="javascript:void(0)">
+                                    <font style="color:#333;font-weight:600" class="indexuser">
+                                        {{session('homeuser')->username}}
+                                    </font>
+                                </a>
+                            </div>
+                            <div class="lmlblog-post-user-info-time addtime" title="{{date('Y-m-d H:i:s',$v['addtime'])}}">
                                {{date('Y-m-d H:i:s',$v['addtime'])}}
                             </div>
                         </div>
@@ -405,7 +468,6 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
                 @else
                     <div class="border-line" style="width:100%;height:500px;margin-bottom:10px;padding:18px 0px 5px;">
                         <p style="text-align: center;padding-top: 96px;">还没有点赞的文章,赶快去点赞吧!</p>
@@ -652,7 +714,7 @@
 
 
 @section('js')
-	<!-- 返回顶部 -->
+    <!-- 返回顶部 -->
 <a href="javascript:returnTop();" class="cd-top"></a>
 <script type="text/javascript">
 var sdelay=0;
@@ -663,7 +725,6 @@ function returnTop() {
  }
 }
 </script>
-</body>
 <script type='text/javascript' src='/homes/js/base.js'></script>
 <script type='text/javascript' src='/homes/js/all.js'></script>
 <script type='text/javascript' src='/homes/js/plupload.full.min.js'></script>
@@ -676,6 +737,59 @@ function returnTop() {
 <!-- <script type="text/javascript" src="/homes/js/sentence.js" charset="utf-8"></script> -->
 <script>
 jQuery(document).ready(function($) {
+    //懒加载
+    var page = 7;
+    var pagelike = 4;
+    var isloading = false;  
+    var mylikes = $('.lmlblog-member-right').find('div').attr('mydata');
+    $(window).scroll(function(){
+        var sH = $(document).height();
+        var cH = $(window).height();
+        var sT = $(window).scrollTop();
+        if(sH - cH - sT <= 390){
+            if(isloading) return;
+            isloading = true;
+            if(mylikes){
+                $.get('/home/user/ajaxlike',{'pagelike':pagelike},function(data){  
+                    //判断返回对象是否为空
+                    if(!jQuery.isEmptyObject(data)){
+                        var myLike = $('#pagelike').clone(true);
+                        for(var i=0;i<data.length;i++){
+                            myLike.find('.addtime').attr('title',timestampToTime(data[i].addtime));
+                            myLike.find('.addtime').html(timestampToTime(data[i].addtime));
+                            myLike.removeClass('hide');
+                            myLike.find('a.post_list_link').attr('href','/home/details/'+data[i].did);
+                            myLike.find('a.post_list_link p:eq(0)').html(data[i].saying);
+                            myLike.find('a.post_list_link p:eq(1)').html(data[i].title);
+                            myLike.find('a.clear').attr('href',data[i].picstream);
+                            myLike.find('div.lmlblog-post-images-list img').attr('src',data[i].picstream);
+                            myLike.find('div.lmlblog-post-images-list img').attr('alt',data[i].alt);
+                            myLike.find('div.lmlblog-post-footer-bar span:eq(0)').attr('title',timestampToTime(data[i].addtime));
+                            myLike.find('div.lmlblog-post-footer-bar span:eq(0)').html(timestampToTime(data[i].addtime));
+                            $('#insertLike').append(myLike);
+                        }
+                        
+                    }
+                })
+            }
+            $.get('/home/user/ajaxsentence',{'page':page},function(data){
+                //判断返回对象是否为空
+                if(!jQuery.isEmptyObject(data)){
+                    for(var i = 0;i<data.length;i++){
+                        myElement = $('#hide').clone(true);
+                        myElement.removeClass('hide');
+                        myElement.removeAttr('hide');
+                        myElement.find('.sentence-time').html(timestampToTime(data[i].addtime));
+                        myElement.find('.sentence-time').attr('title',timestampToTime(data[i].addtime));
+                        myElement.find('p').html(data[i].heart_sentence);
+                        $('#mySentence').append(myElement);
+                    }
+                }else{
+                    page = page+7;
+                }
+            });
+        }
+    })
     //转换时间搓
     $('.lmlblog-member-left .lmlblog-member-left-follow li').click(function(){
         return false;
@@ -690,11 +804,11 @@ jQuery(document).ready(function($) {
         var s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
         return Y+M+D+h+m+s;
     }
-	$('.setting-set').hover(function(){
-		$('.hidden').show();
-	},function(){
-		$('.hidden').hide();
-	})
+    $('.setting-set').hover(function(){
+        $('.hidden').show();
+    },function(){
+        $('.hidden').hide();
+    })
     var musicFlag = true;
     $('.am-popover-inner').css({"fontSize":"10px"});
     $('.tab-control li a:odd').css({"color":"#555"});
@@ -791,9 +905,11 @@ jQuery(document).ready(function($) {
                 if(data == '101'){
                     swal("温馨提示",'你当天已经获得过6次了哦','error');
                 }else if(data == '1'){
-                    swal("温馨提示","获取每日一语失败",'error');
+                    swal("温馨提示","每日一语获取失败",'error');
                 }else if(data == '100'){
                     swal("温馨提示",'当前积分不足','error');
+                }else if(data == '9'){
+                    swal("温馨提示",'已无每日一语','error');
                 }else{
                     swal("每日一语",data.heart_sentence,'success');
                     myElement = $('#hide').clone(true);
@@ -812,5 +928,5 @@ jQuery(document).ready(function($) {
         }
     })
 });
-</script>	
+</script>   
 @stop

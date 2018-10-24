@@ -16,8 +16,8 @@ class AdminBlogrollController extends Controller
      */
     public function index(Request $request)
     {
-         //多条件查询
-         $rs = Blogroll::orderBy('rank','asc')
+        //多条件查询
+        $rs = Blogroll::orderBy('rank','asc')
             ->where(function($query) use($request){
                 //检测关键字
                 $title = $request->input('title');
@@ -80,17 +80,12 @@ class AdminBlogrollController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($title)
+    public function show($id)
     {
         //
-        $title = Blogroll::where('title',$title)->first();
-        if($title){
-            return 1;
-        }else{
-            return 2;
-        }
     }
 
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -114,8 +109,6 @@ class AdminBlogrollController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-
         // dd($request->input('title'));   
         $title = Blogroll::where('title',$request->input('title'))->get();
         if(count($title) > 1){
@@ -201,4 +194,23 @@ class AdminBlogrollController extends Controller
             return 0;
         }
     }
+
+    /**
+     * 检查链接名的唯一性
+     *
+     * @param  
+     * @return \Illuminate\Http\Response
+     */
+    public function mytitle(Request $request)
+    {
+        $title = $request ->input('mytitle');
+        
+        $title = Blogroll::where('title',$title)->first();
+        if($title){
+            return 1;
+        }else{
+            return 2;
+        }
+    }
+
 }

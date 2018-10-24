@@ -8,7 +8,7 @@
        
         <span>{{$title}}</span>
         </div>
-            <form action="/Admin/category" method="post" class="form-horizontal"  enctype='multipart/form-data'>                         
+            <form action="/admin/category" method="post" class="form-horizontal"  enctype='multipart/form-data'>                         
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">类别名称</label>
@@ -41,4 +41,12 @@
                             </div>
          </form>
      </div>
+@stop
+@section('js')
+    <script type="text/javascript">
+         //改变导航条样式
+        var create_category = $('.create_category').parents('li');
+        $('.create_category a').css({'color':'#fff'});
+        create_category.attr('class','active');
+    </script>
 @stop

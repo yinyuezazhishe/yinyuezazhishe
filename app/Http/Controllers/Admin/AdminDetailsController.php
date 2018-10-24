@@ -36,11 +36,7 @@ class AdminDetailsController extends Controller
         } else {
 
             $details = Details::with('details_content', 'lists') -> orderBy('id', $request->input('sort', 'asc')) -> paginate($request -> input('num',5));
-<<<<<<< HEAD
-
             // dd($details);
-=======
->>>>>>> ljh
         }
 
         $cate = Category::get();
@@ -145,12 +141,6 @@ class AdminDetailsController extends Controller
         $rs['picstream'] = '/admins/uploads/d_content/'.$name.'.'.$suffix;
 
         $rs['addtime'] = time();
-
-<<<<<<< HEAD
-=======
-        $rs['is_praise'] = '1';
-
->>>>>>> ljh
         // dd($rs);
 
         //添加数据
@@ -171,7 +161,7 @@ class AdminDetailsController extends Controller
 
             // echo $e -> getLine();
 
-            return back()->with('errors','添加详情失败!');
+            return back()->with('errorss','添加详情失败!');
 
         }
     }
@@ -184,7 +174,7 @@ class AdminDetailsController extends Controller
      */
     public function show($id)
     {
-        $rs = DetailsContent::find($id);
+        $rs = DetailsContent::where('did', $id)->first();
 
         // 显示详情内容
         return view('Admin.Details.show_c', ['title' => '浏览详情内容页', 'rs'=>$rs]);
@@ -217,6 +207,8 @@ class AdminDetailsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $uri = empty(session('detailsuri')) ? '/admin/details' : session('detailsuri');
+
         // 表单验证
         $detail = Validator::make($request->all(), [
                 'title' => 'required|max:100|min:5',
@@ -245,19 +237,21 @@ class AdminDetailsController extends Controller
             return back() ->withErrors($detail) ->withInput();
         }
 
-        $rs = $request -> except('_token', '_method');
+        $rs = $request -> except('_token', '_method', 'uri');
 
-        $d_c = DetailsContent::find($id);
+        $d_c = DetailsContent::where('did', $id)->first();
 
-        $picstream = $d_c->picstream;
+        // dd($d_c);
 
         // 欣赏图片上传
         if($request->hasFile('picstream')){
 
+            $picstream = $d_c->picstream;
+
             $files = $request->file('picstream');
 
             if (!preg_match_all("/^(gif|jpeg|png|jpg|bmp)$/i",$files->getClientOriginalExtension())) {
-                return back()->with('error','您上传的不是图片格式, 请重新上传！') -> withInput();
+                return back()->with('errorss','您上传的不是图片格式, 请重新上传！') -> withInput();
             }
 
             if (!empty($picstream)) {
@@ -276,22 +270,26 @@ class AdminDetailsController extends Controller
 
             // 保存到数据库
             $rs['picstream'] = '/admins/uploads/d_content/'.$name.'.'.$suffix;
+
+            // dd($rs);
         }
 
         try{
-           
-            $data = DetailsContent::where('id', $id)->update($rs);
-
+            $data = DetailsContent::where('did', $id)->update($rs);
 
             if($data){
 
-                return redirect('/admin/details')->with('succes','修改详情成功');
+                return redirect($uri)->with('succes','修改详情成功');
+            }else{
+
+                return redirect($uri)->with('succes','修改详情成功');
             }
 
         }catch(\Exception $e){
 
-            return back()->with('errors','修改详情失败') -> withInput();
+            $request->session()->forget('detailsuri');
 
+            return back()->with('errorss','修改详情失败') -> withInput();
         }
     }
 

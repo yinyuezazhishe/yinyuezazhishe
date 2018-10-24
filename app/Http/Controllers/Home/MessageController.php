@@ -21,7 +21,7 @@ class MessageController extends Controller
     public function index(Request $request)
     {
     	//获取全部留言
-        $messages = Message::with('homeuser','remessages')->orderBy('addtime','desc')->paginate(10);
+        $messages = Message::with('homeuser','reply')->orderBy('addtime','desc')->paginate(10);
 
         $details = Details::with('details_content', 'lists') ->orderBy('id', 'asc') ->  paginate(10);
 
@@ -68,13 +68,8 @@ class MessageController extends Controller
     }
     public function show(Request $request,$id)
     {
-        $paging = Message::with('homeuser','remessages')->orderBy('addtime','desc')->paginate();
-<<<<<<< HEAD
-         $details = Details::with('details_content', 'lists') ->orderBy('id', 'asc') -> paginate(10);
-=======
+        $paging = Message::with('homeuser','reply')->orderBy('addtime','desc')->paginate();
         $details = Details::with('details_content', 'lists') ->orderBy('id', 'asc') -> paginate(10);
->>>>>>> ljh
-
         return view('Home.message.paging',[
             'request'=>$request,
             'title'=>'音乐杂志社--留言板',

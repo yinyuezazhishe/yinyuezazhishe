@@ -30,7 +30,7 @@
                     <textarea id="comment" name="content" cols="110" rows="8" maxlength="65525" placeholder="不超过120字" class="form-control"></textarea>
                 </div>
                 @if(empty(session('homeuser')))
-               <input style="width:80px;height:50px;" type="submit" class="btn publish btn-default" value="请登录后留言">
+               <input style="display: block;border: 0;margin-top: 1em;padding: 1em 4em;text-decoration: none;color: #fff;background: #55a753;" type="submit" class="btn publish btn-default " value="请登录后留言">
                @else
                <input name="submit" type="submit" id="submit" class="submit publish" value="发表"> 
              
@@ -84,8 +84,19 @@ $(document).ready(function(){
     $('.publish').click(function(){
 
         // console.log(this);
-
+        @if(empty(session('homeuser')))
+            swal('对不起', '您还没有登录, 请登录后留言', 'error');
+             $('.zhuce').addClass('bounceOutUp').fadeOut();
+                setTimeout(function () {
+                    $('.mf_denglu').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+                }, 400);
+            return false;
+        @endif
         var comment = $('#comment').val();
+        if(comment == ''){
+            swal('对不起', '留言不能为空', 'error');
+            return false;
+        }
         var pub = $(this);
         //AJAX 存储
         $.ajaxSetup({

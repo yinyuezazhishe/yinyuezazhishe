@@ -18,8 +18,9 @@ class HomeUsersController extends Controller
     //会员中心
     public function index()
     {
-        //我的一语
-        $sentence = DB::table('homeuser_sentence')->where('uid',session('homeuser')->id)->orderBy('addtime','desc')->get()->toArray();
+        //我的一语(获取最新七条每日记录)
+        $sentence = DB::table('homeuser_sentence')->where('uid',session('homeuser')->id)->orderBy('addtime','desc')->skip(0)->limit(7)->get();
+        // dd($sentence);判断是否为空,进行相应的操作
         if(!empty($sentence)){
             foreach($sentence as $k=>$v){
                 $isHave = AdminSentence::where('id',$v->sentence_id)->get()->toArray();
@@ -33,12 +34,13 @@ class HomeUsersController extends Controller
             }
         }
         //我的喜欢
-        $likes = DB::table('praise')->where('u_id',session('homeuser')->id)->get()->toArray();
+        $likes = DB::table('praise')->where('u_id',session('homeuser')->id)->orderBy('addtime','desc')->skip(0)->limit(4)->get()->toArray();
+        // dd($likes);
         if(!empty($likes)){
             $infolike = [];
             //我的主页
             foreach ($likes as $k => $v) {
-                $infolike[] = DetailsContent::where('id',$v->d_c_id)->first()->toArray();
+                $infolike[] = DetailsContent::where('id',$v->d_c_id)->orderBy('addtime','desc')->first()->toArray();
             }
             if(empty($infolike)){
                 $infolike = [];
@@ -49,9 +51,9 @@ class HomeUsersController extends Controller
         } 
         // dd($infolike);
         //我的留言
-        $message = Message::where('user_id',session('homeuser')->id)->get()->toArray();
+        $message = Message::where('user_id',session('homeuser')->id)->orderBy('addtime','desc')->get()->toArray();
         //我的评论
-        $discuss = Comment::where('hid',session('homeuser')->id)->get()->toArray(); 
+        $discuss = Comment::where('hid',session('homeuser')->id)->orderBy('addtime','desc')->get()->toArray(); 
     	return view('Home.Homeuser.index',['sentence'=>$sentence,'message'=>$message,'like'=>count($likes),'infolike'=>$infolike,'discuss'=>$discuss]);
     }
     //会员个性签名
@@ -74,6 +76,10 @@ class HomeUsersController extends Controller
     }
     //保存个人中心设置
     public function saveinfo(Request $request){
+        if ($request -> method() == 'GET') {
+            abort('404');
+        }
+
     	$userinfo = $request->except('_token');
     	$username = $request->input('username');
         if($username == $request->input('check_name')){
@@ -101,7 +107,11 @@ class HomeUsersController extends Controller
     	}
     }
     //保存头像
-    public function uploadface(Request $request){
+    public function uploadface(Request $request)
+    {
+        if ($request -> method() == 'GET') {
+            abort('404');
+        }
     	//设置文件保存名称
     	$name = time().rand(1000,9999);
 		if(!empty($request->input('image'))){
@@ -129,6 +139,10 @@ class HomeUsersController extends Controller
     //音乐设置
    	public function music(Request $request)
    	{
+        if ($request -> method() == 'GET') {
+            abort('404');
+        }
+
    		$uid = $request->input('uid');
    		$music = $request->except(['_token','music','thumb_music','oldmusic','oldthumb_music']);
         try{
@@ -176,7 +190,12 @@ class HomeUsersController extends Controller
         }
     }
     //每日一语设置
-    public function sentence(Request $request){
+    public function sentence(Request $request)
+    {
+        if ($request -> method() == 'GET') {
+            abort('404');
+        }
+        
         //设置返回数组
         $returnSentence = [];
         //获取数据
@@ -196,13 +215,18 @@ class HomeUsersController extends Controller
             if(!empty($rs)){
                 $in = [];
                 foreach($rs as $k=>$v){
-                   $in[] =  $v->sentence_id;
+                    if($v->status == 0){
+                        $in[] =  $v->sentence_id;
+                    }
                 }
             }else{
                 $in =  ['0'=>0];
             }    
             //查询用户没有的 每日一语id
             $senId  = AdminSentence::whereNotIn('id',$in)->pluck('id')->toArray();
+            if(empty($senId)){
+                return 9;
+            }
             //翻转id
             $senId = array_flip($senId);
             //随机取id
@@ -239,6 +263,39 @@ class HomeUsersController extends Controller
             }
         }catch(\Exception $e){
                 return 1;//获取失败
+        }
+    }
+    public function ajaxsentence(Request $request){
+        $sentence = DB::table('homeuser_sentence')->where('uid',session('homeuser')->id)->orderBy('addtime','desc')->skip($request->input('page'))->limit(7)->get();
+        if(empty($sentence)){
+            return [];
+        }
+        // dd($sentence);
+        if(!empty($sentence)){
+            foreach($sentence as $k=>$v){
+                $isHave = AdminSentence::where('id',$v->sentence_id)->get()->toArray();
+                if(empty($isHave)){
+                    $sentence[$k]->heart_sentence = '该一语不存在或已被删除';
+                    $sentence[$k]->status = 0;
+                }else{
+                    $sentence[$k]->heart_sentence = AdminSentence::where('id',$v->sentence_id)->pluck('heart_sentence')->toArray()[0];
+                     $sentence[$k]->status =  AdminSentence::where('id',$v->sentence_id)->pluck('status')->toArray()[0];
+                }
+            }
+        }
+        return $sentence;
+    }
+    public function ajaxlike(Request $request){
+         //我的喜欢
+        $likes = DB::table('praise')->where('u_id',session('homeuser')->id)->skip($request->input('pagelike'))->limit(4)->get()->toArray();
+        if(!empty($likes)){
+            $infolike = [];
+            foreach ($likes as $k => $v) {
+                $infolike[] = DetailsContent::where('id',$v->d_c_id)->orderBy('addtime','desc')->first()->toArray();
+            }
+            return $infolike;
+        }else{
+            return [];
         }
     }
 }

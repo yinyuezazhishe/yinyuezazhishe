@@ -71,10 +71,6 @@
                                 头像
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
-                            colspan="1" aria-label="权限" style="width: 50px; text-align: center;">
-                                权限
-                            </th>
-                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
                             colspan="1" aria-label="状态" style="width: 50px; text-align: center;">
                                 状态
                             </th>
@@ -111,17 +107,6 @@
                                     <img id="picImg" style="width: 100%;height: auto;max-height: 140px; " src="{{$v->face}}" alt="">
                                 </div>
 	                            </td>
-	                            <td class="center ">
-	                                @if($v->power == 0)
-                                        普通
-                                        @elseif($v->power == 1)
-                                        中等
-                                        @elseif($v->power == 2)
-                                        高级
-                                        @else
-                                        root
-                                        @endif
-	                            </td>
                                 <td class="center ">
                                     @if($v->status == 0)
                                         启用
@@ -132,7 +117,10 @@
                                 <td class="center ">
                                     {{date('Y-m-d H:i:s',$v->addtime)}}
                                 </td>
-                                <td class="center ">
+                                <td class="center">
+                                    @php
+                                        session(['useruri'=>$_SERVER['REQUEST_URI']]);
+                                    @endphp
                                     <a style="width: 46px;" href="/admin/user_role/{{$v->id}}/u_r_edit" class="btn btn-info btn-sm"><i class="fa fa-github-square"></i></a>
                                     <a href="/admin/user/{{$v->id}}/edit" class="btn btn-info btn-sm">修改</a>
                                         {{-- csrf_field() --}}

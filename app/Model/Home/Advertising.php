@@ -30,19 +30,10 @@ class Advertising extends Model
 	 */
 	protected $guarded = [];
 
-	 static public function AdverTising($cates=[],$pid=0)
+	 static public function AdverTising($advertising=[])
     {
-        if(empty($cates)){
-            $cates = self::all();
-        }
+        $advertising = self::orderBy('id', 'asc')->limit(5)->get();
 
-        $arr = [];
-        foreach($cates as $k=>$v){
-            if ($v->pid==$pid){
-                $v-> sub = self::AdverTising($cates,$v->id);
-                $arr[] = $v;
-            }
-        }
-        return $arr;
+        return $advertising;
     }
 }

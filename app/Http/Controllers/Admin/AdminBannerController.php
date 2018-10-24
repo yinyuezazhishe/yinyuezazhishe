@@ -92,7 +92,7 @@ class AdminBannerController extends Controller
 
             if($cds){
 
-                return redirect('/Admin/banner')->with('success','添加成功');
+                return redirect('/admin/banner')->with('success','添加成功');
 
             }
         }catch(\Exception $e){
@@ -154,7 +154,7 @@ class AdminBannerController extends Controller
             $rs = Banner::where('id',$id) -> update($res);
 
             if($rs){
-                return redirect('/Admin/banner')->with('success','修改成功');
+                return redirect('/admin/banner')->with('success','修改成功');
             } else {
                 return back() -> with('error','未做任何修改');
             }
@@ -175,7 +175,7 @@ class AdminBannerController extends Controller
 
             if ($rs) {
 
-                return redirect('/Admin/banner') -> with('success','删除成功');
+                return redirect('/admin/banner') -> with('success','删除成功');
             }
         }catch(\Exception $e){
             

@@ -81,6 +81,9 @@
                             <td>{{$v->per_name}}</td>
                             <td>{{$v->urls}}</td>
                             <td>
+                                @php
+                                    session(['permissionuri' => $_SERVER['REQUEST_URI']]);
+                                @endphp
                                 <a href="/admin/permission/{{$v->id}}/edit" title="修改" class="btn btn-info btn-small"><i class="glyphicon glyphicon-edit"></i></a>
                                 <form action="/admin/permission/{{$v->id}}" method="post" class="dels"  style="display: inline;">
                                     {{--csrf_field()--}}

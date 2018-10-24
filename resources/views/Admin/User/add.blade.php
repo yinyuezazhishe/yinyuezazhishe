@@ -68,9 +68,9 @@
                 <div class="col-sm-10">
                     <div class="radio">
                     	<label>
-                            <input type="radio" checked="checked" value="1"  name="status">启用</label>
+                            <input type="radio" checked="checked" value="0"  name="status">启用</label>
                         <label>
-                            <input type="radio" value="0"  name="status">禁用</label> 
+                            <input type="radio" value="1"  name="status">禁用</label> 
                     </div>
                 </div>
             </div>
@@ -111,6 +111,10 @@
 @section('js')
 
 <script type="text/javascript">
+     //改变导航条样式
+    var create_user = $('.create_user').parents('li');
+    $('.create_user a').css({'color':'#fff'});
+    create_user.attr('class','active');
     var flag = false;
 
     var username = '';

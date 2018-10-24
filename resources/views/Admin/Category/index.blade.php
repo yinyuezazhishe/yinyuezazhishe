@@ -11,7 +11,7 @@
         </div>  
         <div class="ibox-content">
             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
-            <form action="/Admin/category" method='get'>
+            <form action="/admin/category" method='get'>
             <div class="row">
             	<div class="col-sm-8">
             		<div class="dataTables_length" id="DataTables_Table_0_length">
@@ -82,9 +82,9 @@
                         </td>
                      
                          <td class=" ">
-                            <a class='btn btn-primary' href="/Admin/category/{{$v->id}}/edit">修改</a>
+                            <a class='btn btn-primary' href="/admin/category/{{$v->id}}/edit">修改</a>
 
-                            <form action="/Admin/category/{{$v->id}}" method='post' style='display:inline'>
+                            <form action="/admin/category/{{$v->id}}" method='post' style='display:inline'>
                                 
                                 {{csrf_field()}}
                                 {{method_field('DELETE')}}
@@ -92,7 +92,7 @@
                                 <button class='btn btn-danger'>删除</button>
 
                             </form>
-                            <a class='btn btn-primary' href="/Admin/category/create?id={{$v->id}}">添加子类别</a>
+                            <a class='btn btn-primary' href="/admin/category/create?id={{$v->id}}">添加子类别</a>
 
                         </td>
                     </tr>
@@ -115,6 +115,10 @@
 
 @section('js')
 <script>
+     //改变导航条样式
+        var show_category = $('.show_category').parents('li');
+        $('.show_category a').css({'color':'#fff'});
+        show_category.attr('class','active');
     $('.mws-form-message').delay(3000).fadeOut(2000);
 </script>
 

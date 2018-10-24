@@ -136,7 +136,7 @@
             }else{
                 var id = $(this).parents('tr').find('input').attr('data-id');
                 layer.confirm('你确认删除该用户吗?',{btn:['确定','取消'],title:'温馨提示',icon:'3'},function(){
-                    $.post('/admin/homeUsers/'+id,{'_token':"{{csrf_token()}}",'_method':"DELETE"},function(data){
+                    $.post('/admin/homeusers/'+id,{'_token':"{{csrf_token()}}",'_method':"DELETE"},function(data){
                             location.reload();
                     })
                 },function(){

@@ -48,7 +48,7 @@ class U_R_P
 
         // dd($uls);
 
-        $uls = preg_replace('/\/\d\//','/$id/',$uls);
+        $uls = preg_replace('/\/\d{1,}\//','/$id/',$uls);
 
         $uls = preg_replace('/\/\d{1,}/','/$id',$uls);
 

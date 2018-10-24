@@ -16,7 +16,7 @@
        <b><img  src="{{$v->homeuser['face']}}" class="avatar avatar-72 photo" height="80" width="72" alt="头像">&nbsp;{{ $v->content }}</b>       
     </div>
     <br>
-    <form action="/Admin/message/{{$v->id}}" method='post' style='display:inline'>                        
+    <form action="/admin/message/{{$v->id}}" method='post' style='display:inline'>                        
                                 {{csrf_field()}}
                                 {{method_field('DELETE')}}
          <h4  class="text-right"><a>{{date('Y-m-d H:i:s ',$v->addtime)}}</a> &nbsp;
@@ -36,6 +36,10 @@
 
 @section('js')
 <script>
+    //改变导航条样式
+    var show_message = $('.show_message').parents('li');        
+    $('.show_message a').css({'color':'#fff'});
+    show_message.attr('class','active');
     $('.mws-form-message').delay(3000).fadeOut(2000);
 
 </script>

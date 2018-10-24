@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-xs-8 text-right">
                     <span> 文章 </span>
-                    <h2 class="font-bold">2121</h2>
+                    <h2 class="font-bold">{{$article}}</h2>
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-xs-8 text-right">
                     <span> 评论 </span>
-                    <h2 class="font-bold">21212</h2>
+                    <h2 class="font-bold">{{$comment}}</h2>
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="col-xs-8 text-right">
                     <span> 友链 </span>
-                    <h2 class="font-bold">12221</h2>
+                    <h2 class="font-bold">{{$blogroll}}</h2>
                 </div>
             </div>
         </div>
@@ -49,11 +49,11 @@
         <div class="widget style1 navy-bg">
             <div class="row">
                 <div class="col-xs-4">
-                    <i class="fa fa-eye fa-5x"></i>
+                    <i class="fa fa-edit fa-5x"></i>
                 </div>
                 <div class="col-xs-8 text-right">
-                    <span> 访问量 </span>
-                    <h2 class="font-bold">45443</h2>
+                    <span> 留言 </span>
+                    <h2 class="font-bold">{{$message}}</h2>
                 </div>
             </div>
         </div>
@@ -73,11 +73,11 @@
                 		<li class="m-xs font-bold username" style="width:200px;">{{session('adminusers')->username}} 您好</li>
                 		<br>
                			<li class="m-xs font-bold" style="width:200px;">
-                   		这是您第12次登录
+                   		这是您第{{$logins}}次登录
                 		</li>
                 		<br>
                 		
-                		<li class="m-xs font-bold" style="width:200px;">上次登录IP地址为 : 172.0.0.1</li>
+                		<li class="m-xs font-bold" style="width:200px;">上次登录IP地址为 : {{$prev_ip}}</li>
                 	</ul>
                 	<div style="float:right ;display: inline-block;width: 500px;height: 120px;">
                 			<h1 class="font-bold no-margins"id="time1" style="line-height: 120px;font-size: 40px;"></h1>
@@ -113,16 +113,10 @@
                             <td width="320px">{{phpversion()}}</td>
                         </tr>
                         <tr>
-                            <td width="150px;">数据库版本:</td>
-                            <td width="320px">{{PHP_OS}}</td>
-                            <td width="150px;">运行环境</td>
-                            <td width="320px">Windows</td>
-                        </tr>
-                        <tr>
-                            <td width="150px;">操作系统:</td>
-                            <td width="320px">Windows</td>
-                            <td width="150px;">操作系统</td>
-                            <td width="320px">Windows</td>
+                            <td width="150px;">本机IP:</td>
+                            <td width="320px">{{$_SERVER["REMOTE_ADDR"]}}</td>
+                            <td width="150px;">服务器域名:</td>
+                            <td width="320px">{{$_SERVER["HTTP_HOST"]}}</td>
                         </tr>
                 </table>
             </div>

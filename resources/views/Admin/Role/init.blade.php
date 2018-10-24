@@ -77,8 +77,11 @@
                         @foreach ($role as $k=>$v)
                         <tr class="gradeA odd">
                             <td>{{$v->id}}</td>
-                            <td>{{$v->role_name}}</td>                        
+                            <td>{{$v->role_name}}</td>
                             <td>
+                                @php
+                                    session(['roleuri'=>$_SERVER['REQUEST_URI']]);
+                                @endphp
                                 <a style="width: 40px" href="/admin/role_permission/{{$v->id}}/r_p_edit" title="添加角色权限" class="btn btn-info btn-small"><i  class="fa fa-user-secret"></i></a>
                                 <a href="/admin/role/{{$v->id}}/edit" title="修改" class="btn btn-info btn-small"><i class="glyphicon glyphicon-edit"></i></a>
                                 <form action="/admin/role/{{$v->id}}" method="post" class="dels"  style="display: inline;">

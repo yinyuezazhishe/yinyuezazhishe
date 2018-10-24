@@ -56,7 +56,8 @@
 	                        <td>{{$v->heart_sentence}}</td>                        
 	                        <td>
 	                        	<a href="/admin/sentence/{{$v->id}}/edit" class="btn btn-info btn-small">修改</a>
-	                        	<form action="/admin/sentence/{{$v->id}}" method="get" class="del"  style="display: inline;">
+	                        	<form action="/admin/sentence/{{$v->id}}" method="get"  style="display: inline;">
+	                        		<input type="hidden" name="uri" value="{{$_SERVER['REQUEST_URI']}}">
 		                        	@if($v->status == 0)
 		                        	<button name="status" class="btn btn-warning" value="{{$v->status}}">禁用</button>
 		                        	@else

@@ -60,6 +60,12 @@ class User_Role_Permission extends Controller
      */
     public function u_r_update(Request $request)
     {
+        $uri = empty(session('useruir')) ? '/admin/user' : session('useruir');
+
+        if ($request -> method() == 'GET') {
+            abort('404');
+        }
+
         $user_id = $request->input('id');
 
         $role_id = $request->input('role_id');
@@ -67,7 +73,7 @@ class User_Role_Permission extends Controller
         //判断
         if(!$role_id){
 
-            return redirect('/admin/user')->with('errors','请选择角色');
+            return redirect($uri)->with('errors','请选择角色');
         }
 
         //添加数据 $role_id  [1,2,3];
@@ -85,9 +91,11 @@ class User_Role_Permission extends Controller
 
         if($data){
 
-            return redirect('/admin/user')->with('succes','添加用户角色成功');
+            return redirect($uri)->with('succes','添加用户角色成功');
 
         } else {
+
+            $request->session()->forget('useruri');
 
             return back()->with('errors','添加用户角色失败');
         }
@@ -130,13 +138,19 @@ class User_Role_Permission extends Controller
      */
     public function r_p_update(Request $request)
     {
+        $uri = empty(session('roleuri')) ? '/admin/role' : session('roleuri');
+
+        if ($request -> method() == 'GET') {
+            abort('404');
+        }
+        
         $role_id = $request->input('id');
 
         $per_id = $request->input('per_id');
 
         if(!$per_id){
 
-            return redirect('/admin/role')->with('errors','请选择您的权限!!');
+            return redirect($uri)->with('errors','请选择您的权限!!');
         }
 
         DB::table('role_permission')->where('role_id',$role_id)->delete();
@@ -154,8 +168,10 @@ class User_Role_Permission extends Controller
 
         if($data){
 
-            return redirect('/admin/role')->with('succes','添加角色权限成功');
+            return redirect($uri)->with('succes','添加角色权限成功');
         } else {
+
+            $request->session()->forget('roleuri');
 
             return back()->with('errors','添加角色权限失败');
         }

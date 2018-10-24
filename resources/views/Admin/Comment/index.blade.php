@@ -6,7 +6,7 @@
 	    <div class="ibox float-e-margins">
 	        <div class="ibox-title">
 	            <h5>
-	                用户列表页面
+	                用户评论
 	            </h5>
 	        </div>
 	        <div class="ibox-content">
@@ -129,6 +129,10 @@
 @section('js')
 	
 	<script type="text/javascript">
+		 //改变导航条样式
+        var show_comment = $('.show_comment').parents('li');
+        $('.show_comment a').css({'color':'#fff'});
+        show_comment.attr('class','active');
 	    $('.del').click(function(){
 
 	        var id = $(this).attr('data-id');
@@ -139,12 +143,9 @@
 
 	            $.post('/admin/comment/'+id,{'_token':'{{ csrf_token() }}','_method':'DELETE'},
 	                function(data){
-	                    
-	                    if(data){
 
 	                        location.reload(true);
 
-	                    }
 	                })
 
 	        },function(){

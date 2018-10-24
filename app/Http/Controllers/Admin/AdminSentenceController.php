@@ -90,7 +90,7 @@ class AdminSentenceController extends Controller
                     }else{
                         $info = "禁用成功";
                     }
-                    return redirect('/admin/sentence')->with('success',$info);
+                    return redirect($request->input('uri'))->with('success',$info);
                 }else{
                     return back()->with('error','状态更改失败');
                 }
@@ -128,7 +128,7 @@ class AdminSentenceController extends Controller
             if(!empty($request->input('heart_sentence'))){
                 $rs = AdminSentence::where('id',$id)->update($request->only('heart_sentence'));
                 if($rs){
-                    return redirect()->with('success','每日一语修改成功');
+                    return redirect('/admin/sentence')->with('success','每日一语修改成功');
                 }else{
                     return back()->with('error','每日一语修改失败');
                 }

@@ -3,8 +3,10 @@ ol, ul { list-style: none; }
 a:link, a:visited, ins { text-decoration: none; }
 img{border:none}
 
+
 body { background-color: #FFFFFF; font-family: "微软雅黑", "宋体", "黑体", Arial; }
 .header { position: relative; height: 90px; background: url(../images/line-solid.gif) repeat-x bottom; width: 960px; margin: 0 auto; z-index: 100; }
+
 
 .menus { height: 40px; background: url(../images/menu_bg_1.gif) no-repeat -99px bottom; z-index: 100; background-position: 0px 100%; position: absolute; top: 50px; right: 0; padding-right: 1px; }
 .menus li { float: left; font-size: 14px; text-align: center; line-height: 18px; padding: 0; }
@@ -20,6 +22,7 @@ body { background-color: #FFFFFF; font-family: "微软雅黑", "宋体", "黑体
 .li_3_content dd a { text-align: center; padding: 0; border-right: none; color: #666; font-weight: normal; width: auto; }
 .li_3_content dd.lastItem { background-image: none; border-bottom: 1px solid #E6E4E3; }
 .li_3_content dd.lastItem a { border-bottom: none; }
+
 
 .miui_logo { position: absolute; top: 29px; left: 0; }
 .language { position: absolute; right: 0; top: 10px; line-height: 20px; height: 20px; font-size: 12px; color: #6D6D6D; text-align: right; }

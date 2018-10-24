@@ -113,6 +113,8 @@ class RoleAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $uri = empty(session('roleuri')) ? '/admin/role' : session('roleuri');
+
         // 表单验证
         $role = Validator::make($request->all(), [
                 'role_name' => 'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_\-]{2,}$/u',
@@ -133,7 +135,7 @@ class RoleAdminController extends Controller
 
         if ($rs['role_name'] == $role -> role_name) {
 
-        	return redirect('/admin/role')->with('succes','修改角色成功');
+        	return redirect($uri)->with('succes','修改角色成功');
         }
 
         // dd($role -> role_name, $rs);
@@ -144,10 +146,12 @@ class RoleAdminController extends Controller
 
             if($data){
 
-                return redirect('/admin/role')->with('succes','修改角色成功');
+                return redirect($uri)->with('succes','修改角色成功');
             }
 
         }catch(\Exception $e){
+
+            $request->session()->forget('roleuri');
 
             return back()->with('errors','修改角色失败');
         }

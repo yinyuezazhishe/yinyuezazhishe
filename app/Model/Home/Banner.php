@@ -30,15 +30,15 @@ class Banner extends Model
 	 */
 	protected $guarded = [];
 
-
     static public function BanNer($pictures=[])
     {
+        $pictures = self::orderBy('ranks', 'desc')->limit(5)->get();
 
-            $pictures = self::all();
+        // dd($pictures);
 
-        	// foreach($pictures as $k => $v){
-        	// 	return $v;
-        	// }
+    	// foreach($pictures as $k => $v){
+    	// 	return $v;
+    	// }
 
         return $pictures;
     }

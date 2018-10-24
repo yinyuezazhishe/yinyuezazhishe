@@ -1,25 +1,30 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!-- HTML 5 -->
 <html lang="zh-CN">
-    <meta charset="UTF-8" />
+<head>
+        <meta charset="UTF-8" />
         <title> @yield('title') </title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="applicable-device" content="pc,mobile">
         <meta name="keywords" content="小众音乐,小清新,民谣,最好听的歌" />
-        <meta name="description" content="用音乐和文字温暖生活，微信公众号“麦音乐”。小众音乐、有声电台、独立音乐、民谣、摇滚、爵士、欧美音乐、轻音乐。推荐最好的音乐，不管它是什么类型。"
+        <meta name="description" content="用音乐和文字温暖生活。小众音乐、有声电台、独立音乐、民谣、摇滚、爵士、欧美音乐、轻音乐。推荐最好的音乐，不管它是什么类型。"
         />
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <link rel="shortcut icon" href="/admins/img/logo.ico">
         <link type="text/css" media="all" href="/homes/css/autoptimize_92080519133b963b934f14202138607c.css" rel="stylesheet" />
+        <link rel="stylesheet" href="/admins/js/plugins/layer/skin/layer.css" id="layui_layer_skinlayercss">
+        @section('head')
 
-        <link rel="stylesheet" href="/admins/js/plugins/layer/skin/layer.css" id="layui_layer_skinlayercss" style="">
-
+        @show
         <script src="/homes/js/sweetalert.min.js"></script>
-
         <script type="text/javascript" src="/homes/js/autoptimize_22c3799c14ce37e2988fb6e1676bb4df.js">
-
         </script>
+        <script src="/homes/js/sweetalert.min.js"></script>
+        <!-- <script type="text/javascript" src="/layer/layer.js"></script> -->
+        <!-- <script type="text/javascript">
+            layer.msg('123');
+        </script> -->
         <!--[if lt IE 9]>
             <script src="https://www.mtyyw.com/wp-content/themes/dynamic-news-lite/js/html5shiv.min.js"
             type="text/javascript">
@@ -37,34 +42,35 @@
         <link href="/homes/public/templates/default/style/css.css"  rel="stylesheet" type="text/css" />
         <link href="/homes/css/player.css" rel="stylesheet" type="text/css" />
         <link href="/homes/public/templates/default/style/div.css" ttype="text/css" />
-
         <!-- 公用样式代码 结束 -->
-        <link href="/homes/public/templates/default/style/font-awesome.min.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="/homes/public/templates/default/style/font-awesome.min.css"  rel="stylesheet" type="text/css" />
         <!-- 公用样式代码 结束 -->
-        <script type="text/javascript" src="/homes/public/templates/default/js/jQuery v1.7 .js" tppabs="http://www.mfdemo.cn/public/templates/default/js/jQuery v1.7 .js"></script>
+        <!-- <script type='text/javascript' src='/homes/js/jquery.min.js'></script> -->
+        <script type="text/javascript" src="/homes/public/templates/default/js/jQuery v1.7 .js"></script>
         <!-- 公用js库链接代码 结束 -->
 
+
         <!-- 动画代码 开始 -->
-        <link  href="/homes/public/templates/default/style/animate.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/animate.css" rel="stylesheet" type="text/css" />
+        <link  href="/homes/public/templates/default/style/animate.css" rel="stylesheet" type="text/css" />
         <!-- 动画代码 结束 -->
 
-        <link href="/homes/public/templates/default/style/Validform.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/Validform.css" rel="stylesheet" type="text/css" /><!-- Validform表单验证代码 结束 -->
-        <link href="/homes/public/templates/default/style/fankui.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/fankui.css" rel="stylesheet" type="text/css" /><!-- 反馈样式代码 结束 -->
-        <link href="/homes/public/templates/default/style/anniutexiao.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/anniutexiao.css" rel="stylesheet" type="text/css" /><!-- 按钮特效代码 结束 -->
 
-        <link  href="/homes/public/templates/default/style/logintan.css" tppabs="http://www.mfdemo.cn/public/templates/default/style/logintan.css" rel="stylesheet" type="text/css" /><!-- 登录代码 结束 --> 
+        <link href="/homes/public/templates/default/style/Validform.css"  rel="stylesheet" type="text/css" /><!-- Validform表单验证代码 结束 -->
+        <link href="/homes/public/templates/default/style/fankui.css"  rel="stylesheet" type="text/css" /><!-- 反馈样式代码 结束 -->
+        <link href="/homes/public/templates/default/style/anniutexiao.css" rel="stylesheet" type="text/css" /><!-- 按钮特效代码 结束 -->
+
+
+        <link  href="/homes/public/templates/default/style/logintan.css"  rel="stylesheet" type="text/css" /><!-- 登录代码 结束 --> 
+
 
         <link rel="stylesheet" href="/homes/css/menu.css" type="text/css" />
         <script src="/homes/js/jquery-1.4.2.js" type="text/javascript"></script>
         <script src="/homes/js/jquery.backgroundpos.js" type="text/javascript"></script>
         <script src="/homes/js/menu.js" type="text/javascript"></script>
-
-        <!-- advertising 样式  -->
-        <!-- <link rel="stylesheet" type="text/css" href="/homes/css/advertising.css"> -->
         <!-- banner 样式  -->
         <link rel="stylesheet" type="text/css" href="/homes/css/banner.css">
         
-        <style type="text/css">
+          <style type="text/css">
             .chazhao1 {
                 background-color: #e5e5e5 ; 
             }
@@ -123,7 +129,7 @@
             }
         </style>
     </head>    
-    <body class="home blog">       
+    <body class="home blog">        
         @if(session('error'))  
         <script type="text/javascript">
             swal("对不起!", "{{session('error')}}", "error");
@@ -142,7 +148,7 @@
             <!-- 代码 开始 -->
             
             <div class="header">
-                <ul class="menus" margin: 0px;>
+                <ul class="menus" style="margin: 0px;">
                     <li class="current first">
                         <a href="/" target="_self">首页</a>
                     </li>
@@ -161,14 +167,14 @@
                     @endforeach
 
                     <li class="li_3">
-                        <a class="noclick" href="/Home/message" target="_blank">留言板</a>
+                        <a class="noclick" href="/Home/message" target="_self">留言板</a>
                         <dl style="margin:0px; padding: 0px;" class="li_3_content">
                             <dt></dt>
                         </dl>
                     </li>
                 </ul>
                 
-                <a href="http://sc.chinaz.com/">
+                <a href="/">
                     <img title="MIUI" class="miui_logo" src="/admins/img/yinyuelogo.png" width="200" alt="网站logo" /></a>
                 @if(empty(session('homeuser')))
                 <p class="language">
@@ -185,10 +191,8 @@
                 @endif
             </div>
             <!-- 代码 结束 -->
-
             @section('contents')
             @section('content')
-
             <?php
                 $pictures = \App\Model\Home\Banner::BanNer();
              ?>
@@ -198,7 +202,7 @@
                 <ul class="slides">
                     @foreach ($pictures as $k => $v)
                     <li>
-                        <a title="{{$v->title}}" target="_blank" href="#">
+                        <a title="{{$v->title}}" target="_self" href="#">
                             <img width="1920" height="482" alt="{{$v->alt}}" style="background: url({{$v->picture}}) no-repeat center;" src="{{$v->picture}}">
                         </a>
                     </li>
@@ -240,23 +244,19 @@
             </script>
             <!-- banner stop -->
             <div id="wrap" class="container clearfix">
-                @php
-                    $details =App\Model\Admin\Details::with('details_content', 'lists')->where('status', '<>', '1')->get();
-                    $lid = [];
-                    foreach ($details as $k => $v) {
-                        $lid[] = $v -> lists['id'];
-                    }
-                    $details = App\Model\Admin\Details::with('details_content', 'lists')->whereIn('id', $lid)->orderBy('id', 'asc')->paginate(10);
-                @endphp
                 <section id="content" class="primary" role="main">
                     @php
                         $hottest = DB::table('praise')->select(DB::raw('count(*) as d_c_count, d_c_id'))->groupBy('d_c_id')->orderBy('d_c_count', 'desc')->get();
 
-                        foreach ($hottest as $k => $v) {
-                            $d_c[] = $v->d_c_id;
+                        if (!empty($hottest->toArray())) {
+                            foreach ($hottest as $k => $v) {
+                                $d_c[] = $v->d_c_id;
+                            }
+
+                            $details =\App\Model\Admin\Details::with('details_content', 'lists')->whereIn('id', $d_c)->orderBy('id', 'desc')->where('status', '<>', '1')->get();
                         }
                         
-                        $details =\App\Model\Admin\Details::with('details_content', 'lists')->whereIn('id', $d_c)->orderBy('id', 'desc')->where('status', '<>', '1')->get();
+                        $details =\App\Model\Admin\Details::with('details_content', 'lists')->orderBy('id', 'desc')->where('status', '<>', '1')->get();
 
                         $lid = [];
                         foreach ($details as $k => $v) {
@@ -264,6 +264,7 @@
                                 $lid['id'] = $v -> lists['id'];
                             }
                         }
+
                         if (empty($lid)) {
                             $id = \App\Model\Admin\Details::whereNotIn('id', $d_c)->orderBy('id', 'desc')->where('status', '<>', '1')->first();
                             $lid = [];
@@ -281,15 +282,6 @@
                         </h2>
                         <div class="postmeta">
                             {{date('Y-m-d',$d_content->addtime)}}
-                    @foreach($details as $k => $v)
-                    <article class="content-excerpt post-13827 post type-post status-publish format-standard has-post-thumbnail sticky hentry category-nomusic tag-t">
-                        <h2 class="post-title entry-title">
-                            <a href="https://www.mtyyw.com/13827/" rel="bookmark">
-                                {{$v->details_content->title}}
-                            </a>
-                        </h2>
-                        <div class="postmeta">
-                            {{date('Y-m-d',$v->details_content->addtime)}}
                         </div>
                         <div class="entry clearfix">
                             <blockquote>
@@ -299,10 +291,13 @@
                             </blockquote>
                             <p>
                                 <a href="/home/details/{{$d_content->id}}" title="{{$d_content->title}}">
-                                    <img src="{{$d_content->picstream}}"
+                                    <img style="width: 350px; height: auto;" src="{{$d_content->picstream}}"
                                     align="absmiddle" />
-                                    <br />
-                                    简介:{{$d_content->describe}}
+                                    <br/>
+                                    <div style="width: 700px;">
+                                        <span style="color: black;">简 介:</span> &nbsp;&nbsp; <span style="letter-spacing: 3.5px; line-height: 30px;">{{$v->details_content->describe}}
+                                        </span>
+                                    </div>
                                 </a>
                             </p>
                             <a href="/home/details/{{$d_content->id}}" class="more-link">
@@ -318,50 +313,44 @@
                                 $lid[] = $v -> lists['id'];
                             }
                         }
-                        $details = \App\Model\Admin\Details::with('details_content', 'lists')->whereIn('id', $lid)->where('status', '<>', '1')->whereNotIn('id', session('lid'))->orderBy('id', 'desc')->paginate(10);
+                        $details = \App\Model\Admin\Details::with('details_content', 'lists')->whereIn('id', $lid)->where('status', '<>', '1')->whereNotIn('id', session('lid'))->orderBy('id', 'desc')->paginate(5);
+                        
                     @endphp
+
                     @foreach ($details as $k =>$v)
-                    <article class="content-excerpt post-19689 post type-post status-publish format-standard has-post-thumbnail hentry category-video category-popmusic tag-2853 tag-3298 tag-3472"><h2 class="post-title entry-title">
+                    <article class="content-excerpt post-19689 post type-post status-publish format-standard has-post-thumbnail hentry category-video category-popmusic tag-2853 tag-3298 tag-3472">
                         <h2 class="post-title entry-title">
                             <a href="/home/details/{{$v->details_content->id}}" rel="bookmark">
+                                {{$v->details_content->title}}
+                            </a>
+                        </h2>
+                        <div class="postmeta">
+                            {{date('Y-m-d',$v->details_content->addtime)}}
+                        </div>
+                        <div class="entry clearfix">
+                            <blockquote>
+                                <p>
                                     {{$v->details_content->saying}}
                                 </p>
                             </blockquote>
                             <p>
-                                <img class="" src="{{$v->details_content->picstream}}"
-                                align="absmiddle" />
-                                <br />
-                                简介:{{$v->details_content->describe}}
+                                <a href="/home/details/{{$v->
+                                    id}}" title="{{$v->details_content->title}}">
+                                    <img style="width: 350px; height: auto;" src="{{$v->details_content->picstream}}"
+                                    align="absmiddle" />
+                                    <br />
+                                    <div style="width: 700px;">
+                                    <span style="color: black;">简 介:</span> &nbsp;&nbsp; <span style="letter-spacing: 3.5px; line-height: 30px;">{{$v->details_content->describe}}
+                                    </span>
+                                    </div>
+                                </a>
                             </p>
-                            <a href="/home/details/{{$v->id}}" class="more-link">
+                            <a href="/home/details/{{$v->details_content->did}}" class="more-link">
                                 查看全部
                             </a>
                         </div>
-                        <div class="postinfo clearfix">
-                            <span class="meta-category">
-                                <ul class="post-categories">
-                                    <li>
-                                        <a href="https://www.mtyyw.com/nomusic/" rel="category tag">
-                                            无关音乐
-                                        <a href="https://www.mtyyw.com/feizhuliuyinyue/" rel="category tag">
-                                            小众音乐
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.mtyyw.com/wenzi/" rel="category tag">
-                                            文字
-                                        </a>
-                                    </li>
-                                </ul>
-                            </span>
-                        </div>
                     </article>
                     @endforeach
-
-                    <div class="post-pagination clearfix">
-                            {{$details->links()}}
-                    </div>
-
                    <style>
                         /*分页样式*/  
                         .pagination{text-align:center;margin-bottom: 20px; line-height:37px;}  
@@ -388,7 +377,7 @@
                                 <span class="screen-reader-text">
                                     Search for:
                                 </span>
-                                <input type="search" class="search-field" placeholder="Search &hellip;" value="" name="title">
+                                <input type="search" class="search-field" placeholder="Search Title &hellip;" value="" name="title">
                             </label>
                             <button type="submit" class="search-submit">
                                 <i class="fa fa-search" style="color: #aaa; font-size: 18px;">
@@ -473,10 +462,10 @@
 
                                     // dd($lid);
 
-                                    $d_content = \App\Model\Admin\DetailsContent::whereIn('did', $lid)->get();
+                                    $d_content = \App\Model\Admin\DetailsContent::whereIn('did', $lid)->limit(5)->get();
                                     // dd($d_c);
                                 } else {
-                                    $d_content = \App\Model\Admin\DetailsContent::whereIn('did', $lid)->get();
+                                    $d_content = \App\Model\Admin\DetailsContent::whereIn('did', $lid)->limit(5)->get();
                                 }
                                 
                             @endphp
@@ -487,7 +476,7 @@
                                         <a href="/home/details/{{$v->did}}" title="{{$v->title}}">
                                             <img width="75" height="75" src="{{$v->picstream}}" class="attachment-widget_post_thumb size-widget_post_thumb wp-post-image" sizes="(max-width: 75px) 100vw, 75px" />
                                         </a>
-                                        <a href="home/details/{{$v->did}}" title="{{$v->title}}">
+                                        <a href="/home/details/{{$v->did}}" title="{{$v->title}}">
                                             {{$v->title}}
                                         </a>
                                         <div class="widget-postmeta">
@@ -501,9 +490,8 @@
                             </div>
                         </div>
                     </aside>
-
-                    @php 
-                    $advertising = \App\Model\Home\Advertising::AdverTising();
+                     @php 
+                      $advertising = \App\Model\Home\Advertising::AdverTising();
            
                      @endphp
                     
@@ -514,11 +502,10 @@
                             </span>
                         </h3>
                          @foreach ($advertising as $k=>$v)
-                        <div class="textwidget" id="divs">
-                            <img width="25px" style="position: absolute; right: 100px; cursor:pointer;" src="/admins/uploads/gg/gg1.png" onclick="closed();" />
-                            <a href="{{$v->links}}" rel="nofollow" target="_blank">
-                                <img src="{{$v->picture}}"
-                                 width="350" height="337" class="alignnone size-full wp-image-11045"
+                        <div class="textwidget" style="position: relative; width: 240px; text-align: center; margin: 0px auto" class="divs">
+                            <i  style="color:#555;position: absolute; right: 0px; cursor:pointer;font-size:20px;" class="fa fa-close"></i>
+                            <a href="{{$v->links}}"  rel="nofollow" target="_blank" >
+                                <img src="{{$v->picture}}" class="alignnone size-full wp-image-11045"
                                 />
                             </a>
                             
@@ -528,14 +515,14 @@
                    
                 </section>
             </div>
-            <script>
-                function closed()
+            <script type="text/javascript">
+                $('.fa-close').click(function ()
                 {
-                    $('#divs').fadeOut(1000);
-                }
-
+                    $(this).parent().fadeOut(1000);
+                });
             </script>
-
+            
+            @show
             <div id="footer-widgets-bg">
                 <div id="footer-widgets-wrap" class="container">
                     <div id="footer-widgets" class="clearfix">
@@ -553,26 +540,21 @@
                                             <br />
                                             在浮躁、喧嚣的互联网中，希望你能在这里静下来。
                                             <br />
-                                            站长QQ群:906524423 微信:保密
-                                            <br />
-                                            <a href="https://www.weibo.com/" tar>
-                                                新浪微博
-                                            </a>
                                         </p>
                                     </div>
                                 </aside>
                             </div>
                             <div class="footer-widget-column">
-                                <aside id="text-6" class="widget widget_text">
+                                <aside id="text-6" class="widget widget_text" style="text-align:center;">
                                     <h3 class="widgettitle">
                                         <span>
-                                            微信群“音悦杂志社”
+                                            QQ群“音悦杂志社”
                                         </span>
                                     </h3>
                                     <div class="textwidget">
                                         <p>
-                                            <img src=""
-                                            alt="音悦杂志社微信群" width="220" height="220" class="alignnone size-full wp-image-11032"
+                                            <img src="/homes/picture/QQFansGroup1.jpg"
+                                            alt="音悦杂志社QQ群" title="音悦杂志社QQ群" width="220px" height="220px" class="alignnone size-full wp-image-11032"
                                             />
                                         </p>
                                     </div>
@@ -592,7 +574,7 @@
                                             “悦生活”是一个漂流本活动，国内外的网友在笔记本上记录自己的生活和心情，然后传递给下一个人 。
                                             <br />
                                             除了碎片化的微博和朋友圈，也许你需要给无处安放的心情和文字找一个地方。
-                                            <a href="/Home/Message">
+                                            <a href="/Home/message">
                                                 点击查看
                                             </a>
                                         </p>
@@ -608,36 +590,47 @@
                                     </h3>
                                     <div class="menu-%e7%83%ad%e9%97%a8%e4%b8%bb%e9%a2%98-container">
                                         <ul id="menu-%e7%83%ad%e9%97%a8%e4%b8%bb%e9%a2%98" class="menu">
+                                            @php
+                                                $hottest = DB::table('praise')->select(DB::raw('count(*) as d_c_count, d_c_id'))->groupBy('d_c_id')->orderBy('d_c_count', 'desc')->limit(5)->get();
+                                                $d_c = [];
+                                                foreach ($hottest as $k => $v) {
+                                                    $d_c[] = $v -> d_c_id;
+                                                }
+                                                $details =\App\Model\Admin\Details::with('details_content', 'lists')->where('status', '<>', '1')->whereIn('id', $d_c)->get();
+                                                
+                                                $lid = [];
+                                                foreach ($details as $k => $v) {
+                                                    if ($v -> lists['status'] == 0) {
+                                                        $lid[] = $v -> lists['id'];
+                                                    }
+                                                }
+
+                                                if (count($details) < 6) {
+                                                    $details =\App\Model\Admin\Details::with('details_content', 'lists')->where('status', '<>', '1')->get();
+
+                                                    $lid = [];
+                                                    foreach ($details as $k => $v) {
+                                                        if ($v -> lists['status'] == 0) {
+                                                            $lid[] = $v -> lists['id'];
+                                                        }
+                                                    }
+
+                                                    // dd($lid);
+
+                                                    $d_content = \App\Model\Admin\DetailsContent::whereIn('did', $lid)->limit(5)->get();
+                                                    // dd($d_c);
+                                                } else {
+                                                    $d_content = \App\Model\Admin\DetailsContent::whereIn('did', $lid)->limit(5)->get();
+                                                }
+                                                
+                                            @endphp
+                                            @foreach ($d_content as $k => $v)
                                             <li id="menu-item-13839" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13839">
-                                                <a href="https://www.mtyyw.com/13600/">
-                                                    《Faded》当神电音遇上空灵女声
+                                                <a href="/home/details/{{$v->id}}">
+                                                    {{$v->title}}
                                                 </a>
                                             </li>
-                                            <li id="menu-item-11094" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11094">
-                                                <a href="https://www.mtyyw.com/8911/">
-                                                    十大气势背景音乐
-                                                </a>
-                                            </li>
-                                            <li id="menu-item-13256" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13256">
-                                                <a href="https://www.mtyyw.com/13248/">
-                                                    抖腿神曲，停不下来的节奏
-                                                </a>
-                                            </li>
-                                            <li id="menu-item-11095" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11095">
-                                                <a href="https://www.mtyyw.com/353/">
-                                                    魔曲《黑色星期天》
-                                                </a>
-                                            </li>
-                                            <li id="menu-item-11352" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11352">
-                                                <a href="https://www.mtyyw.com/12949/">
-                                                    世界上最动听的歌-新世纪音乐
-                                                </a>
-                                            </li>
-                                            <li id="menu-item-13212" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13212">
-                                                <a href="https://www.mtyyw.com/tag/music-stroy/">
-                                                    有故事的歌
-                                                </a>
-                                            </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </aside>
@@ -679,7 +672,6 @@
                 </footer>
             </div>
         </div>
-
         <!-- end #wrapper -->
         <script>
             (function(i, s, o, g, r, a, m) {
@@ -701,7 +693,7 @@
         <!-- 7 queries in 0.088 seconds. -->
              
         <!-- 右边展开代码开始 -->
-        <script src="/homes/public/templates/default/js/JCheck.js" tppabs="http://www.mfdemo.cn/public/templates/default/js/JCheck.js"></script>
+        <script src="/homes/public/templates/default/js/JCheck.js"></script>
         <script>
             $(function () {
                 $('.u-checkbox').jCheckbox();
@@ -735,12 +727,12 @@
             <div class="mf_dengluhuo"></div>
 
             <div class="mf_dengluguan shenyinclick">
-                <svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23px" height="23px" viewBox="175.364 -61.823 23 23" enable-background="new 175.364 -61.823 23 23" tppabs="http://www.mfdemo.cn/new 175.364 -61.823 23 23" xml:space="preserve"><path fill="#846045" d="M186.88-49.493l-3.995,3.995l-0.407,0.407l-0.813-0.813l0.406-0.407l3.995-3.997l-3.995-3.997l-0.406-0.406 l0.813-0.813l0.407,0.406l3.995,3.996l3.996-3.996l0.407-0.406l0.813,0.813l-0.407,0.406l-3.995,3.997l3.995,3.997l0.407,0.407 l-0.813,0.813l-0.407-0.407L186.88-49.493z M186.864-38.823c6.351,0,11.5-5.149,11.5-11.5s-5.149-11.5-11.5-11.5 s-11.5,5.149-11.5,11.5S180.514-38.823,186.864-38.823z"/></svg>
+                <svg version="1.1" id="图层_1"  x="0px" y="0px" width="23px" height="23px" viewBox="175.364 -61.823 23 23" enable-background="new 175.364 -61.823 23 23" xml:space="preserve"><path fill="#846045" d="M186.88-49.493l-3.995,3.995l-0.407,0.407l-0.813-0.813l0.406-0.407l3.995-3.997l-3.995-3.997l-0.406-0.406 l0.813-0.813l0.407,0.406l3.995,3.996l3.996-3.996l0.407-0.406l0.813,0.813l-0.407,0.406l-3.995,3.997l3.995,3.997l0.407,0.407 l-0.813,0.813l-0.407-0.407L186.88-49.493z M186.864-38.823c6.351,0,11.5-5.149,11.5-11.5s-5.149-11.5-11.5-11.5 s-11.5,5.149-11.5,11.5S180.514-38.823,186.864-38.823z"/></svg>
             </div>
 
             <div class="mf_denglu1">
                 <div class="mf_denglu1-1" style="margin-top: 26px">
-                    <a href="#"><img src="/admins/img/yinyuelogo-1.png" tppabs="" width="48"/></a>
+                    <a href="/"><img src="/admins/img/yinyuelogo-1.png" tppabs="" width="48"/></a>
                 </div>
                 <div class="mf_denglu1-2">音悦杂志社</div>
 
@@ -785,8 +777,8 @@
             <div class="mf_denglu2">
                 <div class="mf_denglu2-1">
 
-                    <p><a class=" fa fa-qq" href="javascript:if(confirm(%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/qq/callback/"  target="_blank"></a></p>
-                    <span><a class="fa fa-wechat" href="javascript:if(confirm(%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/weixin/callback/"></a></span>
+                    <p><a class=" fa fa-qq" href="#" target="_self"></a></p>
+                    <span><a class="fa fa-wechat" href="#" target="_self"></a></span>
 
                 </div>
 
@@ -808,7 +800,7 @@
 
             <div class="zhuce1">
                 <div class="mf_denglu1-1" style="margin-top: 26px">
-                    <a href="#"><img src="/admins/img/yinyuelogo-1.png" tppabs="" width="48"/></a>
+                    <a href="/"><img src="/admins/img/yinyuelogo-1.png" tppabs="" width="48"/></a>
                 </div>
                 <div class="mf_denglu1-2">音悦杂志社</div>
 
@@ -830,13 +822,13 @@
 
                         <div class="zhuce1-3-2">
                             <label></label>
-                            <input type="password" id="reg_mima" name="password" value="{{old('password')}}" class="mima form-put" placeholder="输入您的登录密码" datatype="z6" nullmsg="请填写登录密码！" errormsg="必须有数字字母,且不能少六多十六！"/>
+                            <input type="password" id="reg_mima" name="password" value="{{old('password')}}" class="mima form-put" placeholder="输入您的注册密码" datatype="z6" nullmsg="请填写注册密码！" errormsg="必须有数字字母,且不能少六多十六！"/>
                             <div class="Validform_checktip"></div>
                         </div>
 
                         <div class="zhuce1-3-2"><label></label>
-                            <input type="password" id="reg_mima2" name="repassword" value="{{old('repassword')}}" class="mima2 form-put" placeholder="重复登录密码"
-                                   datatype="*" recheck="password" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！"/>
+                            <input type="password" id="reg_mima2" name="repassword" value="{{old('repassword')}}" class="mima2 form-put" placeholder="重复注册密码"
+                                   datatype="*" recheck="password" nullmsg="请再输入确认注册密码！" errormsg="您两次输入的注册密码不一致！"/>
                             <div class="Validform_checktip"></div>
                         </div>
 
@@ -852,8 +844,8 @@
 
                 <div class="mf_denglu2-1">
 
-                    <p><a class=" fa fa-qq" href="javascript:if(confirm(%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://graph.qq.com/oauth2.0/authorize?client_id=101359580&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dqq&response_type=code&scope=get_user_info%2Cadd_share%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/qq/callback/"  target="_blank"></a></p>
-                    <span><a class="fa fa-wechat" href="javascript:if(confirm(%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://open.weixin.qq.com/connect/qrconnect?appid=wxd022e70fbd30c73e&redirect_uri=http%3A%2F%2Fmfdemo.cn%2Findex.php%3Fg%3Dapi%26m%3Doauth%26a%3Dcallback%26type%3Dweixin&response_type=code&scope=snsapi_login%27" tppabs="http://www.mfdemo.cn/api/oauth/login/type/weixin/callback/"></a></span> 
+                    <p><a class=" fa fa-qq" href="#"  target="_self"></a></p>
+                    <span><a class="fa fa-wechat" href="#" target="_self"></a></span> 
 
                 </div>
 
@@ -889,7 +881,7 @@
             <div class="mf_chongzhi1">
 
                 <div class="mf_denglu1-1" style="margin-top: 26px">
-                    <a href="#"><img src="/admins/img/yinyuelogo-1.png" tppabs="" width="48"/></a>
+                    <a href="/"><img src="/admins/img/yinyuelogo-1.png" tppabs="" width="48"/></a>
                 </div>
                 <div class="mf_denglu1-2">音悦杂志社</div>
 
@@ -919,7 +911,7 @@
 
                         <div class="mf_chongzhi1-3-2">
                             <label></label>
-                            <input type="password" name="repassword" class="mima2 form-put" placeholder="重复新密码" value="{{old('repassword')}}" datatype="*" recheck="password" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！"/>
+                            <input type="password" name="repassword" class="mima2 form-put" placeholder="重复新密码" value="{{old('repassword')}}" datatype="*" recheck="password" nullmsg="请再输入确认重置密码！" errormsg="您两次输入的重置密码不一致！"/>
                             <div class="Validform_checktip"></div>
                         </div>
 
@@ -934,15 +926,7 @@
             <div class="mf_chongzhi2"></div>
         </div>
 
-        <div class="chongzhichenggong">
-            <div class="chongzhichenggong1"><img src="/homes/public/templates/default/images/gou.png" tppabs="http://www.mfdemo.cn/public/templates/default/images/gou.png" width="30" height="29"/>
-            </div>
-
-            <div class="chongzhichenggong2">重置成功</div>
-
-            <div class="chongzhichenggong3"><p>3</p><span>s后返回登录</span></div>
-
-        </div>
+        <script type="text/javascript" src="/homes/js/jquerysession.js"></script>
 
         <script type="text/javascript">
 
@@ -1103,9 +1087,9 @@
                                             setCookie('verify', 300, 0.0034722); 
                                             verify();
                                         } else if (data == 1) {
-                                            swal("对不起!", "您输入的的邮箱未在本网站登录过, 请核对后再输入!", "error");
+                                            swal("对不起!", "您输入的邮箱未在本网站登录过, 请核对后再输入!", "error");
                                         } else if (data == 2) {
-                                            swal("对不起!", "您输入的的邮箱未在本网站注册验证成功, 请前往您注册时的邮箱进行验证再修改密码!", "error");
+                                            swal("对不起!", "您输入的邮箱未在本网站注册验证成功, 请前往您注册时的邮箱进行验证再修改密码!", "error");
                                         }
                                     },
                                     error: function(){
@@ -1134,8 +1118,6 @@
                     "u3": /^[a-zA-Z0-9\u4e00-\u9fa5]{3,10}$/,
                     // 不少于六位且必须有数字和字母！
                     "z6": /^(?![0-9]+$)(?![a-zA-Z]+$)[\S]{6,16}$/,
-                    // "z8": /^(?![^a-zA-Z]+$)(?!\D+$).{8}/,
-                    // "m": /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|18[0-9]{9}|17[0-9]{9}$|18[0-9]{9}|18[0-9]{9}$|18[0-9]{9}$/,
                 });
 
                 //显示登录提示
@@ -1206,6 +1188,7 @@
             } else {
                 $flag = '0';
             }
+
             echo "<script type='text/javascript'>
                 var flag = '0';
                 flag = ".$flag."
@@ -1228,6 +1211,7 @@
                         error: function(){
                             // console.log('删除失败');
                         },
+                        // timeout:3000,
                         async: true
                     });
                     console.log(flag);
@@ -1243,9 +1227,9 @@
                     </script>";
 
                 session(['login' => null]);
-           }
+            }
 
-           if (!empty(session('register'))) {
+            if (!empty(session('register'))) {
                 echo "<script type='text/javascript'>
                         $('.mf_denglu').addClass('bounceOutUp').fadeOut();
                     setTimeout(function () {
@@ -1254,9 +1238,9 @@
                     </script>";
 
                 session(['register' => null]);
-           }
+            }
 
-           if (!empty(session('forgetpass'))) {
+            if (!empty(session('forgetpass'))) {
                 echo "<script type='text/javascript'>
                     $('.mf_denglu').addClass('bounceOutUp').fadeOut();
                     setTimeout(function () {
@@ -1265,8 +1249,20 @@
                     </script>";
 
                 session(['forgetpass' => null]);
-           }
+            }
+
+            if (!empty(session('emaillogin'))) {
+                echo "<script type='text/javascript'>
+                        $('.zhuce').addClass('bounceOutUp').fadeOut();
+                        setTimeout(function () {
+                            $('.mf_denglu').removeClass('bounceOutUp').addClass('animated bounceInDown').fadeIn();
+                        }, 1500);
+                    </script>";
+
+                session(['emaillogin' => null]);
+            }
          @endphp
+
 
         <!-- 表单验证插件代码开始 -->
         <script type="text/javascript"  src="/homes/public/templates/default/js/Validform_v5.3.2_min.js" tppabs="http://www.mfdemo.cn/public/templates/default/js/Validform_v5.3.2_min.js"></script>

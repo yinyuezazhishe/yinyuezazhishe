@@ -95,12 +95,12 @@
 					$('.mytitle').css({'color':'red'});
 					return false;
 				}	
-				ajaxtitle.push(tit.val());				
+				ajaxtitle.push(tit.val());
 				setTimeout(function(){
 					mytitle = ajaxtitle.pop();
 					ajaxtitle = new Array();
 					if(mytitle){
-						$.get('/admin/blogroll/'+mytitle,{},function(data){
+						$.get('/admin/mytitle?mytitle='+mytitle,{},function(data){
 							if(data == '2'){
 								$('.mytitle').html('<i class="fa fa-check-circle" style="color:lightgreen;padding-right:3px;"></i>链接昵称可以使用');
 								$('.mytitle').css({'color':'lightgreen'});							
@@ -118,11 +118,11 @@
 			checktitle($(this));			
 		})
 		$('input[name="title"]').focus(function(){
-			if($(this).val()){
+			/*if($(this).val()){
 				$('.mytitle').html('<i class="fa fa-close" style="color:red;padding-right:3px;"></i>请输入链接名称');
 					$('.mytitle').css({'color':'red'});
 					return false;
-			}
+			}*/
 		})
 
 	    //判断links

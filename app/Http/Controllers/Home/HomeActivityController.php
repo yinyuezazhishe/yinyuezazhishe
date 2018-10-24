@@ -29,7 +29,11 @@ class HomeActivityController extends Controller
     	}
     }
     //获取积分
-    public function getActivity(Request $request){
+    public function getActivity(Request $request)
+    {
+        if ($request -> method() == 'GET') {
+            abort('404');
+        }
     	//返回值
     	$data = [];
     	$activity = $request->except('_token');
@@ -55,8 +59,9 @@ class HomeActivityController extends Controller
     		return redirect('home/activity');
     	}
     }
-    //活动结束或未开始
-    public function noactivity(){
+    // 活动结束或未开始
+    public function noactivity()
+    {
     	$isHave = AdminActivity::where('status',0)->first();
     	if($isHave){
             $time = time();

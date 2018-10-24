@@ -55,7 +55,7 @@
 	$('#heart_sentence').keydown(function(){
 		sentence($('#heart_sentence'));
 	})
-	$('#heart_sentence').focus(function(){
+	$('#heart_sentence').blur(function(){
 		sentence($('#heart_sentence'));
 	})
 	$('form').submit(function(){

@@ -184,7 +184,7 @@
                             if (data == 0) {
                                 location.reload(true);
                                 swal("恭喜您!", "删除列表成功!", "success");
-                                window.location.href = 'www.yinyue.cn/admin/lists';
+                                window.location.href = '/admin/lists';
                             } else if (data == 1) {
                                 swal("对不起!", "删除列表失败!", "error");
                             }

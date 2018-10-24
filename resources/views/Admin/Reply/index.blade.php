@@ -12,7 +12,7 @@
 	        <div class="ibox-content">
 	            <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline"
 	            role="grid">
-	                <form action="/admin/comment" method="get" >
+	                <form action="/admin/reply" method="get" >
 	                    <div class="row">
 	                        <div class="col-sm-6">
 	                            <div class="dataTables_length" id="DataTables_Table_0_length">
@@ -39,7 +39,7 @@
 	                        </div>
 	                        <div class="col-sm-6" style="padding-left: 250px">
 	                            <div class="input-group">
-	                                <input type="text" placeholder="请输入用户ID" class="input-sm form-control" name="id" value="">
+	                                <input type="text" placeholder="请输入用户ID" class="input-sm form-control" name="id" value="{{$request->id}}">
 	                                <span class="input-group-btn">
 	                                <button type="submit" class="btn btn-sm btn-primary">搜索</button>
 	                            </div>
@@ -58,12 +58,12 @@
 	                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
 	                            rowspan="1" colspan="1" aria-sort="ascending" aria-label="用户名"
 	                            style="width: 80px; text-align: center;">
-	                                评论人 & ID
+	                                回复人 & ID
 	                            </th>
 	                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
 	                            rowspan="1" colspan="1" aria-sort="ascending" aria-label="用户名"
 	                            style="width: 200px; text-align: center;">
-	                                评论内容
+	                                回复内容
 	                            </th>
 	                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
 	                            colspan="1" aria-label="创建时间" style="width: 60px; text-align: center;">
@@ -121,6 +121,10 @@
 @section('js')
 	
 	<script type="text/javascript">
+		//改变导航条样式
+		var show_reply = $('.show_reply').parents('li');
+		$('.show_reply a').css({'color':'#fff'});
+		show_reply.attr('class','active');
 	    $('.del').click(function(){
 
 	        var id = $(this).attr('data-id');
@@ -131,12 +135,8 @@
 
 	            $.post('/admin/reply/'+id,{'_token':'{{ csrf_token() }}','_method':'DELETE'},
 	                function(data){
-	                    
-	                    if(data){
 
 	                        location.reload(true);
-
-	                    }
 	                })
 
 	        },function(){

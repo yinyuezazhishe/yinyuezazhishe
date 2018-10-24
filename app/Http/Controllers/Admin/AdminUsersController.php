@@ -15,10 +15,7 @@ class AdminUsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {  
-
-        
-
+    {
         $rs = AdminUsers::orderBy('id','asc')
         -> where(function($query) use($request){
                 //检测关键字
@@ -151,6 +148,8 @@ class AdminUsersController extends Controller
     {
         $res = $request -> except('_token','face','_method','oldface','uid');
 
+        // dd($res);
+
         $uid = $request -> input('uid');
        
         // dd($oldFace);
@@ -185,7 +184,7 @@ class AdminUsersController extends Controller
                 
                 session(['adminusers_face' => $res['face']]);
             }
-            session(['adminusers_face' => $res['face']]);
+            
         }
 
             
@@ -282,6 +281,9 @@ class AdminUsersController extends Controller
      */
     public function do_setFace(Request $request)
     {
+        if ($request -> method() == 'GET') {
+            abort('404');
+        }
 
         $res = $request -> except('_token');
         //文件上传
@@ -347,6 +349,10 @@ class AdminUsersController extends Controller
      */
     public function doPass(Request $request)
     {
+        if ($request -> method() == 'GET') {
+            abort('404');
+        }
+        
         //去掉不需要的数据
         $res = $request -> except('_token','repass','_method','oldpass');
 
@@ -373,7 +379,7 @@ class AdminUsersController extends Controller
                 if ($rs) {
 
                     //清空session 里面用户的数据
-                    $request->session()->forget(['admin_user','adminusers_face']);
+                    $request->session()->forget(['adminusers','adminusers_face']);
 
                     return redirect('/admin/login') -> with('success','修改成功! 请重新登录');
 
@@ -405,7 +411,6 @@ class AdminUsersController extends Controller
 
         //获取用户id
         $id = $request -> input('id');
-
         // return 1;
         
         try{
@@ -414,7 +419,6 @@ class AdminUsersController extends Controller
             $rs = AdminUsers::where('id',$id) -> update($res);
 
             if ($rs) {
-
                 session(['success'=>'修改主题成功']);
                 return 1;
 

@@ -28,7 +28,7 @@ class LoginAdminController extends Controller
      */
     public function verify()
     {
-		    $phrase = new PhraseBuilder;
+	    $phrase = new PhraseBuilder;
         // 设置验证码位数
         $code = $phrase->build(4);
         // 生成验证码图片的Builder对象，配置相应属性
@@ -57,44 +57,57 @@ class LoginAdminController extends Controller
      */
     public function dologin(Request $request)
     {
-		    // dd($user);
-
-    	  // echo session('code');
+        if ($request -> method() == 'GET') {
+            abort('404');
+        }
+        
+		// dd($user);
+    	// echo session('code');
 
         if ($request -> code != session('code')) {
 
-			      return redirect('/admin/login')->with('error','验证码错误') -> withInput();
-		    }
+            return redirect('/admin/login')->with('error','验证码错误') -> withInput();
+	    }
 
-    	  $user = AdminUsers::where('username', $request -> username) -> first();
+	    $user = AdminUsers::where('username', $request -> username) -> first();
 
-    	  if ($user) {
+	    if ($user) {
 
-    		  if ($user -> username != $request -> username) {
+            if ($user -> status != 0) {
+                return redirect('/admin/login')->with('error','您的账户已被禁用, 请联系管理员') -> withInput();
+            }
 
-	    		  return redirect('/admin/login')->with('error','用户名或密码错误') -> withInput();
-	    	}
+		        if ($user -> username != $request -> username) {
+
+                return redirect('/admin/login')->with('error','用户名或密码错误') -> withInput();
+	    	    } 
 
 	    	// echo $request -> password;
 	    	// echo $user -> password;
+            if (!Hash::check($request -> password, $user -> password)) {
 
-	    	if (!Hash::check($request -> password, $user -> password)) {
+                return redirect('/admin/login')->with('error','用户名或密码错误') -> withInput();
+            }
 
-			    return redirect('/admin/login')->with('error','用户名或密码错误') -> withInput();
-			}
+	    } else {
 
-    	} else {
+		    return redirect('/admin/login')->with('error','用户名或密码错误') -> withInput();
+        }
 
-    		return redirect('/admin/login')->with('error','用户名或密码错误') -> withInput();
-    	}
+      	// dump($user);
+        //用户名
+        session(['adminusers'=>$user]);
+        //用户头像路径
+        session(['adminusers_face'=>$user->face]);
+        $res['prev_ip'] = $_SERVER["REMOTE_ADDR"];
 
-    	// dump($user);
-      //用户名
-      session(['adminusers'=>$user]);
-      //用户头像路径
-      session(['adminusers_face'=>$user->face]);
-        
-    	return redirect('/admin')->with('success','登录成功');     
+
+        $res['logins'] = $user -> logins + 1 ;
+
+
+        AdminUsers::where('id',$user->id)->update($res);
+          
+      	return redirect('/admin')->with('success','登录成功');     
     }
 
     /**

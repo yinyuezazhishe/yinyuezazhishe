@@ -17664,9 +17664,16 @@ UE.plugins['video'] = function (){
             case 'video':
                 var ext = url.substr(url.lastIndexOf('.') + 1);
                 if(ext == 'ogv') ext = 'ogg';
-                str = '<video' + (id ? ' id="' + id + '"' : '') + ' class="' + classname + ' video-js" ' + (align ? ' style="float:' + align + '"': '') +
-                    ' controls preload="none" width="' + width + '" height="' + height + '" src="' + url + '" data-setup="{}">' +
-                    '<source src="' + url + '" type="video/' + ext + '" /></video>';
+                if(ext == 'mp3'){
+                    str = '<audio' + (id ? ' id="' + id + '"' : '') + ' class=" audio-js" ' + (align ? ' style="float:' + align + '"': '') +
+                        ' controls preload="none" width="' + width + '" height="' + height + '" src="' + url + '">" /></audio>';
+                }else{
+                    // str = '<video' + (id ? ' id="' + id + '"' : '') + ' class="' + classname + ' video-js" ' + (align ? ' style="float:' + align + '"': '') +
+                    //     ' controls preload="none" width="' + width + '" height="' + height + '" src="' + url + '" data-setup="{}">' +
+                    //     '<source src="' + url + '" type="video/' + ext + '" /></video>';
+                    str = '<audio' + (id ? ' id="' + id + '"' : '') + ' class=" audio-js" ' + (align ? ' style="float:' + align + '"': '') +
+                        ' controls preload="none" width="' + width + '" height="' + height + '" src="' + url + '">" /></audio>';
+                }
                 break;
         }
         return str;

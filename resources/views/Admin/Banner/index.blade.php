@@ -7,7 +7,7 @@
         <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
              <div class="row">
                 <div class="col-sm-6">
-                     <form action="/Admin/banner" method='get'>
+                     <form action="/admin/banner" method='get'>
                         <div class="dataTables_length" id="DataTables_Table_0_length">
                         <label>
                             显示
@@ -88,9 +88,9 @@
                         </td>
                      
                          <td class=" ">
-                            <a class='btn btn-primary' href="/Admin/banner/{{$v->id}}/edit">修改</a>
+                            <a class='btn btn-primary' href="/admin/banner/{{$v->id}}/edit">修改</a>
 
-                            <form action="/Admin/banner/{{$v->id}}" method='post' style='display:inline'>
+                            <form action="/admin/banner/{{$v->id}}" method='post' style='display:inline'>
                                 
                                 {{csrf_field()}}
                                 {{method_field('DELETE')}}
@@ -115,4 +115,12 @@
                     content: "\e022";
                 }
             </style>
+@stop
+@section('js')
+<script type="text/javascript">
+    //改变导航条样式
+    var show_banner = $('.show_banner').parents('li');        
+    $('.show_banner a').css({'color':'#fff'});
+    show_banner.attr('class','active');
+</script>
 @stop

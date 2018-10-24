@@ -18,7 +18,7 @@ class AdminMessageController extends Controller
     public function index(Request $request)
     {
 
-         $message = Message::with('homeuser','remessages')->orderBy('addtime','desc')->paginate(5);
+         $message = Message::with('homeuser','reply')->orderBy('addtime','desc')->paginate(5);
         
       
         return view('Admin.message.index',[
@@ -40,7 +40,7 @@ class AdminMessageController extends Controller
         try{
              $rs =  Message::where('id',$id) -> delete();
              if ($rs){
-                return redirect('/Admin/message') -> with('success','删除成功');
+                return redirect('/admin/message') -> with('success','删除成功');
              }
         }catch(\Exception $e){
             return back() -> with('error','删除失败');
