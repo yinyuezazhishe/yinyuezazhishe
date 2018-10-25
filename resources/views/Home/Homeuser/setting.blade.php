@@ -36,7 +36,7 @@
                             <p><button type="button" id="affrit_edit" mydata-id="{{session('homeuser')->id}}" style="background-color: #23c6c8;">确认修改</button></p>
                     </div>
                     <p>
-                    	<a href="javascript:history.back()" style="display: inline-block;width: 100%;height: 100%;overflow: hidden;cursor: pointer;text-align: center;border-radius: 22.5px;line-height: 45px;font-size: 16px;color: #fff;position: relative;z-index: 1; background-color: #f8ac59;">返回个人中心</a>
+                    	<a href="/home/user/center" style="display: inline-block;width: 100%;height: 100%;overflow: hidden;cursor: pointer;text-align: center;border-radius: 22.5px;line-height: 45px;font-size: 16px;color: #fff;position: relative;z-index: 1; background-color: #f8ac59;">返回个人中心</a>
                     </p>
                 </div>
             </div>

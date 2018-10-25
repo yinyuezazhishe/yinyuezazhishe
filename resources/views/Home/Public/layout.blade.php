@@ -64,7 +64,7 @@
 
 
         <link rel="stylesheet" href="/homes/css/menu.css" type="text/css" />
-        <script src="/homes/js/jquery-1.4.2.js" type="text/javascript"></script>
+        <!-- <script src="/homes/js/jquery-1.4.2.js" type="text/javascript"></script> -->
         <script src="/homes/js/jquery.backgroundpos.js" type="text/javascript"></script>
         <script src="/homes/js/menu.js" type="text/javascript"></script>
         <!-- banner 样式  -->
@@ -1265,7 +1265,7 @@
 
 
         <!-- 表单验证插件代码开始 -->
-        <script type="text/javascript"  src="/homes/public/templates/default/js/Validform_v5.3.2_min.js" tppabs="http://www.mfdemo.cn/public/templates/default/js/Validform_v5.3.2_min.js"></script>
+        <script type="text/javascript"  src="/homes/public/templates/default/js/Validform_v5.3.2_min.js" ></script>
         <script type="text/javascript">
             $(function(){
                 var demo=$(".registerform").Validform({

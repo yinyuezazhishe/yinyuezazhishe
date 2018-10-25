@@ -126,6 +126,9 @@ class AdminBlogrollController extends Controller
             //拼接地址
             $linksdata['picture'] = '/admins/uploads/links/'.$name.'.'.$suffix;
             //获取原图片完整路径进行删除操作
+            // if(){
+                
+            // }
             if($request->input('oldpicture')){
                 $path = Config::get('app.imgpath').$request->input('oldpicture');
                 unlink($path);

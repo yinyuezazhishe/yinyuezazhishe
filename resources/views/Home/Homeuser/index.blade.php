@@ -767,9 +767,10 @@ jQuery(document).ready(function($) {
                             myLike.find('div.lmlblog-post-footer-bar span:eq(0)').attr('title',timestampToTime(data[i].addtime));
                             myLike.find('div.lmlblog-post-footer-bar span:eq(0)').html(timestampToTime(data[i].addtime));
                             $('#insertLike').append(myLike);
-                        }
-                        
+                        }  
                     }
+                       pagelike = pagelike+4; 
+                    
                 })
             }
             $.get('/home/user/ajaxsentence',{'page':page},function(data){
@@ -784,9 +785,9 @@ jQuery(document).ready(function($) {
                         myElement.find('p').html(data[i].heart_sentence);
                         $('#mySentence').append(myElement);
                     }
-                }else{
-                    page = page+7;
                 }
+                    page = page+7;
+                
             });
         }
     })

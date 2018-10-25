@@ -33,6 +33,8 @@ class HomeUsersController extends Controller
                 }
             }
         }
+        //求和我的喜欢总数
+        $likes_num = DB::table('praise')->where('u_id',session('homeuser')->id)->get()->toArray();
         //我的喜欢
         $likes = DB::table('praise')->where('u_id',session('homeuser')->id)->orderBy('addtime','desc')->skip(0)->limit(4)->get()->toArray();
         // dd($likes);
@@ -46,7 +48,7 @@ class HomeUsersController extends Controller
                 $infolike = [];
             }
         }else{
-            $likes = [];
+            $likes_num = [];
             $infolike = []; 
         } 
         // dd($infolike);
@@ -54,7 +56,7 @@ class HomeUsersController extends Controller
         $message = Message::where('user_id',session('homeuser')->id)->orderBy('addtime','desc')->get()->toArray();
         //我的评论
         $discuss = Comment::where('hid',session('homeuser')->id)->orderBy('addtime','desc')->get()->toArray(); 
-    	return view('Home.Homeuser.index',['sentence'=>$sentence,'message'=>$message,'like'=>count($likes),'infolike'=>$infolike,'discuss'=>$discuss]);
+    	return view('Home.Homeuser.index',['sentence'=>$sentence,'message'=>$message,'like'=>count($likes_num),'infolike'=>$infolike,'discuss'=>$discuss]);
     }
     //会员个性签名
     public function sdasd(Request $request){
@@ -215,9 +217,9 @@ class HomeUsersController extends Controller
             if(!empty($rs)){
                 $in = [];
                 foreach($rs as $k=>$v){
-                    if($v->status == 0){
+                    // if($v->status == 0){
                         $in[] =  $v->sentence_id;
-                    }
+                    // }
                 }
             }else{
                 $in =  ['0'=>0];
@@ -287,7 +289,7 @@ class HomeUsersController extends Controller
     }
     public function ajaxlike(Request $request){
          //我的喜欢
-        $likes = DB::table('praise')->where('u_id',session('homeuser')->id)->skip($request->input('pagelike'))->limit(4)->get()->toArray();
+        $likes =DB::table('praise')->where('u_id',session('homeuser')->id)->orderBy('addtime','desc')->skip($request->input('pagelike'))->limit(4)->get()->toArray();
         if(!empty($likes)){
             $infolike = [];
             foreach ($likes as $k => $v) {
